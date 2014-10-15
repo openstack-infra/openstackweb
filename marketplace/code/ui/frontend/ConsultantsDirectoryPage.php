@@ -143,25 +143,9 @@ class ConsultantsDirectoryPage_Controller extends MarketPlaceDirectoryPage_Contr
 			$consultant       = $this->consultant_repository->getBy($query);
 			if(!$consultant) throw new NotFoundEntityException('Consultant','by slug');
 			if($consultant->getCompany()->URLSegment != $company_url_segment) throw new NotFoundEntityException('','');
-			Requirements::javascript("marketplace/code/ui/frontend/js/consultant.page.js");
-			$services = $consultant->getServicesOffered();
-			$unique_services = array();
-			$unique_regions  = array();
-			foreach($services as $service){
-				if(!array_key_exists($service->getType(),$unique_services))
-					$unique_services[$service->getType()] = $service;
-				if(!array_key_exists($service->getRegionID(),$unique_regions)){
-					$region = $this->region_repository->getById($service->getRegionID());
-					$unique_regions[$service->getRegionID()]=$region;
-				}
-			}
-			return $this->Customise(
-				array(
-					'Consultant' => $consultant,
-					'Services'   => new ArrayList(array_values($unique_services)),
-					'Regions'    => new ArrayList(array_values($unique_regions)),
-				)
-			)->renderWith(array('ConsultantsDirectoryPage_consultant','ConsultantsDirectoryPage','MarketPlacePage'));
+
+			$render = new ConsultantSapphireRender($consultant);
+			return $render->draw($consultant);
 		}
 		catch (Exception $ex) {
 			return $this->httpError(404, 'Sorry that Consultant could not be found!.');

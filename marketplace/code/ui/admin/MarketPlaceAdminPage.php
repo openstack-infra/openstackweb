@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Openstack Foundation
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,23 +16,25 @@
  * Class MarketPlaceAdminPage
  * Defines MarketPlace Admin area
  */
-class MarketPlaceAdminPage extends Page implements PermissionProvider {
-	static $db = array(
-	);
+class MarketPlaceAdminPage extends Page implements PermissionProvider
+{
+	static $db = array();
 
-	static $has_one = array(
-	);
+	static $has_one = array();
 
-	function providePermissions() {
+	function providePermissions()
+	{
 		return array(
 			"MARKETPLACE_ADMIN_ACCESS" => "Access the MarketPlace Admin"
 		);
 	}
 }
+
 /**
  * Class MarketPlaceAdminPage_Controller
  */
-class MarketPlaceAdminPage_Controller extends Page_Controller {
+class MarketPlaceAdminPage_Controller extends Page_Controller
+{
 	/**
 	 * @var IMarketplaceTypeRepository
 	 */
@@ -104,20 +107,21 @@ class MarketPlaceAdminPage_Controller extends Page_Controller {
 	 */
 	private $consultant_repository;
 
-	function init() {
+	function init()
+	{
 		parent::init();
 		//check permissions
-		if(!Member::currentUser() ||  !Member::currentUser()->isMarketPlaceAdmin())
+		if (!Member::currentUser() || !Member::currentUser()->isMarketPlaceAdmin())
 			return Security::permissionFailure();
 		//css
 		Requirements::css("marketplace/code/ui/admin/css/marketplace.admin.css");
 		Requirements::css("themes/openstack/css/chosen.css", "screen,projection");
 		Requirements::css("marketplace/code/ui/admin/css/colorpicker.css", "screen,projection");
-		Requirements::css(Director::protocol()."code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css");
+		Requirements::css(Director::protocol() . "code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css");
 		//js
-		Requirements::javascript(Director::protocol()."ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js");
-		Requirements::javascript(Director::protocol()."ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/additional-methods.min.js");
-		Requirements::javascript(Director::protocol()."code.jquery.com/ui/1.10.4/jquery-ui.min.js");
+		Requirements::javascript(Director::protocol() . "ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js");
+		Requirements::javascript(Director::protocol() . "ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/additional-methods.min.js");
+		Requirements::javascript(Director::protocol() . "code.jquery.com/ui/1.10.4/jquery-ui.min.js");
 		Requirements::javascript("themes/openstack/javascript/jquery.jsonp-2.4.0.min.js");
 		Requirements::javascript("themes/openstack/javascript/jquery.validate.custom.methods.js");
 		Requirements::javascript("themes/openstack/javascript/pure.min.js");
@@ -133,27 +137,28 @@ class MarketPlaceAdminPage_Controller extends Page_Controller {
 		Requirements::javascript('marketplace/code/ui/admin/js/private_clouds.js');
 		Requirements::javascript('marketplace/code/ui/admin/js/consultants.js');
 		// model
-		$this->marketplace_repository                      = new SapphireMarketPlaceTypeRepository;
-		$this->companies_with_marketplace_creation_rights  = new CompaniesWithMarketplaceCreationRightsSapphireQueryHandler;
-		$this->distribution_repository                     = new SapphireDistributionRepository;
-		$this->appliance_repository                        = new SapphireApplianceRepository;
-		$this->components_repository                       = new SapphireOpenStackComponentRepository;
-		$this->hyper_visors_repository                     = new SapphireHyperVisorTypeRepository;
-		$this->guests_os_repository                        = new SapphireGuestOSTypeRepository();
-		$this->video_type_repository                       = new SapphireMarketPlaceVideoTypeRepository;
-		$this->support_channel_types_repository            = new SapphireSupportChannelTypeRepository;
-		$this->region_repository                           = new SapphireRegionRepository;
-		$this->pricing_schema_repository                   = new SapphirePricingSchemaRepository;
-		$this->public_clouds_repository                    = new SapphirePublicCloudRepository;
-		$this->private_clouds_repository                   = new SapphirePrivateCloudRepository;
-		$this->config_management_type_repository           = new SapphireConfigurationManagementTypeRepository;
-		$this->consultant_service_offered_type_repository  = new SapphireConsultantServiceOfferedTypeRepository;
-		$this->consultant_repository                       = new SapphireConsultantRepository;
+		$this->marketplace_repository = new SapphireMarketPlaceTypeRepository;
+		$this->companies_with_marketplace_creation_rights = new CompaniesWithMarketplaceCreationRightsSapphireQueryHandler;
+		$this->distribution_repository = new SapphireDistributionRepository;
+		$this->appliance_repository = new SapphireApplianceRepository;
+		$this->components_repository = new SapphireOpenStackComponentRepository;
+		$this->hyper_visors_repository = new SapphireHyperVisorTypeRepository;
+		$this->guests_os_repository = new SapphireGuestOSTypeRepository();
+		$this->video_type_repository = new SapphireMarketPlaceVideoTypeRepository;
+		$this->support_channel_types_repository = new SapphireSupportChannelTypeRepository;
+		$this->region_repository = new SapphireRegionRepository;
+		$this->pricing_schema_repository = new SapphirePricingSchemaRepository;
+		$this->public_clouds_repository = new SapphirePublicCloudRepository;
+		$this->private_clouds_repository = new SapphirePrivateCloudRepository;
+		$this->config_management_type_repository = new SapphireConfigurationManagementTypeRepository;
+		$this->consultant_service_offered_type_repository = new SapphireConsultantServiceOfferedTypeRepository;
+		$this->consultant_repository = new SapphireConsultantRepository;
 	}
 
 
-	public function index() {
-		if($this->canAdmin('implementations'))
+	public function index()
+	{
+		if ($this->canAdmin('implementations'))
 			return $this->getViewer('index')->process($this);
 		else if($this->canAdmin('public_clouds'))
 		{
@@ -166,8 +171,9 @@ class MarketPlaceAdminPage_Controller extends Page_Controller {
 		else if($this->canAdmin('consultants'))
 		{
 			return Controller::curr()->redirect($this->Link("consultants"));
+
 		}
-		return $this->httpError(401,'Unauthorized: you do not have the proper rights to access this page.');
+		return $this->httpError(401, 'Unauthorized: you do not have the proper rights to access this page.');
 	}
 
 	static $allowed_actions = array(
@@ -180,43 +186,56 @@ class MarketPlaceAdminPage_Controller extends Page_Controller {
 		'private_cloud',
 		'consultants',
 		'consultant',
+		'preview',
+		'pdf,'
 	);
 
-	public function getCurrentTab(){
+
+	/**
+	 * @var array
+	 */
+	static $url_handlers = array(
+		'GET $MARKETPLACETYPE/$ID/preview' => 'preview',
+		'GET $MARKETPLACETYPE/$ID/pdf'     => 'pdf',
+	);
+
+	public function getCurrentTab()
+	{
 		$current_tab = Session::get('marketplaceadmin.current.tab');
-		if(empty($current_tab)){
+		if (empty($current_tab)) {
 			$current_tab = 1;
 		}
 		return $current_tab;
 	}
 
-	public function setCurrentTab($tab){
-		Session::set('marketplaceadmin.current.tab',$tab);
+	public function setCurrentTab($tab)
+	{
+		Session::set('marketplaceadmin.current.tab', $tab);
 	}
 
 	/**
 	 * @return ArrayList
 	 */
-	public function getCompanies(){
+	public function getCompanies()
+	{
 		$current_marketplace_type = '';
 		$type_id = intval($this->request->getVar('type_id'));
-		if($type_id > 0){
+		if ($type_id > 0) {
 			//choose by current marketplace type ( we are adding a new instance)
-			$type_id  = intval($this->request->getVar('type_id'));
-			if($type_id > 0){
+			$type_id = intval($this->request->getVar('type_id'));
+			if ($type_id > 0) {
 				$product_type = $this->marketplace_repository->getById($type_id);
-				if($product_type){
+				if ($product_type) {
 					$current_marketplace_type = $product_type->getName();
 				}
 			}
-		}
-		else {
+		} else {
 			//choose by current tab (listing)
-			switch($this->getCurrentTab()){
-				case 1:{
+			switch ($this->getCurrentTab()) {
+				case 1: {
 					$current_marketplace_type = IOpenStackImplementation::AbstractMarketPlaceType;
 				}
-				break;
+					break;
 				case 2:
 					$current_marketplace_type = IPublicCloudService::MarketPlaceType;
 					break;
@@ -238,7 +257,7 @@ class MarketPlaceAdminPage_Controller extends Page_Controller {
 
 	public function getDistributionMarketPlaceTypes(){
 		$ds = new ArrayList();
-		$ds->push($this->marketplace_repository->getByType(IDistribution::MarketPlaceType));
+	$ds->push($this->marketplace_repository->getByType(IDistribution::MarketPlaceType));
 		$ds->push($this->marketplace_repository->getByType(IAppliance::MarketPlaceType));
 		return $ds;
 	}
@@ -247,68 +266,75 @@ class MarketPlaceAdminPage_Controller extends Page_Controller {
 		$ds = new ArrayList();
 		if($this->canAdmin('distributions'))
 			$ds->push($this->marketplace_repository->getByType(IDistribution::MarketPlaceType));
-		if($this->canAdmin('appliances'))
+		if ($this->canAdmin('appliances'))
 			$ds->push($this->marketplace_repository->getByType(IAppliance::MarketPlaceType));
-		if($this->canAdmin('public_clouds'))
+		if ($this->canAdmin('public_clouds'))
 			$ds->push($this->marketplace_repository->getByType(IPublicCloudService::MarketPlaceType));
-		if($this->canAdmin('private_clouds'))
+		if ($this->canAdmin('private_clouds'))
 			$ds->push($this->marketplace_repository->getByType(IPrivateCloudService::MarketPlaceType));
-		if($this->canAdmin('consultants'))
+		if ($this->canAdmin('consultants'))
 			$ds->push($this->marketplace_repository->getByType(IConsultant::MarketPlaceType));
 		return $ds;
 	}
 
-	public function getCurrentDistribution(){
-		$distribution_id    = intval($this->request->getVar('id'));
-		if($distribution_id > 0){
-			 return $this->distribution_repository->getById($distribution_id);
+	public function getCurrentDistribution()
+	{
+		$distribution_id = intval($this->request->getVar('id'));
+		if ($distribution_id > 0) {
+			return $this->distribution_repository->getById($distribution_id);
 		}
 		return false;
 	}
 
-	public function getCurrentAppliance(){
-		$appliance_id    = intval($this->request->getVar('id'));
-		if($appliance_id > 0){
+	public function getCurrentAppliance()
+	{
+		$appliance_id = intval($this->request->getVar('id'));
+		if ($appliance_id > 0) {
 			return $this->appliance_repository->getById($appliance_id);
 		}
 		return false;
 	}
 
-	public function getOpenStackAvailableComponents(){
+	public function getOpenStackAvailableComponents()
+	{
 		$query = new QueryObject;
 		$query->addOrder(QueryOrder::asc('Name'));
 		list($list,$size) = $this->components_repository->getAll($query);
 		return new ArrayList($list);
 	}
 
-	public function getCurrentDistributionJson(){
+	public function getCurrentDistributionJson()
+	{
 		$distribution = $this->getCurrentDistribution();
-		if($distribution){
+		if ($distribution) {
 			return json_encode(OpenStackImplementationAssembler::convertOpenStackImplementationToArray($distribution));
 		}
 	}
 
-	public function getCurrentApplianceJson(){
+	public function getCurrentApplianceJson()
+	{
 		$appliance = $this->getCurrentAppliance();
-		if($appliance){
+		if ($appliance) {
 			return json_encode(OpenStackImplementationAssembler::convertOpenStackImplementationToArray($appliance));
 		}
 	}
 
-	public function ReleasesByComponent(){
+	public function ReleasesByComponent()
+	{
 		$res = array();
 		$query = new QueryObject;
-		list($list,$size) = $this->components_repository->getAll($query);
-		foreach($list as $component){
+		list($list, $size) = $this->components_repository->getAll($query);
+		foreach ($list as $component) {
 			$res2 = array();
 			$releases = $component->getSupportedReleases();
-			foreach($releases as $release){
-				array_push($res2, array( "id" => $release->getIdentifier(),"name" => $release->getName()));
+			foreach ($releases as $release) {
+				array_push($res2, array("id" => $release->getIdentifier(), "name" => $release->getName()));
 			}
 			$res[$component->getCodeName()] = $res2;
 		}
 		return json_encode($res);
 	}
+
 
 	public function getHyperVisors(){
 		list($list,$size) = $this->hyper_visors_repository->getAll(new QueryObject);
@@ -335,37 +361,33 @@ class MarketPlaceAdminPage_Controller extends Page_Controller {
 		return new ArrayList($list);
 	}
 
-	public function add() {
-		$type_id  = intval($this->request->getVar('type_id'));
-		if($type_id > 0){
+	public function add()
+	{
+		$type_id = intval($this->request->getVar('type_id'));
+		if ($type_id > 0) {
 			$product_type = $this->marketplace_repository->getById($type_id);
-			if($product_type){
-				switch($product_type->getName()){
-					case IAppliance::MarketPlaceType:
-					{
+			if ($product_type) {
+				switch ($product_type->getName()) {
+					case IAppliance::MarketPlaceType: {
 						return $this->appliance();
 					}
-					break;
-					case IDistribution::MarketPlaceType:
-					{
+						break;
+					case IDistribution::MarketPlaceType: {
 						return $this->distribution();
 					}
-					break;
-					case IPublicCloudService::MarketPlaceType:
-					{
+						break;
+					case IPublicCloudService::MarketPlaceType: {
 						return $this->public_cloud();
 					}
-					break;
-					case IPrivateCloudService::MarketPlaceType:
-					{
+						break;
+					case IPrivateCloudService::MarketPlaceType: {
 						return $this->private_cloud();
 					}
-					break;
-					case IConsultant::MarketPlaceType:
-					{
+						break;
+					case IConsultant::MarketPlaceType: {
 						return $this->consultant();
 					}
-					break;
+						break;
 				}
 			}
 			Controller::curr()->redirect($this->Link());
@@ -373,7 +395,8 @@ class MarketPlaceAdminPage_Controller extends Page_Controller {
 		Controller::curr()->redirect($this->Link());
 	}
 
-	public function distribution(){
+	public function distribution()
+	{
 		Requirements::javascript('marketplace/code/ui/admin/js/utils.js');
 		Requirements::javascript('marketplace/code/ui/admin/js/jquery.text.area.counter.js');
 		Requirements::javascript('marketplace/code/ui/admin/js/hypervisors.js');
@@ -387,7 +410,8 @@ class MarketPlaceAdminPage_Controller extends Page_Controller {
 		return $this->getViewer('distribution')->process($this);
 	}
 
-	public function appliance(){
+	public function appliance()
+	{
 		Requirements::javascript('marketplace/code/ui/admin/js/utils.js');
 		Requirements::javascript('marketplace/code/ui/admin/js/jquery.text.area.counter.js');
 		Requirements::javascript('marketplace/code/ui/admin/js/hypervisors.js');
@@ -401,7 +425,8 @@ class MarketPlaceAdminPage_Controller extends Page_Controller {
 		return $this->getViewer('appliance')->process($this);
 	}
 
-	public function public_cloud(){
+	public function public_cloud()
+	{
 		Requirements::javascript('marketplace/code/ui/admin/js/utils.js');
 		Requirements::javascript('marketplace/code/ui/admin/js/jquery.text.area.counter.js');
 		Requirements::javascript('marketplace/code/ui/admin/js/hypervisors.js');
@@ -413,13 +438,14 @@ class MarketPlaceAdminPage_Controller extends Page_Controller {
 		Requirements::javascript('marketplace/code/ui/admin/js/pricing.schemas.js');
 		Requirements::javascript('marketplace/code/ui/admin/js/datacenter.locations.js');
 		Requirements::javascript('marketplace/code/ui/admin/js/marketplace.type.header.js');
-		Requirements::javascript(Director::protocol()."maps.googleapis.com/maps/api/js?sensor=false");
+		Requirements::javascript(Director::protocol() . "maps.googleapis.com/maps/api/js?sensor=false");
 		Requirements::javascript('marketplace/code/ui/admin/js/geocoding.jquery.js');
 		Requirements::javascript('marketplace/code/ui/admin/js/public_cloud.js');
 		return $this->getViewer('public_cloud')->process($this);
 	}
 
-	public function private_cloud(){
+	public function private_cloud()
+	{
 		Requirements::javascript('marketplace/code/ui/admin/js/utils.js');
 		Requirements::javascript('marketplace/code/ui/admin/js/jquery.text.area.counter.js');
 		Requirements::javascript('marketplace/code/ui/admin/js/hypervisors.js');
@@ -431,13 +457,14 @@ class MarketPlaceAdminPage_Controller extends Page_Controller {
 		Requirements::javascript('marketplace/code/ui/admin/js/pricing.schemas.js');
 		Requirements::javascript('marketplace/code/ui/admin/js/datacenter.locations.js');
 		Requirements::javascript('marketplace/code/ui/admin/js/marketplace.type.header.js');
-		Requirements::javascript(Director::protocol()."maps.googleapis.com/maps/api/js?sensor=false");
+		Requirements::javascript(Director::protocol() . "maps.googleapis.com/maps/api/js?sensor=false");
 		Requirements::javascript('marketplace/code/ui/admin/js/geocoding.jquery.js');
 		Requirements::javascript('marketplace/code/ui/admin/js/private_cloud.js');
 		return $this->getViewer('private_cloud')->process($this);
 	}
 
-	public function consultant(){
+	public function consultant()
+	{
 		Requirements::javascript('marketplace/code/ui/admin/js/utils.js');
 		Requirements::javascript('marketplace/code/ui/admin/js/jquery.text.area.counter.js');
 		Requirements::javascript('marketplace/code/ui/admin/js/videos.js');
@@ -450,81 +477,84 @@ class MarketPlaceAdminPage_Controller extends Page_Controller {
 		Requirements::javascript('marketplace/code/ui/admin/js/spoken.languages.js');
 		Requirements::javascript('marketplace/code/ui/admin/js/offices.js');
 		Requirements::javascript('marketplace/code/ui/admin/js/marketplace.type.header.js');
-		Requirements::javascript(Director::protocol()."maps.googleapis.com/maps/api/js?sensor=false");
+		Requirements::javascript(Director::protocol() . "maps.googleapis.com/maps/api/js?sensor=false");
 		Requirements::javascript('marketplace/code/ui/admin/js/geocoding.jquery.js');
 		Requirements::javascript('marketplace/code/ui/admin/js/consultant.js');
 		return $this->getViewer('consultant')->process($this);
 	}
 
-	public function getConfigurationManagementTypes(){
+	public function getConfigurationManagementTypes()
+	{
 		$query = new QueryObject(new ConfigurationManagementType);
 		$query->addOrder(QueryOrder::asc('Type'));
 		list($list,$size) = $this->config_management_type_repository->getAll($query,0,1000);
 		return new ArrayList($list);
 	}
 
-	public function getServicesOffered(){
+	public function getServicesOffered()
+	{
 		$query = new QueryObject(new ConsultantServiceOfferedType);
 		$query->addOrder(QueryOrder::asc('Type'));
 		list($list,$size) = $this->consultant_service_offered_type_repository->getAll($query,0,1000);
 		return new ArrayList($list);
 	}
 
-	public function getConsultants(){
+	public function getConsultants()
+	{
 		$product_name = trim(Convert::raw2sql($this->request->getVar('name')));
-		$company_id   = intval($this->request->getVar('company_id'));
-		$sort         = $this->request->getVar('sort');
-		$query        = new QueryObject(new CompanyService);
+		$company_id = intval($this->request->getVar('company_id'));
+		$sort = $this->request->getVar('sort');
+		$query = new QueryObject(new CompanyService);
 		$query->addAlias(QueryAlias::create('Company'));
-		if(!empty($product_name)){
-			$query->addOrCondition(QueryCriteria::like('CompanyService.Name',$product_name));
-			$query->addOrCondition(QueryCriteria::like('Company.Name',$product_name));
+		if (!empty($product_name)) {
+			$query->addOrCondition(QueryCriteria::like('CompanyService.Name', $product_name));
+			$query->addOrCondition(QueryCriteria::like('Company.Name', $product_name));
 		}
-		if($company_id > 0){
-			$query->addAddCondition(QueryCriteria::equal('Company.ID',$company_id));
+		if ($company_id > 0) {
+			$query->addAddCondition(QueryCriteria::equal('Company.ID', $company_id));
 		}
 
 		//set sorting
-		if(!empty($sort)){
+		if (!empty($sort)) {
 			$dir = $this->getSortDir('consultants');
-			switch($sort){
-				case 'company':{
-					if($dir=='asc')
+			switch ($sort) {
+				case 'company': {
+					if ($dir == 'asc')
 						$query->addOrder(QueryOrder::asc('Company.Name'));
 					else
 						$query->addOrder(QueryOrder::desc('Company.Name'));
 				}
-				break;
-				case 'name':{
-					if($dir=='asc')
+					break;
+				case 'name': {
+					if ($dir == 'asc')
 						$query->addOrder(QueryOrder::asc('Name'));
 					else
 						$query->addOrder(QueryOrder::desc('Name'));
 				}
-				case 'status':{
-					if($dir=='asc')
+				case 'status': {
+					if ($dir == 'asc')
 						$query->addOrder(QueryOrder::asc('Active'));
 					else
 						$query->addOrder(QueryOrder::desc('Active'));
 				}
-				break;
-				case 'updated':{
-					if($dir=='asc')
+					break;
+				case 'updated': {
+					if ($dir == 'asc')
 						$query->addOrder(QueryOrder::asc('LastEdited'));
 					else
 						$query->addOrder(QueryOrder::desc('LastEdited'));
 				}
-				break;
-				case 'updatedby':{
+					break;
+				case 'updatedby': {
 					$query->addAlias(QueryAlias::create('Member'));
-					if($dir=='asc')
+					if ($dir == 'asc')
 						$query->addOrder(QueryOrder::asc('Member.Email'));
 					else
 						$query->addOrder(QueryOrder::desc('Member.Email'));
 				}
-				break;
-				default:{
-				if($dir=='asc')
+					break;
+				default: {
+				if ($dir == 'asc')
 					$query->addOrder(QueryOrder::asc('ID'));
 				else
 					$query->addOrder(QueryOrder::desc('ID'));
@@ -533,115 +563,117 @@ class MarketPlaceAdminPage_Controller extends Page_Controller {
 			}
 		}
 		//get consultants
-		list($list,$size) = $this->consultant_repository->getAll($query,0,1000);
+		list($list, $size) = $this->consultant_repository->getAll($query, 0, 1000);
 		//return on view model
 		return new ArrayList($list);
 	}
 
-	public function getCurrentConsultant(){
-		$consultant_id    = intval($this->request->getVar('id'));
-		if($consultant_id > 0){
+	public function getCurrentConsultant()
+	{
+		$consultant_id = intval($this->request->getVar('id'));
+		if ($consultant_id > 0) {
 			return $this->consultant_repository->getById($consultant_id);
 		}
 		return false;
 	}
 
-	public function getCurrentConsultantJson(){
+	public function getCurrentConsultantJson()
+	{
 		$consultant = $this->getCurrentConsultant();
-		if($consultant){
+		if ($consultant) {
 			return json_encode(ConsultantAssembler::convertConsultantToArray($consultant));
 		}
 	}
 
-	public function getSortDir($type){
+	public function getSortDir($type)
+	{
 		$default = 'asc';
-		$dir     = Session::get($type.'.sort.dir');
-		if(empty($dir)){
+		$dir = Session::get($type . '.sort.dir');
+		if (empty($dir)) {
 			$dir = $default;
+		} else {
+			$dir = $dir == 'asc' ? 'desc' : 'asc';
 		}
-		else{
-			$dir = $dir=='asc'?'desc':'asc';
-		}
-		Session::set($type.'.sort.dir',$dir);
+		Session::set($type . '.sort.dir', $dir);
 		return $dir;
 	}
 
-	public function getDistributions(){
+	public function getDistributions()
+	{
 
-		if(!$this->canAdmin('implementations')){
-			return $this->httpError(401,'Unauthorized: you do not have the proper rights to access this page.');
+		if (!$this->canAdmin('implementations')) {
+			return $this->httpError(401, 'Unauthorized: you do not have the proper rights to access this page.');
 		}
 
-		$product_name           = trim(Convert::raw2sql($this->request->getVar('name')));
+		$product_name = trim(Convert::raw2sql($this->request->getVar('name')));
 		$implementation_type_id = intval($this->request->getVar('implementation_type_id'));
-		$company_id             = intval($this->request->getVar('company_id'));
+		$company_id = intval($this->request->getVar('company_id'));
 
-		$sort  = $this->request->getVar('sort');
+		$sort = $this->request->getVar('sort');
 		$query = new QueryObject(new CompanyService);
-		if(!empty($product_name)){
-			$query->addAddCondition(QueryCriteria::like('Name',$product_name));
+		if (!empty($product_name)) {
+			$query->addAddCondition(QueryCriteria::like('Name', $product_name));
 		}
-		if($implementation_type_id > 0){
-			$query->addAddCondition(QueryCriteria::equal('MarketPlaceType.ID',$implementation_type_id));
+		if ($implementation_type_id > 0) {
+			$query->addAddCondition(QueryCriteria::equal('MarketPlaceType.ID', $implementation_type_id));
 		}
-		if($company_id > 0){
-			$query->addAddCondition(QueryCriteria::equal('Company.ID',$company_id));
+		if ($company_id > 0) {
+			$query->addAddCondition(QueryCriteria::equal('Company.ID', $company_id));
 		}
 		//set sorting
-		if(!empty($sort)){
+		if (!empty($sort)) {
 			$dir = $this->getSortDir('distributions');
-			switch($sort){
-				case 'company':{
+			switch ($sort) {
+				case 'company': {
 					$query->addAlias(QueryAlias::create('Company'));
-					if($dir=='asc')
+					if ($dir == 'asc')
 						$query->addOrder(QueryOrder::asc('Company.Name'));
 					else
 						$query->addOrder(QueryOrder::desc('Company.Name'));
 				}
-				break;
-				case 'name':{
-					if($dir=='asc')
+					break;
+				case 'name': {
+					if ($dir == 'asc')
 						$query->addOrder(QueryOrder::asc('Name'));
 					else
 						$query->addOrder(QueryOrder::desc('Name'));
 				}
-				break;
-				case 'type':
-				{
+					break;
+				case 'type': {
 					$query->addAlias(QueryAlias::create('MarketPlaceType'));
-					if($dir=='asc')
+					if ($dir == 'asc')
 						$query->addOrder(QueryOrder::asc('MarketPlaceType.Name'));
 					else
 						$query->addOrder(QueryOrder::desc('MarketPlaceType.Name'));
 				}
-				break;
-				case 'status':{
-					if($dir=='asc')
+					break;
+				case 'status': {
+					if ($dir == 'asc')
 						$query->addOrder(QueryOrder::asc('Active'));
 					else
 						$query->addOrder(QueryOrder::desc('Active'));
 				}
-				break;
-				case 'updated':{
-					if($dir=='asc')
+					break;
+				case 'updated': {
+					if ($dir == 'asc')
 						$query->addOrder(QueryOrder::asc('LastEdited'));
 					else
 						$query->addOrder(QueryOrder::desc('LastEdited'));
 				}
-				break;
-				case 'updatedby':{
+					break;
+				case 'updatedby': {
 					$query->addAlias(QueryAlias::create('Member'));
-					if($dir=='asc')
+					if ($dir == 'asc')
 						$query->addOrder(QueryOrder::asc('Member.Email'));
 					else
 						$query->addOrder(QueryOrder::desc('Member.Email'));
 				}
-				break;
-				default:{
-					if($dir=='asc')
-						$query->addOrder(QueryOrder::asc('ID'));
-					else
-						$query->addOrder(QueryOrder::desc('ID'));
+					break;
+				default: {
+				if ($dir == 'asc')
+					$query->addOrder(QueryOrder::asc('ID'));
+				else
+					$query->addOrder(QueryOrder::desc('ID'));
 				}
 				break;
 			}
@@ -649,10 +681,10 @@ class MarketPlaceAdminPage_Controller extends Page_Controller {
 		//get distributions
 		$list1 = array();
 		$list2 = array();
-		if($this->canAdmin('distributions'))
-			list($list1,$size1) = $this->distribution_repository->getAll($query,0,1000);
-		if($this->canAdmin('appliances'))
-			list($list2,$size2) = $this->appliance_repository->getAll($query,0,1000);
+		if ($this->canAdmin('distributions'))
+			list($list1, $size1) = $this->distribution_repository->getAll($query, 0, 1000);
+		if ($this->canAdmin('appliances'))
+			list($list2, $size2) = $this->appliance_repository->getAll($query, 0, 1000);
 		//return on view model
 		return new ArrayList(array_merge($list1,$list2));
 	}
@@ -660,64 +692,65 @@ class MarketPlaceAdminPage_Controller extends Page_Controller {
 	/**
 	 * @return ArrayList
 	 */
-	public function getPublicClouds(){
+	public function getPublicClouds()
+	{
 
 		$product_name = trim(Convert::raw2sql($this->request->getVar('name')));
-		$company_id   = intval($this->request->getVar('company_id'));
-		$sort         = $this->request->getVar('sort');
-		$query        = new QueryObject(new CompanyService);
+		$company_id = intval($this->request->getVar('company_id'));
+		$sort = $this->request->getVar('sort');
+		$query = new QueryObject(new CompanyService);
 
-		if(!empty($product_name)){
-			$query->addAddCondition(QueryCriteria::like('Name',$product_name));
+		if (!empty($product_name)) {
+			$query->addAddCondition(QueryCriteria::like('Name', $product_name));
 		}
-		if($company_id > 0){
-			$query->addAddCondition(QueryCriteria::equal('Company.ID',$company_id));
+		if ($company_id > 0) {
+			$query->addAddCondition(QueryCriteria::equal('Company.ID', $company_id));
 		}
 
 		//set sorting
-		if(!empty($sort)){
+		if (!empty($sort)) {
 			$dir = $this->getSortDir('public.clouds');
 
-			switch($sort){
-				case 'company':{
+			switch ($sort) {
+				case 'company': {
 					$query->addAlias(QueryAlias::create('Company'));
-					if($dir=='asc')
+					if ($dir == 'asc')
 						$query->addOrder(QueryOrder::asc('Company.Name'));
 					else
 						$query->addOrder(QueryOrder::desc('Company.Name'));
 				}
-				break;
-				case 'name':{
-					if($dir=='asc')
+					break;
+				case 'name': {
+					if ($dir == 'asc')
 						$query->addOrder(QueryOrder::asc('Name'));
 					else
 						$query->addOrder(QueryOrder::desc('Name'));
 				}
-			    break;
-				case 'status':{
-					if($dir=='asc')
+					break;
+				case 'status': {
+					if ($dir == 'asc')
 						$query->addOrder(QueryOrder::asc('Active'));
 					else
 						$query->addOrder(QueryOrder::desc('Active'));
 				}
-				break;
-				case 'updated':{
-					if($dir=='asc')
+					break;
+				case 'updated': {
+					if ($dir == 'asc')
 						$query->addOrder(QueryOrder::asc('LastEdited'));
 					else
 						$query->addOrder(QueryOrder::desc('LastEdited'));
 				}
-				break;
-				case 'updatedby':{
+					break;
+				case 'updatedby': {
 					$query->addAlias(QueryAlias::create('Member'));
-					if($dir=='asc')
+					if ($dir == 'asc')
 						$query->addOrder(QueryOrder::asc('Member.Email'));
 					else
 						$query->addOrder(QueryOrder::desc('Member.Email'));
 				}
-				break;
-				default:{
-				if($dir=='asc')
+					break;
+				default: {
+				if ($dir == 'asc')
 					$query->addOrder(QueryOrder::asc('ID'));
 				else
 					$query->addOrder(QueryOrder::desc('ID'));
@@ -726,22 +759,24 @@ class MarketPlaceAdminPage_Controller extends Page_Controller {
 			}
 		}
 		//get public clouds
-		list($list,$size) = $this->public_clouds_repository->getAll($query,0,1000);
+		list($list, $size) = $this->public_clouds_repository->getAll($query, 0, 1000);
 		//return on view model
 		return new ArrayList($list);
 	}
 
-	public function getCurrentPublicCloud(){
-		$public_cloud_id    = intval($this->request->getVar('id'));
-		if($public_cloud_id > 0){
+	public function getCurrentPublicCloud()
+	{
+		$public_cloud_id = intval($this->request->getVar('id'));
+		if ($public_cloud_id > 0) {
 			return $this->public_clouds_repository->getById($public_cloud_id);
 		}
 		return false;
 	}
 
-	public function getCurrentPublicCloudJson(){
+	public function getCurrentPublicCloudJson()
+	{
 		$public_cloud = $this->getCurrentPublicCloud();
-		if($public_cloud){
+		if ($public_cloud) {
 			return json_encode(CloudAssembler::convertCloudToArray($public_cloud));
 		}
 	}
@@ -749,64 +784,65 @@ class MarketPlaceAdminPage_Controller extends Page_Controller {
 	/**
 	 * @return ArrayList
 	 */
-	public function getPrivateClouds(){
+	public function getPrivateClouds()
+	{
 
 		$product_name = trim(Convert::raw2sql($this->request->getVar('name')));
-		$company_id   = intval($this->request->getVar('company_id'));
-		$sort         = $this->request->getVar('sort');
-		$query        = new QueryObject(new CompanyService);
+		$company_id = intval($this->request->getVar('company_id'));
+		$sort = $this->request->getVar('sort');
+		$query = new QueryObject(new CompanyService);
 
-		if(!empty($product_name)){
-			$query->addAddCondition(QueryCriteria::like('Name',$product_name));
+		if (!empty($product_name)) {
+			$query->addAddCondition(QueryCriteria::like('Name', $product_name));
 		}
-		if($company_id > 0){
-			$query->addAddCondition(QueryCriteria::equal('Company.ID',$company_id));
+		if ($company_id > 0) {
+			$query->addAddCondition(QueryCriteria::equal('Company.ID', $company_id));
 		}
 
 		//set sorting
-		if(!empty($sort)){
+		if (!empty($sort)) {
 			$dir = $this->getSortDir('private.clouds');
 
-			switch($sort){
-				case 'company':{
+			switch ($sort) {
+				case 'company': {
 					$query->addAlias(QueryAlias::create('Company'));
-					if($dir=='asc')
+					if ($dir == 'asc')
 						$query->addOrder(QueryOrder::asc('Company.Name'));
 					else
 						$query->addOrder(QueryOrder::desc('Company.Name'));
 				}
 					break;
-				case 'name':{
-					if($dir=='asc')
+				case 'name': {
+					if ($dir == 'asc')
 						$query->addOrder(QueryOrder::asc('Name'));
 					else
 						$query->addOrder(QueryOrder::desc('Name'));
 				}
 					break;
-				case 'status':{
-					if($dir=='asc')
+				case 'status': {
+					if ($dir == 'asc')
 						$query->addOrder(QueryOrder::asc('Active'));
 					else
 						$query->addOrder(QueryOrder::desc('Active'));
 				}
 					break;
-				case 'updated':{
-					if($dir=='asc')
+				case 'updated': {
+					if ($dir == 'asc')
 						$query->addOrder(QueryOrder::asc('LastEdited'));
 					else
 						$query->addOrder(QueryOrder::desc('LastEdited'));
 				}
 					break;
-				case 'updatedby':{
+				case 'updatedby': {
 					$query->addAlias(QueryAlias::create('Member'));
-					if($dir=='asc')
+					if ($dir == 'asc')
 						$query->addOrder(QueryOrder::asc('Member.Email'));
 					else
 						$query->addOrder(QueryOrder::desc('Member.Email'));
 				}
 					break;
-				default:{
-				if($dir=='asc')
+				default: {
+				if ($dir == 'asc')
 					$query->addOrder(QueryOrder::asc('ID'));
 				else
 					$query->addOrder(QueryOrder::desc('ID'));
@@ -815,40 +851,38 @@ class MarketPlaceAdminPage_Controller extends Page_Controller {
 			}
 		}
 		//get public clouds
-		list($list,$size) = $this->private_clouds_repository->getAll($query,0,1000);
+		list($list, $size) = $this->private_clouds_repository->getAll($query, 0, 1000);
 		//return on view model
 		return new ArrayList($list);
 	}
 
-	public function getCurrentPrivateCloud(){
-		$private_cloud_id    = intval($this->request->getVar('id'));
-		if($private_cloud_id > 0){
+	public function getCurrentPrivateCloud()
+	{
+		$private_cloud_id = intval($this->request->getVar('id'));
+		if ($private_cloud_id > 0) {
 			return $this->private_clouds_repository->getById($private_cloud_id);
 		}
 		return false;
 	}
 
-	public function getCurrentPrivateCloudJson(){
+	public function getCurrentPrivateCloudJson()
+	{
 		$private_cloud = $this->getCurrentPrivateCloud();
-		if($private_cloud){
+		if ($private_cloud) {
 			return json_encode(CloudAssembler::convertCloudToArray($private_cloud));
 		}
 	}
 
-	public function getUsePricingSchema(){
-		$type_id  = intval($this->request->getVar('type_id'));
-		if($type_id > 0){
+	public function getUsePricingSchema()
+	{
+		$type_id = intval($this->request->getVar('type_id'));
+		if ($type_id > 0) {
 			$product_type = $this->marketplace_repository->getById($type_id);
-			if($product_type->getName() == IPublicCloudService::MarketPlaceType){
+			if ($product_type->getName() == IPublicCloudService::MarketPlaceType) {
 				return true;
 			}
 		}
 		return $this->getCurrentPublicCloud();
-	}
-
-	public function getPricingSchemas(){
-		list($list,$size) = $this->pricing_schema_repository->getAll(new QueryObject);
-		return new ArrayList($list);
 	}
 
 	public function getCountriesDDL($id="add-datacenter-location-country"){
@@ -859,12 +893,13 @@ class MarketPlaceAdminPage_Controller extends Page_Controller {
 		return $ddl;
 	}
 
-	public function canAdmin($entity){
-		switch(strtolower(trim($entity))){
+	public function canAdmin($entity)
+	{
+		switch (strtolower(trim($entity))) {
 			case 'implementations':
 				return
 					Member::currentUser()->isMarketPlaceTypeAdmin(IDistribution::MarketPlaceGroupSlug) ||
-				    Member::currentUser()->isMarketPlaceTypeAdmin(IAppliance::MarketPlaceGroupSlug);
+					Member::currentUser()->isMarketPlaceTypeAdmin(IAppliance::MarketPlaceGroupSlug);
 				break;
 			case 'appliances':
 				return Member::currentUser()->isMarketPlaceTypeAdmin(IAppliance::MarketPlaceGroupSlug);
@@ -885,7 +920,119 @@ class MarketPlaceAdminPage_Controller extends Page_Controller {
 		return false;
 	}
 
-	public function isSuperAdmin(){
+	public function isSuperAdmin()
+	{
 		return Member::currentUser()->isMarketPlaceSuperAdmin();
 	}
+
+	public function preview()
+	{
+
+		$marketplace_type = $this->request->param('MARKETPLACETYPE');
+		$instance_id = intval($this->request->param('ID'));
+
+		$query = new QueryObject();
+		$query->addAddCondition(QueryCriteria::equal('ID', $instance_id));
+		Requirements::block("marketplace/code/ui/admin/css/marketplace.admin.css");
+
+		Requirements::block(Director::protocol() . "code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css");
+
+		switch (strtolower($marketplace_type)) {
+			case 'distribution': {
+				$distribution = $this->distribution_repository->getBy($query);
+				if (!$distribution) throw new NotFoundEntityException('', '');
+				$render = new DistributionSapphireRender($distribution);
+				$distribution ->IsPreview = true;
+				return $render->draw();
+			}
+				break;
+			case 'appliance': {
+				$appliance = $this->appliance_repository->getBy($query);
+				$appliance->IsPreview = true;
+				$render = new ApplianceSapphireRender($appliance);
+				return $render->draw();
+			}
+				break;
+			case 'public_cloud': {
+				$public_cloud = $this->public_clouds_repository->getBy($query);
+				$public_cloud->IsPreview = true;
+				if (!$public_cloud) throw new NotFoundEntityException('', '');
+				$render = new PublicCloudSapphireRender($public_cloud);
+				return $render->draw();
+			}
+				break;
+			case 'private_cloud': {
+				$private_cloud = $this->private_clouds_repository->getBy($query);
+				$private_cloud->IsPreview = true;
+				$render = new PrivatgeCloudSapphireRender($private_cloud);
+				return $render->draw();
+
+			}
+				break;
+			case 'consultant': {
+				$consultant = $this->consultant_repository->getBy($query);
+				if (!$consultant) throw new NotFoundEntityException('', '');
+				$consultant->IsPreview = true;
+				$render = new ConsultantSapphireRender($consultant);
+				return $render->draw();
+			}
+				break;
+			default:
+				$this->httpError(404);
+				break;
+		}
+	}
+
+	public function getCurrentDataCenterLocationsJson()
+	{
+		$instance_id = intval($this->request->param('ID'));
+		$marketplace_type = $this->request->param('MARKETPLACETYPE');
+		$query = new QueryObject();
+		$query->addAddCondition(QueryCriteria::equal('ID', $instance_id));
+		switch (strtolower($marketplace_type)) {
+			case 'public_cloud': {
+				$cloud = $this->public_clouds_repository->getBy($query);
+			}
+				break;
+			case 'private_cloud': {
+				$cloud = $this->private_clouds_repository->getBy($query);
+			}
+				break;
+
+		}
+
+		if (!$cloud) throw new NotFoundEntityException('', '');
+		return CloudViewModel::getDataCenterLocationsJson($cloud);
+	}
+
+	public function getPricingSchemas()
+	{
+		return CloudViewModel::getPricingSchemas();
+	}
+
+	public function getEnabledPricingSchemas()
+	{
+		$instance_id = intval($this->request->param('ID'));
+		$marketplace_type = $this->request->param('MARKETPLACETYPE');
+		$query = new QueryObject();
+		$query->addAddCondition(QueryCriteria::equal('ID', $instance_id));
+		switch (strtolower($marketplace_type)) {
+			case 'public_cloud': {
+				$cloud = $this->public_clouds_repository->getBy($query);
+			}
+				break;
+			case 'private_cloud': {
+				$cloud = $this->private_clouds_repository->getBy($query);
+			}
+				break;
+
+		}
+		if (!$cloud) throw new NotFoundEntityException('', '');
+		return CloudViewModel::getEnabledPricingSchemas($cloud);
+	}
+
+	public function pdf(){
+
+	}
+
 }

@@ -129,7 +129,11 @@
     </div>
 </div>
 <div class="col-lg-6">
-        <% include MarketPlaceDirectoryPage_Rating %>
+        <% if IsPreview  %>
+            <% include MarketPlaceDirectoryPage_Rating_Placeholder %>
+        <% else %>
+            <% include MarketPlaceDirectoryPage_Rating %>
+        <% end_if %>
         <% if Videos %>
             <div id="videos">
                 <% loop Videos %>

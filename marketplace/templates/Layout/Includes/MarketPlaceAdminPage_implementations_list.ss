@@ -91,6 +91,7 @@
                         <% end_if %>
                         <td style="min-width: 200px" width="30%">
                             <a class="product-button roundedButton addDeploymentBtn" href="<% with MarketPlace  %><% if Name == "Appliance"  %>$Top.Link(appliance)<% end_if %><% if Name == "Distribution"  %>$Top.Link(distribution)<% end_if %><% end_with %>?id=$ID">Edit Product Details</a>
+                            <a target="_blank" class="product-button roundedButton addDeploymentBtn" href="<% with MarketPlace  %><% if Name == "Appliance"  %>$Top.Link(appliance)<% end_if %><% if Name == "Distribution"  %>$Top.Link(distribution)<% end_if %><% end_with %>/$ID/preview">Preview Product</a>
                             <a class="roundedButton delete-implementation product-button addDeploymentBtn" href="#"
                                data-id="{$ID}"
                                data-class="<% with MarketPlace  %><% if Name == "Appliance"  %>appliance<% end_if %><% if Name == "Distribution"  %>distribution<% end_if %><% end_with %>">Delete Product</a>

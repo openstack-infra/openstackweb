@@ -3,6 +3,9 @@
     <div style="clear:both">
         <h1 style="width:50%;float:left;">Distribution - Product Details</h1>
         <a style="overflow:hidden;white-space: nowrap;font-weight:normal;float:right;margin-bottom:50px;text-align:center" class="roundedButton save-distribution" href="#" id="save-distribution">Save</a>
+        <% if CurrentDistribution %>
+            <a style="overflow:hidden;white-space: nowrap;font-weight:normal;float:right;margin-bottom:50px;text-align:center;margin-right:50px;" class="roundedButton addDeploymentBtn" target="_blank" href="$Top.Link(distribution)/$CurrentDistribution.ID/preview">Preview</a>
+        <% end_if %>
         <a style="overflow:hidden;white-space: nowrap;font-weight:normal;float:right;margin-bottom:50px;text-align:center;margin-right:50px;" class="roundedButton addDeploymentBtn" href="$Top.Link">&lt;&lt; Back to Products</a>
     </div>
     <div style="clear:both">

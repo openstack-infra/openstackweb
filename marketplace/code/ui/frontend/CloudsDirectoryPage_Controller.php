@@ -249,32 +249,11 @@ abstract class CloudsDirectoryPage_Controller extends MarketPlaceDirectoryPage_C
 		$cloud       = $this->cloud_repository->getBy($query);
 		if(!$cloud) throw new NotFoundEntityException('','');
 		if($cloud->getCompany()->URLSegment != $company_url_segment) throw new NotFoundEntityException('','');
-		$locations = array();
-		foreach($cloud->getDataCentersLocations() as $location){
-			$json_data = array();
-			$json_data['country']  = Geoip::countryCode2name($location->getCountry());
-			$json_data['city']     = $location->getCity();
-			$json_data['lat']      = $location->getLat();
-			$json_data['lng']      = $location->getLng();
-			$json_data['color']    = $location->getDataCenterRegion()->getColor();
-			$json_data['endpoint'] = $location->getDataCenterRegion()->getEndpoint();
-			$json_data['zone']     = $location->getDataCenterRegion()->getName();
-			$json_data['availability_zones'] = array();
-			$json_data['product_name'] = $cloud->getName();
-			$json_data['owner']        = $cloud->getCompany()->getName();
-			foreach($location->getAvailabilityZones() as $az ){
-				$json_data_az = array();
-				$json_data_az['name'] = $az->getName();
-				array_push($json_data['availability_zones'],$json_data_az);
-			}
-			array_push($locations,$json_data);
-		}
-		return json_encode($locations);
+		return CloudViewModel::getDataCenterLocationsJson($cloud);
 	}
 
 	public function getPricingSchemas(){
-		list($list,$size ) = $pricing_schemas = $this->pricing_schema_repository->getAll(new QueryObject(),0,1000);
-		return new ArrayList($list);
+		return CloudViewModel::getPricingSchemas();
 	}
 
 	public function getEnabledPricingSchemas(){
@@ -282,22 +261,11 @@ abstract class CloudsDirectoryPage_Controller extends MarketPlaceDirectoryPage_C
 		$company_url_segment = Convert::raw2sql($params["Company"]);
 		$slug                = Convert::raw2sql($params["Slug"]);
 		$query               = new QueryObject();
-		$res                 = array();
 		$query->addAddCondition(QueryCriteria::equal('Slug',$slug));
 		$cloud       = $this->cloud_repository->getBy($query);
 		if(!$cloud) throw new NotFoundEntityException('','');
 		if($cloud->getCompany()->URLSegment != $company_url_segment) throw new NotFoundEntityException('','');
-		if(count($cloud->getCapabilities())>0){
-			$capabilities = $cloud->getCapabilities();
-			$enabled_pricing_schemas = reset($capabilities)->getPricingSchemas();
-			if(count($enabled_pricing_schemas)>0){
-
-				foreach($enabled_pricing_schemas as $ps){
-					array_push($res,$ps->getIdentifier());
-				}
-			}
-		}
-		return json_encode($res);
+		return CloudViewModel::getEnabledPricingSchemas($cloud);
 	}
 
 	public function ServicesCombo(){

@@ -76,6 +76,7 @@
                         <% end_if %>
                         <td style="min-width: 200px" width="30%">
                             <a class="product-button roundedButton addDeploymentBtn" href="$Top.Link(consultant)?id=$ID">Edit Product Details</a>
+                            <a target="_blank" class="product-button roundedButton addDeploymentBtn" href="$Top.Link(consultant)/$ID/preview">Preview Product</a>
                             <a class="roundedButton delete-consultant product-button addDeploymentBtn" href="#" data-id="{$ID}">Delete Product</a>
                         </td>
                     </tr>

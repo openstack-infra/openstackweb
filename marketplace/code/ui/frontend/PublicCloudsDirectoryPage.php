@@ -149,9 +149,8 @@ class PublicCloudsDirectoryPage_Controller extends CloudsDirectoryPage_Controlle
 			$public_cloud       = $this->cloud_repository->getBy($query);
 			if(!$public_cloud) throw new NotFoundEntityException('','');
 			if($public_cloud->getCompany()->URLSegment != $company_url_segment) throw new NotFoundEntityException('','');
-			Requirements::javascript("marketplace/code/ui/frontend/js/openstack.implementation.capabilities.js");
-			Requirements::javascript("marketplace/code/ui/frontend/js/cloud.page.js");
-			return $this->Customise($public_cloud)->renderWith(array('CloudsDirectoryPage_cloud','PublicCloudsDirectoryPage','MarketPlacePage'));
+			$render             = new PublicCloudSapphireRender($public_cloud);
+			return $render->draw();
 		}
 		catch (Exception $ex) {
 			return $this->httpError(404, 'Sorry that Public Cloud  could not be found!.');

@@ -156,9 +156,8 @@ class DistributionsDirectoryPage_Controller extends MarketPlaceDirectoryPage_Con
 			$distribution        = $this->distribution_repository->getBy($query);
 			if(!$distribution) throw new NotFoundEntityException('','');
 			if($distribution->getCompany()->URLSegment != $company_url_segment) throw new NotFoundEntityException('','');
-			Requirements::javascript("marketplace/code/ui/frontend/js/openstack.implementation.capabilities.js");
-			Requirements::javascript("marketplace/code/ui/frontend/js/implementation.page.js");
-			return $this->Customise($distribution)->renderWith(array('DistributionsDirectoryPage_implementation','DistributionsDirectoryPage','MarketPlacePage'));
+			$render = new DistributionSapphireRender($distribution);
+			return $render->draw();
 		}
 		catch (Exception $ex) {
 			return $this->httpError(404, 'Sorry that Distribution could not be found!.');
@@ -175,10 +174,8 @@ class DistributionsDirectoryPage_Controller extends MarketPlaceDirectoryPage_Con
 			$appliance  = $this->appliance_repository->getBy($query);
 			if(!$appliance) throw new NotFoundEntityException('','');
 			if($appliance->getCompany()->URLSegment != $company_url_segment) throw new NotFoundEntityException('','');
-			Requirements::javascript("marketplace/code/ui/frontend/js/openstack.implementation.capabilities.js");
-			Requirements::javascript("marketplace/code/ui/frontend/js/implementation.page.js");
-			//view is customized with same distributions templates
-			return $this->Customise($appliance)->renderWith(array('DistributionsDirectoryPage_implementation','DistributionsDirectoryPage','MarketPlacePage'));
+			$render = new ApplianceSapphirgit eRender($appliance);
+			return $render->draw();
 		}
 		catch (Exception $ex) {
 			return $this->httpError(404, 'Sorry that Appliance could not be found!.');
