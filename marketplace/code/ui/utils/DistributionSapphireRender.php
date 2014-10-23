@@ -20,4 +20,8 @@ final class DistributionSapphireRender {
 		Requirements::css("marketplace/code/ui/frontend/css/marketplace.css");
 		return Controller::curr()->Customise($this->distribution )->renderWith(array('DistributionsDirectoryPage_implementation', 'DistributionsDirectoryPage', 'MarketPlacePage'));
 	}
+
+    public function pdf(){
+        return Controller::curr()->Customise($this->distribution )->renderWith(array('DistributionsDirectoryPage_pdf'));
+    }
 } 

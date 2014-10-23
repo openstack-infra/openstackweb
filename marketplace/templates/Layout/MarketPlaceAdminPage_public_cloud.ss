@@ -6,6 +6,9 @@
         <% if CurrentPublicCloud %>
             <a style="overflow:hidden;white-space: nowrap;font-weight:normal;float:right;margin-bottom:50px;text-align:center;margin-right:50px;" class="roundedButton addDeploymentBtn" target="_blank" href="$Top.Link(public_cloud)/$CurrentPublicCloud.ID/preview">Preview</a>
         <% end_if %>
+        <% if CurrentPublicCloud %>
+            <a style="overflow:hidden;white-space: nowrap;font-weight:normal;float:right;margin-bottom:50px;text-align:center;margin-right:50px;" class="roundedButton addDeploymentBtn" target="_blank" href="$Top.Link(public_cloud)/$CurrentPublicCloud.ID/pdf">Download PDF</a>
+        <% end_if %>
         <a style="overflow:hidden;white-space: nowrap;font-weight:normal;float:right;margin-bottom:50px;text-align:center;margin-right:50px;" class="roundedButton addDeploymentBtn" href="$Top.Link(public_clouds)">&lt;&lt; Back to Products</a>
     </div>
     <div style="clear:both">

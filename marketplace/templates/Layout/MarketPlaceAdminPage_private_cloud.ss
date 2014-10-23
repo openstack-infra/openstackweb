@@ -6,6 +6,9 @@
             <% if CurrentPrivateCloud %>
                 <a style="overflow:hidden;white-space: nowrap;font-weight:normal;float:right;margin-bottom:50px;text-align:center;margin-right:50px;" class="roundedButton addDeploymentBtn" target="_blank" href="$Top.Link(private_cloud)/$CurrentPrivateCloud.ID/preview">Preview</a>
             <% end_if %>
+            <% if CurrentPrivateCloud %>
+                <a style="overflow:hidden;white-space: nowrap;font-weight:normal;float:right;margin-bottom:50px;text-align:center;margin-right:50px;" class="roundedButton addDeploymentBtn" target="_blank" href="$Top.Link(private_cloud)/$CurrentPrivateCloud.ID/pdf">Download PDF</a>
+            <% end_if %>
             <a style="overflow:hidden;white-space: nowrap;font-weight:normal;float:right;margin-bottom:50px;text-align:center;margin-right:50px;" class="roundedButton addDeploymentBtn" href="$Top.Link(private_clouds)">&lt;&lt; Back to Products</a>
         </div>
         <div style="clear:both">

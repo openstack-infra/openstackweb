@@ -187,7 +187,7 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
 		'consultants',
 		'consultant',
 		'preview',
-		'pdf,'
+		'pdf',
 	);
 
 
@@ -964,7 +964,7 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
 			case 'private_cloud': {
 				$private_cloud = $this->private_clouds_repository->getBy($query);
 				$private_cloud->IsPreview = true;
-				$render = new PrivatgeCloudSapphireRender($private_cloud);
+				$render = new PrivateCloudSapphireRender($private_cloud);
 				return $render->draw();
 
 			}
@@ -1032,7 +1032,106 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
 	}
 
 	public function pdf(){
+        $html_inner = '';
+        $marketplace_type = $this->request->param('MARKETPLACETYPE');
+        $instance_id = intval($this->request->param('ID'));
+        $base = Director::baseFolder();
 
+        $query = new QueryObject();
+        $query->addAddCondition(QueryCriteria::equal('ID', $instance_id));
+
+        switch (strtolower($marketplace_type)) {
+            case 'distribution': {
+                $distribution = $this->distribution_repository->getBy($query);
+                if (!$distribution) throw new NotFoundEntityException('', '');
+                $render = new DistributionSapphireRender($distribution);
+                $distribution ->IsPreview = true;
+                $html_inner = $render->pdf();
+                $css = @file_get_contents($base . "/marketplace/code/ui/admin/css/pdf.css");
+            }
+                break;
+            case 'appliance': {
+                $appliance = $this->appliance_repository->getBy($query);
+                $appliance->IsPreview = true;
+                $render = new ApplianceSapphireRender($appliance);
+                $html_inner = $render->pdf();
+                $css = @file_get_contents($base . "/themes/openstack/css/main.pdf.css");
+                $css .= ' '.@file_get_contents($base . "/themes/openstack/css/chosen.css");
+                //$css .= ' '.@file_get_contents($base . "/themes/openstack/css/combined.css");
+                $css .= ' '.@file_get_contents($base . "/marketplace/code/ui/admin/css/colorpicker.css");
+                $css .= ' '.@file_get_contents($base . "/marketplace/code/ui/frontend/css/marketplace.css");
+            }
+                break;
+            case 'public_cloud': {
+                $public_cloud = $this->public_clouds_repository->getBy($query);
+                $public_cloud->IsPreview = true;
+                if (!$public_cloud) throw new NotFoundEntityException('', '');
+                $render = new PublicCloudSapphireRender($public_cloud);
+                $html_inner = $render->pdf();
+                $css = @file_get_contents($base . "/themes/openstack/css/main.pdf.css");
+                $css .= ' '.@file_get_contents($base . "/themes/openstack/css/chosen.css");
+                //$css .= ' '.@file_get_contents($base . "/themes/openstack/css/combined.css");
+                $css .= ' '.@file_get_contents($base . "/marketplace/code/ui/admin/css/colorpicker.css");
+                $css .= ' '.@file_get_contents($base . "/marketplace/code/ui/frontend/css/marketplace.css");
+            }
+                break;
+            case 'private_cloud': {
+                $private_cloud = $this->private_clouds_repository->getBy($query);
+                $private_cloud->IsPreview = true;
+                $render = new PrivateCloudSapphireRender($private_cloud);
+                $html_inner = $render->pdf();
+                $css = @file_get_contents($base . "/themes/openstack/css/main.pdf.css");
+                $css .= ' '.@file_get_contents($base . "/themes/openstack/css/chosen.css");
+                //$css .= ' '.@file_get_contents($base . "/themes/openstack/css/combined.css");
+                $css .= ' '.@file_get_contents($base . "/marketplace/code/ui/admin/css/colorpicker.css");
+                $css .= ' '.@file_get_contents($base . "/marketplace/code/ui/frontend/css/marketplace.css");
+
+            }
+                break;
+            case 'consultant': {
+                $consultant = $this->consultant_repository->getBy($query);
+                if (!$consultant) throw new NotFoundEntityException('', '');
+                $consultant->IsPreview = true;
+                $render = new ConsultantSapphireRender($consultant);
+                $html_inner = $render->pdf();
+                $css = @file_get_contents($base . "/themes/openstack/css/main.pdf.css");
+                $css .= ' '.@file_get_contents($base . "/themes/openstack/css/chosen.css");
+                //$css .= ' '.@file_get_contents($base . "/themes/openstack/css/combined.css");
+                $css .= ' '.@file_get_contents($base . "/marketplace/code/ui/admin/css/colorpicker.css");
+                $css .= ' '.@file_get_contents($base . "/marketplace/code/ui/frontend/css/marketplace.css");
+            }
+                break;
+            default:
+                $this->httpError(404);
+                break;
+        }
+
+        //create pdf
+        $file = FileUtils::convertToFileName('preview') . '.pdf';
+        //$html_inner = $this->customise(array('BASEURL' => Director::protocolAndHost()))->renderWith("UserStoryPDF");
+
+        $html_outer = sprintf("<html><head><style>%s</style></head><body><div class='container'>%s</div></body></html>",
+            str_replace("@host", $base, $css),$html_inner);
+
+
+        try {
+            $html2pdf = new HTML2PDF('P', 'A4', 'en', true, 'UTF-8', array(15, 5, 15, 5));
+            //$html2pdf->addFont('Open Sans', '', $base.'/themes/openstack/assets/fonts/PT-Sans/PTC75F-webfont.ttf');
+            $html2pdf->WriteHTML($html_outer);
+            //clean output buffer
+            ob_end_clean();
+            $html2pdf->Output($file, "D");
+        } catch (HTML2PDF_exception $e) {
+            $message = array(
+                'errno' => '',
+                'errstr' => $e->__toString(),
+                'errfile' => 'UserStory.php',
+                'errline' => '',
+                'errcontext' => ''
+            );
+            SS_Log::log($message, SS_Log::ERR);
+            $this->httpError(404,'There was an error on PDF generation!');
+        }
 	}
 
 }

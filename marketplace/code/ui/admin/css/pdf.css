@@ -1,0 +1,98 @@
+body, html {
+    width: 100%;
+    height: 100%;
+}
+
+body, h1, h2, h3, h4, h5, h6 {
+    /*font-family: "Open Sans", Helvetica, Arial, sans-serif;*/
+    font-weight: 400;
+}
+
+h1 {
+    color: rgb(7, 94, 165);
+    font-size: 27px;
+    font-weight: 300;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 25px;
+}
+
+h2 {
+    color: rgb(7, 94, 165);
+    font-weight: 300;
+    margin-bottom: 10px;
+    margin-top:20px;
+    text-align: left;
+    font-size: 21px;
+}
+
+h3 {
+    color: rgb(7, 94, 165);
+    font-size: 14px;
+    text-transform: uppercase;
+    margin-top: 8px;
+    margin-bottom: 5px;
+}
+
+h5 {
+    color: #DA422F;
+    margin-bottom: 0;
+}
+
+a, a:visited {
+    color: #30739C;
+}
+
+th {
+    text-align: left;
+    padding: 0;
+}
+
+.container {
+    font-size: 11px;
+    line-height: 1.1;
+    color: #333;
+    font-weight: 300;
+}
+
+.primary-action-button {
+    background: none repeat scroll 0 0 #0595D4;
+    color: #FFFFFF!important;
+    display: inline-block;
+    font-size: 13px;
+    line-height: 1em;
+    margin-left: 16px;
+    padding: 5px 16px;
+    text-transform: uppercase;
+}
+
+.grey-bar {
+    background-color: #edf2f7;
+    margin-top: 0;
+    padding-bottom: 8px;
+    padding-top: 8px;
+}
+
+.grey-bar h1{
+    margin-bottom:5px;
+    padding-top:5px;
+}
+
+.marketplace-content{
+    margin-top:32px;
+}
+
+.pullquote p{
+    font-size:120%;
+    margin-bottom:16px;
+}
+
+.pullquote p.author{
+    color:#7F7F7F;
+    font-size:80%;
+}
+
+.info-area{
+    border-left:1px solid #DDDDDD;
+    padding-left:8px;
+}

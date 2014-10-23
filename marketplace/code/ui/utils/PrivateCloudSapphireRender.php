@@ -27,4 +27,8 @@ final class PrivateCloudSapphireRender {
 		Requirements::javascript("marketplace/code/ui/frontend/js/cloud.page.js");
 		return Controller::curr()->Customise($this->cloud)->renderWith(array('CloudsDirectoryPage_cloud', 'PrivateCloudsDirectoryPage', 'MarketPlacePage'));
 	}
+
+    public function pdf(){
+        return Controller::curr()->Customise($this->cloud)->renderWith(array('CloudsDirectoryPage_pdf'));
+    }
 } 
