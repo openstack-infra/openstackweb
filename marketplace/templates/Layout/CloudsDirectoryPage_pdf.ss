@@ -73,7 +73,7 @@
                             <% end_control %>
                         </p>
                         <div style="width: 300px; height: 200px; position: relative;" tabindex="0">
-                            <img src="$Top.getCurrentOfficesStaticMapForPDF" />
+                            <img src="$Top.CurrentDataCenterStaticMapForPDF" />
                         </div>
                         <p>Click any location to see availability zones and API endpoints</p>
                     <% end_if %>

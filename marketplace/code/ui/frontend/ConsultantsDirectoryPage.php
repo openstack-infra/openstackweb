@@ -23,7 +23,10 @@ class ConsultantsDirectoryPage extends MarketPlaceDirectoryPage
  */
 class ConsultantsDirectoryPage_Controller extends MarketPlaceDirectoryPage_Controller {
 
-	private static $allowed_actions = array('handleIndex');
+
+	static $allowed_actions = array(
+        'getCurrentOfficesLocationsJson',
+	);
 	/**
 	 * @var IEntityRepository
 	 */

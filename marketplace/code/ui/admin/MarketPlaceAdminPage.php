@@ -1077,6 +1077,37 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
 		return CloudViewModel::getEnabledPricingSchemas($cloud);
 	}
 
+    public function getCurrentOfficesLocationsJson()
+    {
+        $instance_id = intval($this->request->param('ID'));
+        $query = new QueryObject();
+        $query->addAddCondition(QueryCriteria::equal('ID', $instance_id));
+
+        $consultant = $this->consultant_repository->getBy($query);
+
+        if (!$consultant) throw new NotFoundEntityException('', '');
+        return ConsultantViewModel::getOfficesLocationsJson($consultant);
+    }
+
+    public function getCurrentOfficesLocationsStaticMapForPDF()
+    {
+        $static_map_url = "http://maps.googleapis.com/maps/api/staticmap?zoom=2&size=300x200&maptype=roadmap";
+        $instance_id = intval($this->request->param('ID'));
+        $query = new QueryObject();
+        $query->addAddCondition(QueryCriteria::equal('ID', $instance_id));
+
+        $consultant = $this->consultant_repository->getBy($query);
+
+        if (!$consultant) throw new NotFoundEntityException('', '');
+        $locations = json_decode(ConsultantViewModel::getOfficesLocationsJson($consultant));
+
+        foreach ($locations as $loc) {
+            $static_map_url .= "&markers=".$loc->lat.",".$loc->lng;
+        }
+
+        return $static_map_url;
+    }
+
 	public function pdf(){
         $html_inner = '';
         $marketplace_type = $this->request->param('MARKETPLACETYPE');
@@ -1138,7 +1169,6 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
 
         //create pdf
         $file = FileUtils::convertToFileName('preview') . '.pdf';
-        //$html_inner = $this->customise(array('BASEURL' => Director::protocolAndHost()))->renderWith("UserStoryPDF");
 
         $html_outer = sprintf("<html><head><style>%s</style></head><body><div class='container'>%s</div></body></html>",
             str_replace("@host", $base, $css),$html_inner);
