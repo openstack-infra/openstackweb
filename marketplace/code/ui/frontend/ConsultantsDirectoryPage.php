@@ -219,6 +219,26 @@ class ConsultantsDirectoryPage_Controller extends MarketPlaceDirectoryPage_Contr
 		return json_encode($res);
 	}
 
+    public function getCurrentOfficesStaticMapForPDF()
+    {
+        $static_map_url = "http://maps.googleapis.com/maps/api/staticmap?zoom=2&size=300x200&maptype=roadmap";
+
+        $params              = $this->request->allParams();
+        $company_url_segment = Convert::raw2sql($params["Company"]);
+        $slug                = Convert::raw2sql($params["Slug"]);
+        $query               = new QueryObject();
+        $query->addAddCondition(QueryCriteria::equal('Slug',$slug));
+        $consultant       = $this->consultant_repository->getBy($query);
+        if(!$consultant) throw new NotFoundEntityException('Consultant','by slug');
+        if($consultant->getCompany()->URLSegment != $company_url_segment) throw new NotFoundEntityException('','');
+
+        foreach($consultant->getOffices() as $office){
+            $static_map_url .= "&markers=".$office->getLat().",".$office->getLng();
+        }
+
+        return $static_map_url;
+    }
+
 	public function ServicesCombo(){
 		$source = array();
 		$result = $this->consultants_service_query->handle(new OpenStackImplementationNamesQuerySpecification(''));

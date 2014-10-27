@@ -82,7 +82,26 @@ class Company extends DataObject implements PermissionProvider {
         return empty($this->Color)?"C34431":$this->Color;
     }
 
-	private static $has_one = array(
+    public function getCompanyColorRGB() {
+        $rgb_color = "rgb(195,68,49)";
+        if (!empty($this->Color)) {
+            if(strlen($this->Color) == 3) {
+                $r = hexdec(substr($this->Color,0,1).substr($this->Color,0,1));
+                $g = hexdec(substr($this->Color,1,1).substr($this->Color,1,1));
+                $b = hexdec(substr($this->Color,2,1).substr($this->Color,2,1));
+            } else {
+                $r = hexdec(substr($this->Color,0,2));
+                $g = hexdec(substr($this->Color,2,2));
+                $b = hexdec(substr($this->Color,4,2));
+            }
+            $rgb_color = 'rgb('.$r.','.$g.','.$b.')';
+        }
+
+        return $rgb_color;
+    }
+	
+	static $has_one = array(
+
 		'CompanyListPage' => 'CompanyListPage',
 		'Logo'            => 'BetterImage',
         'BigLogo'         => 'BetterImage',

@@ -1005,10 +1005,56 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
 		return CloudViewModel::getDataCenterLocationsJson($cloud);
 	}
 
+    public function getCurrentDataCenterStaticMapForPDF()
+    {
+        $static_map_url = "http://maps.googleapis.com/maps/api/staticmap?zoom=2&size=300x200&maptype=roadmap";
+        $instance_id = intval($this->request->param('ID'));
+        $marketplace_type = $this->request->param('MARKETPLACETYPE');
+        $query = new QueryObject();
+        $query->addAddCondition(QueryCriteria::equal('ID', $instance_id));
+        switch (strtolower($marketplace_type)) {
+            case 'public_cloud': {
+                $cloud = $this->public_clouds_repository->getBy($query);
+            }
+                break;
+            case 'private_cloud': {
+                $cloud = $this->private_clouds_repository->getBy($query);
+            }
+                break;
+
+        }
+
+        if (!$cloud) throw new NotFoundEntityException('', '');
+        $locations = json_decode(CloudViewModel::getDataCenterLocationsJson($cloud));
+
+        foreach ($locations as $loc) {
+            $static_map_url .= "&markers=".$loc->lat.",".$loc->lng;
+        }
+
+        return $static_map_url;
+    }
+
 	public function getPricingSchemas()
 	{
 		return CloudViewModel::getPricingSchemas();
 	}
+
+    public function getPricingSchemasForPDF()
+    {
+        $pricing_schemas = CloudViewModel::getPricingSchemas();
+        $enabled_ps = json_decode($this->getEnabledPricingSchemas());
+
+        foreach($pricing_schemas as $ps) {
+            $ps->Enabled = 0;
+            foreach ($enabled_ps as $eps) {
+                if ($ps->ID == $eps) {
+                    $ps->Enabled = 1;
+                }
+            }
+        }
+
+        return $pricing_schemas;
+    }
 
 	public function getEnabledPricingSchemas()
 	{
@@ -1055,11 +1101,7 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
                 $appliance->IsPreview = true;
                 $render = new ApplianceSapphireRender($appliance);
                 $html_inner = $render->pdf();
-                $css = @file_get_contents($base . "/themes/openstack/css/main.pdf.css");
-                $css .= ' '.@file_get_contents($base . "/themes/openstack/css/chosen.css");
-                //$css .= ' '.@file_get_contents($base . "/themes/openstack/css/combined.css");
-                $css .= ' '.@file_get_contents($base . "/marketplace/code/ui/admin/css/colorpicker.css");
-                $css .= ' '.@file_get_contents($base . "/marketplace/code/ui/frontend/css/marketplace.css");
+                $css = @file_get_contents($base . "/marketplace/code/ui/admin/css/pdf.css");
             }
                 break;
             case 'public_cloud': {
@@ -1068,11 +1110,7 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
                 if (!$public_cloud) throw new NotFoundEntityException('', '');
                 $render = new PublicCloudSapphireRender($public_cloud);
                 $html_inner = $render->pdf();
-                $css = @file_get_contents($base . "/themes/openstack/css/main.pdf.css");
-                $css .= ' '.@file_get_contents($base . "/themes/openstack/css/chosen.css");
-                //$css .= ' '.@file_get_contents($base . "/themes/openstack/css/combined.css");
-                $css .= ' '.@file_get_contents($base . "/marketplace/code/ui/admin/css/colorpicker.css");
-                $css .= ' '.@file_get_contents($base . "/marketplace/code/ui/frontend/css/marketplace.css");
+                $css = @file_get_contents($base . "/marketplace/code/ui/admin/css/pdf.css");
             }
                 break;
             case 'private_cloud': {
@@ -1080,11 +1118,7 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
                 $private_cloud->IsPreview = true;
                 $render = new PrivateCloudSapphireRender($private_cloud);
                 $html_inner = $render->pdf();
-                $css = @file_get_contents($base . "/themes/openstack/css/main.pdf.css");
-                $css .= ' '.@file_get_contents($base . "/themes/openstack/css/chosen.css");
-                //$css .= ' '.@file_get_contents($base . "/themes/openstack/css/combined.css");
-                $css .= ' '.@file_get_contents($base . "/marketplace/code/ui/admin/css/colorpicker.css");
-                $css .= ' '.@file_get_contents($base . "/marketplace/code/ui/frontend/css/marketplace.css");
+                $css = @file_get_contents($base . "/marketplace/code/ui/admin/css/pdf.css");
 
             }
                 break;
@@ -1094,11 +1128,7 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
                 $consultant->IsPreview = true;
                 $render = new ConsultantSapphireRender($consultant);
                 $html_inner = $render->pdf();
-                $css = @file_get_contents($base . "/themes/openstack/css/main.pdf.css");
-                $css .= ' '.@file_get_contents($base . "/themes/openstack/css/chosen.css");
-                //$css .= ' '.@file_get_contents($base . "/themes/openstack/css/combined.css");
-                $css .= ' '.@file_get_contents($base . "/marketplace/code/ui/admin/css/colorpicker.css");
-                $css .= ' '.@file_get_contents($base . "/marketplace/code/ui/frontend/css/marketplace.css");
+                $css = @file_get_contents($base . "/marketplace/code/ui/admin/css/pdf.css");
             }
                 break;
             default:
