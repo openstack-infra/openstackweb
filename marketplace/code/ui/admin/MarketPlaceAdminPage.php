@@ -1007,7 +1007,7 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
 
     public function getCurrentDataCenterStaticMapForPDF()
     {
-        $static_map_url = "http://maps.googleapis.com/maps/api/staticmap?zoom=2&size=300x200&maptype=roadmap";
+        $static_map_url = "http://maps.googleapis.com/maps/api/staticmap?zoom=1&size=300x200&maptype=roadmap";
         $instance_id = intval($this->request->param('ID'));
         $marketplace_type = $this->request->param('MARKETPLACETYPE');
         $query = new QueryObject();
@@ -1091,7 +1091,7 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
 
     public function getCurrentOfficesLocationsStaticMapForPDF()
     {
-        $static_map_url = "http://maps.googleapis.com/maps/api/staticmap?zoom=2&size=300x200&maptype=roadmap";
+        $static_map_url = "http://maps.googleapis.com/maps/api/staticmap?zoom=1&size=300x200&maptype=roadmap";
         $instance_id = intval($this->request->param('ID'));
         $query = new QueryObject();
         $query->addAddCondition(QueryCriteria::equal('ID', $instance_id));
