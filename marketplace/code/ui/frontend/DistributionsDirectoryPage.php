@@ -58,12 +58,15 @@ class DistributionsDirectoryPage_Controller extends MarketPlaceDirectoryPage_Con
 	function init()
 	{
 		parent::init();
+
+		Requirements::css(THIRDPARTY_DIR . '/jquery-ui-themes/smoothness/jquery-ui.css');
+		Requirements::javascript(THIRDPARTY_DIR . '/jquery-ui/jquery-ui.js');
+
 		Requirements::customScript("jQuery(document).ready(function($) {
             $('#distros','.marketplace-nav').addClass('current');
         });");
-		Requirements::css("themes/openstack/javascript/jquery-ui-1.10.3.custom/css/smoothness/jquery-ui-1.10.3.custom.min.css");
 		Requirements::css("themes/openstack/css/chosen.css", "screen,projection");
-		Requirements::javascript("themes/openstack/javascript/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js");
+
 		Requirements::javascript("themes/openstack/javascript/chosen.jquery.min.js");
 		Requirements::javascript("marketplace/code/ui/frontend/js/implementation.directory.page.js");
 		Requirements::customScript($this->GATrackingCode());

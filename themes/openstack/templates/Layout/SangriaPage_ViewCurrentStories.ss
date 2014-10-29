@@ -4,13 +4,13 @@
 }
 </style>
 <h1 style="width:75%;float:left;">User Stories</h1>
-<a href="/sangria/ViewDeploymentDetails" class="roundedButton" style="white-space: nowrap;text-align:center;font-weight:normal;float:right;width:20%;margin-bottom:15px">View Deployment List</a>
+<a href="$Top.Link(ViewDeploymentDetails)" class="roundedButton" style="white-space: nowrap;text-align:center;font-weight:normal;float:right;width:20%;margin-bottom:15px">View Deployment List</a>
 
 <hr/>
 <% loop UserStoriesIndustries %>
 <% if Stories %>
 <h3>$IndustryName</h3>
-<form method="POST" action="/sangria/UpdateStories" class="UpdateStories">
+<form method="POST" action="$Top.Link(UpdateStories)" class="UpdateStories">
 <table style="border: 1px solid #ccc; border-collapse:collapse;" class="stories">
   <tr>
 	<th style="border: 1px solid #ccc;width:1%"></th>

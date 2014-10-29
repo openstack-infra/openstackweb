@@ -19,7 +19,7 @@
 </div>
 
 <div class="addDeploymentForm">
-	<form method="POST" action="/sangria/AddNewDeployment">
+	<form method="POST" action="$Top.Link(AddNewDeployment)">
 		<table style="border: 1px solid #ccc; border-collapse:collapse;clear:both;">
 		<tr>
 		    <th style="border: 1px solid #ccc;">Deployment Name</th>
@@ -104,7 +104,7 @@
   </tr>
 	<% loop Deployments %>
 	  <tr>
-	  <form method="GET" action="sangria/AddUserStory">
+	  <form method="GET" action="$Top.Link(AddUserStory)">
 	  	<input type="hidden" value="$ID" name="ID">
 	    <td style="border: 1px solid #ccc;">
 	    <input type="hidden" name="org" value="$Org.Name">

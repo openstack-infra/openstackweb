@@ -103,10 +103,12 @@
                 if(org_name.length>0){
                     org_name.autocomplete({
                         source: rest_urls.ListOrganizations,
-                        minLength: 2
+                        minLength: 2,
+                        open: function( event, ui ) {
+                            org_name.autocomplete("widget").css('z-index',5000);
+                        }
                     });
 
-                    org_name.autocomplete("widget").css('z-index',1000);
                 }
 
                 var date_picker_start = $(affiliation_form_id+"_StartDate");

@@ -88,3 +88,14 @@ if (Director::isDev()) {
 	//Set default login
 	Security::setDefaultAdmin('admin','pass');
 }
+
+//sangria configuration
+Object::add_extension('SangriaPage_Controller', 'SangriaPageDeploymentExtension');
+Object::add_extension('SangriaPage_Controller', 'SangriaPageStandardizeOrgNamesExtension');
+Object::add_extension('SangriaPage_Controller', 'SangriaPageViewCurrentStoriesExtension');
+Object::add_extension('SangriaPage_Controller', 'SangriaPageExportDataExtension');
+Object::add_extension('SangriaPage_Controller', 'SangriaPageViewSpeakingSubmissionsExtension');
+Object::add_extension('SangriaPage_Controller', 'SangriaSetCategorySponsorsExtension');
+Object::add_extension('SangriaPage_Controller', 'SangriaPageInvolvementTypeExtension');
+
+HTTP::set_cache_age(0);

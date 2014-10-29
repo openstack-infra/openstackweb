@@ -1,5 +1,5 @@
 <% if IncludeFormTag %>
-    <form $FormAttributes>
+    <form $FormAttributes role="form">
 <% end_if %>
 <% if Message %>
         <p id="{$FormName}_error" class="message $MessageType">$Message</p>
@@ -51,7 +51,7 @@
             </div>
         </div>
 
-        <div class="section_container">
+        <div class="form-group">
             <h2>Event Location</h2>
 
             <div class="field text " id="city">
@@ -78,17 +78,20 @@
             </div>
         </div>
 
-        <div class="section_container">
-            <h2>Event Duration</h2>
-
-            <div class="field text " id="start_date">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Event Duration</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2" id="start_date">
                 <label for="$FormName_start_date" class="left">Start Date</label>
 
                 <div class="middleColumn">
                     $Fields.dataFieldByName(start_date)
                 </div>
             </div>
-            <div class="field text " id="end_date">
+            <div class="col-md-2" id="end_date">
                 <label for="$FormName_end_date" class="left">End Date</label>
 
                 <div class="middleColumn">

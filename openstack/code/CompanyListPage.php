@@ -48,14 +48,16 @@ class CompanyListPage_Controller extends Page_Controller
 
         Requirements::css("themes/openstack/css/chosen.css", "screen,projection");
         Requirements::css("themes/openstack/css/jquery.autocomplete.css");
-        Requirements::css(THEMES_DIR, "/openstack/javascript/jquery-ui-1.10.3.custom/css/smoothness/jquery-ui-1.10.3.custom.min.css");
+
+	    Requirements::css(THIRDPARTY_DIR . '/jquery-ui-themes/smoothness/jquery-ui.css');
+	    Requirements::javascript(THIRDPARTY_DIR . '/jquery-ui/jquery-ui.js');
 
         Requirements::javascript("themes/openstack/javascript/chosen.jquery.min.js");
         Requirements::javascript("themes/openstack/javascript/jquery.autocomplete.min.js");
 
 	    Requirements::javascript(Director::protocol()."ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js");
 	    Requirements::javascript(Director::protocol()."ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/additional-methods.min.js");
-        Requirements::javascript(THEMES_DIR, "/openstack/javascript/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js");
+
     }
 
     function DisplayedCompanies($type)

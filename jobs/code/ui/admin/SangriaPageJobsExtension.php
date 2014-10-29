@@ -25,6 +25,7 @@ final class SangriaPageJobsExtension extends Extension {
 
 	public function onBeforeInit(){
 		Config::inst()->update(get_class($this), 'allowed_actions', array('ViewJobsDetails'));
+		Config::inst()->update(get_class($this->owner), 'allowed_actions', array('ViewJobsDetails'));
 	}
 
 	public function onAfterInit(){
@@ -33,11 +34,11 @@ final class SangriaPageJobsExtension extends Extension {
 
 	private function commonScripts(){
 		Requirements::css("themes/openstack/css/chosen.css", "screen,projection");
-		Requirements::css("themes/openstack/javascript/jquery-ui-1.10.3.custom/css/smoothness/jquery-ui-1.10.3.custom.min.css");
 		Requirements::javascript("themes/openstack/javascript/chosen.jquery.min.js");
 		Requirements::javascript(Director::protocol()."ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js");
 		Requirements::javascript(Director::protocol()."ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/additional-methods.min.js");
-		Requirements::javascript("themes/openstack/javascript/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.js");
+		Requirements::css(THIRDPARTY_DIR . '/jquery-ui-themes/smoothness/jquery-ui.css');
+		Requirements::javascript(THIRDPARTY_DIR . '/jquery-ui/jquery-ui.js');
 		Requirements::javascript("themes/openstack/javascript/jquery.ui.datepicker.validation.package-1.0.1/jquery.ui.datepicker.validation.js");
 		Requirements::javascript("themes/openstack/javascript/jquery.validate.custom.methods.js");
 		Requirements::javascript('marketplace/code/ui/admin/js/utils.js');

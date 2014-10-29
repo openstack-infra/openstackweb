@@ -64,8 +64,9 @@ class EditProfilePage_Controller extends Page_Controller
 
         Requirements::css("themes/openstack/css/chosen.css", "screen,projection");
         Requirements::css('registration/css/edit.profile.page.css');
-        Requirements::css("themes/openstack/javascript/jquery-ui-1.10.3.custom/css/smoothness/jquery-ui-1.10.3.custom.min.css");
         Requirements::css("registration/css/affiliations.css");
+	    Requirements::css(THIRDPARTY_DIR . '/jquery-ui-themes/smoothness/jquery-ui.css');
+	    Requirements::javascript(THIRDPARTY_DIR . '/jquery-ui/jquery-ui.js');
 
         Requirements::javascript("themes/openstack/javascript/chosen.jquery.min.js");
         Requirements::javascript("themes/openstack/javascript/pure.min.js");
@@ -73,12 +74,11 @@ class EditProfilePage_Controller extends Page_Controller
         Requirements::javascript("themes/openstack/javascript/jquery.cleanform.js");
         Requirements::javascript(Director::protocol()."ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js");
         Requirements::javascript(Director::protocol()."ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/additional-methods.min.js");
-        Requirements::javascript("themes/openstack/javascript/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.js");
         Requirements::javascript("themes/openstack/javascript/jquery.ui.datepicker.validation.package-1.0.1/jquery.ui.datepicker.validation.js");
 	    Requirements::javascript("themes/openstack/javascript/jquery.validate.custom.methods.js");
-
         Requirements::javascript("registration/javascript/affiliations.js");
         Requirements::javascript('registration/javascript/edit.profile.page.js');
+
 		$this->course_repository   = new SapphireCourseRepository;
 	    $this->training_repository = new SapphireTrainingServiceRepository;
 
@@ -457,8 +457,9 @@ class EditProfilePage_Controller extends Page_Controller
 
     function AddTrainingCourseForm() {
 
-        Requirements::css("themes/openstack/javascript/jquery-ui-1.10.3.custom/css/smoothness/jquery-ui-1.10.3.custom.min.css");
-        Requirements::javascript("themes/openstack/javascript/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js");
+	    Requirements::css(THIRDPARTY_DIR . '/jquery-ui-themes/smoothness/jquery-ui.css');
+	    Requirements::javascript(THIRDPARTY_DIR . '/jquery-ui/jquery-ui.js');
+
         Requirements::javascript("datepicker/javascript/datepicker.js");
 	    Requirements::javascript('registration/javascript/edit.profile.training.form.js');
 

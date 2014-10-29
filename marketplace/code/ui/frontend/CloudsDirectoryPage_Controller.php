@@ -132,15 +132,17 @@ abstract class CloudsDirectoryPage_Controller extends MarketPlaceDirectoryPage_C
 		parent::init();
 		$cloud_type = $this->getCloudTypeForJS();
 
+		Requirements::css(THIRDPARTY_DIR . '/jquery-ui-themes/smoothness/jquery-ui.css');
+		Requirements::javascript(THIRDPARTY_DIR . '/jquery-ui/jquery-ui.js');
+
 		Requirements::customScript("
 		var cloud_type = '{$cloud_type}'
 		jQuery(document).ready(function($) {
             $('#{$cloud_type}','.marketplace-nav').addClass('current');
         });");
 
-		Requirements::css("themes/openstack/javascript/jquery-ui-1.10.3.custom/css/smoothness/jquery-ui-1.10.3.custom.min.css");
 		Requirements::css("themes/openstack/css/chosen.css", "screen,projection");
-		Requirements::javascript("themes/openstack/javascript/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js");
+
 		Requirements::javascript(Director::protocol()."maps.googleapis.com/maps/api/js?sensor=false");
 		Requirements::javascript("marketplace/code/ui/admin/js/utils.js");
 		Requirements::javascript("marketplace/code/ui/frontend/js/markerclusterer.js");

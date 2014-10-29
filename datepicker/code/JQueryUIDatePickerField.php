@@ -34,12 +34,10 @@ class JQueryUIDatePickerField extends TextField {
     function Field() {
         $this->addExtraClass('DatePickerField');
         Requirements::block(SAPPHIRE_DIR .'/thirdparty/jquery/jquery.js');
-
-        Requirements::css("themes/openstack/javascript/jquery-ui-1.10.3.custom/css/smoothness/jquery-ui-1.10.3.custom.min.css");
-
         Requirements::javascript('themes/openstack/javascript/jquery-2.0.3.min.js');
         Requirements::javascript('themes/openstack/javascript/jquery-migrate-1.2.1.min.js');
-        Requirements::javascript("themes/openstack/javascript/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js");
+	    Requirements::css(THIRDPARTY_DIR . '/jquery-ui-themes/smoothness/jquery-ui.css');
+	    Requirements::javascript(THIRDPARTY_DIR . '/jquery-ui/jquery-ui.js');
         Requirements::javascript("datepicker/javascript/datepicker.js");
         
         $attributes = array(
