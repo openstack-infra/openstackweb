@@ -1,0 +1,351 @@
+/* Imports */
+/* @import "partials/colors" */
+/* Page Structure */
+/* line 14 */
+
+/* line 18, /Users/toddmorey/Documents/webdev/websites/presentation-editor/source/stylesheets/voting.css.sass */
+body {
+  background-color: #d4ebf1; }
+
+/* line 21, /Users/toddmorey/Documents/webdev/websites/presentation-editor/source/stylesheets/voting.css.sass */
+.navbar {
+  background-color: #bde2ed; }
+
+a {
+  color: #4D738F;
+}
+
+/* line 17 */
+.title {
+  color: white; }
+
+/* line 20 */
+#presentation-area {
+  background-color: white;
+  height: 640px;
+  border: 1px solid #90C7D5;
+  overflow-y: scroll; }
+
+  h2.title {
+    color: black;
+    font-weight: normal; }
+
+.btn {
+  background-color: #4C6F88;
+  color: white;
+  text-align: left;
+  border: 1px solid #2F4656 !important;
+  }
+
+a.btn {
+  color: white!important;
+}    
+
+/* line 25 */
+#presentation-labels {
+  height: 640px;
+  border: 1px solid #90C7D5;
+  border-left: none; }
+
+/* line 30 */
+#search {
+  background-color: #E7F4F7;
+  padding: 5px;
+  border-left: 1px solid #90C7D5;
+  border-right: 1px solid #90C7D5;
+  height: 100px; }
+
+/* line 37 */
+#search .btn-toolbar {
+  margin-top: 10px; }
+
+/* line 40 */
+.presentaiton {
+  margin: 0px !important;
+}
+
+/* line 46 */
+#presentation-list {
+  border: 1px solid #90C7D5; }
+  /* line 52 */
+  #presentation-list .label {
+    background-color: #5ca6de;
+    width: 100px;
+    display: inline-block;
+    padding: 5px;
+    text-align: center; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; }
+
+/* line 59 */
+#presentation-list-header {
+  background-color: #E7F4F7;
+  padding: 10px 5px;
+  margin: 0px;
+  border: 1px solid #90C7D5;
+  height: 50px; }
+
+/* line 66 */
+#presentation-area-header {
+  border: 1px solid #90C7D5;
+  border-bottom: none;
+  height: 110px;
+  background-color: #BCE2EC;
+}
+
+li.track-chair a {
+  font-weight: bold;
+}
+
+/* line 71 */
+#presentation-tabs {
+  margin-top: 20px;
+  margin-bottom: 20px; }
+
+/* line 75 */
+#keyboard-shortcuts {
+  margin-top: 20px; }
+
+/* line 79 */
+#presentation-labels .category {
+  display: block;
+  margin-bottom: 10px;
+  padding: 10px 5px;
+  background-color: #ededed;
+  border-radius: 3px;
+  color: grey; 
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+  /* line 86 */
+  #presentation-labels .category span {
+    border-right: 1px solid #dddddd;
+    display: inline-block;
+    padding: 10px 10px;
+    margin: -10px 0px;
+    margin-right: 5px;
+    font-weight: normal; }
+/* line 93 */
+#presentation-labels .user-selected {
+  color: black;
+  font-weight: bold; }
+/* line 96 */
+#presentation-labels .main-topic {
+  color: white;
+  font-weight: bold;
+  background-color: #5ca6de; }
+
+/* line 101 */
+.section-label {
+  color: grey;
+  text-transform: uppercase;
+  margin-top: 10px; }
+
+/* line 106 */
+#presentation-area-header h4, #presentation-area h4 {
+  margin-top: 0px; }
+
+/* line 109 */
+#presentation-labels h4 {
+  margin-top: 30px; }
+
+#presentation-area-header h4 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 1em;
+}
+
+.selected {
+  background-color: #D2EAEF;
+}
+
+#PresentationFlagForm_FlagForm_FlagComment, #PresentationSubcategoryForm_SubcategoryForm_Subcategory {
+  width: 100%;
+  margin-bottom: 20px;
+  height: 2em;
+}
+
+.flag-comment {
+  background: url(/themes/openstack/images/red-flag.png) left 3px no-repeat;
+  padding-left: 30px;
+  height: 30px;
+  padding-top: 8px;
+}
+
+.category-count {
+  color: #AAA9A8;
+  font-weight: normal;
+}
+
+#main-tabs {
+
+  margin-bottom: 20px;
+
+}
+
+
+#summit-details {
+  background-color: black!important;
+}
+
+/* Table with Fixed Headers */
+
+    .fixed-table-container {
+      width: 100%;
+      height: 598px;
+      margin: 0px;
+      background-color: white;
+      /* above is decorative or flexible */
+      position: relative; /* could be absolute or relative */
+      padding-top: 30px; /* height of header */
+    }
+
+    .fixed-table-container-inner {
+      overflow-x: hidden;
+      overflow-y: auto;
+      height: 100%;
+    }
+     
+    .header-background {
+      background-color: #E7F4F7;
+      height: 30px; /* height of header */
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      border-bottom: 1px solid #90C7D5;
+
+    }
+    
+    table {
+      background-color: white;
+      width: 100%;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    .th-inner {
+      position: absolute;
+      top: 0;
+      line-height: 30px; /* height of header */
+      text-align: left;
+      border-left: 1px solid #90C7D5;
+      padding-left: 5px;
+      margin-left: -5px;
+    }
+
+    td.title-column {
+      padding-left: 30px!important;
+    }
+
+    td.title-column.selected-presentation {
+      background: url(/themes/openstack/images/track-chairs/selected-check.png) 5px center no-repeat;
+    }
+
+    .fixed-table-container td, .fixed-table-container th {
+      min-width: 100px
+    }
+
+    .fixed-table-container th:nth-child(1) .th-inner {
+      border-left: none;
+    }
+
+    .table {
+      margin-top: -25px;
+    }
+
+#sort-list {
+  list-style: none;
+    padding-left: 0px;  
+}
+
+#sort-list li {
+  display: block;
+  padding: 20px 10px; margin-bottom: 3px;
+  border: 1px solid #9BBBC3;
+  background: url(/themes/openstack/images/track-chairs/drag-handles.png) 5px center no-repeat white;
+  padding-left: 30px;
+  cursor: move;
+  box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+#sort-list li img.handle {
+  margin-right: 20px;
+  cursor: move;
+}
+
+#sort-list li.alternate {
+  background-color: #ECECEC;
+  box-shadow: none;
+  border-color: #D0D0D0;
+}
+
+#sort-list li.unused-position {
+  background: none;
+  box-shadow: none;
+  border: 1px dotted #9BBBC3;
+  cursor: pointer;
+  font-style: italic;
+  color: #86A3AA;
+}
+
+a.side-nav {
+  display: block;
+  padding-top: 50px;
+  margin-top: 20px;
+  font-size: 90%;
+}
+
+a.side-nav:hover {
+  text-decoration: none;
+}
+
+a.side-nav.side-nav-selected {
+  color: black;
+}
+
+#browse {
+   background: url(/themes/openstack/images/track-chairs/browse.png) center top no-repeat;
+}
+
+#team-selections {
+   background: url(/themes/openstack/images/track-chairs/selections.png) center top no-repeat;
+}
+
+#directory {
+   background: url(/themes/openstack/images/track-chairs/directory.png) center top no-repeat;
+}
+
+#tutorial {
+   background: url(/themes/openstack/images/track-chairs/tutorial.png) center top no-repeat;
+}
+
+
+#browse.side-nav-selected {
+   background: url(/themes/openstack/images/track-chairs/browse-selected.png) center top no-repeat;
+}
+
+#team-selections.side-nav-selected {
+   background: url(/themes/openstack/images/track-chairs/selections-selected.png) center top no-repeat;
+}
+
+#directory.side-nav-selected {
+   background: url(/themes/openstack/images/track-chairs/directory-selected.png) center top no-repeat;
+}
+
+#tutorial.side-nav-selected {
+   background: url(/themes/openstack/images/track-chairs/tutorial-selected.png) center top no-repeat;
+}
+
+.track-chair-table {
+  margin-top: 10px;
+}
+
+.staff-note {
+  padding: 10px;
+  background-color: #F6EDD0;
+  margin: 10px 0px;
+  border: 1px solid #D6C58F;
+}

@@ -1,0 +1,64 @@
+/* @override 
+	http://openstack.dev/themes/openstack/css/companies.css
+*/
+
+.logosNoPadding a {
+	margin-right: 0px!important;
+}
+
+.logos a, .logos a:visited {
+	display: block;
+	float: left;
+	text-decoration: none;
+	color: black;
+	margin-bottom: 20px;
+	margin-right: 23px;
+}
+
+.logos span {
+	display: block;
+	width: 140px;
+	height: 93px;
+	border: 5px solid white;
+	-moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.51);
+	-webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.51);
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.51);
+	margin-bottom: 7px;
+	margin-right: 5px;
+	background: no-repeat center center;
+}
+
+.small-logos a, .small-logos a:visited {
+	display: block;
+	float: left;
+	text-decoration: none;
+	color: black;
+	margin-bottom: 20px;
+	margin-right: 23px;
+}
+
+.small-logos span {
+	display: block;
+	width: 70px;
+	height: 46px;
+	border: 5px solid white;
+	-moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.51);
+	-webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.51);
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.51);
+	margin-bottom: 7px;
+	margin-right: 0px;
+	background: no-repeat center center;
+}
+
+
+#quotes {
+	height: 18em;
+}
+
+h3.sideLogo {
+	margin-bottom: 20px;
+}
+
+.sideLogo p {
+	margin-top: 20px;
+}

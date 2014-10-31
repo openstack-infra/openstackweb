@@ -1,0 +1,111 @@
+label.error{
+    border: 1px solid #aaa;
+    background: #aa2222;
+    color: #fff;
+    padding: 5px;
+    margin: 0;
+    -webkit-border-radius: 05px;
+    -moz-border-radius: 05px;
+    border-radius: 05px;
+    width:auto;
+}
+
+label.error{
+    display:block;
+}
+
+input.error{
+    border: 1px solid  #aa2222;
+}
+
+.training_list{
+    padding-top: 25px;
+}
+
+ul{
+    list-style-type: none;
+}
+
+
+.training-header,
+.program-header,
+.course-header,
+.location-header,
+.date-header{
+    height: 25px !important;
+}
+
+.training-header img.icon,
+.program-header img.icon,
+.course-header img.icon,
+.location-header img.icon,
+.date-header img.icon{
+    width: 16px;
+    height: 16px;
+    padding-right: 5px;
+}
+
+.training-header span.training-actions{
+    float: right;
+    width: 160px !important;
+}
+.training-header span.training-actions img{
+    width: 16px;
+    height: 16px;
+}
+
+.program-header span.program-actions{
+    float: right;
+    width: 160px !important;
+}
+
+.program-header span.program-actions img{
+    width: 16px;
+    height: 16px;
+}
+
+.course-header span.course-actions{
+    float: right;
+    width: 160px !important;
+}
+
+.course-header span.course-actions img{
+    width: 16px;
+    height: 16px;
+}
+
+.location-header span.location-actions{
+    float: right;
+    width: 160px !important;
+}
+
+.location-header span.location-actions img{
+    width: 16px;
+    height: 16px;
+}
+
+.date-header span.date-actions{
+    float: right;
+    width: 160px !important;
+}
+
+.date-header span.date-actions img{
+    width: 16px;
+    height: 16px;
+}
+
+
+.training-header a{
+
+}
+
+
+#add-training{
+    padding-left: 3%;
+    padding-bottom: 10px;
+}
+
+#add-training img.icon{
+    width: 16px;
+    height: 16px;
+}

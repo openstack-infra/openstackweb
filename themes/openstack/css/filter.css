@@ -1,0 +1,40 @@
+#search, #filterHeading {
+	display: none;
+}
+
+#search {
+	padding: 10px;
+	background-color: #E4EEF1;
+	color: #264D69;
+	margin-bottom: 25px;
+}
+
+#search input {
+	font-size: 130%;
+	margin-left: 10px;
+	width: 80%;
+	padding: 5px;
+	border: 1px solid #BAD9E3;
+}
+
+ul {
+	margin-left: 0px;
+	padding-left: 15px;
+	margin-bottom: 0px;
+}
+
+ul li {
+	list-style: none;
+}
+
+.linkLetters a {
+	display: inline-block;
+	padding: 4px;
+	border: 1px solid #CAE1E9;
+	margin-right: -1px;
+}
+
+
+.linkLetters a.intl {
+	margin-left: 10px;
+}

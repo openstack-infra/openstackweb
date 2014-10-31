@@ -1,0 +1,267 @@
+/* line 11, /Users/toddmorey/Documents/webdev/websites/new-openstack-site/source/stylesheets/_variables.css.scss */
+.lines-background {
+  background: url("/images/diagonal-lines-background.png"); }
+
+/* Rounded Buttons */
+/* line 17, /Users/toddmorey/Documents/webdev/websites/new-openstack-site/source/stylesheets/_variables.css.scss */
+.roundedButton, input.action {
+  font-family: 'PT Sans', serif;
+  border: 1px solid #e2e2e2;
+  padding: 4px 15px;
+  color: black !important;
+  text-decoration: none !important;
+  font-size: 12.5px;
+  line-height: 3em;
+  background: #FFFFFF;
+  /* old browsers */
+  background: -moz-linear-gradient(top, white 0%, #f3f3f3 50%, #ebebeb 100%);
+  /* firefox */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(50%, #f3f3f3), color-stop(100%, #ebebeb));
+  /* webkit */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#EBEBEB',GradientType=0 );
+  /* ie */
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+  text-shadow: #fff 0px 1px 1px;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-bottom-color: #a0a0a0;
+  border-right-color: #bababa;
+  border-left-color: #bababa; }
+
+/* line 41, /Users/toddmorey/Documents/webdev/websites/new-openstack-site/source/stylesheets/_variables.css.scss */
+.roundedButton:hover, input.action:hover {
+  color: black;
+  -webkit-transition: color 1s ease-out;
+  cursor: pointer; }
+
+/* line 47, /Users/toddmorey/Documents/webdev/websites/new-openstack-site/source/stylesheets/_variables.css.scss */
+a.roundedButton:active, input.action:active {
+  background: #ababab;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  border-color: #ababab;
+  border-top-color: #636363;
+  background: -webkit-gradient(linear, left top, left bottom, from(#bebebe), to(#dddddd));
+  background: -moz-linear-gradient(top, #bebebe, #eeeeee);
+  -webkit-transition: none;
+  padding: 4px 15px; }
+
+/* line 60, /Users/toddmorey/Documents/webdev/websites/new-openstack-site/source/stylesheets/_variables.css.scss */
+input.action {
+  line-height: 1.2em !important; }
+
+/* end */
+/* line 3 */
+.case-studies-hero {
+  background: url("/images/diagonal-lines-background.png");
+  border-top: 1px solid #dedddf;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-bottom: 20px; }
+
+/* line 11 */
+.case-studies-hero img {
+  border: 1px white solid;
+  margin: 3px;
+  display: inline-block; }
+
+/* line 17 */
+.case-studies-hero .row-fluid [class*="span"] {
+  margin-left: 12px; }
+
+/* line 21 */
+.case-studies-hero .row-fluid [class*="span"]:first-child {
+  margin-left: 0px; }
+
+/* line 25 */
+.more-users {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+  font-size: 100%;
+  line-height: 2.5em; }
+
+/* line 33 */
+.more-users li.video {
+  background-color: #f9f9f9;
+  height: 120px; }
+
+/* line 38 */
+h4 {
+  color: #c03a2e; }
+
+/* line 42 */
+table.deployments {
+  margin-top: 15px;
+  width: 100%;
+  margin-bottom: 40px; }
+
+/* line 48 */
+table.deployments th {
+  text-align: left;
+  border-bottom: 1px solid #dedddf;
+  border-top: 1px solid #dedddf;
+  margin-bottom: 20px;
+  width: 20%;
+  padding: 3px 0px; }
+
+/* line 57 */
+table.deployments td {
+  color: #959595;
+  vertical-align: top; }
+
+/* line 62 */
+table.deployments tr:nth-child(2) td {
+  padding-top: 15px; }
+
+/* line 66 */
+table.deployments tr td:first-child {
+  color: black; }
+
+/* line 70 */
+table.deployments th.name {
+  width: 40%; }
+
+/* line 74 */
+table.deployments th.country {
+  width: 10%; }
+
+table.deployments th.extras {
+  width: 15%; }
+
+.video-link img{
+  padding-right:10px;
+}
+
+/* line 78 */
+.add-button {
+  margin-top: 15px;
+  text-align: right; }
+
+/* line 83 */
+.big-square {
+  display: inline-block;
+  width: 450px; }
+
+/* line 88 */
+.little-square {
+  float: right;
+  display: inline-block;
+  width: 480px; }
+
+/* line 94 */
+.video-area {
+  text-align: right; }
+
+/* line 98 */
+.section-row {
+  margin-top: 20px; }
+
+/* line 102 */
+.case-study img {
+  padding-right: 10px; }
+
+/* line 106 */
+.rotator li {
+  width: 800px;
+  height: 500px; }
+
+/* line 111 */
+.rotator li img {
+  display: inline-block; }
+
+/* line 115 */
+.rotator {
+  width: 800px;
+  overflow: hidden; }
+
+/* line 120 */
+.categoryTag, .categoryTag:visited, .categoryTag:hover, .categoryTag:active {
+  border-radius: 5px;
+  padding: 5px 10px;
+  display: inline-block;
+  background-color: #264D69;
+  color: white;
+  text-decoration: none;
+  margin-bottom: 10px; }
+
+/* line 130 */
+.deploymentTagGroup {
+  margin-top: 20px;
+  margin-bottom: 20px; }
+
+/* line 135 */
+ul#quotes li p {
+  line-height: 1.4em; }
+
+/* line 139 */
+.largeQuote {
+  font-size: 30px;
+  font-family: 'PT Sans', serif;
+  margin: auto;
+  color: black;
+  line-height: 1.2em;
+  padding: 10px;
+  padding-bottom: 0px;
+  width: 700px;
+  margin-top: 50px; }
+
+/* line 151 */
+.attribution {
+  margin-top: 10px;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #9b9b9b;
+  text-indent: 0px;
+  width: 700px;
+  margin: auto; }
+
+/* line 161 */
+.attribution strong {
+  font-weight: normal;
+  color: #494949; }
+
+/* line 166 */
+.categoryDescription {
+  padding-top: 20px; }
+
+/* line 170 */
+.featuredLogo img {
+  border: 1px solid #DEDDDF;
+  border-radius: 5px;
+  margin-bottom: 15px; }
+
+
+/* Slider for New User Stories */
+.bx-wrapper .bx-controls.bx-has-controls-auto.bx-has-pager .bx-pager.bx-custom-pager {
+  margin: -10px 10px;
+   text-align: right;
+   width: 100%;
+}
+.bx-wrapper .bx-pager.bx-custom-pager .bx-pager-item{
+  margin-right: 6px;
+  margin-top: 10px;
+}
+.bx-wrapper .bx-pager.bx-custom-pager .bx-pager-item a{
+  font-size: 12px;
+  border-radius: 5px;
+  padding: 5px 10px;
+  display: inline-block;
+  background-color: #666;
+  color: white;
+  font-weight: normal;
+}
+.bx-wrapper .bx-pager.bx-custom-pager .bx-pager-item a:hover,
+.bx-wrapper .bx-pager.bx-custom-pager .bx-pager-item a.active{
+  text-decoration: none;
+  background-color: #333;
+}
+
+.breadcrumb {
+  font-size: 92%;
+  margin: -1.5em 0 0.7em;
+}

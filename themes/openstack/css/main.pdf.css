@@ -1,0 +1,152 @@
+body {
+	color: #535353;
+	line-height: 16px;
+	font-size: 	16px;
+	font-weight: normal;
+}
+
+/* grid.css */
+.container {
+	margin: 0 auto;
+    width: 750px;
+}
+
+.span-11, 
+.span-12{
+	width: 650px;
+	margin: 0 auto;
+}
+
+.column, .span-1, .span-2, .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-9, .span-10, .span-11, .span-12, .span-13, .span-14, .span-15, .span-16, .span-17, .span-18, .span-19, .span-20, .span-21, .span-22, .span-23, .span-24 {
+	margin-right: 10px;
+	display: block;
+}
+
+h1 {
+	color: #264D69;
+	font-family: helvetica;
+	font-style: normal;
+	letter-spacing: -0.076em;
+	line-height: 1em;
+	font-size: 30px;
+	margin-bottom: 40px;
+	font-weight: normal;
+	margin-top: 0;
+}
+
+
+p {
+	border: 0 none;
+	font-family: helvetica;
+	font-size: 12px;
+	line-height: 1.5;
+	font-style: normal;
+	font-weight: normal;
+	padding: 0;
+	margin-left:0;
+	margin-right:15px;
+	vertical-align: baseline;
+	color:#646464;
+}
+
+
+h3 {
+	margin-bottom: 10px;
+	margin-top: 10px;
+	font-size: 1.5em;
+	line-height: 1;
+	margin-bottom: 1em;
+	color: #111111;
+	font-weight: normal;
+}
+.logo{
+	margin-top: 40px;
+	margin-bottom: 0;
+}
+.user-name {
+	padding-top: 10px;
+}
+
+h2 {
+	font-size: 18px;
+	color: #264D69;
+	font-family: helvetica;
+	font-style: normal;
+	letter-spacing: -0.076em;
+	line-height: 1em;
+	margin-bottom: 0.75em;
+	font-weight: normal;
+}
+
+ul {
+	list-style-type: none;
+}
+
+ul,ol {
+	margin: 0 1.5em 1.5em 0;
+	padding-left: 40px;
+}
+
+a,a:visited {
+	color: #BC1518;
+	text-decoration: none;
+}
+
+
+
+h4 {
+	font-size: 18px;
+	line-height: 1.25;
+	margin-bottom: 5px;
+	color: #111111;
+	font-weight: normal;
+}
+
+
+ul.user-project-list {
+	margin: 0;
+	width: 90%;
+	padding-left: 30px;
+}
+
+ul.user-project-list li {
+	background-color: #E2F1F5;
+	border: 1px solid #89C6D6;
+	color: #1A4B6B;
+	display: block;
+	font-size: 95%;
+	margin: 0px;
+	padding: 2px 8px;
+	width: 60%;
+}
+.user-photo,
+.user-photo img{
+	width: 40%;
+	height: auto;
+	display: block;
+	text-align: left;
+}
+
+hr {
+    height: 1px !important;
+    background: none repeat scroll 0 0 #DDDDDD;
+    border: thick;
+    clear: both;
+    color: #DDDDDD;
+    float: none;
+    height: 0.1em;
+    width: 100%;
+}
+.user-links{
+	padding-left: 5px;
+}
+.user-links li {
+    background: url(@host/themes/openstack/images/link.png) no-repeat scroll left center transparent;
+    list-style: none outside none;
+    padding-left:20px;
+    margin-left: -20px;
+}
+h2.user-story-quote{
+  line-height:1;
+  letter-spacing:1;
+}

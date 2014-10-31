@@ -1,0 +1,25 @@
+.big-logo-company {
+  margin-right: 22px;
+  margin-bottom:43px;
+  max-width:328px;
+  }
+.large-logo-company {
+  margin-right: 90px;
+  margin-bottom:10px;
+  max-width:250px;
+  }
+.medium-logo-company {
+  margin-right: 0px;
+  margin-bottom:15px;
+  max-width:219px;
+
+  }
+.small-logo-company {
+  margin-right: 7px;
+  margin-bottom:5px;
+  max-width:171px;
+  }
+
+.sidebar-logo-company{
+  max-width: 100px;
+  }

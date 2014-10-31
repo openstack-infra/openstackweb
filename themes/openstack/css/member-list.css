@@ -1,0 +1,20 @@
+
+
+.election-question .answer {
+	margin-bottom: 20px;
+	padding-bottom: 20px;
+	border-bottom: 1px dotted #DDDDDD;
+}
+
+
+
+.election-question h4 {
+	font-size: 100%;
+	margin-bottom: 5px;
+	font-weight: bold;
+}
+
+.election-question .span-1 {
+	color: #264D69;
+	font-size: 120%;
+}

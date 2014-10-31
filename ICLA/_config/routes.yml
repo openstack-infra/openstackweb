@@ -1,0 +1,8 @@
+---
+Name: iclaroutes
+After: 'framework/routes#coreroutes'
+---
+Director:
+  rules:
+    'api/v1/ccla': 'ICLARestfulAPI'
+    'team-invitations': 'TeamInvitationConfirmation_Controller'

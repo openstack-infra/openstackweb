@@ -1,0 +1,10 @@
+#event-registration-requests-table{
+    border: 1px solid #ccc;
+    border-collapse:collapse;
+    clear:both
+}
+
+
+#event-registration-requests-table thead th {
+    background: none repeat scroll 0 0 #FFFFFF;
+}

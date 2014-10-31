@@ -1,0 +1,1 @@
+<a id="sched-embed" data-sched-sidebar="no" href="http://openstacksummitnovember2013.sched.org/" data-sched-width="600">View the OpenStack Summit November 2013 mobile app</a><script type="text/javascript" src="http://openstacksummitnovember2013.sched.org/js/embed.js"></script>

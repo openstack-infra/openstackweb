@@ -1,0 +1,70 @@
+/* @override 
+	http://localhost:8888/themes/openstack/css/community.css
+	http://staging.openstack.org/themes/openstack/css/community.css
+*/
+
+ul#developerActivity li {
+	list-style-type: none;
+	display: none;
+}
+
+ul#developerActivity {
+	height: 1em;
+}
+
+ul#developerActivity a {
+	text-decoration: none;
+	color: black;
+	font-weight: bold;
+}
+
+ul#developerActivity span {
+	background-color: #ddecf3;
+	padding: 2px 8px;
+	color: #264d7f;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+.devLabel {
+	float: left;
+	margin-right: 10px;
+}
+
+.addTip, .addTip:visited {
+	text-decoration: none;
+	color: inherit;
+}
+
+.addTip:hover {
+	text-decoration: none;
+}
+
+#toggleSection {
+	display: none;
+}
+
+.addPlace {
+	margin-top: -10px;
+	text-align: right;
+}
+
+.electionBox {
+	background-color: #F8F8F8;
+	border: 1px solid #DEDEDE;
+	margin-bottom: 20px;
+	padding: 10px;
+}
+
+.electionBox h3 {
+	font-size: 100%;
+	font-weight: bold;
+}
+
+.electionBox h2 {
+	border-bottom: 1px solid #DEDEDE;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	font-size: 130%;
+}

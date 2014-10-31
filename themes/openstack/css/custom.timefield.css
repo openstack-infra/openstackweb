@@ -1,0 +1,11 @@
+
+.field.date .middleColumn input.text,
+.dropdowntime input.text
+{
+    width: 100px !important;
+}
+
+.dropdowntime select
+{
+    max-height: 25px !important;
+}

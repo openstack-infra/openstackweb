@@ -1,0 +1,7 @@
+---
+Name: changepasswordoutes
+After: 'framework/routes#coreroutes'
+---
+Director:
+  rules:
+    'Security//$Action/$ID/$OtherID': 'CustomPasswordController'

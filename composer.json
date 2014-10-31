@@ -1,0 +1,23 @@
+{
+	"name": "silverstripe/installer",
+	"description": "The SilverStripe Framework Installer",
+	"require": {
+		"php": ">=5.3.2",
+		"silverstripe/cms": "3.1.5",
+		"silverstripe/framework": "3.1.5",
+        "silverstripe/translatable": "2.0.3",
+        "ezyang/htmlpurifier": "dev-master",
+        "undefinedoffset/sortablegridfield":"dev-master",
+        "tractorcow/silverstripe-colorpicker":"3.0.*@dev"
+	},
+    "autoload": {
+        "classmap": [
+            "geoip/code",
+            "html2pdf_v4.03"
+        ]
+    },
+	"config": {
+		"process-timeout": 600	
+	},
+	"minimum-stability": "dev"
+}

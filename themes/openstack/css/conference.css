@@ -1,0 +1,465 @@
+.conference-title {
+	padding-top: 265px;
+	background-image: url(/themes/openstack/images/conferences/openstack-san-francisco-conference.jpg);
+}
+
+.conference-title#san-diego {
+	background-image: url(/themes/openstack/images/conferences/openstack-san-diego-conference.jpg);
+}
+
+.conference-title#portland {
+	background-image: url(/themes/openstack/images/conferences/portland/portland-banner.jpg);
+}
+
+.conference-title#hong-kong {
+	background-image: url(/themes/openstack/images/conferences/hong-kong/banner.jpg);
+	padding-top: 299px;
+}
+
+.conference-title#atlanta {
+	background-image: url(/themes/openstack/images/conferences/atlanta/banner.jpg);
+	padding-top: 299px;
+}
+
+.conference-title#paris {
+	background-image: url(/themes/openstack/images/conferences/paris/banner.jpg);
+	padding-top: 406px;
+}
+
+.conference-title h2, .conference-title h1 {
+	display: none;
+}
+
+.conference-calendar {
+		background: url(/themes/openstack/images/conferences/conference-calendar.gif) no-repeat left center;
+}
+
+.conference-calendar#san-diego-cal {
+		background: url(/themes/openstack/images/conferences/conference-calendar-sd.gif) no-repeat left center;
+}
+
+.conference-calendar#portland-cal {
+		background: url(/themes/openstack/images/conferences/portland/portland-date.jpg) no-repeat left center;
+}
+
+.conference-calendar#hong-kong-cal {
+		background: url(/themes/openstack/images/conferences/hong-kong/dates.jpg) no-repeat left center;
+}
+
+.conference-calendar#atlanta-cal {
+		background: url(/themes/openstack/images/conferences/atlanta/dates.gif) no-repeat left center;
+}
+
+
+.conference-calendar#paris-cal {
+		background: url(/themes/openstack/images/conferences/paris/paris-dates.png) no-repeat left center;
+}
+
+.conference-summary {
+		border-bottom: 1px solid #C5E2EA;
+		margin-bottom: 20px;
+}
+
+.conference-calendar p {
+		height: 90px;
+}
+
+.conference-calendar p.date {
+	display: none;
+}
+
+h3 {
+	font-size: 1em;
+	font-weight: bold;
+	color: #264D69;
+}
+
+p.post-date {
+	color: #909187;
+}
+
+.note-highlight {
+	background-color: #FFFDE1;
+	color: black;
+	padding: 10px;
+}
+
+#important-dates #conference {
+	border-top: 1px dotted #8E8E8E;
+	background: url(/themes/openstack/images/conferences/conference-dates.gif) no-repeat right 10px;
+	padding-right: 50px;
+	min-height: 140px;
+}
+
+#design-summit {
+	background: url(/themes/openstack/images/conferences/design-summit-dates.gif) no-repeat right top;
+	padding-right: 50px;
+	min-height: 140px;
+}
+
+#design-summit h3, #design-summit h4 {
+	color: black;
+}
+
+#conference h3, #conference h4 {
+	color: #D12B11;
+}
+
+#important-dates h3 {
+	margin-bottom: 3px;
+	font-size: 1.2em;
+}
+
+#two-events {
+	padding-top: 27px;
+}
+
+#two-events p {
+	margin-bottom: 2px;
+}
+
+.news-item {
+	border-bottom: 1px dotted #8E8E8E;
+	margin-bottom: 10px;	
+}
+
+.news-item:last-child {
+	border-bottom: none;
+}
+
+.news-item h3 {
+	margin-bottom: 5px;
+}
+
+ul.documents {
+	margin:	0px;
+	padding: 0px;
+	list-style: none;
+	margin-bottom: 10px;
+}
+
+ul.documents li a, ul.documents li a:visited {
+	padding: 5px;
+	padding-left: 25px;
+	display: block;
+	background: url(/themes/openstack/images/pdf-icon.png) no-repeat 5px center #E2ECEF;
+	margin: 1px 0px 0px 0px;
+	color: black;
+}
+
+ul.documents li a:hover {
+	text-decoration: none;
+	background-color: #CAE6EF;
+}
+
+ul.speakers, ul.talks {
+	margin:	0px;
+	padding: 0px;
+	list-style: none;
+	margin-bottom: 10px;
+}
+
+ul.speakers li, ul.talks li {
+	padding: 5px;
+	padding-left: 30px;
+	display: block;
+	background: url(/themes/openstack/images/conferences/speaker.png) no-repeat 5px center;
+	margin: 1px 0px 0px 0px;
+	color: black;
+}
+
+ul.talks li {
+	background: url(/themes/openstack/images/conferences/talk.png) no-repeat 5px center;
+}
+
+.register .roundedButton, .register .roundedButton:active {
+	padding: 5px 60px 5px 60px;
+}
+
+.register {
+	padding-top: 27px;
+}
+
+.register a, .register a:visited {
+	display: block;
+	background: url(/themes/openstack/images/pointer-arrow.png) no-repeat 95% center #FF9631;
+	color: white;
+	padding: 8px;
+	border-radius: 3px;
+	width: 80%;
+	font-family: 'PT Sans', serif;
+	font-size: 120%;
+}
+
+.register a:hover {
+	text-decoration: none;
+	background-color: #E46616;
+}
+
+#detail-summary {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+	margin-bottom: 20px;
+}
+
+.navigation {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+	margin-top: 20px;	
+}
+
+.navigation li a {
+	display: block;
+	padding: 8px;
+	color: black;
+	margin-top: 1px;
+}
+
+.navigation li a.current, .navigation li a.current:hover {
+	background: url(/themes/openstack/images/pointer-arrow.png) no-repeat 95% center #E2E2E2;
+}
+
+.navigation li a:hover {
+	background-color: #F2F2F2;
+	text-decoration: none;
+}
+
+a.rss {
+	color: #E46616;
+	background: url(/themes/openstack/images/rss.png) no-repeat left center white;
+	padding-left: 20px;
+}
+
+.registration-steps ul {
+	margin:	0px;
+	margin-left: 15px;
+	padding: 0px;
+	list-style: none;
+	margin-bottom: 20px;
+}
+
+.registration-steps ul li {
+	margin-bottom: 10px;
+}
+
+.registration-steps {
+	margin-bottom: 15px;
+	margin-top: 15px;
+	border-top: 1px dotted #DDDDDD;
+}
+
+ul.optionset {
+	margin:	0px;
+	margin-left: 15px;
+	padding: 0px;
+	list-style: none;	
+}
+
+div.field {
+	margin-top: 10px!important;
+}
+
+ul.checkboxsetfield {
+	margin-top: 10px;
+}
+
+ul.checkboxsetfield li label {
+	font-weight: inherit!important;
+}
+
+div#Other {
+	padding-left: 15px;
+	border-bottom: 1px solid #DDDDDD;
+	padding-bottom: 10px;
+}
+
+div.headline-sponsors {
+	margin-top: 15px;
+	padding-top: 15px;
+}
+
+div.headline-sponsors img {
+	display: block;
+	margin: 40px 0;
+}
+
+div.overview ol {
+	padding-left: 1em;
+}
+
+div.overview ol li {
+	margin-bottom: 0.5em;
+}
+
+body#register div.register p {
+	display: none;
+}
+
+.tabs li.active a {
+  cursor: default;
+  text-decoration: none;
+  position: relative;
+  color: black;
+  background-color: white!important;
+  border-bottom: 1px solid white!important;
+  margin-bottom: -1px;
+  border-top: 1px white solid;
+  font-weight: bold;
+  border-top: 1px solid #D8D8D8!important;
+  border-left: 1px solid #D8D8D8!important;
+}
+
+.other-field {
+	margin-left: 15px;
+}
+
+.other-field label {
+	font-weight: normal;
+	display: inline;
+}
+
+.other-field div.middleColumn {
+	display: inline;
+	padding-left: 10px;
+}
+
+.other-field input {
+	width: 200px;
+}
+
+form hr {
+	margin: 10px 0 15px 0;
+}
+
+.summit-code {
+	border: 1px solid #C5E2EA;
+	padding: 20px;
+	background-color: #F2FCFF;
+	margin-bottom: 20px;
+}
+
+.summit-code h3 {
+	font-size: 130%;
+}
+
+p.info {
+	color: #706969;
+}
+
+.optionset ul {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.optionset li label {
+	font-weight: normal;
+}
+
+hr {
+	height: 1px!important;
+}
+
+
+p.sidebar-note {
+	width: 183px;
+	border: 1px solid #C5E1EB;
+	background-color: #F1FDFF;
+	padding: 8px;
+}
+
+p.conference-note {
+	border: 1px solid #C5E1EB;
+	background-color: #F1FDFF;
+	padding: 8px;
+}
+
+ul.day-picker {
+	margin: 0px;
+	margin-bottom: 20px;
+	padding: 0px;
+}
+
+ul.day-picker li {
+	margin:	0px;
+	list-style: none;
+	display: inline-block;
+	padding: 0px;
+	margin-right: -4px;	
+}
+
+ul.day-picker li a {
+	display: inline-block;
+	padding: 5px 15px;
+	border: 1px solid #AEB0B1;
+	margin: 0px;
+	color: black;
+}
+
+ul.day-picker li a.selected {
+	background-color: #E2E2E2;
+}
+
+.presentation h2 {
+	margin-bottom: 5px;
+}
+
+
+.summit-videos, .summit-videos:visited, .summit-videos:active {
+	display: block;
+	width: 169px;
+	padding: 6px;	
+	padding-top: 140px;
+	background: url(/themes/openstack/images/conferences/portland/summit-videos.png) no-repeat top center;
+	color: black;
+	text-decoration: none!important;
+}
+
+.summit-videos#hong-kong-videos {
+	background: url(/themes/openstack/images/conferences/hong-kong/summit-videos.jpg) no-repeat top center;
+}
+
+.summit-videos#atlanta-experience {
+	background: url(/themes/openstack/images/conferences/paris/atlanta-experience.png) no-repeat top center;
+}
+
+.summit-videos#hong-kong-experience {
+	background: url(/assets/Uploads/summit-images/hongkong-summit-experience.png) no-repeat top center;
+}
+
+.summit-videos#hong-kong-videos {
+	background: url(/themes/openstack/images/conferences/hong-kong/summit-videos.jpg) no-repeat top center;
+}
+
+.summit-videos#portland-experience {
+	background: url(/assets/Uploads/summit-images/portland-summit-experience.png) no-repeat top center;
+}
+
+#CallForSpeakersForm_AddTalkForm_Topic li {
+	margin-left: 2em;
+	margin-bottom: 15px;
+	margin-right: 20px;
+}
+
+#CallForSpeakersForm_AddTalkForm_Topic input {
+	margin-left: -2em;
+}
+
+.talk-divider {
+	height: 1px;
+	border: 0px;
+	border-top: 3px solid black;
+}
+
+.delete-button, .delete-button:hover, .delete-button:active {
+	display: inline-block;
+	border-radius: 3px;
+	background: #EEEEEE;
+	text-decoration: none;
+	color: black!important;
+	padding: 2px 10px;
+	margin-left: 10px;
+}
+
+

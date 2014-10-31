@@ -1,0 +1,22 @@
+.share-box {
+	background: #F2F2F2;
+	padding: 15px;
+	margin-bottom: 20px;
+}
+
+.share-box p {
+	margin: 0px;
+}
+
+.share-box hr {
+	margin-top: 10px;
+}
+
+h4.speakers {
+	color: #264D69;
+}
+
+h1 {
+	margin-bottom: 5px;
+	margin-top: 10px;
+}

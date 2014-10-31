@@ -1,0 +1,186 @@
+@import 'variables';
+
+.case-studies-hero {
+	background: image-url("diagonal-lines-background.png");
+	border-top: 1px solid $grey-border-color;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	margin-bottom: 20px;
+}
+
+.case-studies-hero img {
+	border: 1px white solid;
+	margin: 3px;
+	display: inline-block;
+}
+
+.case-studies-hero .row-fluid [class*="span"] {
+	margin-left: 12px;
+}
+
+.case-studies-hero .row-fluid [class*="span"]:first-child {
+	margin-left: 0px;
+}
+
+.more-users {
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+	font-size: 100%;
+	line-height: 2.5em;
+}
+
+.more-users li.video {
+	background-color: $grey-background;
+	height: 120px;
+}
+
+h4 {
+	color: $red;
+}
+
+table.deployments {
+	margin-top: 15px;
+	width: 100%;
+	margin-bottom: 40px;
+}
+
+table.deployments th {
+	text-align: left;
+	border-bottom: 1px solid $grey-border-color;
+	border-top: 1px solid $grey-border-color;
+	margin-bottom: 20px;
+	width: 20%;
+	padding: 3px 0px;
+}
+
+table.deployments td {
+	color: $grey-text;
+	vertical-align: top;
+}
+
+table.deployments tr:nth-child(2) td {
+	padding-top: 15px;
+}
+
+table.deployments tr td:first-child {
+	color: black;
+}
+
+table.deployments th.name {
+	width: 40%;
+}
+
+table.deployments th.country {
+	width: 10%;
+}
+
+.add-button {
+	margin-top: 15px;
+	text-align: right;
+}
+
+.big-square {
+	display: inline-block;
+	width: 450px;
+}
+
+.little-square {
+	float: right;
+	display: inline-block;
+	width: 480px;
+}
+
+.video-area {
+	text-align: right;
+}
+
+.section-row {
+	margin-top: 20px;
+}
+
+.case-study img {
+	padding-right: 10px;
+}
+
+.rotator li {
+	width: 800px;
+	height: 500px;
+}
+
+.rotator li img {
+	display: inline-block;
+}
+
+.rotator {
+	width: 800px;
+	overflow: hidden;
+}
+
+.categoryTag, .categoryTag:visited, .categoryTag:hover, .categoryTag:active {
+	border-radius: 5px;
+	padding: 5px 10px;
+	display: inline-block;
+	background-color: #264D69;
+	color: white;
+	text-decoration: none;
+	margin-bottom: 10px;
+}
+
+.deploymentTagGroup {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+ul#quotes li p {
+	line-height: 1.4em;
+}
+
+.largeQuote {
+	font-size: 30px;
+	font-family: 'PT Sans', serif;
+	margin: auto;
+	color: black;
+	line-height: 1.2em;
+	padding: 10px;
+	padding-bottom: 0px;
+	width: 700px;
+	margin-top: 50px;
+} 
+
+.attribution {
+	margin-top: 10px;
+	font-size: 14px;
+	text-transform: uppercase;
+	color: #9b9b9b;
+	text-indent: 0px;
+	width: 700px;
+	margin: auto;	
+}
+
+.attribution strong {
+	font-weight: normal;
+	color: #494949;
+}
+
+.categoryDescription {
+	padding-top: 20px;
+}
+
+.featuredLogo img {
+	border: 1px solid #DEDDDF;
+	border-radius: 5px;
+	margin-bottom: 15px;
+}
+
+#webex {
+	background: image-url("users/reinhardt-quelle.jpg") no-repeat center;
+}
+
+#webex .largeQuote {
+	color: white;
+}
+
+#webex .attribution {
+	color: #92AEFA;
+}

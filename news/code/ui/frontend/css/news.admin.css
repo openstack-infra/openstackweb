@@ -1,0 +1,124 @@
+.clear {
+    clear: both;
+}
+
+.link_button{
+    float:right;
+    margin-bottom: 10px;
+}
+
+.link_button a {
+    background-color: #E2F4DC;
+    color: #1D6006;
+    display: block;
+    float: right;
+    font-size: 1em;
+    padding: 4px 15px;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.placeholder,.placeholder_empty {
+    border: 2px dotted black;
+    text-align: center;
+    color: grey;
+    font-size: 40px;
+}
+
+.newsSlider {
+    width: 100%;
+    height: 330px;
+}
+
+.sliderBox {
+    margin: 0 5px 0 5px;
+    border: 1px solid black;
+    text-align: center;
+    padding: 5px;
+    height: 100%;
+}
+
+.newsImage img {
+    width: 100%;
+    height: 110px;
+}
+
+#slider_sortable { list-style-type: none; margin: 0; padding: 0; width: 100%; float: left; }
+#slider_sortable li { margin: 3px 3px 3px 0; padding: 1px; float: left; width: 180px; height: 275px;}
+#slider_sortable .placeholder_empty {height:283px;}
+#slider_sortable .placeholder {height:283px;}
+
+.newsFeatured {
+    width: 100%;
+    height: 330px;
+}
+
+.featuredBox {
+    margin: 0 5px 0 5px;
+    border: 1px solid black;
+    text-align: center;
+    padding: 5px;
+    height: 100%;
+}
+
+#featured_sortable { list-style-type: none; margin: 0; padding: 0; width: 100%; float: left; }
+#featured_sortable li { margin: 3px 3px 3px 0; padding: 1px; float: left; width: 150px; height: 275px;}
+#featured_sortable .placeholder_empty {height:283px;}
+#featured_sortable .placeholder {height:283px;}
+
+
+.newsRecent {
+    width: 100%;
+    max-height: 700px;
+    min-height: 350px;
+    overflow-y: auto;
+}
+
+.recentBox {
+    margin: 0 5px 0 5px;
+    border: 1px solid black;
+    text-align: center;
+    padding: 5px;
+    height: 100%;
+}
+
+#recent_sortable { list-style-type: none; margin: 0; padding: 0; width: 100%; float: left; height: 90%}
+#recent_sortable li { margin: 3px 3px 3px 0; padding: 1px; float: left; width: 152px; height: 275px;}
+#recent_sortable .placeholder {height:283px;}
+
+
+.newsStandBy {
+    width: 100%;
+    max-height: 700px;
+    min-height: 350px;
+    overflow-y: auto;
+}
+
+.standbyBox {
+    margin: 0 5px 0 5px;
+    border: 1px solid black;
+    text-align: center;
+    padding: 5px;
+    height: 100%;
+}
+
+#standby_sortable { list-style-type: none; margin: 0; padding: 0; width: 100%; float: left; height: 90% }
+#standby_sortable li { margin: 3px 3px 3px 0; padding: 1px; float: left; width: 152px; height: 275px;}
+#standby_sortable .placeholder {height:283px;}
+
+.headline{
+    height: 33px;
+    margin-bottom: 10px !important;
+}
+
+.summary{
+    height: 67px;
+    overflow: hidden;
+}
+
+.newsDelete, .newsRemove {
+    cursor: pointer;
+    text-decoration: underline;
+    color: blue;
+}

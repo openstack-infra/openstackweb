@@ -1,0 +1,18 @@
+---
+Name: openstack
+After:
+  - 'framework/*'
+  - 'cms/*'
+---
+# YAML configuration for SilverStripe
+# See http://doc.silverstripe.org/framework/en/topics/configuration
+# Caution: Indentation through two spaces, not tabs
+SSViewer:
+  theme: 'openstack'
+  rewrite_hash_links: false
+
+MySQLDatabase:
+  connection_charset: 'utf8'
+
+SiteTree:
+  nested_urls: true

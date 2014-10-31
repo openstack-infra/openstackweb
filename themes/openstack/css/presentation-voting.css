@@ -1,0 +1,183 @@
+/* Imports */
+/* @import "partials/colors" */
+/* Page Structure */
+/* line 14, /Users/toddmorey/Documents/webdev/websites/presentation-editor/source/stylesheets/voting.css.sass */
+h1, h2, h3, h4, h5, h6 {
+  color: #005a76;
+  text-shadow: 1px 1px 1px white; }
+
+/* line 18, /Users/toddmorey/Documents/webdev/websites/presentation-editor/source/stylesheets/voting.css.sass */
+body {
+  background-color: #d4ebf1; }
+
+/* line 21, /Users/toddmorey/Documents/webdev/websites/presentation-editor/source/stylesheets/voting.css.sass */
+.navbar {
+  background-color: #bde2ed; }
+
+/* line 24, /Users/toddmorey/Documents/webdev/websites/presentation-editor/source/stylesheets/voting.css.sass */
+#presentation-area {
+  min-height: 600px;
+  border-radius: 5px;
+  padding: 15px;
+  background-color: white;
+  box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.5); 
+  margin-bottom: 100px;}
+  /* line 31, /Users/toddmorey/Documents/webdev/websites/presentation-editor/source/stylesheets/voting.css.sass */
+  #presentation-area h1 {
+    padding: 0px 15px 15px 15px;
+    margin: -10px -15px 0px -15px;
+    color: #ad112f;
+    font-weight: normal; }
+  /* line 38, /Users/toddmorey/Documents/webdev/websites/presentation-editor/source/stylesheets/voting.css.sass */
+  #presentation-area h3 {
+    color: #bbbbbb;
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: 100%; }
+
+/* line 44, /Users/toddmorey/Documents/webdev/websites/presentation-editor/source/stylesheets/voting.css.sass */
+.label {
+  background-color: #f0f9fb;
+  color: #035a76;
+  font-size: 100%; }
+
+/* line 49, /Users/toddmorey/Documents/webdev/websites/presentation-editor/source/stylesheets/voting.css.sass */
+#voter-tools .btn {
+  background-color: #fcb62d;
+  color: black;
+  text-align: left;
+  border: 1px solid #d5981e !important;
+  text-shadow: 1px 1px 1px #fdce70;
+  padding-left: 60px;
+  width: 270px;
+  box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.2); }
+  /* line 59, /Users/toddmorey/Documents/webdev/websites/presentation-editor/source/stylesheets/voting.css.sass */
+  #voter-tools .btn .label {
+    background-color: #fec85b;
+    color: #946813;
+    margin-right: 5px; }
+  /* line 64, /Users/toddmorey/Documents/webdev/websites/presentation-editor/source/stylesheets/voting.css.sass */
+  #voter-tools .btn:hover {
+    background-color: #ed921f;
+    box-shadow: none;
+    text-shadow: none; }
+    /* line 68, /Users/toddmorey/Documents/webdev/websites/presentation-editor/source/stylesheets/voting.css.sass */
+    #voter-tools .btn:hover .label {
+      background-color: #fcb62d; }
+  #voter-tools .btn.current-vote {
+      background-color: #ed921f;
+      box-shadow: none;
+      text-shadow: none;
+  }
+
+/* line 72, /Users/toddmorey/Documents/webdev/websites/presentation-editor/source/stylesheets/voting.css.sass */
+#voter-tools #skip.btn {
+  background: url("/themes/openstack/images/voting/skip.png") no-repeat 6px #dedede !important;
+  text-shadow: none !important;
+  border-color: #c4c4c4 !important;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  box-shadow: none; }
+  /* line 79, /Users/toddmorey/Documents/webdev/websites/presentation-editor/source/stylesheets/voting.css.sass */
+  #voter-tools #skip.btn .label {
+    border: 1px solid #cfcfcf !important;
+    background-color: #dedede;
+    color: grey; }
+
+/* line 84, /Users/toddmorey/Documents/webdev/websites/presentation-editor/source/stylesheets/voting.css.sass */
+#vote-0 {
+  background: url("/themes/openstack/images/voting/no-stars.png") no-repeat 6px; }
+
+/* line 87, /Users/toddmorey/Documents/webdev/websites/presentation-editor/source/stylesheets/voting.css.sass */
+#vote-1 {
+  background: url("/themes/openstack/images/voting/one-star.png") no-repeat 6px; }
+
+/* line 90, /Users/toddmorey/Documents/webdev/websites/presentation-editor/source/stylesheets/voting.css.sass */
+#vote-2 {
+  background: url("/themes/openstack/images/voting/two-stars.png") no-repeat 6px; }
+
+/* line 93, /Users/toddmorey/Documents/webdev/websites/presentation-editor/source/stylesheets/voting.css.sass */
+#vote-3 {
+  background: url("/themes/openstack/images/voting/three-stars.png") no-repeat 6px; }
+
+/* line 96, /Users/toddmorey/Documents/webdev/websites/presentation-editor/source/stylesheets/voting.css.sass */
+hr {
+  color: #97cfde;
+  background-color: #97cfde;
+  border-color: #97cfde; }
+
+/* line 101, /Users/toddmorey/Documents/webdev/websites/presentation-editor/source/stylesheets/voting.css.sass */
+.modal-body img {
+  padding-right: 15px;
+  padding-top: 20px; }
+
+/* line 105, /Users/toddmorey/Documents/webdev/websites/presentation-editor/source/stylesheets/voting.css.sass */
+.details {
+  margin-left: 130px; }
+
+/* line 108, /Users/toddmorey/Documents/webdev/websites/presentation-editor/source/stylesheets/voting.css.sass */
+#instruction-text {
+  border-left: 5px solid #90c4d3;
+  padding: 0px 10px;
+  margin-bottom: 20px; }
+
+/* line 113, /Users/toddmorey/Documents/webdev/websites/presentation-editor/source/stylesheets/voting.css.sass */
+.callout {
+  border-left: 3px solid #90c4d3;
+  padding: 10px;
+  background-color: #e9f1f3;
+  margin-right: 10px; }
+
+.affix {
+  top: 130px;
+}
+
+.quiet-divider {
+  color: #D4EBF1;
+  border-color: #D4EBF1;
+  background-color: #D4EBF1;
+}
+
+@media screen and (max-width: 992px)  {
+  #voter-tools.affix {
+    position: static;
+    width: auto;
+    top: 0;
+  }
+  #presentation-area {
+  margin-bottom: 20px;}
+  .details {
+  margin-left: 0px; }
+  .modal .btn {
+    margin-bottom: 10px;
+    display: block;
+    width: 100%;
+  }
+}
+
+#voter-tools #summit-details.btn {
+  background-color: #6EAAC4!important;
+  border-color: #6EAAC4!important;
+  box-shadow: none;
+  color: white!important;
+  text-shadow: none!important;
+  text-align: center!important;
+  padding-left: 0px!important;
+  padding-right: 0px!important;
+}
+
+#voter-tools #summit-registration.btn {
+  background-color: #1B83AF!important;
+  border-color: #1B83AF!important;
+  box-shadow: none;
+  color: white!important;
+  text-shadow: none!important;
+  text-align: center!important;
+  padding-left: 0px!important;
+  padding-right: 0px!important;
+}
+
+#voter-tools #summit-registration.btn:hover, #voter-tools #summit-details.btn:hover {
+ background-color: #135E7D!important; 
+}
+

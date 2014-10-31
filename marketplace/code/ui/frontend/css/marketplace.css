@@ -1,0 +1,638 @@
+.header-area{
+  margin-top:15px;
+}
+
+.header-area .span-23{
+  padding-top:12px;
+}
+
+.header-area .span-23 h1{
+  font-size:240%;
+  margin-left:10px;
+}
+
+h2{
+  color:#C43322!important;
+  margin-top:50px;
+}
+
+ul.marketplace-nav{
+  margin:0;
+  padding:0;
+}
+
+ul.marketplace-nav li{
+  border-right:1px solid #e8e8e8;
+  display:inline-block;
+  padding-left:15px;
+  padding-right:15px;
+  text-transform:uppercase;
+}
+
+ul.marketplace-nav li:first-child{
+  padding-left:0;
+}
+
+ul.marketplace-nav a span{
+  background:url("/marketplace/code/ui/frontend/images/marketplace-icons.png") no-repeat scroll 0 0 rgba(0,0,0,0);
+  display:block;
+  height:50px;
+  margin:auto;
+  width:50px;
+}
+
+ul.marketplace-nav #training a span{
+  background-position:0 0;
+}
+
+ul.marketplace-nav #distros a span{
+  background-position:-50px 0;
+}
+
+ul.marketplace-nav #public-clouds a span{
+  background-position:-150px 0;
+}
+
+ul.marketplace-nav #private-clouds a span{
+  background-position:-250px 0;
+}
+
+ul.marketplace-nav #consulting a span{
+  background-position:-100px 0;
+}
+
+ul.marketplace-nav #drivers a span{
+  background-position:-200px 0;
+}
+
+ul.marketplace-nav #training.current a span{
+  background-position:0 -50px;
+}
+
+ul.marketplace-nav #distros.current a span{
+  background-position:-50px -50px;
+}
+
+ul.marketplace-nav #public-clouds.current a span{
+  background-position:-150px -50px;
+}
+
+ul.marketplace-nav #private-clouds.current a span{
+  background-position:-250px -50px;
+}
+
+ul.marketplace-nav #consulting.current a span{
+  background-position:-100px -50px;
+}
+
+ul.marketplace-nav #drivers.current a span{
+  background-position:-200px -50px;
+}
+
+ul.marketplace-nav a{
+  color:#848575;
+  display:block;
+  padding-bottom:5px;
+  text-decoration:none;
+}
+
+ul.marketplace-nav a:active,ul.marketplace-nav a:hover{
+  color:#E92D10;
+}
+
+.grey-bar .back-label,.grey-bar .filter-label{
+  background:url("/marketplace/code/ui/frontend/images/search-icon.png") no-repeat scroll left 8px rgba(0,0,0,0);
+  float:left;
+  margin-bottom:0;
+  margin-top:5px;
+  padding-left:20px;
+  padding-right:20px;
+  padding-top:8px;
+  text-transform:uppercase;
+}
+
+.grey-bar .back-label{
+  background:url("/marketplace/code/ui/frontend/images/back-arrows.png") no-repeat scroll left 10px rgba(0,0,0,0);
+  margin-top:0;
+  padding-left:25px;
+}
+
+.grey-bar .back-label a{
+  color:#808080;
+}
+
+.grey-bar h1{
+  margin-bottom:5px;
+  padding-top:5px;
+}
+
+.grey-bar input{
+  padding:8px;
+  width:200px;
+}
+
+
+.color-bar{
+  background-color:#808080;
+  display:block;
+  float:left;
+  height:100px;
+  left:-12px;
+  position:relative;
+  top:5px;
+  width:3px;
+  z-index:1000;
+  display: none;
+}
+
+.course-area{
+  border-top:medium none;
+  margin-bottom:30px;
+  padding-bottom:0;
+  text-align:right;
+}
+
+.course-area table th{
+  text-transform:uppercase;
+}
+
+.advanced,.beginner,.intermediate{
+  border-left:4px solid #808080;
+  display:inline-block;
+  padding-left:10px;
+}
+
+.beginner{
+  border-left-color:#85AE6B;
+}
+
+.intermediate{
+  border-left-color:#3795DA;
+}
+
+.advanced{
+  border-left-color:#9C48BD;
+}
+
+.company-details-area,.logo-area{
+  min-height:150px;
+}
+
+.company-details-area{
+  margin-left:-11px;
+}
+
+.company-details-area h1{
+  text-transform:uppercase;
+}
+
+.details-button{
+  background:url("/marketplace/code/ui/frontend/images/register-arrow.png") no-repeat scroll 90% center #000000;
+  color:#FFFFFF!important;
+  display:inline-block;
+  margin-right:-10px;
+  padding:10px;
+  text-align:left;
+  text-transform:uppercase;
+  width:100px;
+}
+
+.details-button:active,.details-button:hover{
+  text-decoration:none;
+}
+
+h3{
+  color:#2D5E76;
+  font-size:110%;
+  text-transform:uppercase;
+}
+
+ul.training-updates{
+  margin-left:0;
+  padding-left:0;
+}
+
+ul.training-updates li{
+  border-bottom:1px solid #E8E8E8;
+  list-style:none outside none;
+  margin-top:20px;
+}
+
+ul.training-updates p{
+  margin-bottom:0;
+  min-height:60px;
+}
+
+ul.training-updates p.date-block{
+  color:#2D5E76;
+  float:left;
+  margin-right:10px;
+}
+
+ul.training-updates p.date-block span{
+  display:block;
+}
+
+ul.training-updates p.date-block span.month{
+  text-transform:uppercase;
+}
+
+ul.training-updates p.date-block span.day{
+  font-size:200%;
+  margin-top:-10px;
+}
+
+ul.projects-covered{
+  background-color:#F4F3F2;
+  margin:0 0 10px;
+  padding:10px;
+}
+
+ul.projects-covered li{
+  background-color:#FFFFFF;
+  border:1px solid #E8E8E8;
+  border-radius:4px;
+  display:inline-block;
+  list-style:none outside none;
+  padding:3px 8px;
+}
+
+.register-button,.register-button:active,.register-button:hover{
+  background:url("/marketplace/code/ui/frontend/images/register-arrow.png") no-repeat scroll 90% center #000000;
+  color:#FFFFFF;
+  display:inline-block;
+  margin-right:-10px;
+  margin-top:20px;
+  padding:10px;
+  text-align:left;
+  text-decoration:none;
+  text-transform:uppercase;
+  width:90px;
+}
+
+.course-box th{
+  text-transform:uppercase;
+}
+
+.course-box th.locaiton{
+  width:35%;
+}
+
+.course-description h3{
+  font-size:130%;
+  margin-top:3px;
+}
+
+.primary-action-button{
+  background:none repeat scroll 0 0 #0595D4;
+  color:#FFFFFF!important;
+  display:inline-block;
+  font-size:16px;
+  line-height:1em;
+  margin-left:20px;
+  padding:5px 20px;
+  text-transform:uppercase;
+}
+
+.primary-action-button:active,.primary-action-button:hover{
+  color:#FFFFFF;
+  text-decoration:none;
+}
+
+.info-area{
+  border-left:1px solid #DDDDDD;
+  padding-left:10px;
+}
+
+.marketplace-content{
+  margin-top:40px;
+}
+
+.meter{
+  border:1px solid #67A75E;
+  display:inline-block;
+  width:30px;
+}
+
+.meter-level{
+  background-color:#67A75E;
+  display:block;
+  height:10px;
+  margin:0;
+  padding:0;
+}
+
+.api-coverage td:first-child{
+  width:50%;
+}
+
+.pullquote p{
+  font-size:150%;
+  margin-bottom:20px;
+}
+
+.pullquote p.author{
+  color:#7F7F7F;
+  font-size:100%;
+}
+
+#map{
+  height:200px;
+  margin-bottom:20px;
+  width:300px;
+}
+
+h1.marketplace{
+  font-size:24pt;
+  margin-top:5px;
+}
+
+h2.marketplace{
+  margin-bottom:-7px;
+  margin-top:0;
+}
+
+h2.marketplace a,h2.marketplace a:hover{
+  color:#5B83A0;
+}
+
+ul{
+  list-style:none outside none;
+  margin-left:0;
+  padding-left:0;
+}
+
+.product-box .company-details-area,.product-box .logo-area{
+  height:200px;
+}
+
+ul.support-channels,ul.support-regions{
+  list-style:none outside none;
+  margin-left:0;
+  padding-left:0;
+  width:40%;
+}
+
+ul.support-channels li a,ul.support-regions li a{
+  display:block;
+  padding:5px;
+}
+
+ul.support-channels p,ul.support-regions p{
+  margin:0;
+}
+
+ul.support-regions{
+  border-right:1px solid #DDDDDD;
+}
+
+ul.support-channels li{
+  border-left:1px none;
+  margin-bottom:10px;
+}
+
+.support-area a.selected{
+  background:url("/marketplace/code/ui/frontend/images/support-region-arrow.png") no-repeat scroll 90% center #F0F1F2;
+  color:#000000!important;
+}
+
+.support-regions{
+  float:left;
+}
+
+.support-channels{
+  float:right;
+}
+
+.pricing td:first-child{
+  width:30%;
+}
+
+td.check span{
+  background:url("/marketplace/code/ui/frontend/images/white-checkmark.png") no-repeat scroll center center #848575;
+  border:1px solid #848575;
+  border-radius:5px;
+  display:block;
+  text-indent:-1000px;
+  width:30px;
+}
+
+td.empty span{
+  border:1px solid #D4D4D4;
+  border-radius:5px;
+  display:block;
+  text-indent:-1000px;
+  width:30px;
+}
+
+.region-key span{
+  background-color:#808080;
+  display:block;
+  height:10px;
+  width:10px;
+}
+
+.region-key{
+  width:15px;
+}
+
+.build-use-box{
+  background-color:#F4F3F2;
+  border:1px solid #C6C6C6;
+  margin-bottom:30px;
+  min-height:25em;
+  padding:20px;
+}
+
+.build-use-box h3{
+  color:#264D69;
+  font-size:150%;
+  font-weight:700;
+}
+
+.build-use-box li{
+  list-style:disc outside none;
+  margin-bottom:10px;
+  margin-left:10px;
+  padding-left:5px;
+}
+
+.build-use-box #map{
+  margin-bottom:0;
+}
+
+.program-logos{
+  margin-top:10px;
+}
+
+.marketplace-header{
+  border-left:3px solid #C43322;
+  color:#808080;
+  line-height:1.2em;
+  margin-bottom:30px;
+  padding-left:15px;
+}
+
+.marketplace-header strong{
+  color:#575757;
+  font-weight:400;
+}
+
+.video iframe{
+  box-shadow:2px 2px 2px rgba(0,0,0,0.5);
+}
+
+h1.marketplace a,h1.marketplace a.visited{
+  color:#264D69;
+}
+
+.level-full,.level-none,.level-partial{
+  background:url("/marketplace/code/ui/frontend/images/api/full.png") no-repeat scroll center center rgba(0,0,0,0);
+  display:inline-block;
+  height:20px;
+  text-indent:-3000px;
+  width:20px;
+}
+
+.level-none{
+  background:url("/marketplace/code/ui/frontend/images/api/none.png") no-repeat scroll center center rgba(0,0,0,0);
+}
+
+.level-partial{
+  background:url("/marketplace/code/ui/frontend/images/api/half.png") no-repeat scroll center center rgba(0,0,0,0);
+}
+
+.rating-block{
+  height:500px;
+}
+
+.driver-table{
+  border-collapse:collapse;
+}
+
+.driver-table td,.driver-table th{
+  border:1px solid #C6C6C6;
+  vertical-align:top;
+}
+
+.driver-table th{
+  background-color:#F4F3F2;
+}
+
+.driver-table th.ships{
+  min-width:200px;
+}
+
+td.releases a{
+  background-color:#EBF9FE;
+  border:1px solid #BEDFEB;
+  border-radius:3px;
+  color:#2D5E76;
+  display:inline-block;
+  margin-bottom:5px;
+  padding:3px 5px;
+}
+
+td.releases a:hover{
+  text-decoration:none;
+}
+
+#service_term_chosen,#location_term_chosen,#level_term_chosen{
+  padding-top:2px!important;
+  padding-bottom:5px!important;
+  padding-left:15px!important;
+}
+
+.chosen-single{
+  height:29px!important;
+  border:1px solid #BBBBBB!important;
+  border-radius:0px!important;
+  background:#FFFFFF!important;
+}
+
+.chosen-container-single .chosen-single{
+  line-height:30px!important;
+}
+
+.chosen-container-single .chosen-single div b{
+  background:url("/themes/openstack/css/chosen-sprite.png") no-repeat scroll 0 4px rgba(0,0,0,0)!important;
+}
+
+#service-term{
+  max-width:260px!important;
+}
+
+#service_term_chosen{
+  max-width:260px!important;
+}
+
+.driver-table{
+  border-collapse:collapse;
+}
+
+.driver-table th,.driver-table td{
+  border:1px solid #c6c6c6;
+  vertical-align:top;
+  padding: 10px;
+}
+
+.driver-table th{
+  background-color:#f4f3f2;
+}
+
+td.releases a{
+  display:inline-block;
+  background-color:#ebf9fe;
+  padding-left:5px;
+  padding-right:5px;
+  padding-top:3px;
+  padding-bottom:3px;
+  border-radius:3px;
+  color:#2d5e76;
+  border:1px solid #bedfeb;
+  margin-bottom:5px;
+}
+
+td.releases a:hover{
+  text-decoration:none;
+}
+
+.review-container{
+  width:400px;
+  height:510px;
+}
+
+.training-rating .review-container{
+  height:545px!important;
+}
+
+input#name-term, input#topic-term {
+  height: 40px;
+  width: 250px;
+  font-size: 12px;
+  padding: 5px 10px;
+  border: 1px solid #e8e8e8;
+  color: #30739C;
+  border-radius: 4px; }
+
+.training-program-box {
+  border: 1px solid #E8E8E8;
+  margin-bottom: 30px;
+  padding: 30px 20px;
+  border-radius: 4px;
+  min-height: 200px;
+  border-left: 3px solid #DA422F; }
+
+.course-area table {
+  text-align: left;
+  width: 100%;
+  font-size: 90%;
+}
+
+.course-area table td {
+  padding: 5px;
+}
+
+.course-area table td.course {
+  width: 50%;
+}

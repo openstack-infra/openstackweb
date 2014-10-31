@@ -1,0 +1,310 @@
+
+.left {
+  width: 100px;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+/* Rounded Buttons */
+/* line 17, _variables.css.scss */
+.roundedButton, input.action {
+  font-family: 'PT Sans', serif;
+  border: 1px solid #e2e2e2;
+  padding: 4px 15px;
+  color: black !important;
+  text-decoration: none !important;
+  font-size: 12.5px;
+  line-height: 3em;
+  background: #FFFFFF;
+  /* old browsers */
+  background: -moz-linear-gradient(top, white 0%, #f3f3f3 50%, #ebebeb 100%);
+  /* firefox */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(50%, #f3f3f3), color-stop(100%, #ebebeb));
+  /* webkit */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#EBEBEB',GradientType=0 );
+  /* ie */
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+  text-shadow: #fff 0px 1px 1px;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-bottom-color: #a0a0a0;
+  border-right-color: #bababa;
+  border-left-color: #bababa; }
+
+/* line 41, _variables.css.scss */
+.roundedButton:hover, input.action:hover {
+  color: black;
+  -webkit-transition: color 1s ease-out;
+  cursor: pointer; }
+
+/* line 47, _variables.css.scss */
+a.roundedButton:active, input.action:active {
+  background: #ababab;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  border-color: #ababab;
+  border-top-color: #636363;
+  background: -webkit-gradient(linear, left top, left bottom, from(#bebebe), to(#dddddd));
+  background: -moz-linear-gradient(top, #bebebe, #eeeeee);
+  -webkit-transition: none;
+  padding: 4px 15px; }
+
+/* line 60, _variables.css.scss */
+input.action {
+  line-height: 1.2em !important; }
+
+/* end */
+/* line 3, app.css.scss */
+h1 {
+  margin-bottom: 10px;
+  font-size: 40px;
+  line-height: 40.5px;
+  color: #0d5871 !important; }
+
+/* line 10, app.css.scss */
+a.brand {
+  background: url("/images/openstack-logo.png") no-repeat -8px center;
+  text-indent: -2000px;
+  height: 100px;
+  margin-right: 20px;
+  padding: 0px; }
+
+/* line 18, app.css.scss */
+a {
+  color: #0d5871;
+  text-decoration: none; }
+
+/* line 71, app.css.scss */
+h1, h2, h3 {
+  font-family: 'PT Sans', serif;
+  font-weight: normal;
+  color: #0d5871; }
+
+/* line 77, app.css.scss */
+h3 {
+  color: #127d98; }
+
+/* line 81, app.css.scss */
+h1 {
+  letter-spacing: -2px; }
+
+/* line 85, app.css.scss */
+h4 {
+  font-weight: normal;
+  color: #31322E;
+  margin-bottom: 0px; }
+
+/* line 91, app.css.scss */
+h4 + h1 {
+  margin-top: 0px; }
+
+/* line 95, app.css.scss */
+.grey-background {
+  border: 1px solid #dedddf;
+  border-left: none;
+  border-right: none;
+  margin-top: 20px;
+  background-color: #f9f9f9; }
+
+/* line 103, app.css.scss */
+.grey-background .white {
+  border: 1px solid #dedddf;
+  background-color: white;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 10px; }
+
+/* line 110, app.css.scss */
+.navbar-search .search-query {
+  margin-bottom: 0;
+  padding: 4px 14px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px; }
+
+/* line 122, app.css.scss */
+.navbar-inner {
+  padding-right: 0px; }
+
+/* line 126, app.css.scss */
+.navbar-search {
+  margin-top: 10px; }
+
+/* Sidenav for Pages
+-------------------------------------------------- */
+/* line 134, app.css.scss */
+.page-nav {
+  width: 228px;
+  margin: 30px 0 0;
+  padding: 0;
+  background-color: #fff;
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065); }
+
+/* line 143, app.css.scss */
+.page-nav > li > a {
+  display: block;
+  width: 190px \9;
+  margin: 0 0 -1px;
+  padding: 8px 14px;
+  border: 1px solid #e5e5e5;
+  color: #585859; }
+
+/* line 152, app.css.scss */
+.page-nav > .active > a {
+  position: relative;
+  z-index: 2;
+  padding: 9px 15px;
+  border: 0;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.1), inset -1px 0 0 rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.1), inset -1px 0 0 rgba(0, 0, 0, 0.1);
+  box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.1), inset -1px 0 0 rgba(0, 0, 0, 0.1); }
+
+/* line 163, app.css.scss */
+.release-buttons {
+  margin-top: 10px;
+  padding: 0px 5px;
+  background-color: #F2F2F2;
+  text-align: center;
+  border: 1px solid lightgrey; }
+
+/* line 171, app.css.scss */
+.release-buttons a {
+  font-size: 110%; }
+
+/* line 175, app.css.scss */
+a.video {
+  display: inline-block;
+  background-color: #f9f9f9;
+  background: url("/images/play-arrow.png") #f9f9f9 no-repeat center center;
+  border: 1px solid lightgrey;
+  width: 200px;
+  height: 100px;
+  text-indent: -1000px; }
+
+/* line 186, app.css.scss */
+.top-line {
+  border-top: #dedddf 1px solid;
+  margin-top: 20px; }
+
+/* line 191, app.css.scss */
+a:not([href]) {
+  color: inherit;
+  text-decoration: none; }
+
+/* line 2, landing.sass */
+.join-us-banner {
+  background-color: #1b7b97;
+  padding: 30px 0px;
+  margin-bottom: 30px; }
+  /* line 5, landing.sass */
+  .join-us-banner h1 {
+    color: white !important;
+    font-size: 50px; }
+  /* line 8, landing.sass */
+  .join-us-banner h2 {
+    color: #a9dded; }
+
+/* line 12, landing.sass */
+.register-call {
+  padding-top: 40px;
+  text-align: center; }
+
+/* line 16, landing.sass */
+.register-button, .register-button:hover {
+  color: white !important;
+  font-size: 30px;
+  font-weight: bold;
+  background-color: #13576a;
+  border-radius: 4px;
+  padding: 10px 30px;
+  text-decoration: none; }
+
+/* line 26, landing.sass */
+.video-thumbnail {
+  border: 3px solid #e3e3e3;
+  background-color: black;
+  font-weight: bold;
+  color: white; }
+  /* line 28, landing.sass */
+  .video-thumbnail p {
+    padding: 10px 10px;
+    margin: 0px; }
+  /* line 34, landing.sass */
+  .video-thumbnail strong {
+    color: #a9dded; }
+
+/* line 37, landing.sass */
+a.brand {
+  background: url("/themes/openstack/images/landing/openstack-logo.png") no-repeat -8px center;
+  text-indent: -2000px;
+  height: 100px;
+  margin: 10px;
+  padding: 0px;
+  display: block; }
+
+body {
+  margin-bottom: 60px;
+}
+
+.twitter-hash a {
+  background: url(/themes/openstack/images/landing/twitter.png) left center no-repeat; 
+  min-height: 60px;
+  padding: 20px;
+  padding-left: 50px;
+  display: block;
+  font-size: 1.5em;  
+}
+
+.mobile-buttons {
+  text-align: center;
+}
+
+.summit-top-banner {
+  text-align: center;
+}
+
+.summit-top-banner img {
+  max-width: 320px;
+}
+
+.summit-top-banner td {
+  height: 6px;
+  line-height: 6px;
+}
+
+.summit-top-banner table {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+td.left-blue {
+  background-color: #6CC7CE;
+}
+
+td.center-orange {
+  background-color: #F2732B;
+}
+
+td.right-red {
+  background-color: #BA2F39
+}
+
+.still-need-to-register {
+  background-color: #C6EBB2;
+  padding: 8px;
+  border-radius: 4px;
+}

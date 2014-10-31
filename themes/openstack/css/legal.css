@@ -1,0 +1,21 @@
+ul#legal-documents {
+	margin:	0px;
+	padding: 0px;
+	list-style: none;
+	margin-bottom: 10px;
+	margin-bottom: 20px;
+}
+
+ul#legal-documents li a, ul#legal-documents li a:visited {
+	padding: 5px;
+	padding-left: 28px;
+	display: block;
+	background: url(/themes/openstack/images/start/guide-icon.png) no-repeat 5px center #E2ECEF;
+	margin: 1px 0px 0px 0px;
+	color: black;
+}
+
+ul#legal-documents li a:hover {
+	text-decoration: none;
+	background-color: #CAE6EF;
+}

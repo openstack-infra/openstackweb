@@ -1,0 +1,13 @@
+#ccla-companies-table {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    clear: both;
+}
+
+#ccla-companies-table thead th {
+    background: none repeat scroll 0 0 #FFFFFF;
+}
+
+.row-0{
+    background-color:#dcdcdc;
+}

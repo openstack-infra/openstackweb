@@ -1,0 +1,28 @@
+.divider-row {
+	background-color: #E8E8E8;
+	padding: 10px; 
+}
+
+.mission {
+	margin-bottom: 30px;
+	padding: 10px;
+	background-color: #E6EEF0;
+}
+
+.mission p {
+	font-size: 16px;
+	font-family: 'PT Sans', serif;
+	margin-bottom: 0px;
+	color: black;
+	line-height: 1.2em;
+	padding: 10px;
+} 
+
+.mission p.title {
+	font-size: 14px;
+	text-transform: uppercase;
+	color: #2E4E66;
+	text-indent: 0px;
+	padding-bottom: 0px;
+	margin-bottom: 0px;
+}

@@ -1,0 +1,30 @@
+
+.date-input{
+    width: 100px !important;
+}
+
+.affiliation-header .title{
+}
+
+#affiliations-container ul{
+    list-style: none;
+    padding-left: 0;
+}
+
+.org-name{
+    width: 250px !important;
+    max-width: 250px !important;
+    float: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow:ellipsis;
+}
+
+.org-name span{
+
+}
+
+.affiliation-info{
+    width: 200px !important;
+    float: left;
+}

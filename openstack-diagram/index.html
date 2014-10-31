@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="verify-v1" content="MxKQyIh32pEsPaRNjBfp8F4iVF27MnKLhna5aSeNUyU=" />
+<title>OpenStack Diagram</title>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.mousewheel.min.js"></script>
+<script type="text/javascript" src="js/jquery.mapbox.min.js"></script>
+
+<style type="text/css"> 
+    #viewport { 
+        width: 689px; 
+        height: 361px; 
+        cursor: move; 
+        margin: 20px auto; 
+        overflow: hidden; /*keep map contents from spilling over if JS is disabled*/ 
+    } 
+</style>
+
+
+</head>
+
+<body class="mapbox">
+<script type="text/javascript">
+    $(document.body).addClass("enabled");
+</script>
+
+
+<div id="viewport" class="clear">
+    <div style="background: url(images/openstack-diagram-small.png) no-repeat; width: 689px; height: 361px;">
+        <!--top level map content goes here-->
+    </div>
+    <div style="height: 722px; width: 1378px;">
+        <img src="images/openstack-diagram-medium.png" alt="" />
+        <div class="mapcontent">
+            <!--map content goes here-->
+        </div>
+    </div>
+    <div style="height: 1444px; width: 2756px;">
+        <img src="images/openstack-diagram-large.png" alt="" />
+         <div class="mapcontent">
+            <!--map content goes here-->
+        </div>
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#viewport").mapbox({mousewheel: true, });
+    })
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+ul.start-tabs {
+	padding: 0 2px 0 0;
+	white-space: nowrap;
+	list-style-type: none;
+	display: block;
+	zoom: 1;
+	margin-right: 0px;
+	clear: both;
+	border-bottom: 1px solid #d8d8d8;
+}
+
+.start-tabs li {
+  cursor: pointer;
+  display: inline;
+  margin-right: -3px;
+  padding: 0px;
+}
+
+.start-tabs li a {
+  margin: 0px;  
+  display: inline-block;
+  text-align: left;
+  color: #41728d;
+  font-size: 16px;
+  font-family: 'PT Sans', serif;
+  padding: 10px 14px;
+  text-shadow: #fff 0px 1px 1px;
+  border: 1px solid #d8d8d8;
+  border-bottom: none;
+  margin-right: -1px;
+  width: 208px;
+  text-align: center;
+  background-color: #F8F8F8;
+}
+
+.start-tabs li a span, .start-tabs li.current a span {
+  display: block;
+  color: #898989;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.start-tabs li a:hover {
+	background-color: #eee;
+	text-decoration: none;
+}
+
+.start-tabs li.current a {
+  cursor: default;
+  text-decoration: none;
+  position: relative;
+  color: black;
+  border-bottom: 1px solid white;
+  margin-bottom: -1px;
+  border: 1px solid #d8d8d8;
+  background-color: white;
+  border-bottom: 1px solid white;
+  font-weight: bold;
+}

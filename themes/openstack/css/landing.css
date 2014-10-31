@@ -1,0 +1,528 @@
+
+.home-speaker-box .span-7 {
+  margin-bottom: 10px;
+}
+
+.home-speaker-box img {
+    border: 3px solid #e3e3e3; }
+
+#home-top {
+  margin-top: 0px;
+}
+
+#home .join-us-banner {
+  padding: 30px 20px;
+}
+
+#home .register-call {
+  padding-top: 20px;
+}
+
+img {
+  width: 100%;
+}
+
+.left {
+  width: 100px;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+/* line 11, _variables.css.scss */
+.lines-background {
+  background: url("/images/diagonal-lines-background.png"); }
+
+/* Rounded Buttons */
+/* line 17, _variables.css.scss */
+.roundedButton, input.action {
+  font-family: 'PT Sans', serif;
+  border: 1px solid #e2e2e2;
+  padding: 4px 15px;
+  color: black !important;
+  text-decoration: none !important;
+  font-size: 12.5px;
+  line-height: 3em;
+  background: #FFFFFF;
+  /* old browsers */
+  background: -moz-linear-gradient(top, white 0%, #f3f3f3 50%, #ebebeb 100%);
+  /* firefox */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(50%, #f3f3f3), color-stop(100%, #ebebeb));
+  /* webkit */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#EBEBEB',GradientType=0 );
+  /* ie */
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+  text-shadow: #fff 0px 1px 1px;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-bottom-color: #a0a0a0;
+  border-right-color: #bababa;
+  border-left-color: #bababa; }
+
+/* line 41, _variables.css.scss */
+.roundedButton:hover, input.action:hover {
+  color: black;
+  -webkit-transition: color 1s ease-out;
+  cursor: pointer; }
+
+/* line 47, _variables.css.scss */
+a.roundedButton:active, input.action:active {
+  background: #ababab;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  border-color: #ababab;
+  border-top-color: #636363;
+  background: -webkit-gradient(linear, left top, left bottom, from(#bebebe), to(#dddddd));
+  background: -moz-linear-gradient(top, #bebebe, #eeeeee);
+  -webkit-transition: none;
+  padding: 4px 15px; }
+
+/* line 60, _variables.css.scss */
+input.action {
+  line-height: 1.2em !important; }
+
+/* end */
+/* line 3, app.css.scss */
+h1 {
+  margin-bottom: 10px;
+  font-size: 40px;
+  line-height: 40.5px;
+  color: #0d5871 !important; }
+
+/* line 10, app.css.scss */
+a.brand {
+  background: url("/images/openstack-logo.png") no-repeat -8px center;
+  text-indent: -2000px;
+  height: 100px;
+  margin-right: 20px;
+  padding: 0px; }
+
+/* line 18, app.css.scss */
+a {
+  color: #0d5871;
+  text-decoration: none; }
+
+/* line 23, app.css.scss */
+.navbar .brand {
+  padding-left: 0px;
+  padding-right: 10px; }
+
+/* line 28, app.css.scss */
+.nav {
+  text-transform: uppercase; }
+
+/* line 32, app.css.scss */
+.navbar .nav > li > a {
+  padding: 15px 20px 15px 20px; }
+
+/* line 36, app.css.scss */
+.nav li.main a {
+  color: black;
+  background-color: #f9f9f9;
+  border: 1px solid lightgrey;
+  border-top: 0px;
+  margin-left: -1px; }
+
+/* line 44, app.css.scss */
+.nav li.selected a {
+  color: #c03a2e;
+  font-weight: bold;
+  border-top: 3px solid #c03a2e;
+  margin-top: -3px; }
+
+/* line 51, app.css.scss */
+body {
+  border-top: 3px solid #187c98; }
+
+/* line 55, app.css.scss */
+.navbar {
+  border-top: 0px; }
+
+/* line 59, app.css.scss */
+.navbar-inner {
+  background-color: white;
+  background-image: none;
+  border: none;
+  box-shadow: none; }
+
+/* line 67, app.css.scss */
+.navbar-fixed-top .navbar-inner,
+.navbar-static-top .navbar-inner {
+  box-shadow: none; }
+
+/* line 71, app.css.scss */
+h1, h2, h3 {
+  font-family: 'PT Sans', serif;
+  font-weight: normal;
+  color: #0d5871; }
+
+/* line 77, app.css.scss */
+h3 {
+  color: #127d98; }
+
+/* line 81, app.css.scss */
+h1 {
+  letter-spacing: -2px; }
+
+/* line 85, app.css.scss */
+h4 {
+  font-weight: normal;
+  color: #31322E;
+  margin-bottom: 0px; }
+
+/* line 91, app.css.scss */
+h4 + h1 {
+  margin-top: 0px; }
+
+/* line 95, app.css.scss */
+.grey-background {
+  border: 1px solid #dedddf;
+  border-left: none;
+  border-right: none;
+  margin-top: 20px;
+  background-color: #f9f9f9; }
+
+/* line 103, app.css.scss */
+.grey-background .white {
+  border: 1px solid #dedddf;
+  background-color: white;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 10px; }
+
+/* line 110, app.css.scss */
+.navbar-search .search-query {
+  margin-bottom: 0;
+  padding: 4px 14px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px; }
+
+/* line 122, app.css.scss */
+.navbar-inner {
+  padding-right: 0px; }
+
+/* line 126, app.css.scss */
+.navbar-search {
+  margin-top: 10px; }
+
+/* Sidenav for Pages
+-------------------------------------------------- */
+/* line 134, app.css.scss */
+.page-nav {
+  width: 228px;
+  margin: 30px 0 0;
+  padding: 0;
+  background-color: #fff;
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065); }
+
+/* line 143, app.css.scss */
+.page-nav > li > a {
+  display: block;
+  width: 190px \9;
+  margin: 0 0 -1px;
+  padding: 8px 14px;
+  border: 1px solid #e5e5e5;
+  color: #585859; }
+
+/* line 152, app.css.scss */
+.page-nav > .active > a {
+  position: relative;
+  z-index: 2;
+  padding: 9px 15px;
+  border: 0;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.1), inset -1px 0 0 rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.1), inset -1px 0 0 rgba(0, 0, 0, 0.1);
+  box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.1), inset -1px 0 0 rgba(0, 0, 0, 0.1); }
+
+/* line 163, app.css.scss */
+.release-buttons {
+  margin-top: 10px;
+  padding: 0px 5px;
+  background-color: #F2F2F2;
+  text-align: center;
+  border: 1px solid lightgrey; }
+
+/* line 171, app.css.scss */
+.release-buttons a {
+  font-size: 110%; }
+
+/* line 175, app.css.scss */
+a.video {
+  display: inline-block;
+  background-color: #f9f9f9;
+  background: url("/images/play-arrow.png") #f9f9f9 no-repeat center center;
+  border: 1px solid lightgrey;
+  width: 200px;
+  height: 100px;
+  text-indent: -1000px; }
+
+/* line 186, app.css.scss */
+.top-line {
+  border-top: #dedddf 1px solid;
+  margin-top: 20px; }
+
+/* line 191, app.css.scss */
+a:not([href]) {
+  color: inherit;
+  text-decoration: none; }
+
+/* line 2, landing.sass */
+.join-us-banner {
+  background-color: #1b7b97;
+  padding: 30px 0px;
+  margin-bottom: 30px; }
+  /* line 5, landing.sass */
+  .join-us-banner h1 {
+    color: white !important;
+    font-size: 50px; }
+  /* line 8, landing.sass */
+  .join-us-banner h2 {
+    color: #a9dded; }
+
+/* line 12, landing.sass */
+.register-call {
+  padding-top: 40px;
+  text-align: center; }
+
+/* line 16, landing.sass */
+.register-button, .register-button:hover {
+  color: white !important;
+  font-size: 30px;
+  font-weight: bold;
+  background-color: #13576a;
+  border-radius: 4px;
+  padding: 10px 30px;
+  text-decoration: none; }
+
+/* line 26, landing.sass */
+.video-thumbnail {
+  border: 3px solid #e3e3e3;
+  background-color: black;
+  font-weight: bold;
+  color: white; }
+  /* line 28, landing.sass */
+  .video-thumbnail p {
+    padding: 10px 10px;
+    margin: 0px; }
+  /* line 34, landing.sass */
+  .video-thumbnail strong {
+    color: #a9dded; }
+
+/* line 37, landing.sass */
+a.brand {
+  background: url("/themes/openstack/images/landing/openstack-logo.png") no-repeat -8px center;
+  text-indent: -2000px;
+  height: 100px;
+  margin: 10px;
+  padding: 0px;
+  display: block; }
+
+/* line 45, landing.sass */
+.hurry {
+  margin-left: -50px;
+  padding-left: 50px;
+  margin-top: 40px;
+  font-size: 150%;
+  color: #1f7a95;
+  background: url(/themes/openstack/images/landing/announce.png) center left no-repeat; }
+
+/* line 53, landing.sass */
+.speaker-box {
+  border: 1px solid #e3e3e3;
+  padding: 10px; }
+  /* line 54, landing.sass */
+  .speaker-box img {
+    border: 3px solid #e3e3e3; }
+  /* line 58, landing.sass */
+  .speaker-box h3 {
+    border-bottom: 1px solid #e3e3e3; }
+
+/* line 61, landing.sass */
+.case-studies {
+  margin: 0px;
+  padding: 0px; }
+  /* line 64, landing.sass */
+  .case-studies li {
+    list-style: none;
+    border: 1px #e3e3e3 solid;
+    padding: 10px;
+    margin-top: -1px;
+    font-size: 140%;
+    color: #12576a; }
+
+#home .primary-buttons a, #home .primary-buttons a:hover {
+  color: #12576A !important;
+}
+
+/* line 72, landing.sass */
+.primary-buttons {
+  margin: 0px;
+  padding: 0px;
+  margin-bottom: 30px; }
+  /* line 76, landing.sass */
+  .primary-buttons li {
+    padding: 0px;
+    margin: 0px;
+    display: inline-block; }
+    /* line 80, landing.sass */
+    .primary-buttons li a {
+      padding: 10px 60px;
+      background-color: #e1f4fa;
+      font-weight: bold;
+      font-size: 120%; }
+    /* line 85, landing.sass */
+    .primary-buttons li a:hover {
+      text-decoration: none;
+      background-color: #a9dded; }
+
+/* line 89, landing.sass */
+.gallery-item {
+  padding-bottom: 20px; }
+  /* line 90, landing.sass */
+  .gallery-item img {
+    border: 3px solid #e3e3e3; }
+  /* line 93, landing.sass */
+  .gallery-item h4 {
+    margin-top: 5px; }
+
+/* line 96, landing.sass */
+h3.main-tag {
+  color: black;
+  line-height: 1.3em; }
+
+/* line 100, landing.sass */
+.pass-table {
+  width: 100%;
+  margin-top: 20px; }
+  /* line 103, landing.sass */
+  .pass-table td, .pass-table th {
+    border: 1px solid #e3e3e3;
+    padding: 10px; }
+  /* line 106, landing.sass */
+  .pass-table td {
+    color: white; }
+
+/* line 109, landing.sass */
+.pricing-table {
+  width: 100%;
+  margin-top: 20px; }
+  /* line 112, landing.sass */
+  .pricing-table td, .pricing-table th {
+    border: 1px solid #e3e3e3;
+    padding: 10px; }
+
+/* line 116, landing.sass */
+.small-pass {
+  border: 3px #940a06 solid;
+  margin: -10px;
+  padding: 7px; }
+
+/* line 121, landing.sass */
+.small-pass.bottom {
+  border-top: none; }
+
+/* line 124, landing.sass */
+.small-pass.top {
+  border-bottom: none; }
+
+/* line 127, landing.sass */
+.general-session {
+  background-color: #927ab2; }
+
+/* line 130, landing.sass */
+.expo-hall {
+  background-color: #abc56b; }
+
+/* line 133, landing.sass */
+.breakout {
+  background-color: #ce635e; }
+
+/* line 136, landing.sass */
+.design-summit {
+  background-color: #5e96ca; }
+
+/* line 139, landing.sass */
+.second-reg-button,
+.second-reg-button:hover {
+  margin-top: 30px;
+  display: inline-block;
+  padding: 20px 30px; }
+
+/* line 145, landing.sass */
+.red-outline {
+  color: #940a06; }
+
+/* line 148, landing.sass */
+.prices-expire {
+  background-color: #eeeeee;
+  color: #12576a;
+  text-align: center; }
+
+body {
+  margin-bottom: 60px;
+}
+
+.resource-button-row a {
+  display: block;
+  border: 1px solid #B7B7B7;
+  padding: 10px;
+  text-align: center;
+  margin-bottom: 15px;
+  min-height: 9em;
+  padding-top: 80px;
+  font-size: 1.5em;
+  background: url(/themes/openstack/images/landing/map.png) center 20px no-repeat;
+  border-radius: 6px;
+}
+
+.resource-button-row a:hover {
+  text-decoration: none;
+}
+
+.resource-button-row a.agenda {
+  background: url(/themes/openstack/images/landing/agenda.png) center 20px no-repeat;  
+}
+
+span.atc {
+  display: block;
+  font-size: 0.7em;
+}
+
+.twitter-hash a {
+  background: url(/themes/openstack/images/landing/twitter.png) left center no-repeat; 
+  min-height: 60px;
+  padding: 20px;
+  padding-left: 50px;
+  display: block;
+  font-size: 1.5em;  
+}
+
+.osds {
+  background-color: #062437;
+  text-align: center;
+  padding: 20px;
+}
+
+.osds img {
+  max-width: 320px;
+}
+
+.still-need-to-register {
+  background-color: #C6EBB2;
+  padding: 8px;
+  border-radius: 4px;
+}

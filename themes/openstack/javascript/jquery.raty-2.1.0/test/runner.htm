@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>jQuery Test Runner</title>
+
+		<link rel="stylesheet" type="text/css" href="lib/jasmine.css">
+
+		<script type="text/javascript" charset="utf-8" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+		<script type="text/javascript" charset="utf-8" src="../js/jquery.raty.js"></script>
+
+		<script type="text/javascript" charset="utf-8" src="lib/jasmine.js"></script>
+		<script type="text/javascript" charset="utf-8" src="lib/jasmine-html.js"></script>
+		<script type="text/javascript" charset="utf-8" src="lib/jasmine-jquery.js"></script>
+	</head>
+	<body>
+		<script type="text/javascript">
+		describe('', function() {
+
+			beforeEach(function() {
+				$('body').append('<div id="star"></div>'); 
+				$('body').append('<div class="star"></div>'); // path: '../img', 
+				$('body').append('<div class="star"></div>'); // path: '../img', 
+				$('body').append('<div class="star"></div>'); // path: '../img', 
+			});
+
+			it ('score should get it as int', function() {
+				// given
+				var $stars = $('.star');;
+
+				$stars.eq(0).raty({ start: 1 });
+				$stars.eq(1).raty({ start: 2 });
+				$stars.eq(2).raty({ start: 3 });
+
+				// when
+				var score1 = $stars.eq(0).raty('score'),
+					score2 = $stars.eq(1).raty('score'),
+					score3 = $stars.eq(2).raty('score');
+
+				// then
+				expect(score1).toEqual(1);
+				expect(score2).toEqual(2);
+				expect(score3).toEqual(3);
+			});
+
+		}); // USING CHECKBOX AND RADIO
+
+			jasmine.getEnv().addReporter(new jasmine.TrivialReporter());
+			jasmine.getEnv().execute();
+		</script>
+	</body>
+</html>

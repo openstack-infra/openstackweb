@@ -1,0 +1,137 @@
+/* @override 
+	http://localhost:8888/themes/openstack/css/events.css
+	http://staging.openstack.org/themes/openstack/css/events.css
+*/
+
+/* @group events */
+
+.eventsBanner {
+	width: 952px;
+	height: 164px;
+}
+
+.eventsBanner h1 {
+	text-indent: -1000em;
+}
+
+p.eventsPhotoCaption {
+	/* Fallback for web browsers that doesn't support RGBa */
+	background: rgb(0, 0, 0);
+	background: rgba(0, 0, 0, 0.6);
+	padding: 10px;
+	margin-top: 55px;
+	color: white;
+	width: 280px;
+}
+
+p.eventsPhotoCaption a {
+	color: white;
+	text-decoration: underline;
+}
+
+.presentationBlock, .eventBlock {
+	background-color: #f2f6f7;
+	margin-bottom: 20px;
+}
+
+.pastEvents {
+	background-color: #f8f7f8;
+}
+
+.presentation h3, .event h3 {
+	padding-top: 20px;
+	clear: both;
+	margin-left: 20px;
+	margin-top: 20px;
+	margin-bottom: 5px;
+	color: #1d3f5e;
+	font-size: 1.2em;
+	border-top: 1px dotted #c5e2ea;
+	margin-right: 20px;
+}
+
+.event h3 a {
+	color: #1d3f5e;
+}
+
+.presentation p.speaker, .event p.details {
+	width: 250px;
+	display: block;
+	float: left;
+	margin-left: 20px;
+}
+
+.event p.details {
+	width: 300px;
+}
+
+.event p.eventButton, .presentation p.presentationButton {
+	display: block;
+	float: left;
+}
+
+#events .clear {
+	clear: both;
+}
+
+#events h2 {
+	font-size: 1em;
+}
+
+.presentationBlock .top h3, .eventBlock .top h3 {
+	border-top: none!important;
+}
+
+.presentationButton a, .eventButton a {
+	background-color: #e3eded;
+	padding: 2px 10px;
+	text-align: center;
+	-moz-border-radius: 3px; 
+	-webkit-border-radius: 3px;
+	color: #254c7c;
+	margin-right: 5px;
+}
+
+.pastEvents .eventButton a {
+	background-color: #f0f0f0;
+}
+
+.eventTitleArea {
+	border-top: 1px dotted #c5e2ea;
+	border-bottom: 1px dotted #c5e2ea;
+	margin-bottom: 20px;
+	padding-top: 10px;
+}
+.eventTitleArea a, .eventTitleArea p {
+	color: #518ca9;
+}
+
+.eventTitleArea h2 {
+	font-size: 2em!important;
+	color: #1d3f5e;
+	margin-bottom: 10px;
+}
+
+.eventTitleArea p {
+	margin-bottom: -5px;
+}
+
+.eventInfo {
+	padding-top: 250px;
+	background: url(/themes/openstack/images/openstack-design-summit-logo.jpg) no-repeat;
+}
+
+.eventInfo p {
+	margin-bottom: 5px;
+}
+
+.eventInfo strong {
+	font-weight: normal;
+	color: black;
+}
+
+.sponsorLogo {
+	padding-top: 20px;
+}
+
+/* @end */

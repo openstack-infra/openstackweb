@@ -1,0 +1,83 @@
+hr {
+	height: 1px;
+}
+
+h2 {
+	margin-bottom: 5px;
+}
+
+h4 {
+	font-weight: bold;
+	margin-bottom: 5px;
+	margin-top: 10px;
+}
+
+div.public-clouds {
+	padding: 10px;
+	color: black;
+	background: #e2ecef none no-repeat 5px center;
+	margin-bottom: 20px;
+}
+
+div.public-clouds p {
+	margin: 0px;
+}
+
+p.environments {
+	min-height: 9em;
+}
+
+h1#try, h1#learn, h1#deploy {
+	padding-left: 34px;
+	padding-top: 11px;
+	min-height: 28px;
+}
+
+h1#try {
+	background: url(/themes/openstack/images/start/joystick.gif) no-repeat left center;
+}
+
+h1#learn {
+	background: url(/themes/openstack/images/start/book.gif) no-repeat left center;
+}
+
+h1#deploy {
+	background: url(/themes/openstack/images/start/rocket.gif) no-repeat left center;
+}
+
+ul.documents {
+	margin:	0px;
+	padding: 0px;
+	list-style: none;
+	margin-bottom: 10px;
+	margin-bottom: 20px;
+}
+
+ul.documents li a, ul.documents li a:visited {
+	padding: 5px;
+	padding-left: 28px;
+	display: block;
+	background: url(/themes/openstack/images/start/guide-icon.png) no-repeat 5px center #E2ECEF;
+	margin: 1px 0px 0px 0px;
+	color: black;
+}
+
+ul.documents li.video a, ul.documents li.video a:visited  {
+	background: url(/themes/openstack/images/start/video-icon.png) no-repeat 5px center #E2ECEF;
+}
+
+ul.documents li a:hover {
+	text-decoration: none;
+	background-color: #CAE6EF;
+}
+
+h4.documents {
+	color: #264D69;
+	font-weight: normal;
+}
+
+.page-summary-note {
+	background-color: white;
+	border-left: 4px solid #DBE5EE;
+	padding: 10px;
+}

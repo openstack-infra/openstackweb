@@ -1,0 +1,18 @@
+---
+Name: marketplaceroutes
+After: 'framework/routes#coreroutes'
+---
+Director:
+  rules:
+    'trainings': 'Training_Controller'
+    'implementations': 'Implementation_Controller'
+    'public-clouds': 'PublicCloud_Controller'
+    'private-clouds': 'PrivateCloud_Controller'
+    'consultants': 'Consultants_Controller'
+    'api/v1/marketplace/admin/openstack-components': 'OpenStackComponentsCrudApi'
+    'api/v1/marketplace/admin/openstack-releases': 'OpenStackReleasesCrudApi'
+    'api/v1/marketplace/distributions': 'DistributionCrudApi'
+    'api/v1/marketplace/appliances': 'ApplianceCrudApi'
+    'api/v1/marketplace/public-clouds': 'PublicCloudCrudApi'
+    'api/v1/marketplace/private-clouds': 'PrivateCloudCrudApi'
+    'api/v1/marketplace/consultants': 'ConsultantsCrudApi'

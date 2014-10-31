@@ -1,0 +1,22 @@
+label.error, .recaptcha .message.validation
+{
+    border: 1px solid #aaa;
+    background: #aa2222;
+    color: #fff;
+    padding: 5px;
+    margin: 0;
+    width: 100%;
+    -webkit-border-radius: 05px;
+    -moz-border-radius: 05px;
+    border-radius: 05px;
+}
+#Form_RegistrationForm input{
+}
+input.error{
+    border: 1px solid  #aa2222;
+}
+.field.recaptcha{
+    margin-top: 10px;
+    float:left;
+}
+

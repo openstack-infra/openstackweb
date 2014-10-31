@@ -1,0 +1,25 @@
+#ModelAdminPanel
+{
+    overflow:auto;
+    padding-bottom:0 !important
+}
+
+form .message.required, form .message.validation {
+    border:solid 1px lightcoral;
+    -webkit-border-radius: 05px;
+    -moz-border-radius: 05px;
+    border-radius: 05px;
+    background-color: red;
+    color: white;
+    display: block;
+    margin-top: 5px;
+    font-weight: bold;
+    font-size: 10px;
+    padding: 0.3em;
+    width: auto;
+    max-width: 400px;
+}
+
+.RelationDataObjectManager .list .dataobject-list div.actions.col{
+    text-align: center !important;
+}

@@ -1,0 +1,395 @@
+ID	Name	Split
+8	Canonical, RackSpace	True
+15	Platform D, Inc.	False
+19	HP, Debian	True
+26	LivingSocial Ltd, Aeode Ltd	True
+32	Piston Cloud Computing, Inc.	False
+38	Nestronite llc, JAMK University of Applied Sciences	True
+40	Dark Secret Software Inc., Rackspace	True
+51	Rackspace, Cloudscaling, Korea Telcom	True
+53	Cogent Computer Systems, Inc.	False
+57	CSSCorp	True
+69	OpenStack Foundation, Rackspace	True
+75	Cloudscaling, Quanta QCT	True
+78	MindPool, Inc.	False
+81	Dell, La Honda Research Center	True
+83	DreamHost, Inktank	True
+85	Airship Victoria, Proofpoint, Google	True
+88	Exist Software Labs, Inc.	False
+100	fosiki, uwiki	True
+118	Esri China Information Technology Co., Ltd	False
+128	NephoScale, Inc.	False
+158	MomentumSI, Transcend Computing	True
+165	Institute of Software Application Technology, Guangzhou & Chinese Academy of Sciences(GZIS)	True
+171	ClknGo Software Corporation, Data Direct Networks	True
+176	Incourage Community Foundation and Renaissance Learning, Inc.	False
+177	HP, Channel42 Pty Ltd	True
+180	Dept of CSE, SCSVMV University	False
+181	HP, PMI	True
+187	One Enterprise Consulting Group, LLC	True
+189	IEEE, ACM, Association of Enterprise Architects, The Open Group	True
+192	Onsite Studio, LLC	False
+202	Global Payments, The WebRoot	True
+206	HP, IBM	True
+210	Cisco System, Inc.; Nebula, Inc.	SEMICOLON
+215	Ascentia Technology, Inc.	False
+216	None	False
+217	Quad/Graphics, Inc.	False
+218	Thinkabit, LLC	False
+222	Red Tie Co., Ltd.	False
+223	Red Hat, Yorba, Community for Open Source Microfinance	True
+227	HP, Percona, SkySQL	True
+231	Wikimedia Foundation; Codeweavers, Inc.	SEMICOLON
+239	Intecard, RTpay.org, TFXUSA, IWLE.org	True
+248	Alamo AFCEA, SkillStorm	True
+249	Administr8, Rackspace	True
+251	Johnnie Ventures, LLC; Banadushi Enterprises, LLC; Rackspace	SEMICOLON
+252	Cisco, S Davids Consulting	True
+253	Cisco, Planetnepal.org	True
+254	Nor1, Inc.	False
+258	ASF, OSI, OuterCurve, RedHat	True
+259	Seavus doo Skopje , Republic of Macedonia	True
+267	Jarv.us Innovations, Code for America Philadelphia Brigade, Science Leadership Academy	True
+279	Node, LLC	False
+292	Basho Technologies, Inc.	False
+296	CBS Interactive, Independent Consultant	True
+300	Alto Débito, Lda	False
+310	BMC, StreamStep	True
+313	Sourcefire, IC Group	True
+318	Hashrocket, Inc.	False
+322	ClearPath Networks, Inc.	False
+323	Andrew Thompson Holdings, LLC	False
+326	Pat Deegan PhD & Associates, LLC	False
+333	Tableau Software, Inc.	False
+338	IPRO, EDI Sourcing Inc	True
+339	Nebula, Kelly Creative Tech	True
+342	Tier3,HP Cloud	True
+347	Gosoft (Thailand) Co., Ltd.	False
+352	Open Compute Foundation, Nebula	True
+354	Red Hat, Pentaho, Data Gravity	True
+370	ISOMEDIA, Inc.	False
+371	Rage.Net, Nebula	True
+372	Indiana University, USC Information Sciences Institute	True
+376	Shiftboard, Inc.;Onyx Neon, Inc.;The Perl Foundation	SEMICOLON
+395	OmniLingua Worldwide, LLC	False
+400	SumTotal Systems, Inc.	False
+401	Blackbird Technologies, Inc.	False
+403	EMC, VMWare	True
+414	shell, t-systems, netapp	True
+419	PFW Research LLC, Clarkson University	True
+426	Dell, ClevrU	True
+428	FocalShift, LLC	False
+429	Colt Telecom, FMR.com	True
+430	Gale Technologies, Fifth Nine Corporation, NephoScale	True
+433	LifeChurch.tv; InfoSense, LLC; It's Not About Me, Inc.	SEMICOLON
+435	X.commerce, Inc.	False
+445	Dell Services, Tata Consultancy Services, Deutsche Bank	True
+449	ROI3, Inc.	False
+461	Sungard;Johnnie Ventures, LLC	SEMICOLON
+465	Predpol, Inc.	False
+466	VLSCI, RBI	True
+467	Ventyx, an ABB Company	False
+468	University of California, Riverside	False
+469	CAMERA, Calit2 - Center for Research in Biological Systems	True
+480	Aalto University, Finland.	False
+484	University of Melbourne, NeCTAR, Aptira	True
+489	Ruijie Networks Co., Ltd.	False
+491	Roads and Maritime Services, NSW	True
+504	Oracle,Intuit, Symphony, i2	True
+506	MessageSolution, Inc.	False
+512	Yonyou Software, Chinese Academy of Sciences	True
+516	E-Code Studio Inc., Unbounce Inc.	True
+522	Kasper Consulting Pvt Ltd, Pingstripe Inc, Bullzi Inc	True
+557	CitiTech System,s Inc.	False
+581	TSSLink, Inc.	False
+596	MIRANTIS, NetBSD	True
+598	Canonical, Nebula Inc	True
+615	College of Computer Science and Technology, Wuhan University of Science and Technology	False
+619	Rackspace, Punchy Code LLC	True
+621	Linx Technology Co.,Ltd.	False
+626	Pansafe Software (Shanghai) Co.,LTD.	False
+633	Lakewood Church, Joel Osteen Ministries	True
+635	Engine Yard, Red Hat	True
+642	Shanghai Lingzhe Information Technology Co., Ltd.	False
+655	Nokia Siemens Networks, Russian Outdoor Adventures	True
+657	Institute of Software, Chinese Academy of Sciences	False
+680	openvision.Co.,LTD.	False
+707	OMNI Lab, SJTU	True
+712	Inktank, Joyent	True
+716	CorelloNetworks US, Inc.	False
+718	TASC, Inc	False
+724	Ed Wyse & Co, Inc.	False
+726	CloudPassage, Inc.	False
+727	hanweis, eccom	True
+733	Silicon Valley Web H,Falseosting, Inc.	False
+740	Cryptoseal, Inc.	False
+741	Aerospace Computing, Inc	False
+743	Nebula, Inc; Jawfish Games	SEMICOLON
+753	SUSE, Attachemate Group	True
+761	Visinsight, Inc	False
+764	China Standard SoftWare Co,.Ltd	False
+781	Clearslide, Inc.	False
+783	SUCCESSUM GmbH,Deutsche Telekom AG	True
+784	Nausicaa Media, 500 Startups	True
+789	Paypal, Yahoo!	True
+796	Clinical Research Unit, Hotchkiss Brain Institute, University of Calgary	True
+797	MRIS, Inc.	False
+802	Palantir, Silhouette Technologies	True
+804	Disney Interactive, YouSendIt	True
+805	Virtual Mobile Ltd, Alcatel-Lucent Scweiz AG	True
+822	The Open Group, IEEE, ACM	True
+826	Enable Technology Co,Ltd	False
+828	Framehawk, Wells Fargo Bank	True
+868	AMD, Cisco, Seamicro	True
+869	Purdue University, University of Southern California	True
+878	Plaxo, Comcast, Yahoo, Sun Microsystems, Microsoft	True
+887	Purdue University, ISI	True
+896	Silicon Mechanics, Inc.	False
+898	Eayun, Inc	False
+908	MAYA Design, Inc.	False
+918	Cisco Systems, Asia Cloud Computing Association	True
+925	Linux Foundation, Parallels	True
+927	Plexxi, Infinetics, IPInfusion	True
+936	OM Holdings, LLC.	False
+955	VMWare, Logica	True
+993	Bright Guys, Inc.	False
+998	Dell, EMC	True
+1000	Exception Ltd., Huber & Associates Ltd.	True
+1004	None	True
+1024	Nth Generation, HP	True
+1034	Dell, Inc., Cabarrus County Schools	True
+1038	@iLabAfrica, Strathmore University	True
+1057	CEO CM Basics, Inc.	False
+1063	Ci2i Services, Inc. 	False
+1073	Zoniac Inc.,	False
+1084	Contrail Systems, Cisco	True
+1087	iGATE, Patni	True
+1092	FreeFlow; LoomisBurton, LLC; Plum Creek Development; French Oil Mill Machinery Company	SEMICOLON
+1094	Beijing Fortunet; ApeirOne, Inc.	SEMICOLON
+1099	Cooperative Institute for Research in the Atmosphere, Colorado State University	False
+1101	Access3000, Inc.	False
+1109	Below92, LLC	False
+1112	Broadcast Interactive Media	True
+1116	Segurisate,Lda.	False
+1123	Neopost USA, SeaChange International	True
+1130	Cisco, E(Angelos) Charalambous LTD	True
+1134	Getnet inc, Intel	True
+1137	Atos, T-Systems, Metro Systems	True
+1166	Applied Data Consultants, Inc.	False
+1173	Viagul & Xavier Enterprise, Icareerd Institute of Technology	True
+1185	Piston Cloud, Microsoft	True
+1203	Pacnet, Contiguance	True
+1208	tech profuse, inc	False
+1215	Cisco, VCE	True
+1216	VCE, EMC, Cisco, VMware	True
+1220	nEXUS is, emc, hds	True
+1227	IBM, Arsenal Digital Solutions	True
+1238	Cleversafe, Inc.	False
+1243	Harris Corporation, Code Techs LLC	True
+1264	Leonard Jaffe Computer Systems Consulting, Ltd.	False
+1268	Guavus Inc, Petronia Inc	True
+1272	Attributor, Digimarc	True
+1276	DigiCare Technology Solutions, Time Warner Cable	True
+1294	Proactive Education, Inc.	False
+1299	IBM Singapore, HP	True
+1303	EFI, Inc	False
+1323	Exist Software Labs, Morphlabs Inc.	True
+1336	Wuhan OS-easy Technology Co.,ltd	False
+1342	qingdao jiahua networks co.,ltd.	False
+1344	Nexus IS, Inc.	False
+1345	PayPal, X.commerce	True
+1361	Make Lehigh Valley, Cross Link Group	True
+1376	Ubuntu, Canonical	True
+1380	Riverturn, Inc.	False
+1388	Red Hat, Inc	False
+1389	Metacloud, Inc.	False
+2007	Salt Stack, Inc.	False
+1396	Optum Insight, Bluehost, Rubber Ruby Software	True
+1431	NetApp, Inc.	False
+1437	Apollo Group, Inc.	False
+1439	InterSection Unlimited, Manning Publications Co	True
+1441	Bytejam, inc.	False
+1445	Bloombase, Inc.	False
+1454	Law Office of Lisa S. Miller, PLLC	False
+1459	Metacloud, Inc	False
+1479	ClearwaterAnalytics.com,ZebPalmer.com	True
+1499	HP, RightScale	True
+1510	RightScale, inc.	False
+1512	RightScale, Inc.	False
+1530	NationBuilder, freenode	True
+1536	Alcatel-Lucent, Nuage Networks	True
+1539	Lyatiss, Inc.	False
+1542	Groupware Technology, Inc.	False
+1568	Emerge Advanced Technology Solutions, LLC	False
+1575	Sentilla Corporation, Yahoo Inc	True
+1579	Integral and Open Systems,Inc	False
+1583	Inktank, DreamHost	True
+1633	SSD Nodes, Inc.	False
+1639	Yahoo, Nutanix	True
+1641	VMware, Nicira, Telstra, Accenture	True
+1645	ISACA, Firecracker PM, VMware	True
+1646	Spigit, Inc.	False
+1657	Lianja, Recital Corporation	True
+1659	Cisco Systems Inc., Intel, Microsoft, Dorkbotz	True
+1660	Frontporch, INC	False
+1664	FI-UNER, ENERSA	True
+1666	OM Holdings, LLC.; OpenStack Users Chicago	SEMICOLON
+1670	OneHealth Solutions, Inc.	False
+1676	Rackspace Hosting, Inc.	False
+1693	Nebula, Inc	False
+1701	NEC Soft, Ltd.	False
+1707	VB Datacom, LLC	False
+1718	Quotient Solutions, Inc.	False
+1728	Red Hat, Inc.	False
+1736	UScontracting, Inc	False
+1760	Hitachi, Ltd.	False
+1766	Anna University, Chennai	False
+1769	Panel Processing, Inc	False
+1775	orange, cloudwatt	True
+1782	Saules spektras, Latvijas talrunis	True
+1783	Exact Marketing Formula, LLC	False
+1789	OpenStack Foundation, HP	True
+1792	NodePrime, Inc.	False
+1797	Coastside Ventures, LLC	False
+1821	GMO Internet, Inc.	False
+1855	VEXXHOST, Inc.	False
+1885	Red Hat, vmware	True
+1886	Research Center for Cloud Computing, North China University of Technology	False
+1890	PMR(LEIRIA) - Informática, Lda.	False
+1905	Bighead Creative Co., Ltd.	False
+1942	Stratus Technologies, Inc	False
+1944	Sentinel Technologies, Inc.	False
+1950	SaltStack, Inc	False
+1954	Oracle, Hortonworks	True
+1955	Hortonworks, Oracle	True
+1977	Collabora, Ltd	False
+1993	Vickrey & Associates, Inc	False
+1994	Emination Inc, Gumma Corp	True
+2005	L-3 Communications;  Salt Stack, Inc	SEMICOLON
+2006	SaltStack, Inc.	False
+2043	CarePoint Holdings, LLC	False
+2059	Askbot, S.p.A.	True
+2066	Ticketfly, Inc.	False
+2083	Polaris Wireless, Inc	False
+2085	TCN Broadcasting, Inc.	False
+2090	Everbridge, Inc	False
+2097	Nike, Inc.	False
+2099	MIRANTIS, Align Technology	True
+2102	University of Bergen, Norway	False
+2110	SwifStack, Ancestry.com	False
+2115	Bitfit, Inc.	False
+2117	Cisco Systems, Intel, Microsoft, Dorkbotz	True
+2133	None	True
+2138	Texas Wormhole, LLC	False
+2150	Sidepath, Inc.	False
+2160	iPlant Collaborative, 235nuclear	True
+2165	HostHallam.com, DMRT Ventures Ltd.	True
+2167	QsrSoft, Inc	False
+2169	SafeNet, Inc.	False
+2173	Austin Software Foundry, Inc.	False
+2182	Indie IT, LLC	True
+2206	Cloud Technology Partners, Cloud Uze, Inc	True
+2211	Red Had, Inc	False
+2214	Mirantis, Inc.	False
+2216	Korea Telcom, GuRuFu LLC	True
+2221	Maginatics, Inc.	False
+2227	University of Stuttgart, Germany	False
+2241	Continuent	True
+2256	Rackspace, Python Software Foundation, Django Software Foundation	True
+2262	Advanced Computational Research, Inc.	False
+2265	Azubuike Enterprise Group, Inc.	False
+2271	Nebula, Inc.	False
+2272	Vimeo, LLC	False
+2274	NeCTAR, OpenStack Foundation	True
+2291	Alice L. King, P.C.	False
+2293	ServiceMesh, Roffe Technologies	True
+2296	Victory-Tech LLC, Realogic Analytics	True
+2338	CommGate Systems India Pvt Lyd, Prakat Solutions Inc.	True
+2339	CommGate Systems India Pvt Ltd, Prakat Solutions Inc.	True
+2343	Clemson University, Big Switch Networks	True
+2353	nPivot, Inc.	False
+2357	AMD, Seamicro	False
+2362	Environamcis, Inc.	False
+2368	Bellomy Research, Inc.	False
+2376	Proservis, UAB	True
+2379	ViaSat, Inc.	False
+2400	Quantum Systems Integrators, Inc.	False
+2401	IBM, Incept5	True
+2402	Cisco Systems Inc.,  cloud 9 networks 	True
+2403	SMMS, JPR, PPC, DGH, JLM	True
+2404	MyWebGrocer, Inc	False
+2407	Connectifier, Inc.	False
+2408	University of California, Berkeley	False
+2409	World Wide Technology, Inc	False
+2417	Bizspire Inc, Entic LLC	True
+2422	Citi, McAfee	True
+2434	Polycom, Inc.	False
+2439	Xpeerant, Inc	False
+2445	Fubra, CatN	True
+2457	Embrane, Inc.	False
+2465	Rackspace, Python Software Foundation	True
+2485	Dell, Mirantis	True
+2488	Op40, Inc; ZoomStream, Inc	SEMICOLON
+2500	SoftLayer, an IBM company	False
+2505	Flickerbox, Inc.	False
+2507	HOLA, SL	True
+2516	Center for Medical Genetics, Ghent	True
+2524	Apple, Hands on Tahoe	True
+2527	logicstream Ltd, Transport for London	True
+2564	Hunan Kylin Information Engineering Technology Co.,Ltd.	False
+2576	Brocade	True
+2578	Vyatta, Brocade	True
+2582	Two Sigma Investments, LLC	False
+2583	dotCloud, inc	False
+2589	Cisco Systems, Inc.	False
+2590	Cloudian, Inc	False
+2595	H3C, HP	True
+2597	Cisco Sysems, ITapp	True
+2617	Rackspace Hosting; Tunnel Vision Laboratories, LLC	SEMICOLON
+2625	Continuent, Inc.	False
+2626	Red Hat, Inc., Bloomberg L.P.	True
+2646	Fudan University, Intel	True
+2661	Archimedes, Inc.	False
+2671	Huawei Technologies Co., Ltd.	False
+2677	Ruckus Wireless, Inc.	False
+2685	uSecure Holding, Inc.	False
+2686	EMC, VMWare, Pivotal	True
+2698	Vyatta, a Brocade Company	False
+2704	Telestax, Inc.	False
+2713	Wipro technolgies, EXFO	True
+2721	Nimbic, Inc.	False
+2723	ForeScout Technologies, Inc	False
+2728	FalconStor Japan Co., Ltd.	False
+2732	Blue Box Group, Inc	False
+2733	Coca-Cola Enterprises, Inc.	False
+2735	Koding, Inc	False
+2738	10000	False
+2743	Electric Cloud, Inc.	False
+2753	Terra Firma Engineering, LLC	False
+2768	Zentera Systems, Inc.	False
+2775	University of Melbourne, NeCTAR	True
+2777	Knowledge Experts, EMC, Hewlett Packard	True
+2791	Catbird Networks, inc.	False
+2801	HLV Solution JSC,	False
+2836	PolyBeacon, Inc.	False
+2844	Agfa HealthCare, Inc.	False
+2857	HP, SDI	True
+2867	Safari Books Online, LLC	False
+2876	Atende S.A., Warsaw, Poland	False
+2886	Hitachi, CenturyLink, CSA, 	True
+2894	Naffah Consulting, Prologue	True
+2898	University of Ljubljana, Faculty of Computer and Information Science	False
+2900	ApeSystems, Cigna	True
+2906	Raytheon Intelligence, Information, and Services	False
+2908	MCT Microsoft, VTSP VMware	True
+2914	SoftLayer Technologies, an IBM company	False
+2954	ITRI, CCMA	True
+2961	Emerson Network Power, Embedded Computing	True
+2975	University College Dublin / IBM Research, Ireland	False
+2983	Ford, Quinn & Desmarais	True
+2995	Lauber System Solutions, Inc.	False
+2996	BayLISA, VCE	True
+3002	Kansys, Inc.	False
+3003	Amogh Consulting LLC, Microsoft, Boeing, AT&T, iLink Systems Inc	True
+3004	Sysware(Thailand) Co., LTD.	False
+3014	Clear Lane LLC, C2Cloud Services	True

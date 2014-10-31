@@ -1,0 +1,10 @@
+---
+Name: jobroutes
+After: 'framework/routes#coreroutes'
+---
+Director:
+  rules:
+    'news': 'NewsPage_Controller'
+    'news-add': 'NewsRequestPage_Controller'
+    'news-edit': 'NewsRequestPage_Controller'
+    'news-manage': 'NewsAdminPage_Controller'

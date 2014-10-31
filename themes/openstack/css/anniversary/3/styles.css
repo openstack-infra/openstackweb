@@ -1,0 +1,486 @@
+body{
+    font-family: "pt_sansregular", Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    font-weight: normal;
+}
+.global-events a,
+.last-years .btn{
+    clear: both;
+    display: block;
+    float: right;
+    margin-top: 15px;
+    width: 320px;
+    text-align: center;
+}
+h2{
+    font-size: 64px;
+    padding-top: 73px;
+    line-height: 70px;
+    font-weight: normal;
+}
+.subtitle{
+    font-size: 40px;
+    padding-top: 4px;
+}
+
+#anniversary .container{
+    max-width: 960px;
+}
+.row-fluid .span4{
+    width:32.45%;
+}
+
+#top-header .navbar-inner{
+    border: none;
+    background: #fff;
+    background-image:none;
+    filter: none;
+}
+#top-header.navbar {
+    margin-bottom: 0;
+}
+#top-header .navbar .nav{
+    display: inline;
+    float: right;
+}
+.social-links img {
+    display: inline;
+    float: right;
+    padding-left: 13px;
+    padding-top: 23px;
+}
+
+.header{
+    height: 553px;
+    background-color: #bbe5f1;
+    padding-top: 80px;
+    box-shadow: inset 0 1px 4px rgba(85, 190, 220, 0.48);
+}
+.header .container{
+    position: relative;
+}
+.header h1{
+    display: none;
+}
+
+.bot-1, .bot-2, .bot-3{
+    position: absolute;
+}
+
+.bot-1{
+    left: 120px;
+    top: 81px;
+}
+.bot-2{
+    right: 406px;
+    top: 95px;
+    z-index: 5;
+}
+.bot-3{
+    right: 194px;
+    top: 200px;
+}
+
+.bot-1.levitate {
+    -webkit-animation:
+        fadeInDown 3s 1,
+        levitate 3.5s infinite;
+    -moz-animation:
+        fadeInDown 3s 1,
+        levitate 3.5s infinite;
+}
+.bot-2.levitate {
+    -webkit-animation:
+        fadeInDown 3s 1,
+        levitate 4s infinite;
+    -moz-animation:
+        fadeInDown 3s 1,
+        levitate 4s infinite;
+}
+.bot-3.levitate {
+    -webkit-animation:
+        fadeInDown 3s 1,
+        levitate 3s infinite;
+    -moz-animation:
+        fadeInDown 3s 1,
+        levitate 3s infinite;
+}
+@-webkit-keyframes fadeInDown{
+    0%{
+        -webkit-transform: translateY(-40px) translateZ(0);
+        opacity:0;
+    }
+    100% {
+        -webkit-transform: translateY(0px) translateZ(0);
+        opacity:1;
+    }
+}
+@-moz-keyframes fadeInDown {
+    0% {
+        -moz-transform: translateY(-40px) translateZ(0);
+        opacity:0;
+    }
+    100% {
+        -moz-transform: translateY(0px) translateZ(0);
+        opacity:1;
+    }
+}
+@-webkit-keyframes levitate{
+    0% {
+        -webkit-transform: translateY(-18px) translateZ(0);
+    }
+    50% {
+        -webkit-transform: translateY(0px) translateZ(0);
+    }
+    100%{
+        -webkit-transform: translateY(-18px) translateZ(0);
+    }
+}
+@-moz-keyframes levitate{
+    0% {
+        -moz-transform: translateY(-18px) translateZ(0);
+    }
+    50% {
+        -moz-transform: translateY(0px) translateZ(0);
+    }
+    100%{
+        -moz-transform: translateY(-18px) translateZ(0);
+    }
+}
+.shadow{
+    display: block;
+    height:50px;
+    position:absolute;
+    background-repeat:no-repeat;
+
+}
+.shadow-1{
+    background-image: url('../../../images/anniversary/3/shadow_bot-1.png');
+    -moz-animation:
+        scale_s 3.5s infinite;
+    -webkit-animation:
+        scale_s 3.5s infinite;
+}
+.shadow-2{
+    background-image: url('../../../images/anniversary/3/shadow_bot-2.png');
+    -moz-animation:
+        scale_s 4s infinite;
+    -webkit-animation:
+        scale_s 4s infinite;
+}
+.shadow-3{
+    background-image: url('../../../images/anniversary/3/shadow_bot-3.png');
+    -moz-animation:
+        scale_s 3s infinite;
+    -webkit-animation:
+        scale_s 3s infinite;
+}
+
+@-moz-keyframes scale_s{
+    0% {
+        -moz-transform: scale(1,1) translateZ(0);
+    }
+    50% {
+        -moz-transform: scale(1.3,1.1) translateZ(0);
+    }
+    100%{
+        -moz-transform: scale(1,1) translateZ(0);
+    }
+}
+@-webkit-keyframes scale_s{
+    0% {
+        -webkit-transform: scale(1,1) translateZ(0);
+    }
+    50% {
+        -webkit-transform: scale(1.3,1.1) translateZ(0);
+    }
+    100%{
+        -webkit-transform: scale(1,1) translateZ(0);
+    }
+}
+
+
+.statics{
+    height: 107px;
+    background: url(../../../images/anniversary/3/bg_statics-countries.png) center center no-repeat #0a3644;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.48);
+}
+.statics img{
+    float: left;
+}
+.statics p{
+    font-size: 20px;
+    color: #fff;
+    line-height: 14px;
+}
+.statics .span4{
+    padding-top: 17px;
+    margin-left: 7px;
+}
+.statics .span4 p:first-child{
+    font-family: "pt_sans_captionbold", Arial, Helvetica, sans-serif;
+    font-size: 35px;
+    font-weight: bold;
+    line-height: 25px;
+}
+.statics .span4.countries p{
+    color: #0a3644;
+}
+.statics .span4.organizations{
+    padding-left: 81px;
+}
+.statics .statics-txt{
+    float: left;
+    padding-left: 20px;
+}
+.statics .misce{
+    font-size: 13px;
+    color: #838485;
+    line-height: 13px;
+}
+.map{
+    border-bottom: 5px solid #0a3644;
+    position: relative;
+}
+.map .cover{
+    width:100%;
+    height:150px;
+    position:absolute;
+    cursor:pointer;
+}
+.map img{
+    display: block;
+    left: 48%;
+    margin: 0 auto;
+}
+.map a{
+    background-color: #0A3644;
+    border-radius: 0 0 4px 4px;
+    display: block;
+    height: 20px;
+    left: 49%;
+    margin: 0 auto;
+    padding-left: 13px;
+    padding-right: 13px;
+    padding-top: 10px;
+    position: absolute;
+    width: 20px;
+    z-index: 1;
+}
+
+.celebrate,
+.last-years,
+.global-events,
+.celebrate .container,
+.last-years .container{
+    height: 500px;
+}
+.join-twitter .container{
+    height: 590px;
+}
+
+.celebrate{
+    background: url(../../../images/anniversary/3/section_celebrate-bg.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    overflow: hidden;
+}
+.celebrate p,
+.celebrate h2{
+    color: #fff;
+}
+
+.celebrate .code{
+    background-color: rgba(255, 255, 255, 0.88);
+    border-radius: 6px;
+    height: 172px;
+    width: 600px;
+    margin-top: 38px;
+    padding-top: 28px;
+    font-size: 16px;
+    color: #ab1e35;
+    line-height: 32px;
+    text-align: center;
+    float:left;
+}
+
+.celebrate .container,
+.last-years .container,
+.join-twitter .container{
+    position: relative;
+}
+.celebrate  img,
+.last-years-bg,
+.join-twitter img{
+    position: absolute;
+}
+.celebrate  img{
+    bottom: 0;
+    right: 0;
+}
+.last-years-bg{
+    left: -1000px;
+    top: -27px;
+}
+.join-twitter img{
+    left: -137px;
+    top: 500px;
+    z-index: -1;
+}
+.last-years{
+    background: url(../../../images/anniversary/3/section_last-years-bg.jpg) repeat #fff;
+    overflow: hidden;
+}
+.last-years h2{
+    color: #80b9d1;
+    text-align: right;
+}
+.last-years img{
+    padding-left: 15px;
+    margin: 0 auto;
+}
+.last-years .infographics{
+    position: absolute;
+    top: 200px;
+    left: -80px;
+    display:none;
+    -webkit-transition:top 0.8s ease;
+    -moz-transition:top 0.8s ease;
+    -o-transition:top 0.8s ease;
+    transition:top 0.8s ease;
+}
+.last-years .infographics:hover{
+    top: 170px;
+    left: -80px;
+}
+
+.btn{
+    background-image: none;
+    border: medium none;
+    border-radius: 0 0 0 0;
+    box-shadow: none;
+    color: #FFFFFF;
+    font-size: 19px;
+    padding-bottom: 26px;
+    padding-top: 11px;
+    text-align: center;
+    width: 346px;
+    text-shadow: none;
+    -o-transition:color 0s ease-out, background 0.4s ease-in;
+    -ms-transition:color 0s ease-out, background 0.4s ease-in;
+    -moz-transition:color 0s ease-out, background 0.4s ease-in;
+    -webkit-transition:color 0s ease-out, background 0.4s ease-in;
+    /* ...and now override with proper CSS property */
+    transition:color 0s ease-out, background 0.4s ease-in;
+}
+.btn.icon-download{
+    background-color: #bc4b5d;
+}
+.btn.icon-download:hover{
+    background-color: #b11e35;
+    color: #fff;
+}
+
+.btn.icon-slide{
+    background-color: #509ab9;
+}
+.btn.icon-slide:hover{
+    background-color: #2186b1;
+    color: #fff;
+}
+
+
+
+.global-events{
+    background: url(../../../images/anniversary/3/section_global-events-bg.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.global-events h2:first-child{
+    color: #fff;
+    padding-top: 98px;
+}
+.global-events h2{
+    color: #82d391;
+    padding-top: 0;
+}
+.global-events .btn{
+    background-color: #82D391;
+    color: #000000;
+    float: left;
+    padding-bottom: 21px;
+    padding-top: 16px;
+    width: 415px;
+}
+.global-events .btn:hover{
+    background-color: #2fba49;
+    color: #000;
+}
+
+
+.join-twitter{
+    height:350px;
+}
+.join-twitter h2:first-child{
+    color:#82bbd3;
+    text-align: center;
+    margin-bottom: 43px;
+}
+.join-twitter .widget-twitter{
+    display: inline;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 25px;
+}
+.footer{
+    background: url(../../../images/anniversary/3/section_footer-bg.png) no-repeat center center #bbe5f1;
+}
+.footer img{
+    display: block;
+    margin: 0 auto;
+    padding-top: 3px;
+}
+
+@font-face {
+    font-family: 'pt_sans_captionbold';
+    src: url('../../../assets/fonts/PT-Sans/PTC75F-webfont.eot');
+    src: url('../../../assets/fonts/PT-Sans/PTC75F-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../../../assets/fonts/PT-Sans/PTC75F-webfont.woff') format('woff'),
+    url('../../../assets/fonts/PT-Sans/PTC75F-webfont.ttf') format('truetype'),
+    url('../../../assets/fonts/PT-Sans/PTC75F-webfont.svg#pt_sans_captionbold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'pt_sansregular';
+    src: url('../../../assets/fonts/PT-Sans/PTS55F-webfont.eot');
+    src: url('../../../assets/fonts/PT-Sans/PTS55F-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../../../assets/fonts/PT-Sans/PTS55F-webfont.woff') format('woff'),
+    url('../../../assets/fonts/PT-Sans/PTS55F-webfont.ttf') format('truetype'),
+    url('../../../assets/fonts/PT-Sans/PTS55F-webfont.svg#pt_sansregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+#preloader {
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:99; /* makes sure it stays on top */
+    background: #bbe5f1 url('../../../images/anniversary/3/loader.gif') no-repeat center center;
+}
+
+.date {
+    position: absolute;
+    top: 502px;
+    right: 8px;
+}
+

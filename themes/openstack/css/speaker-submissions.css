@@ -1,0 +1,21 @@
+.saved-rating {
+	color: #C95800;
+	font-weight: bold;
+	display: none; 
+}
+
+.star-system img {
+	padding-top: 3px;
+	margin-bottom: -3px;
+}
+
+.star-system li {
+	list-style: none;
+}
+
+.star-system {
+	padding: 10px;
+	background-color: #EEEEEE;
+	margin: 0px;
+	margin-bottom: 20px;
+}

@@ -1,0 +1,15 @@
+.company-profile h4 {
+	margin-bottom: 0px;
+	color: #264D69;
+	margin-top: 15px;
+	font-weight: bold;
+}
+
+.supporters h4 {
+	padding-top: 15px;
+	text-align: right;
+}
+
+.logo {
+	text-align: center;
+}

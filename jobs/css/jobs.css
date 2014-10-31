@@ -1,0 +1,114 @@
+/* @override
+	http://localhost:8888/themes/openstack/css/jobs.css
+	http://staging.openstack.org/themes/openstack/css/jobs.css
+*/
+/* @group jobs */
+
+#jobs h1 {
+    margin-bottom: 30px;
+}
+
+.postJob a {
+    display: block;
+    float: right;
+    background-color: #e2f4dc;
+    text-align: center;
+    padding: 4px;
+    padding-left: 15px;
+    padding-right: 15px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    color: #1d6006;
+    font-size: 1em;
+    text-shadow: 0 1px 0 rgba(255,255,255,.8);
+    text-decoration: none;
+}
+
+p.type {
+    display: block;
+    background-color: #c4e0e9;
+    text-align: center;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    color: #254c7c;
+}
+
+.jobPosting {
+    border-top: 1px dotted;
+    padding-top: 10px;
+    margin-bottom: 10px;
+    border-color: #c5e2ea;
+}
+
+body#jobs h2 {
+    color: #cf2f19;
+    font-size: 16px;
+}
+
+.jobPosting ul.details {
+    margin: 0px;
+    padding: 0px;
+}
+
+.jobPosting ul.details li {
+    display: block;
+    float: left;
+    margin-right: 10px;
+}
+
+.jobPosting li.description, .jobPosting li.link {
+    width: 960px!important;
+}
+
+.jobPosting .label {
+    display: none;
+}
+
+.jobPosting .type {
+    width: 60px;
+}
+
+.jobPosting .postDate {
+    text-align: right;
+}
+
+ul.location {
+    margin: 0px;
+    padding: 0px;
+}
+
+ul.location li{
+    display: block;
+    float: left;
+    margin-right: 10px;
+    font-weight: normal !important ;
+}
+
+
+
+body.postJobInfo {
+    background-color: white;
+    background-image: none;
+    border: none;
+    padding: 15px;
+    font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;
+    font-size: 75%;
+}
+
+.postJobInfo h2 {
+    font-size: 16px;
+    color: #264d69;
+    margin-top: 30px;
+    padding-top: 10px;
+    border-top: 1px dotted #c5e2ea;
+}
+
+
+
+div.jobDescription{
+    font-weight: normal !important ;
+}
+
+
+
+/* @end */

@@ -1,0 +1,7 @@
+---
+Name: jobroutes
+After: 'framework/routes#coreroutes'
+---
+Director:
+  rules:
+    'api/v1/job-registration-requests': 'JobRegistrationRequestCrudApi'

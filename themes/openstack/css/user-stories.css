@@ -1,0 +1,168 @@
+div.featuredUserStory div.wrapper {
+	font-size: 16px;
+	padding: 20px;
+	-moz-border-radius: 3px; 
+	-webkit-border-radius: 5px;
+    text-shadow: 0 1px 0 rgba(255,255,255,.8);
+	background: no-repeat center #E4EFF2;
+	margin-bottom: 10px;
+	border: 1px solid #B6D8E2;
+	height: 10em;
+}
+
+div.featuredUserStory p, div.otherUsers p {
+	margin-bottom: 10px;
+}
+
+div.featuredUserStory h2, div.otherUsers h2 {
+	margin-top: 10px;
+}
+
+div.featuredUserStory h2 a, div.otherUsers h2 a {
+	color: black;
+	font-size: 1.2em;
+}
+
+.user-story-quote a, .user-story-quote a:visited {
+    color: #535353;
+    text-decoration: underline;
+}
+
+.user-photo {
+	float: left;
+	width: 150px;
+}
+
+.user-photo img {
+	-webkit-transform:rotate(-3deg);
+}
+
+.user-logo {
+	float: left;
+	width: 150px;
+}
+
+.otherUsers {
+		font-size: 16px;
+		margin-bottom: 10px;
+}
+
+.otherUsers h2 {
+    margin-bottom: 5px;
+}
+
+.otherUsers p, .otherUsers h2 {
+	margin-left: 160px;
+}
+
+fieldset {
+	background-color: #F6F6F6;
+}
+
+.listedArea {
+    padding: 12px;
+    color: #1d6006;
+    background-color: #e2f4dc;
+    border: 1px solid #b5c8a8;
+    margin-bottom: 10px;
+}
+
+.listedArea h2 {
+	color: black;
+}
+
+/* @group Release Buttons */
+
+.releaseButton {
+    font-family: 'PT Sans', serif;
+    border: 1px solid #e2e2e2;
+    padding: 0px 15px;
+    color: black!important;
+    text-decoration: none!important;
+    font-size: 12.5px;
+    text-transform: ;
+    line-height: 2.5em;
+    background: #FFFFFF; /* old browsers */
+    background: -moz-linear-gradient(top, #FFFFFF 0%, #F3F3F3 50%, #EBEBEB 100%); /* firefox */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFFFFF), color-stop(50%,#F3F3F3), color-stop(100%,#EBEBEB)); /* webkit */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFFFFF', endColorstr='#EBEBEB',GradientType=0 ); /* ie */
+    box-shadow: 0px 1px 1px rgba(0,0,0,.5);
+    -webkit-box-shadow: 0px 1px 2px rgba(0,0,0,.2);
+    -moz-box-shadow: 0px 1px 2px rgba(0,0,0,.2);
+    text-shadow: #fff 0px 1px 1px;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-bottom-color: #a0a0a0;
+    border-right-color: #bababa;
+    border-left-color: #bababa;
+    display: block;
+    text-align: center;
+}
+
+.releaseButton:first-child {
+    margin-bottom: 10px;
+}
+
+.releaseButton:hover {
+    color: black;
+    -webkit-transition:color 1s ease-out;
+    cursor: pointer;
+}
+
+a.releaseButton:active {
+  background: #ababab;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    border-color: #ababab;
+    border-top-color: #636363;
+    background: -webkit-gradient(linear, left top, left bottom, from(#bebebe), to(#dddddd));
+    background: -moz-linear-gradient(top,  #bebebe,  #eeeeee);  
+    -webkit-transition:none;
+    padding: 0px 15px;
+}
+
+/* @end */
+
+
+.automotive a {
+    display: block;
+    background: #b9301d;
+    padding: 10px 20px;
+    border-radius: 2px;
+    width: 80%;
+    margin: 10px auto 0;
+    color: #fff!important;
+    font-weight: 600;
+    font-size: 150%
+}
+
+.automotive .largeQuote {
+    margin-top: 140px;
+    color: white;
+    font-size: 300%;
+}
+
+.automotive a {
+    text-decoration: none;
+    background: #B73124;
+    color: white;
+    max-width: 200px;
+}
+
+.automotive a:hover {
+    text-decoration: none;
+    background: #831917;      
+    color: white;
+    max-width: 200px;
+}
+
+
+.automotive {
+    text-align: center;
+    color: #f8f8f8;
+    background: url('/themes/openstack/images/landing-pages/auto/hero-bkgd.jpg') no-repeat center center;
+    background-size: cover;
+    position: relative;
+}

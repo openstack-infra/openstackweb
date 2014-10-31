@@ -1,0 +1,101 @@
+
+.optionset label {
+	position: relative;
+	top: 0.2em;
+}
+
+ul.survey-steps {
+	display: block;
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+}
+
+ul.survey-steps li {
+	border: 1px solid #DDDDDD;
+	display: block;
+	float: left;
+	margin: 0px;
+	margin-right: -1px;
+	margin-bottom: 20px;
+}
+
+ul.survey-steps li a {
+	padding: 10px;
+	display: block;
+}
+
+
+ul.survey-steps li a.current {
+	font-weight: bold;
+}
+
+ul.survey-steps li a.future {
+	background-color: #F2F0F4;
+	color: #7E7E7E;
+}
+
+form hr {
+	margin-top: 15px;
+	margin-bottom: 20px;
+}
+
+ul.optionset {
+	padding-left: 15px;
+}
+
+ul.optionset li {
+	list-style: none;
+}
+
+ul.optionset li label {
+	font-weight: normal;
+}
+
+.field {
+	margin-bottom: 15px;
+}
+
+div.deployment {
+	border: 1px solid #DDDDDD;
+	background: url(/themes/openstack/images/user-survey/cloud.png) no-repeat 5px 10px;
+	margin-top: -1px;
+}
+
+div.deployment a.deployment-name {
+	display: inline-block;
+	margin: 10px;
+	margin-left: 30px;
+}
+
+div#user, div#time, div#private {
+	border: 2px solid #CCCCCC;
+	padding: 15px;
+	padding-top: 100px;
+	min-height: 13em;
+	margin-bottom: 20px;
+}
+
+div#user {
+	background: url(/themes/openstack/images/user-survey/user-survey.gif) no-repeat center 20px;
+}
+
+div#time {
+	background: url(/themes/openstack/images/user-survey/stopwatch.gif) no-repeat center 20px;
+}
+
+div#private {
+	background: url(/themes/openstack/images/user-survey/private.gif) no-repeat center 20px;
+}
+
+div.current-user {
+	text-align: right;
+}
+
+#DeploymentSurveyDeploymentDetailsForm_Form_OtherWorkloadsDescription {
+	height: 4em;
+}
+
+#DeploymentSurveyMoreDeploymentDetailsForm_Form_WhyNovaNetwork {
+	height: 4em;
+}

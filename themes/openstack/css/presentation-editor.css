@@ -1,0 +1,153 @@
+/* Imports */
+/* @import "partials/colors" */
+/* Page Structure */
+/* line 14 */
+body {
+  margin-top: 100px; }
+
+/* line 17 */
+.title {
+  color: white; }
+
+/* line 20 */
+#presentation-area {
+  height: 640px;
+  border: 1px solid #a5a5a5;
+  border-right: none; 
+  overflow-y: scroll; }
+
+/* line 25 */
+#presentation-labels {
+  height: 640px;
+  border: 1px solid #a5a5a5;
+  border-left: none; }
+
+/* line 30 */
+#search {
+  background-color: #ededed;
+  padding: 5px;
+  border-left: 1px solid #a5a5a5;
+  border-right: 1px solid #a5a5a5;
+  height: 100px; }
+
+/* line 37 */
+#search .btn-toolbar {
+  margin-top: 10px; }
+
+/* line 40 */
+.presentaiton {
+  margin: 0px !important;
+  border-bottom: 1px solid #d4e4fa;
+  padding-top: 10px;
+  background-color: #f3f6fa; }
+
+/* line 46 */
+#presentation-list {
+  height: 600px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  border: 1px solid #a5a5a5; }
+  /* line 52 */
+  #presentation-list .label {
+    background-color: #5ca6de;
+    width: 100px;
+    display: inline-block;
+    padding: 5px;
+    text-align: center; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; }
+
+/* line 59 */
+#presentation-list-header {
+  background-color: #ededed;
+  padding: 10px 5px;
+  margin: 0px;
+  border: 1px solid #a5a5a5;
+  height: 50px; }
+
+/* line 66 */
+#presentation-area-header {
+  border: 1px solid #a5a5a5;
+  border-bottom: none;
+  height: 110px; }
+
+/* line 71 */
+#presentation-tabs {
+  margin-top: 20px;
+  margin-bottom: 20px; }
+
+/* line 75 */
+#keyboard-shortcuts {
+  margin-top: 20px; }
+
+/* line 79 */
+#presentation-labels .category {
+  display: block;
+  margin-bottom: 10px;
+  padding: 10px 5px;
+  background-color: #ededed;
+  border-radius: 3px;
+  color: grey; 
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+  /* line 86 */
+  #presentation-labels .category span {
+    border-right: 1px solid #dddddd;
+    display: inline-block;
+    padding: 10px 10px;
+    margin: -10px 0px;
+    margin-right: 5px;
+    font-weight: normal; }
+/* line 93 */
+#presentation-labels .user-selected {
+  color: black;
+  font-weight: bold; }
+/* line 96 */
+#presentation-labels .main-topic {
+  color: white;
+  font-weight: bold;
+  background-color: #5ca6de; }
+
+/* line 101 */
+.section-label {
+  color: grey;
+  text-transform: uppercase;
+  margin-top: 10px; }
+
+/* line 106 */
+#presentation-area-header h4, #presentation-area h4 {
+  margin-top: 0px; }
+
+/* line 109 */
+#presentation-labels h4 {
+  margin-top: 30px; }
+
+#presentation-area-header h4 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 1em;
+}
+
+.selected {
+  background-color: #D8E7FA;
+}
+
+#PresentationFlagForm_FlagForm_FlagComment {
+  width: 100%;
+  margin-bottom: 20px;
+  height: 2em;
+}
+
+.flag-comment {
+  background: url(/themes/openstack/images/red-flag.png) left 3px no-repeat;
+  padding-left: 30px;
+  height: 30px;
+  padding-top: 8px;
+}
+
+.category-count {
+  color: #AAA9A8;
+}

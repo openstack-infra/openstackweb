@@ -1,0 +1,20 @@
+
+p .message .required{
+
+}
+
+#Form_EditFileForm_error{
+    border:solid 1px lightcoral;
+    -webkit-border-radius: 05px;
+    -moz-border-radius: 05px;
+    border-radius: 05px;
+    background-color: red;
+    color: white;
+    display: block;
+    margin-top: 5px;
+    font-weight: bold;
+    font-size: 10px;
+    padding: 0.3em;
+    width: auto;
+    max-width: 250px;
+}

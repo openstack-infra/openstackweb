@@ -1,0 +1,63 @@
+
+ul#election-nav li a {
+	display: block;
+	padding: 7px 20px 7px 20px;
+	text-decoration: none;
+	color: black;
+}
+
+ul#election-nav li a:hover {
+	background-color: rgba(98, 157, 192, 0.10);
+}
+
+ul#election-nav {
+	background: #D8E9ED; /* old browsers */
+	background: -moz-linear-gradient(top, #E4EEF1 0%, #D8E9ED 50%, #CCE4E8 100%); /* firefox */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#E4EEF1), color-stop(50%,#D8E9ED), color-stop(100%,#CCE4E8)); /* webkit */
+	border: 1px solid #b6d8e2;
+	font-size: 110%;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	width: 98%;
+	margin-bottom: 14px;
+	padding-left: 0px;
+	margin-right: 0px;
+}
+
+ul#election-nav li {
+	list-style-type: none;
+	border-bottom: 1px solid #b6d8e2;
+	border-top: 1px solid white;
+	padding-top: 1px;
+	padding-bottom: 1px;
+}
+
+ul#election-nav li:first-child {
+	border-top: none;
+}
+
+ul#election-nav li:last-child {
+	border-bottom: none;
+}
+
+.nominations span {
+	border-radius: 3px;
+	display: inline-block;
+	background-color: #EDEDED;
+	padding: 1px 6px;
+	margin-left: 5px;
+	margin-bottom: 2px;
+}
+
+.candidate h4 {
+	margin-bottom: 5px;
+}
+
+.candidate:last-child hr {
+	display: none;
+}
+
+h2 {
+	padding-top: 20px!important;
+}

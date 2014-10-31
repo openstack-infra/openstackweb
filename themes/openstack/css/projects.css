@@ -1,0 +1,118 @@
+/* @override 
+	http://localhost:8888/themes/openstack/css/projects.css
+	http://openstack.dev/themes/openstack/css/projects.css
+*/
+
+.projectBoxes h2 {
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+
+h3 {
+	font-family: 'PT Sans', serif;
+	font-style: normal;
+	letter-spacing: -0.076em;
+	line-height: 1em;
+	color: #264d69;
+	margin-bottom: 15px;
+}
+
+h4 {
+	margin-bottom: 0px!important;
+}
+
+.projectBoxes {
+	border-bottom: 1px solid #d3d3d3;
+	padding-bottom: 0px;
+	margin-bottom: 10px;
+}
+
+.communityProjects p {
+	margin-bottom: 10px;
+}
+
+.projectBoxes {
+	border-top: 1px solid #d3d3d3;
+}
+
+.projectBoxes h2 a {
+	display: block;
+	width: 100%;
+	text-align: center;
+	font-size: 16px;
+	padding: 2px;
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
+    text-shadow: 0 1px 0 rgba(255,255,255,.8);
+    padding-top: 120px;
+    padding-bottom: 15px;
+	background: no-repeat center 13px #e8e8e8;
+}
+
+.projectBoxes h2 a:hover {
+	text-decoration: none;
+	color: inherit;
+	background-color: #e2ecef;
+	-webkit-transition:background-color 1s ease-out;
+}
+
+div#compute a {
+	background-image: url(/themes/openstack/images/openstack-compute-icon.png);
+}
+
+div#compute a {
+	background-image: url(/themes/openstack/images/openstack-compute-icon.png);
+}
+
+div#imageService a {
+	background-image: url(/themes/openstack/images/openstack-image-service-icon.png);
+}
+
+div#storage a {
+	background-image: url(/themes/openstack/images/openstack-storage-icon.png);
+}
+
+div.projectBoxes p {
+	color: #a8a8a8;
+	font-size: 11.5px;
+}
+
+div.projectBoxes p strong {
+	font-weight: normal;
+	color: black;
+}
+
+ul.incubatedProjects li {
+	list-style: none;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	margin: 0px;
+	padding-left: 50px;
+}
+
+ul.incubatedProjects li#dashboard {
+	background: url(/themes/openstack/images/dashboard.png) no-repeat left top;
+}
+
+
+ul.incubatedProjects li#identity {
+	background: url(/themes/openstack/images/identity-service.png) no-repeat left top;
+}
+
+ul.incubatedProjects {
+	padding: 0px;
+}
+
+ul.incubatedProjects a, ul.incubatedProjects a:visited {
+	color: black;
+}
+
+span.new {
+	display: inline-block;
+	padding: 3px 8px;
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
+	text-shadow: 0 1px 0 rgba(255,255,255,.8);
+	background-color: #e8e8e8;
+	margin-top: -3px;
+}

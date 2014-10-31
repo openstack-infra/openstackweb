@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.4, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="421.667px" height="217px" viewBox="0 0 421.667 217" enable-background="new 0 0 421.667 217" xml:space="preserve">
+<g>
+	<g>
+		<circle fill="#6BC8C3" cx="87.429" cy="87.783" r="80"/>
+		<path fill="#50BAAD" d="M34.196,147.501c-16.425-14.65-26.768-35.977-26.768-59.719c0-44.183,35.817-80,80-80v81.5"/>
+	</g>
+	<text transform="matrix(1 0 0 1 38.0562 86.6807)"><tspan x="0" y="0" fill="#FFFFFF" font-family="'OpenSans-Bold'" font-size="18">40 Minutes</tspan><tspan x="-3.464" y="14.4" fill="#FFFFFF" font-family="'OpenSans-Light'" font-size="12">before optimization</tspan></text>
+</g>
+<g>
+	<circle fill="#DA3E27" cx="336.131" cy="87.783" r="80"/>
+	<g>
+		<path fill="#C33627" d="M373.556,134.708h-12.389l-25.229-41.276l-25.678,41.276h-11.555l31.198-49.044l-29.08-44.808h12.068
+			l23.303,37.169l23.495-37.169h11.619l-29.08,44.423L373.556,134.708z"/>
+	</g>
+	<text transform="matrix(1 0 0 1 291.0957 82.0586)"><tspan x="0" y="0" fill="#FFFFFF" font-family="'OpenSans-Bold'" font-size="18">Unable To</tspan><tspan x="4.057" y="21.6" fill="#FFFFFF" font-family="'OpenSans-Bold'" font-size="18">Compute</tspan></text>
+</g>
+<text transform="matrix(1 0 0 1 189 96.2422)" fill="#B1BAC0" font-family="'OpenSans-Bold'" font-size="30">vs.</text>
+<rect x="6.571" y="178.5" fill="none" width="161.715" height="43.125"/>
+<text transform="matrix(0.9787 0 0 1 43.6475 187.8184)"><tspan x="0" y="0" fill="#333333" font-family="'OpenSans'" font-size="12.2615">OpenStack POC</tspan><tspan x="17.375" y="19" fill="#333333" font-family="'OpenSans'" font-size="11">(Half-Rack)</tspan></text>
+<rect x="256.571" y="178.5" fill="none" width="161.715" height="43.125"/>
+<text transform="matrix(0.9787 0 0 1 289.458 187.8184)" fill="#333333" font-family="'OpenSans'" font-size="12.2615">Legacy Appliance</text>
+</svg>

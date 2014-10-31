@@ -1,0 +1,249 @@
+/* line 11, /Users/toddmorey/Documents/webdev/websites/new-openstack-site/source/stylesheets/_variables.css.scss */
+.lines-background {
+  background: url("/images/diagonal-lines-background.png"); }
+
+/* Rounded Buttons */
+/* line 17, /Users/toddmorey/Documents/webdev/websites/new-openstack-site/source/stylesheets/_variables.css.scss */
+.roundedButton, input.action {
+  font-family: 'PT Sans', serif;
+  border: 1px solid #e2e2e2;
+  padding: 4px 15px;
+  color: black !important;
+  text-decoration: none !important;
+  font-size: 12.5px;
+  line-height: 3em;
+  background: #FFFFFF;
+  /* old browsers */
+  background: -moz-linear-gradient(top, white 0%, #f3f3f3 50%, #ebebeb 100%);
+  /* firefox */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(50%, #f3f3f3), color-stop(100%, #ebebeb));
+  /* webkit */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#EBEBEB',GradientType=0 );
+  /* ie */
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+  text-shadow: #fff 0px 1px 1px;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-bottom-color: #a0a0a0;
+  border-right-color: #bababa;
+  border-left-color: #bababa; }
+
+/* line 41, /Users/toddmorey/Documents/webdev/websites/new-openstack-site/source/stylesheets/_variables.css.scss */
+.roundedButton:hover, input.action:hover {
+  color: black;
+  -webkit-transition: color 1s ease-out;
+  cursor: pointer; }
+
+/* line 47, /Users/toddmorey/Documents/webdev/websites/new-openstack-site/source/stylesheets/_variables.css.scss */
+a.roundedButton:active, input.action:active {
+  background: #ababab;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  border-color: #ababab;
+  border-top-color: #636363;
+  background: -webkit-gradient(linear, left top, left bottom, from(#bebebe), to(#dddddd));
+  background: -moz-linear-gradient(top, #bebebe, #eeeeee);
+  -webkit-transition: none;
+  padding: 4px 15px; }
+
+/* line 60, /Users/toddmorey/Documents/webdev/websites/new-openstack-site/source/stylesheets/_variables.css.scss */
+input.action {
+  line-height: 1.2em !important; }
+
+/* end */
+/* line 3, /Users/toddmorey/Documents/webdev/websites/new-openstack-site/source/stylesheets/app.css.scss */
+h1 {
+  margin-bottom: 10px;
+  font-size: 40px;
+  line-height: 40.5px;
+  color: #0d5871 !important; }
+
+/* line 10, /Users/toddmorey/Documents/webdev/websites/new-openstack-site/source/stylesheets/app.css.scss */
+a.brand {
+  background: url("/images/openstack-logo.png") no-repeat -8px center;
+  text-indent: -2000px;
+  height: 100px;
+  margin-right: 20px;
+  padding: 0px; }
+
+/* line 18, /Users/toddmorey/Documents/webdev/websites/new-openstack-site/source/stylesheets/app.css.scss */
+a {
+  color: #0d5871;
+  text-decoration: none; }
+
+/* line 23, /Users/toddmorey/Documents/webdev/websites/new-openstack-site/source/stylesheets/app.css.scss */
+.navbar .brand {
+  padding-left: 0px;
+  padding-right: 10px; }
+
+/* line 28, /Users/toddmorey/Documents/webdev/websites/new-openstack-site/source/stylesheets/app.css.scss */
+.nav {
+  text-transform: uppercase; }
+
+/* line 32, /Users/toddmorey/Documents/webdev/websites/new-openstack-site/source/stylesheets/app.css.scss */
+.navbar .nav > li > a {
+  padding: 15px 20px 15px 20px; }
+
+/* line 36, /Users/toddmorey/Documents/webdev/websites/new-openstack-site/source/stylesheets/app.css.scss */
+.nav li.main a {
+  color: black;
+  background-color: #f9f9f9;
+  border: 1px solid lightgrey;
+  border-top: 0px;
+  margin-left: -1px; }
+
+/* line 44, /Users/toddmorey/Documents/webdev/websites/new-openstack-site/source/stylesheets/app.css.scss */
+.nav li.selected a {
+  color: #c03a2e;
+  font-weight: bold;
+  border-top: 3px solid #c03a2e;
+  margin-top: -3px; }
+
+/* line 51, /Users/toddmorey/Documents/webdev/websites/new-openstack-site/source/stylesheets/app.css.scss */
+body {
+  border-top: 3px solid #187c98; }
+
+/* line 55, /Users/toddmorey/Documents/webdev/websites/new-openstack-site/source/stylesheets/app.css.scss */
+.navbar {
+  border-top: 0px; }
+
+/* line 59, /Users/toddmorey/Documents/webdev/websites/new-openstack-site/source/stylesheets/app.css.scss */
+.navbar-inner {
+  background-color: white;
+  background-image: none;
+  border: none;
+  box-shadow: none; }
+
+/* line 67, /Users/toddmorey/Documents/webdev/websites/new-openstack-site/source/stylesheets/app.css.scss */
+.navbar-fixed-top .navbar-inner,
+.navbar-static-top .navbar-inner {
+  box-shadow: none; }
+
+/* line 71, /Users/toddmorey/Documents/webdev/websites/new-openstack-site/source/stylesheets/app.css.scss */
+h1, h2, h3 {
+  font-family: 'PT Sans', serif;
+  font-weight: normal;
+  color: #0d5871; }
+
+/* line 77, /Users/toddmorey/Documents/webdev/websites/new-openstack-site/source/stylesheets/app.css.scss */
+h3 {
+  color: #127d98; }
+
+/* line 81, /Users/toddmorey/Documents/webdev/websites/new-openstack-site/source/stylesheets/app.css.scss */
+h1 {
+  letter-spacing: -2px; }
+
+/* line 85, /Users/toddmorey/Documents/webdev/websites/new-openstack-site/source/stylesheets/app.css.scss */
+h4 {
+  font-weight: normal;
+  color: #31322E;
+  margin-bottom: 0px; }
+
+/* line 91, /Users/toddmorey/Documents/webdev/websites/new-openstack-site/source/stylesheets/app.css.scss */
+h4 + h1 {
+  margin-top: 0px; }
+
+/* line 95, /Users/toddmorey/Documents/webdev/websites/new-openstack-site/source/stylesheets/app.css.scss */
+.grey-background {
+  border: 1px solid #dedddf;
+  border-left: none;
+  border-right: none;
+  margin-top: 20px;
+  background-color: #f9f9f9; }
+
+/* line 103, /Users/toddmorey/Documents/webdev/websites/new-openstack-site/source/stylesheets/app.css.scss */
+.grey-background .white {
+  border: 1px solid #dedddf;
+  background-color: white;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 10px; }
+
+/* line 110, /Users/toddmorey/Documents/webdev/websites/new-openstack-site/source/stylesheets/app.css.scss */
+.navbar-search .search-query {
+  margin-bottom: 0;
+  padding: 4px 14px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px; }
+
+/* line 122, /Users/toddmorey/Documents/webdev/websites/new-openstack-site/source/stylesheets/app.css.scss */
+.navbar-inner {
+  padding-right: 0px; }
+
+/* line 126, /Users/toddmorey/Documents/webdev/websites/new-openstack-site/source/stylesheets/app.css.scss */
+.navbar-search {
+  margin-top: 10px; }
+
+/* Sidenav for Pages
+-------------------------------------------------- */
+/* line 134, /Users/toddmorey/Documents/webdev/websites/new-openstack-site/source/stylesheets/app.css.scss */
+.page-nav {
+  width: 228px;
+  margin: 30px 0 0;
+  padding: 0;
+  background-color: #fff;
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065); }
+
+/* line 143, /Users/toddmorey/Documents/webdev/websites/new-openstack-site/source/stylesheets/app.css.scss */
+.page-nav > li > a {
+  display: block;
+  width: 190px \9;
+  margin: 0 0 -1px;
+  padding: 8px 14px;
+  border: 1px solid #e5e5e5;
+  color: #585859; }
+
+/* line 152, /Users/toddmorey/Documents/webdev/websites/new-openstack-site/source/stylesheets/app.css.scss */
+.page-nav > .active > a {
+  position: relative;
+  z-index: 2;
+  padding: 9px 15px;
+  border: 0;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.1), inset -1px 0 0 rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.1), inset -1px 0 0 rgba(0, 0, 0, 0.1);
+  box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.1), inset -1px 0 0 rgba(0, 0, 0, 0.1); }
+
+/* line 163, /Users/toddmorey/Documents/webdev/websites/new-openstack-site/source/stylesheets/app.css.scss */
+.release-buttons {
+  margin-top: 10px;
+  padding: 0px 5px;
+  background-color: #F2F2F2;
+  text-align: center;
+  border: 1px solid lightgrey; }
+
+/* line 171, /Users/toddmorey/Documents/webdev/websites/new-openstack-site/source/stylesheets/app.css.scss */
+.release-buttons a {
+  font-size: 110%; }
+
+/* line 175, /Users/toddmorey/Documents/webdev/websites/new-openstack-site/source/stylesheets/app.css.scss */
+a.video {
+  display: inline-block;
+  background-color: #f9f9f9;
+  background: url("/images/play-arrow.png") #f9f9f9 no-repeat center center;
+  border: 1px solid lightgrey;
+  width: 200px;
+  height: 100px;
+  text-indent: -1000px; }
+
+/* line 186, /Users/toddmorey/Documents/webdev/websites/new-openstack-site/source/stylesheets/app.css.scss */
+.top-line {
+  border-top: #dedddf 1px solid;
+  margin-top: 20px; }
+
+/* line 191, /Users/toddmorey/Documents/webdev/websites/new-openstack-site/source/stylesheets/app.css.scss */
+a:not([href]) {
+  color: inherit;
+  text-decoration: none; }

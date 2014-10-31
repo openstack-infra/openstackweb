@@ -1,0 +1,113 @@
+.container{
+    width:99%;
+}
+
+@-moz-document url-prefix() {
+    fieldset {
+        display: table-cell;
+    }
+}
+
+label.error{
+    position: absolute;
+    display: block;
+    margin-top: 10px;
+    padding: 5px;
+    z-index: 1000;
+}
+
+select.error{
+    padding: 0;
+}
+
+input.error{
+    border: 1px solid #8A1F11;
+}
+
+.profile-tabs a {
+    display: inline-block;
+    background-color: #EFEFEF;
+    padding: 10px 20px;
+    border: 1px solid #CCCCCC;
+    margin-right: -1px;
+    margin-bottom:0px;
+    font-size: 90%;
+}
+
+.profile-tabs {
+    margin: 0px;
+    padding: 0px;
+    margin-bottom: 10px;
+}
+
+.profile-tabs a.active {
+    background-color: white;
+    border-bottom-color: white;
+}
+
+.product-button{
+    overflow:hidden;
+    white-space: nowrap;
+    font-weight:normal;
+    float:left;
+    text-align:center;
+    padding:0 !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    margin-left: 10px;
+}
+
+#add_datacenter_location_country_chosen{
+    margin-top:10px;
+}
+
+#add_datacenter_location_region_chosen{
+    margin-top:10px;
+}
+
+.location-country-container .chosen-container{
+    margin-top:10px;
+}
+
+.location-region-container .chosen-container{
+    margin-top:10px;
+}
+
+.countries-ddl{
+    width: 200px;
+}
+
+.main-table {
+    border: 1px solid #ccc;
+    border-collapse:collapse;
+    clear:both;
+}
+
+.main-table th, .main-table td{
+    border: 1px solid #ccc;
+    background-color: white;
+}
+
+.nav-bar-container{
+    display:block;
+    clear:both;
+    padding-bottom:25px;
+}
+
+.admin-table {
+    border: 1px solid #ccc; border-collapse:collapse;clear:both;
+}
+
+.admin-table th {
+    border: 1px solid #ccc;background:#eaeaea !important;
+}
+
+.admin-table td{
+    border: 1px solid #ccc;background:#fff;text-align:center;
+}
+
+.loggedInBox{
+    clear: both;
+    display: block;
+    padding-bottom: 25px;
+}

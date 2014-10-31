@@ -1,0 +1,127 @@
+/* @override 
+	http://www.openstack.org/css/main.css
+	http://localhost:8888/themes/openstack/css/main.css
+	http://staging.openstack.org/themes/openstack/css/main.css
+	http://localhost:8888/themes/openstack/css/pdf.css
+*/
+
+@page {
+  size: 8.5in 11in;
+  margin: 0.25in 0.25in 0.25in 0.25in;
+}
+
+body {
+	padding: 0in;
+	margin: 0in;
+	background: white;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	line-height: 1.4em;
+}
+
+#logo a {
+	display: block;
+	margin-top: 8px;
+	text-indent: -1000em;
+	background: url(../images/open-stack-cloud-computing-logo-2.png) no-repeat left center;
+	height: 54px;
+	width: 177px;
+	margin-left: -10px;
+}
+
+
+div.content {
+	width: 4.75in;
+	float: left;
+}
+
+div.sidebar {
+	width: 3in;
+	float: left;
+	margin-left: 0.25in;
+}
+
+div.container {
+	clear: both;
+	width: 8in;
+}
+
+ul {
+	margin-left: 0pt;
+	padding-left: 10pt;
+	font-size: ;
+}
+
+li {
+	list-style-type: square;
+	line-height: 1.3em;
+	margin-bottom: 10px;
+}
+
+a, a:visited {
+	color: #bc1518;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+h1, h2 {
+	 letter-spacing: -0.076em;
+	 color: #ca1015;
+	 font: normal 1pt/1em 'PT Sans', serif;
+	 font-size: 14pt;
+}
+
+.topBorder {
+	position: absolute;
+	display: block;
+	float: left;
+	top: 0.4in;
+	left: 1.7in;
+	width: 6.3in;
+}
+
+hr {
+	height: 1px;
+	color: #9fd4d9;
+	background-color: #9fd4d9;
+	border: none;
+}
+
+.content h1, .content h2, .sidebar h1 {
+	 border-bottom: 1px dotted #d1d1cf;
+	 padding-bottom: 10px;
+}
+
+.sidebar h2 {
+	color: black;
+	font-weight: bold;
+	font-size: 12pt;
+}
+
+h1.pageTitle {
+	color: black;
+	font-size: 22pt;
+	margin-bottom: 0px;
+}
+
+h2.subTitle {
+	color: #7e7f7e;
+	font-weight: normal;
+	margin-top: 5px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12pt;
+	 letter-spacing: 0em;
+}
+
+
+#footer {
+	position: absolute;
+	display: block;
+	float: left;
+	top: 10in;
+	font-size: 0.9em;
+	width: 8in;
+}
