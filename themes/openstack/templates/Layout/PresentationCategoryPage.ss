@@ -22,7 +22,7 @@
 				<img id="play" src="//www.openstack.org/themes/openstack/images/landing-pages/auto/play-button.png">
 			</div>
 		</div>
-		<img src="//img.youtube.com/vi/{$YouTubeID}/maxresdefault.jpg">
+		<img src="//img.youtube.com/vi/{$YouTubeID}/0.jpg">
 	</a>
 </div>
 <% end_loop %>
