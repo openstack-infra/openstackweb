@@ -15,6 +15,7 @@ vendor/
 /cache/*
 .htaccess
 debug.log
+index.php
 openstack/_live-config.php
 _ss_environment.php
 simplepie/cache/*
