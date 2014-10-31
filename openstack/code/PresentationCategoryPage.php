@@ -23,7 +23,7 @@ class PresentationCategoryPage extends Page {
    static $has_many = array(
    		'Presentations' => 'Presentation'
    	);
- 
+
    static $allowed_children = array('PresentationCategoryPage');
    /** static $icon = "icon/path"; */
 
@@ -44,52 +44,46 @@ class PresentationCategoryPage extends Page {
 	}
 
 }
- 
+
 class PresentationCategoryPage_Controller extends Page_Controller {
 
 
 	static $allowed_actions = array(
 		'presentation',
 		'updateURLS' => 'admin'
-	);	
-	
+	);
+
 	public function Presentations(){
-		if(isset($_GET['day'])){
-			$sessions = "";
-			$day = Convert::raw2xml($_GET['day']);
-			$day = (int)$day;
-			if (is_numeric($day)) {
-		   		$sessions = Presentation::get()->filter(array( 'PresentationCategoryPageID' => $this->ID , 'Day' => $day))->sort('StartTime','ASC');
-		   	} else {
-		   		$sessions = Presentation::get()->filter(array( 'PresentationCategoryPageID' => $this->ID , 'Day' => 1))->sort('StartTime','ASC');
-		   	}
-	  	} else {
-		   		$sessions = Presentation::get()->filter(array( 'PresentationCategoryPageID' => $this->ID , 'Day' => 1))->sort('StartTime','ASC');
-	  	}
+		 $sessions = dataobject::get('Presentation','`YouTubeID` IS NOT NULL AND PresentationCategoryPageID = '.$this->ID,'StartTime DESC');
 		return $sessions;
-	}	
-	
+	}
+
 	function init() {
 
 	   parent::init();
 	   if(isset($_GET['day'])) {
 	   		Session::set('Day', $_GET['day']);
 	   } else {
-	   		Session::set('Day', 1);	   	
+	   		Session::set('Day', 1);
 	   }
 
+     if (Director::urlParam("OtherID") != "presentation") Session::set('Autoplay',TRUE);
 	}
 
 	//Show the Presentation detail page using the PresentationCategoryPage_presentation.ss template
-	function presentation() 
-	{		
+	function presentation()
+	{
 		if($Presentation = $this->getPresentationByURLSegment())
 		{
 			$Data = array(
 				'Presentation' => $Presentation
 			);
-			
-			$this->Title = $Presentation->Name;           
+
+			$this->Title = $Presentation->Name;
+      $this->Autoplay = Session::get('Autoplay');
+
+      // Clear autoplay so it only happens when you come directly from videos index
+      Session::set('Autoplay',FALSE);
 
 			//return our $Data to use on the page
 			return $this->Customise($Data);
@@ -100,6 +94,15 @@ class PresentationCategoryPage_Controller extends Page_Controller {
 			return $this->httpError(404, 'Sorry that presentation could not be found');
 		}
 	}
+
+  function PresentationDayID($PresentationDay) {
+    return trim($PresentationDay,' ');
+  }
+
+  function LatestPresentation()
+  {
+    return $this->Presentations()->first();
+  }
 
 
 	// Check to see if the page is being accessed in Chinese
@@ -119,8 +122,8 @@ class PresentationCategoryPage_Controller extends Page_Controller {
 	{
 		$Params = $this->getURLParams();
 		$Segment = convert::raw2sql($Params['ID']);
-		if($Params['ID'] && $Presentation = Presentation::get()->filter(array('URLSegment' => $Segment, 'PresentationCategoryPageID' => $this->ID))->first())
-		{	
+		if($Params['ID'] && $Presentation = DataObject::get_one('Presentation', "`URLSegment` = '".$Segment."' AND `PresentationCategoryPageID` = ".$this->ID))
+		{
 			return $Presentation;
 		}
 	}
@@ -141,7 +144,6 @@ class PresentationCategoryPage_Controller extends Page_Controller {
 			}
 		}
 		echo "Presentation URLS updated.";
-	}		
-
+	}
 
 }

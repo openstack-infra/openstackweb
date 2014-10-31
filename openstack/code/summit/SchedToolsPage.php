@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Openstack Foundation
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -33,19 +34,20 @@ class SchedToolsPage extends Page
 
 class SchedToolsPage_Controller extends Page_Controller
 {
-		public static $allowed_actions = array (
-      		'ImportSpeakersFromSched' => 'ADMIN',
-      		'ImportSessionsFromSched' => 'ADMIN',
-      		'ListSpeakers' => 'ADMIN',
-			'SpeakerTable' => 'ADMIN',
-      		'Presentations',
-      		'Upload',
-      		'Form',
-      		'Success',
-      		'LinkTo',
-      		'LinkToForm',
-      		'EmailSpeakers' => 'ADMIN'
-      	);
+	public static $allowed_actions = array(
+		'ImportSpeakersFromSched' => 'ADMIN',
+		'ImportSessionsFromSched' => 'ADMIN',
+		'ListSpeakers' => 'ADMIN',
+		'SpeakerTable' => 'ADMIN',
+		'Presentations',
+		'Upload',
+		'Form',
+		'Success',
+		'LinkTo',
+		'LinkToForm',
+		'EmailSpeakers' => 'ADMIN',
+		'AssignYouTubeID'
+	);
 
 	function init()
 	{
@@ -81,13 +83,50 @@ class SchedToolsPage_Controller extends Page_Controller
 
 
 			");
+
+	}
+
+	function AssignYouTubeID()
+	{
+		if (isset($_GET['token']) &&
+			$_GET['token'] == "fcv4x7Nl8v" &&
+			isset($_GET['youtubeid']) &&
+			isset($_GET['schedid'])
+		) {
+
+			$CleanedYoutubeID = Convert::raw2sql($_GET['youtubeid']);
+			$CleanedSchedID = Convert::raw2sql($_GET['schedid']);
+
+			$Presentation = DataObject::get_one('Presentation', "`event_key` = '" . $CleanedSchedID . "'");
+
+			If ($Presentation) {
+
+				// Add the YouTubeID to an existing presentation
+				$Presentation->YouTubeID = $CleanedYoutubeID;
+				$Presentation->write();
+
+			} else {
+
+				// Create a new presentation with this sched event and add the youtube id
+				$SchedEvent = DataObject::get_one('SchedEvent', "`event_key` = '" . $CleanedSchedID . "'");
+				if ($SchedEvent) {
+					$Presentation = new Presentation();
+					$Presentation->PopulateFromSchedEvent($SchedEvent->ID);
+					$Presentation->YouTubeID = $CleanedYoutubeID;
+					$Presentation->sched_key = $SchedEvent->sched_key;
+					$Presentation->write();
+				}
+
+			}
+
+		}
 	}
 
 
 	function ImportSpeakersFromSched()
 	{
 
-		$feed = new RestfulService('http://openstacksummitnovember2014paris.sched.org/api/role/export?api_key=41caf3c5cafc24e286ade21926eaeb41&role=speaker&format=xml&fields=username,name,email',7200);
+		$feed = new RestfulService('http://openstacksummitnovember2014paris.sched.org/api/role/export?api_key=41caf3c5cafc24e286ade21926eaeb41&role=speaker&format=xml&fields=username,name,email', 7200);
 
 		$feedXML = $feed->request()->getBody();
 
@@ -167,7 +206,7 @@ class SchedToolsPage_Controller extends Page_Controller
 
 			$key = Convert::raw2sql($_GET['key']);
 			$username = SchedSpeaker::HashToUsername($key);
-			$Speaker  = SchedSpeaker::get()->filter('username',$username)->first();
+			$Speaker = SchedSpeaker::get()->filter('username', $username)->first();
 
 		} elseif ($speakerID = Session::get('UploadMedia.SpeakerID')) {
 
@@ -232,7 +271,7 @@ class SchedToolsPage_Controller extends Page_Controller
 		if ( // make sure the data is numeric
 			is_numeric($PresentationID) &&
 			// make sure there's a presentation by that id
-			($Presentation = SchedEvent::get()->byID( $PresentationID)) &&
+			($Presentation = SchedEvent::get()->byID($PresentationID)) &&
 			// pull the speaker from the session and make sure they are a speaker for this presentation
 			($SpeakerID = Session::get('UploadMedia.SpeakerID')) &&
 			($Presentation->IsASpeaker($SpeakerID))
@@ -260,7 +299,7 @@ class SchedToolsPage_Controller extends Page_Controller
 	{
 
 		$PresentationID = Session::get('UploadMedia.PresentationID');
-		$Presentation = SchedEvent::get()->byID( $PresentationID);
+		$Presentation = SchedEvent::get()->byID($PresentationID);
 
 		$Form = new PresentationLinkToForm($this, 'LinkToForm');
 		if ($Presentation && $Presentation->Metadata()) $Form->loadDataFrom($Presentation->Metadata());
@@ -309,7 +348,7 @@ class SchedToolsPage_Controller extends Page_Controller
 		$Speakers = SchedSpeaker::get();
 		foreach ($Speakers as $Speaker) {
 
-		  if ($Speaker->PresentationsForThisSpeaker() &&
+			if ($Speaker->PresentationsForThisSpeaker() &&
 				!$Speaker->GeneralOrKeynote() &&
 				!SchedSpeakerEmailLog::BeenEmailed($Speaker->email) &&
 				$this->validEmail($Speaker->email)
