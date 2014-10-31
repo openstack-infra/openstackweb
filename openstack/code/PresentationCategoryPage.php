@@ -101,7 +101,7 @@ class PresentationCategoryPage_Controller extends Page_Controller {
 
   function LatestPresentation()
   {
-    return $this->Presentations()->first();
+    if ($this->Presentations()) return $this->Presentations()->first();
   }
 
 
