@@ -4,9 +4,9 @@ The OpenStack Foundation Website
 
 WHAT IS IT?
 
-openstack.org runs a PHP web application called Silverstripe, and we've made several improvements to meet the specific needs of OpenStack. More about the Silverstripe CMS is available here: http://silverstripe.org/
+This project includes the code that powers the openstack.org website, which is itself powered by a PHP web application called Silverstripe, and we've made several customizations to meet the specific needs of OpenStack. More about the Silverstripe CMS is available here: http://silverstripe.org/
 
-This repository is designed to help other project members develop, test, and contribute to the openstack.org website project. Note that this project is only for code that powers the public openstack.org website. To participate in building the actual OpenStack software, go to:
+This repository is designed to help other project members develop, test, and contribute to the openstack.org website project, or to build other websites. Note that this project is based on ther code that powers the public openstack.org _website_ , not the openstack cloud software itself. To participate in building the actual OpenStack cloud platform software, go to:
 http://wiki.openstack.org/HowToContribute
 
 WHY RELEASE THE SOURCE?
@@ -29,22 +29,22 @@ WHAT'S INCLUDED
 Included in this repository are:
 
 Third Party:
-- The Silverstripe CMS v 3.1.x (for easy of deployment)
+- The Silverstripe CMS v 3.1.x (via Composer, for easy of deployment)
 
 WHAT'S NOT INCLUDED
 - Images - You'll note many missing images throughout the site. This is due to one of the following: trademark restrictions (see above), copyright restrictions, OpenStack sponsors, file size restrictions.
 
 
-REQUIREMENTS FOR DEPLOYING OPENSTACK.ORG
+REQUIREMENTS FOR DEPLOYING
 
-To run the openstack.org website, the server environment needs:
+To run, the server environment needs:
 - Apache 1.3 or greater
 - PHP 5.2.0 or greater
 - MySQL 5.0 or greater
 
 INSTALLATION
 
-openstack.org website uses composer (https://getcomposer.org/) to manage all dependencies
+The project uses composer (https://getcomposer.org/) to manage all dependencies
 
 to install run following commands
 
@@ -61,5 +61,9 @@ We need detailed installation instructions to run the site locally on LAMP or MA
 
 SUBMITTING PATCHES:
 
-We welcome patches and will be reviewing those as they come in initially, and plan to move to gerrit for reviews in the future. 
+We ask that all contributors sign the OpenStack CLA, consistent with how we manage other OpenStack projects: https://wiki.openstack.org/wiki/How_To_Contribute#Contributor_License_Agreement .  Please note that this process is based on the Apache Software Foundation model, and the CLA does NOT require copyright assignment.
+
+In the future we will integrate with the OpenStack gerrit system for managing reviwes. Once that is rolled out, the CLA signature check will be automated to prevent unauthorized pull requests. In the interim, we will verify contributors manually based on the email address associated with their Gerrit account. If your email address in gerrit is different than the one you use for github, please note that in the pull request.
+
+
 
