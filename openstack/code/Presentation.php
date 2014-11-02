@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Copyright 2014 Openstack Foundation
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -73,18 +72,28 @@ class Presentation extends DataObject
 		return $fields;
 	}
 
+
 	function FormattedStartTime()
 	{
-		$Date = new DateTime($this->StartTime);
-		return $Date->format('l h:i a');
+		$start_time = trim(str_replace("p.m.", "", trim($this->StartTime)));
+		$date = DateTime::createFromFormat('d/m/y H:i', $start_time);
+		if (!$date)
+			$date = DateTime::createFromFormat('Y-m-d H:i:s', $start_time);
+		if ($date)
+			return $date->format('l h:i a');
+		return 'N/A';
 	}
 
 	function PresentationDay()
 	{
-		$Date = new DateTime($this->StartTime);
-		return $Date->format('M d');
+		$start_time = trim(str_replace("p.m.", "", trim($this->StartTime)));
+		$date = DateTime::createFromFormat('d/m/y H:i', $start_time);
+		if (!$date)
+			$date = DateTime::createFromFormat('Y-m-d H:i:s', $start_time);
+		if ($date)
+			return $date->format('M d');
+		return 'N/A';
 	}
-
 
 	function onBeforeWrite()
 	{
@@ -214,4 +223,3 @@ class Presentation extends DataObject
 		}
 	}
 }
-
