@@ -16,10 +16,11 @@
  */
 class SapphireDistributionRepository
 extends SapphireOpenStackImplementationRepository
-
 {
-	public function __construct(){
-		parent::__construct(new Distribution);
+
+	public function __construct($draft_entity=false){
+        $entity = ($draft_entity) ? new DistributionDraft() : new Distribution();
+		parent::__construct($entity);
 	}
 
 	/**

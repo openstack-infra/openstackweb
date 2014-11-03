@@ -16,9 +16,11 @@
  */
 class SapphirePublicCloudRepository
 	extends SapphireOpenStackImplementationRepository {
-	public function __construct(){
-		parent::__construct(new PublicCloudService);
-	}
+
+    public function __construct($draft_entity=false){
+        $entity = ($draft_entity) ? new PublicCloudServiceDraft() : new PublicCloudService();
+        parent::__construct($entity);
+    }
 
 	public function delete(IEntity $entity){
 		$entity->clearDataCenterRegions();

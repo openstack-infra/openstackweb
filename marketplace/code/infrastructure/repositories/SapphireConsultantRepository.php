@@ -16,9 +16,11 @@
  */
 final class SapphireConsultantRepository
 	extends SapphireRegionalSupportedCompanyServiceRepository {
-	public function __construct(){
-		parent::__construct(new Consultant);
-	}
+
+    public function __construct($draft_entity=false){
+        $entity = ($draft_entity) ? new ConsultantDraft() : new Consultant();
+        parent::__construct($entity);
+    }
 
 	public function delete(IEntity $entity){
 		$entity->clearClients();

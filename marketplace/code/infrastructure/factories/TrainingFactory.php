@@ -25,7 +25,7 @@ final class TrainingFactory implements ITrainingFactory {
 	 * @param null|string      $call_2_action_url
 	 * @return ICompanyService
 	 */
-	public function buildCompanyService($name, $overview, ICompany $company, $active, IMarketPlaceType $marketplace_type, $call_2_action_url = null)
+	public function buildCompanyService($name, $overview, ICompany $company, $active, IMarketPlaceType $marketplace_type, $call_2_action_url = null, $live_service = null)
 	{
 		$training = new TrainingService;
 		$training->setName($name);

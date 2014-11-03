@@ -74,4 +74,16 @@ abstract class SapphireCompanyServiceRepository
 		$res          = is_null($ds)?array():$ds->toArray();
 		return $res;
 	}
+
+    /**
+     * @param int $id
+     * @return ICompanyService
+     */
+    public function getByLiveServiceId($id)
+    {
+        $query = new QueryObject();
+        $query->addAddCondition(QueryCriteria::equal('LiveServiceID',$id));
+        return $this->getBy($query);
+    }
+
 }

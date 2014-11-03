@@ -18,6 +18,7 @@ Object::add_extension('Group', 'SecurityGroupDecorator');
 Object::add_extension('Company', 'MarketPlaceCompany');
 Object::add_extension('Member', 'MarketPlaceAdminMember');
 Object::add_extension('Project', 'TrainingCourseRelatedProject');
+
 //Admin UI
 Object::add_extension('MarketPlaceType', 'MarketPlaceTypeAdminUI');
 Object::add_extension('TrainingService', 'TrainingServiceAdminUI');

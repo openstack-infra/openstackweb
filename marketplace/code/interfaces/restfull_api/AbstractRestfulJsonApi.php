@@ -197,6 +197,14 @@ abstract class AbstractRestfulJsonApi extends Controller {
 		return $response;
 	}
 
+    protected function published(){
+        $response = new SS_HTTPResponse();
+        $response->setStatusCode(204);
+        $response->addHeader('Content-Type', 'application/json');
+        $response->setBody('');
+        return $response;
+    }
+
 	public function serverError(){
 		$response = new SS_HTTPResponse();
 		$response->setStatusCode(500);

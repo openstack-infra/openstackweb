@@ -16,9 +16,10 @@
  */
 final class SapphireApplianceRepository extends SapphireOpenStackImplementationRepository
 {
-	public function __construct(){
-		parent::__construct(new Appliance());
-	}
+    public function __construct($draft_entity=false){
+        $entity = ($draft_entity) ? new ApplianceDraft() : new Appliance();
+        parent::__construct($entity);
+    }
 
 	/**
 	 * @return string

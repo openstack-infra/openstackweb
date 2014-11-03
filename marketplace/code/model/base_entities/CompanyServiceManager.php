@@ -20,6 +20,7 @@ abstract class CompanyServiceManager {
 	 * @var ITransactionManager
 	 */
 	protected $tx_manager;
+
 	/**
 	 * @var ICompanyServiceRepository
 	 */
@@ -34,7 +35,6 @@ abstract class CompanyServiceManager {
 	 * @var ICompanyServiceCanAddResourcePolicy
 	 */
 	protected $add_resource_policy;
-
 
 	/**
 	 * @var ICompanyServiceCanAddVideoPolicy
@@ -139,18 +139,19 @@ abstract class CompanyServiceManager {
 	 */
 	public function register(ICompanyService &$company_service){
 
+        $repository = $this->repository;
+
 		if(!is_null($this->add_policy))
 			$this->add_policy->canAdd($company_service->getCompany());
 
 		$query = new QueryObject($company_service);
 		$query->addAddCondition(QueryCriteria::equal('Name',$company_service->getName()));
 		$query->addAddCondition(QueryCriteria::equal('Company.ID',$company_service->getCompany()->getIdentifier()));
-		$res = $this->repository->getBy($query);
+		$res = $repository->getBy($query);
 		if($res)
 			throw new EntityAlreadyExistsException('CompanyService',sprintf('name %s',$company_service->getName()));
-		return $this->repository->add($company_service);
+		return $repository->add($company_service);
 	}
-
 
 	/**
 	 * @return IMarketPlaceType
@@ -184,15 +185,18 @@ abstract class CompanyServiceManager {
 			$getMarketPlaceType =  new ReflectionMethod(get_class($this_var) ,'getMarketPlaceType');
 			$getMarketPlaceType->setAccessible(true);
 			$company = $marketplace_factory->buildCompanyById(intval($data['company_id']));
+            $live_service_id = (isset($data['live_service_id'])) ? $data['live_service_id'] : null;
+
 			$company_service = $factory->buildCompanyService(
 				$data['name'],
 				$data['overview'],
 				$company,
 				$data['active'],
 				$getMarketPlaceType->invoke($this_var),
-				$data['call_2_action_uri']);
+				$data['call_2_action_uri'],
+                $live_service_id);
 
-			$this_var->register($company_service);
+            $this_var->register($company_service);
 
 			$updateCollections = new ReflectionMethod(get_class($this_var),'updateCollections');
 			$updateCollections->setAccessible(true);
@@ -321,6 +325,7 @@ abstract class CompanyServiceManager {
 		$company_service->addResource($resource);
 		return $resource->getIdentifier();
 	}
+
 	/**
 	 * @param array $messages
 	 * @throws EntityValidationException
@@ -374,4 +379,16 @@ abstract class CompanyServiceManager {
 		}
 		return $services;
 	}
+
+    /**
+     * @param int $version_id
+     * @return IEntity|void
+     * @throws EntityAlreadyExistsException
+     * @throws NotFoundEntityException
+     */
+    public function publishCompanyService(array $data){
+
+
+    }
+
 }

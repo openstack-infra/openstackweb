@@ -37,3 +37,4 @@
     </div>
 </div>
 <input id="id" name="id" type="hidden" value="0"/>
+<input id="live_id" name="live_id" type="hidden" value="0"/>

@@ -47,6 +47,10 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
 	 * @var ICompanyServiceRepository
 	 */
 	private $distribution_repository;
+    /**
+     * @var ICompanyServiceRepository
+     */
+    private $distribution_draft_repository;
 
 	/**
 	 * @var ICompanyServiceRepository
@@ -140,6 +144,7 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
 		$this->marketplace_repository = new SapphireMarketPlaceTypeRepository;
 		$this->companies_with_marketplace_creation_rights = new CompaniesWithMarketplaceCreationRightsSapphireQueryHandler;
 		$this->distribution_repository = new SapphireDistributionRepository;
+        $this->distribution_draft_repository = new SapphireDistributionRepository(true);
 		$this->appliance_repository = new SapphireApplianceRepository;
 		$this->components_repository = new SapphireOpenStackComponentRepository;
 		$this->hyper_visors_repository = new SapphireHyperVisorTypeRepository;
@@ -280,10 +285,15 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
 	public function getCurrentDistribution()
 	{
 		$distribution_id = intval($this->request->getVar('id'));
+        $distribution = false;
 		if ($distribution_id > 0) {
-			return $this->distribution_repository->getById($distribution_id);
+            $distribution = $this->distribution_draft_repository->getByLiveServiceId($distribution_id);
+            //if no draft found we pull the live one to create the draft from it when saved
+            if (!$distribution) {
+                $distribution = $this->distribution_repository->getById($distribution_id);
+            }
 		}
-		return false;
+		return $distribution;
 	}
 
 	public function getCurrentAppliance()

@@ -18,12 +18,14 @@ final class DistributionCrudApi extends CompanyServiceCrudApi {
 
 	private $marketplace_type_repository;
 	private $distribution_repository;
+    private $distribution_draft_repository;
 
 
 	public function __construct() {
 
-		$this->distribution_repository     = new SapphireDistributionRepository;
-		$this->marketplace_type_repository = new SapphireMarketPlaceTypeRepository;
+		$this->distribution_repository          = new SapphireDistributionRepository;
+        $this->distribution_draft_repository    = new SapphireDistributionRepository(true);
+		$this->marketplace_type_repository      = new SapphireMarketPlaceTypeRepository;
 
 		$manager = new DistributionManager (
 			$this->distribution_repository,
@@ -49,12 +51,36 @@ final class DistributionCrudApi extends CompanyServiceCrudApi {
 			SapphireTransactionManager::getInstance()
 		);
 
+        $draft_manager = new DistributionManager (
+            $this->distribution_draft_repository,
+            new SapphireMarketPlaceVideoTypeRepository,
+            $this->marketplace_type_repository,
+            new SapphireGuestOSTypeRepository,
+            new SapphireHyperVisorTypeRepository,
+            new SapphireOpenStackApiVersionRepository,
+            new SapphireOpenStackComponentRepository,
+            new SapphireOpenStackReleaseRepository,
+            new SapphireRegionRepository,
+            new SapphireSupportChannelTypeRepository,
+            new SapphireOpenStackReleaseSupportedApiVersionRepository,
+            new DistributionAddPolicy($this->distribution_draft_repository, $this->marketplace_type_repository),
+            new CompanyServiceCanAddResourcePolicy,
+            new CompanyServiceCanAddVideoPolicy,
+            new DistributionDraftFactory,
+            new MarketplaceFactory,
+            new ValidatorFactory,
+            new OpenStackApiFactory,
+            null,
+            new SessionCacheService,
+            SapphireTransactionManager::getInstance()
+        );
 
-		parent::__construct($manager,new DistributionFactory);
+
+		parent::__construct($manager,$draft_manager,new DistributionFactory,new DistributionDraftFactory);
 		// filters ...
 		$this_var     = $this;
 		$current_user = $this->current_user;
-		$repository   = $this->distribution_repository;
+		$repository   = $this->distribution_draft_repository;
 
 		$this->addBeforeFilter('addCompanyService','check_add_company',function ($request) use($this_var, $current_user, $repository){
 			$data = $this_var->getJsonRequest();
@@ -87,6 +113,7 @@ final class DistributionCrudApi extends CompanyServiceCrudApi {
 		'DELETE $COMPANY_SERVICE_ID!' => 'deleteCompanyService',
 		'POST '                       => 'addCompanyService',
 		'PUT '                        => 'updateCompanyService',
+        'PUBLISH '                    => 'publishCompanyService',
 	);
 
 	/**
@@ -96,7 +123,8 @@ final class DistributionCrudApi extends CompanyServiceCrudApi {
 		'getDistribution',
 		'deleteCompanyService',
 		'addCompanyService',
-		'updateCompanyService'
+		'updateCompanyService',
+        'publishCompanyService'
 	);
 
 	public function getDistribution(){
@@ -107,9 +135,18 @@ final class DistributionCrudApi extends CompanyServiceCrudApi {
 		return $this->ok(OpenStackImplementationAssembler::convertOpenStackImplementationToArray($distribution));
 	}
 
+    public function getDistributionDraft(){
+        $company_service_id  = intval($this->request->param('COMPANY_SERVICE_ID'));
+        $distribution = $this->distribution_draft_repository->getByLiveServiceId($company_service_id);
+        if(!$distribution)
+            return $this->notFound();
+        return $this->ok(OpenStackImplementationAssembler::convertOpenStackImplementationToArray($distribution));
+    }
+
 	public function addCompanyService(){
 		try {
 			return parent::addCompanyService();
+            //return parent::addCompanyServiceDraft();
 		}
 		catch (Exception $ex) {
 			SS_Log::log($ex,SS_Log::ERR);
@@ -119,11 +156,22 @@ final class DistributionCrudApi extends CompanyServiceCrudApi {
 
 	public function updateCompanyService(){
 		try {
-			return parent::updateCompanyService();
+			return parent::updateCompanyServiceDraft();
 		}
 		catch (Exception $ex) {
 			SS_Log::log($ex,SS_Log::ERR);
 			return $this->serverError();
 		}
 	}
+
+    public function publishCompanyService(){
+        try {
+            return parent::publishCompanyService();
+        }
+        catch (Exception $ex) {
+            SS_Log::log($ex,SS_Log::ERR);
+            return $this->serverError();
+        }
+    }
+
 }
