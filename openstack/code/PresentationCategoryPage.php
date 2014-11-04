@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2014 Openstack Foundation
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,8 +22,9 @@ class PresentationCategoryPage extends Page
 		'StillUploading' => 'Boolean'
 	);
 	static $has_one = array();
+
 	static $has_many = array(
-		'Presentations' => 'Presentation',
+		'Presentations'  => 'Presentation',
 		'FeaturedVideos' => 'FeaturedVideo'
 	);
 
@@ -33,17 +35,21 @@ class PresentationCategoryPage extends Page
 	function getCMSFields()
 	{
 		$fields = parent::getCMSFields();
-		$presentationsTable = new GridField('Presentations', 'Presentations', $this->Presentations());
-		$fields->addFieldToTab('Root.Presentations', $presentationsTable);
+		$presentationsTable = new GridField('Presentations', 'Presentations', $this->Presentations(),GridFieldConfig_RecordEditor::create(10));
+
+		$fields->addFieldToTab('Root.Content.Presentations', $presentationsTable);
 
 		// Summit Videos
 		$VideosUploadingField = new OptionSetField('StillUploading', 'Are videos still being uploaded?', array(
 			'1' => 'Yes - A message will be displayed.',
 			'0' => 'No'
 		));
+
 		$fields->addFieldToTab("Root.Content.Main", $VideosUploadingField, 'Content');
-		$featuredVideos = new DataObjectManager($this, 'FeaturedVideos', 'FeaturedVideo');
+
+		$featuredVideos = new GridField('FeaturedVideos', 'FeaturedVideos', $this->FeaturedVideos(),GridFieldConfig_RecordEditor::create(10));
 		$fields->addFieldToTab('Root.Content.FeaturedVideos', $featuredVideos);
+
 
 		return $fields;
 	}
@@ -56,6 +62,7 @@ class PresentationCategoryPage_Controller extends Page_Controller
 
 	static $allowed_actions = array(
 		'presentation',
+		'featured',
 		'updateURLS' => 'admin'
 	);
 
@@ -100,6 +107,28 @@ class PresentationCategoryPage_Controller extends Page_Controller
 		}
 	}
 
+	//Show the Presentation detail page using the PresentationCategoryPage_presentation.ss template
+	function featured()
+	{
+		if ($Presentation = $this->getPresentationByURLSegment(TRUE)) {
+			$Data = array(
+				'Presentation' => $Presentation
+			);
+
+			$this->Title = $Presentation->Name;
+			$this->Autoplay = Session::get('Autoplay');
+
+			// Clear autoplay so it only happens when you come directly from videos index
+			Session::set('Autoplay', FALSE);
+
+			//return our $Data to use on the page
+			return $this->Customise($Data);
+		} else {
+			//Presentation not found
+			return $this->httpError(404, 'Sorry that presentation could not be found');
+		}
+	}
+
 	function PresentationDayID($PresentationDay)
 	{
 		return trim($PresentationDay, ' ');
@@ -125,14 +154,19 @@ class PresentationCategoryPage_Controller extends Page_Controller
 
 
 	//Get the current Presentation from the URL, if any
-	public function getPresentationByURLSegment()
+	public function getPresentationByURLSegment($featured = FALSE)
 	{
+
 		$Params = $this->getURLParams();
 		$Segment = convert::raw2sql($Params['ID']);
-		if ($Params['ID'] && $Presentation = DataObject::get_one('Presentation', "`URLSegment` = '" . $Segment . "' AND `PresentationCategoryPageID` = " . $this->ID)) {
+
+		if ($featured == FALSE && $Params['ID'] && $Presentation = DataObject::get_one('Presentation', "`URLSegment` = '" . $Segment . "' AND `PresentationCategoryPageID` = " . $this->ID)) {
 			return $Presentation;
+		} elseif ($featured == TRUE && $Params['ID'] && $FeaturedVideo = DataObject::get_one('FeaturedVideo', "`URLSegment` = '" . $Segment . "'")) {
+			return $FeaturedVideo;
 		}
 	}
+
 
 	function currentDay()
 	{
@@ -144,7 +178,7 @@ class PresentationCategoryPage_Controller extends Page_Controller
 
 	function updateURLS()
 	{
-		$presentations = Presentation::get()->filter('PresentationCategoryPageID', $this->ID)->sort('StartTime', 'ASC');
+		$presentations = dataobject::get('Presentation', 'PresentationCategoryPageID = ' . $this->ID, 'StartTime ASC');
 		foreach ($presentations as $presentation) {
 			if ($presentation->URLSegment == NULL) {
 				$presentation->write();

@@ -21,15 +21,17 @@
 
 <div class="container">
   <!-- Start Videos -->
-  <div class="row">
-    <div class="col-lg-12">
-
       <% control Presentations.GroupedBy(PresentationDay) %>
-          <div class="row">
-              <div class="col-lg-12">
-                <h2 id="day-{$Pos}">$PresentationDay</h2>
+              <div class="row">
+                <div class="col-lg-12">
+                  <h2 id="day-{$Pos}">$PresentationDay</h2>
+                </div>
               </div>
+
+              <div class="row">
+
               <% control Children %>
+
                   <!-- Video Block -->
                   <% if YouTubeID %>
                     <div class="col-lg-3 col-md-3 col-sm-3 video-block">
@@ -47,13 +49,18 @@
                       </a>
                     </div>
                   <% end_if %>
+              <% if MultipleOf(4) %>
+                  </div>
+                  <div class="row">
+              <% end_if %>
+
+              <% if Last %>
+                  </div>
+              <% end_if %>
+
               <% end_control %>
-        </div>
       <% end_control %>
 
     </div>
   </div>
   <!-- End Videos -->
-
-</div>
-    <!-- End Page Content -->

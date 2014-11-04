@@ -37,6 +37,26 @@
 <div class="container daily-recap-wrapper">
 	<div class="row">
 		<% control FeaturedVideos %>
+
+		<!-- If there is a YouTube ID -->
+
+		<% if YouTubeID %>
+
+			<div class="col-lg-3 col-md-3 col-sm-3 video-block">
+				<a href="{$Top.Link}featured/{$URLSegment}">
+					<div class="video-thumb">
+						<div class="thumb-play"></div>
+						<img class="video-thumb-img" src="//img.youtube.com/vi/{$YouTubeID}/0.jpg">
+					</div>
+					<p class="video-thumb-title">
+						$Name
+					</p>
+				</a>
+			</div>
+
+		<% else %>
+
+
 			<div class="col-lg-3 col-md-3 col-sm-3">
 				<div class="video-thumb">
 					<img class="video-thumb-img" src="/themes/openstack/images/no-video.jpg">
@@ -45,6 +65,10 @@
 					Day {$Pos} - Coming Soon
 				</p>
 			</div>
+
+		<% end_if %>
+
+
 		<% end_control %>
 	</div>
 </div>
