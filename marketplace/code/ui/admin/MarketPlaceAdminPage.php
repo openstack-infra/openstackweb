@@ -1189,7 +1189,7 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
 
         switch (strtolower($marketplace_type)) {
             case 'distribution': {
-                $distribution = $this->distribution_repository->getBy($query);
+                $distribution = $this->distribution_draft_repository->getBy($query);
                 if (!$distribution) throw new NotFoundEntityException('', '');
                 $render = new DistributionSapphireRender($distribution);
                 $distribution ->IsPreview = true;
