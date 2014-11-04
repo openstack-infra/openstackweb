@@ -36,6 +36,11 @@ final class CompanyServiceAssembler {
 			array_push($videos,MarketPlaceAssembler::convertVideo2Array($video));
 		}
 		$res['videos'] = $videos;
+        //draft
+        if($company_service->isDraft()) {
+            $res['live_service_id'] = $company_service->getLiveServiceId();
+        }
+
 		return $res;
 	}
 

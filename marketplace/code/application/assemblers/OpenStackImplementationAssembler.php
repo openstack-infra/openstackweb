@@ -40,6 +40,8 @@ final class OpenStackImplementationAssembler {
 			array_push($guest_os,$guest->getIdentifier());
 		}
 		$res['guest_os'] = $guest_os;
+        //draft
+        if ($res)
 		return $res;
 	}
 

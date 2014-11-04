@@ -195,9 +195,14 @@ abstract class CompanyServiceCrudApi
      */
     public function publishCompanyService(){
         try {
+            $company_service_id = intval($this->request->param('COMPANY_SERVICE_ID'));
             $data = $this->getJsonRequest();
             if (!$data) return $this->serverError();
-            $this->manager->publishCompanyService($data);
+            //save the draft
+            $this->draft_manager->updateCompanyService($data);
+            //save the live version
+            $data['id'] = $data['live_service_id'];
+            $this->manager->updateCompanyService($data);
             return $this->published();
         }
         catch (EntityAlreadyExistsException $ex1) {

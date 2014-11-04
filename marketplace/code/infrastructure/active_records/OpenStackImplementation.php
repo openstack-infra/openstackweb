@@ -24,7 +24,6 @@ class OpenStackImplementation
 	);
 
 	static $has_many = array(
-		'RegionalSupports' => 'RegionalSupport',
 		'Capabilities'     => 'OpenStackImplementationApiCoverage'
 	);
 

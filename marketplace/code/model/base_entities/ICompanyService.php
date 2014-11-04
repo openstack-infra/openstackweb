@@ -15,6 +15,8 @@
  * Interface ICompanyService
  */
 interface ICompanyService extends IManipulableEntity {
+
+    public function isDraft();
 	/**
 	 * @param ICompany $company
 	 * @return void

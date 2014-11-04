@@ -30,8 +30,8 @@ class CompanyServiceDraft
 	);
 
 	static $has_many = array(
-		'Resources'  => 'CompanyServiceResource',
-		'Videos'     => 'MarketPlaceVideo',
+		'Resources'  => 'CompanyServiceResourceDraft',
+		'Videos'     => 'MarketPlaceVideoDraft',
 	);
 
 	protected function onBeforeWrite() {
@@ -50,6 +50,11 @@ class CompanyServiceDraft
 	protected function getDefaultMarketPlaceType(){
 		return null;
 	}
+
+    public function isDraft()
+    {
+        return true;
+    }
 
 	public function setCompany(ICompany $company)
 	{
@@ -73,6 +78,14 @@ class CompanyServiceDraft
     public function setLiveServiceId($company_service_id)
     {
         $this->setField('LiveServiceID',$company_service_id);
+    }
+
+    /**
+     * @return int
+     */
+    public function getLiveServiceId()
+    {
+        return (int)$this->getField('LiveServiceID');
     }
 
 	/**

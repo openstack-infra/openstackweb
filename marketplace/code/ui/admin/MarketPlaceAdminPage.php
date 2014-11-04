@@ -192,6 +192,7 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
 		'consultants',
 		'consultant',
 		'preview',
+        'draft_preview',
 		'pdf',
 	);
 
@@ -201,6 +202,7 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
 	 */
 	static $url_handlers = array(
 		'GET $MARKETPLACETYPE/$ID/preview' => 'preview',
+        'GET $MARKETPLACETYPE/$ID/draft_preview' => 'draft_preview',
 		'GET $MARKETPLACETYPE/$ID/pdf'     => 'pdf',
 	);
 
@@ -992,6 +994,64 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
 				break;
 		}
 	}
+
+    public function draft_preview()
+    {
+
+        $marketplace_type = $this->request->param('MARKETPLACETYPE');
+        $instance_id = intval($this->request->param('ID'));
+
+        $query = new QueryObject();
+        $query->addAddCondition(QueryCriteria::equal('ID', $instance_id));
+        Requirements::block("marketplace/code/ui/admin/css/marketplace.admin.css");
+
+        Requirements::block(Director::protocol() . "code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css");
+
+        switch (strtolower($marketplace_type)) {
+            case 'distribution': {
+                $distribution = $this->distribution_draft_repository->getBy($query);
+                if (!$distribution) throw new NotFoundEntityException('', '');
+                $render = new DistributionSapphireRender($distribution);
+                $distribution ->IsPreview = true;
+                return $render->draw();
+            }
+                break;
+            case 'appliance': {
+                $appliance = $this->appliance_repository->getBy($query);
+                $appliance->IsPreview = true;
+                $render = new ApplianceSapphireRender($appliance);
+                return $render->draw();
+            }
+                break;
+            case 'public_cloud': {
+                $public_cloud = $this->public_clouds_repository->getBy($query);
+                $public_cloud->IsPreview = true;
+                if (!$public_cloud) throw new NotFoundEntityException('', '');
+                $render = new PublicCloudSapphireRender($public_cloud);
+                return $render->draw();
+            }
+                break;
+            case 'private_cloud': {
+                $private_cloud = $this->private_clouds_repository->getBy($query);
+                $private_cloud->IsPreview = true;
+                $render = new PrivateCloudSapphireRender($private_cloud);
+                return $render->draw();
+
+            }
+                break;
+            case 'consultant': {
+                $consultant = $this->consultant_repository->getBy($query);
+                if (!$consultant) throw new NotFoundEntityException('', '');
+                $consultant->IsPreview = true;
+                $render = new ConsultantSapphireRender($consultant);
+                return $render->draw();
+            }
+                break;
+            default:
+                $this->httpError(404);
+                break;
+        }
+    }
 
 	public function getCurrentDataCenterLocationsJson()
 	{

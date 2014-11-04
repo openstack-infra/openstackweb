@@ -380,15 +380,4 @@ abstract class CompanyServiceManager {
 		return $services;
 	}
 
-    /**
-     * @param int $version_id
-     * @return IEntity|void
-     * @throws EntityAlreadyExistsException
-     * @throws NotFoundEntityException
-     */
-    public function publishCompanyService(array $data){
-
-
-    }
-
 }

@@ -46,6 +46,7 @@ jQuery(document).ready(function($){
                 $("#live_id",form).val(distribution.live_service_id);
             } else { //its not a draft is the live version, so we remove the id and set the live_service_id
                 $("#live_id",form).val(distribution.id);
+                $('.publish-distribution').prop('disabled',true);
             }
 
             //reload widgets
@@ -109,7 +110,9 @@ jQuery(document).ready(function($){
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (data,textStatus,jqXHR) {
-                        window.location = listing_url;
+                        //window.location = listing_url;
+                        $('.publish-distribution').prop('disabled',false);
+                        $('.save-distribution').prop('disabled',false);
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         $('.save-distribution').prop('disabled',false);
@@ -149,6 +152,7 @@ jQuery(document).ready(function($){
                 //create distribution object and POST it
                 var distribution = {};
                 distribution.id                      = parseInt($("#id",form).val());
+                distribution.live_service_id         = parseInt($("#live_id",form).val());
                 distribution.company_id              = parseInt($("#company_id",form).val());
                 distribution.name                    = $("#name",form).val();
                 distribution.overview                = $("#overview",form).val();
@@ -161,12 +165,13 @@ jQuery(document).ready(function($){
                 distribution.regional_support        = regional_support;
                 distribution.additional_resources    = additional_resources;
 
-                var type = 'PUBLISH';
+                var url  = 'api/v1/marketplace/distributions/'+distribution.live_service_id;
 
-                $('.save-distribution').prop('disabled',true);
+                $('.publish-distribution').prop('disabled',true);
+
                 $.ajax({
-                    type: type,
-                    url: 'api/v1/marketplace/distributions',
+                    type: 'PUT',
+                    url: url,
                     data: JSON.stringify(distribution),
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
@@ -174,7 +179,7 @@ jQuery(document).ready(function($){
                         window.location = listing_url;
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
-                        $('.save-distribution').prop('disabled',false);
+                        $('.publish-distribution').prop('disabled',false);
                         ajaxError(jqXHR, textStatus, errorThrown);
                     }
                 });

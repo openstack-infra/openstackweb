@@ -61,6 +61,11 @@ class CompanyService
 		return null;
 	}
 
+    public function isDraft()
+    {
+        return false;
+    }
+
 	public function setCompany(ICompany $company)
 	{
 		AssociationFactory::getInstance()->getMany2OneAssociation($this,'Company')->setTarget($company);

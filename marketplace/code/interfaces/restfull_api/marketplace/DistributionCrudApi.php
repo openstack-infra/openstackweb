@@ -113,7 +113,7 @@ final class DistributionCrudApi extends CompanyServiceCrudApi {
 		'DELETE $COMPANY_SERVICE_ID!' => 'deleteCompanyService',
 		'POST '                       => 'addCompanyService',
 		'PUT '                        => 'updateCompanyService',
-        'PUBLISH '                    => 'publishCompanyService',
+        'PUT $COMPANY_SERVICE_ID!'    => 'publishCompanyService',
 	);
 
 	/**
@@ -145,8 +145,7 @@ final class DistributionCrudApi extends CompanyServiceCrudApi {
 
 	public function addCompanyService(){
 		try {
-			return parent::addCompanyService();
-            //return parent::addCompanyServiceDraft();
+            return parent::addCompanyServiceDraft();
 		}
 		catch (Exception $ex) {
 			SS_Log::log($ex,SS_Log::ERR);
@@ -167,6 +166,17 @@ final class DistributionCrudApi extends CompanyServiceCrudApi {
     public function publishCompanyService(){
         try {
             return parent::publishCompanyService();
+        }
+        catch (Exception $ex) {
+            SS_Log::log($ex,SS_Log::ERR);
+            return $this->serverError();
+        }
+    }
+
+    public function deleteCompanyService(){
+        try {
+            parent::deleteCompanyService();
+            return parent::deleteCompanyServiceDraft();
         }
         catch (Exception $ex) {
             SS_Log::log($ex,SS_Log::ERR);
