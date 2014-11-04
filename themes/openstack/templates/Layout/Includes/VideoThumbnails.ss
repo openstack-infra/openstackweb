@@ -26,26 +26,28 @@
 
       <% control Presentations.GroupedBy(PresentationDay) %>
           <div class="row">
-          <h2 id="day-{$Pos}">$PresentationDay</h2>
-          <ul>
+              <div class="col-lg-12">
+                <h2 id="day-{$Pos}">$PresentationDay</h2>
+              </div>
               <% control Children %>
                   <!-- Video Block -->
-                  <div class="col-lg-3 col-md-3 col-sm-3">
-                    <a href="{$Top.Link}presentation/{$URLSegment}">
-                      <div class="video-thumb">
-                        <div class="thumb-play"></div>
-                        <img class="video-thumb-img" src="//img.youtube.com/vi/{$YouTubeID}/0.jpg">
-                      </div>
-                      <p class="video-thumb-title">
-                        $Name
-                      </p>
-                      <p class="video-thumb-speaker">
-                        $Speakers
-                      </p>
-                    </a>
-                  </div>
+                  <% if YouTubeID %>
+                    <div class="col-lg-3 col-md-3 col-sm-3 video-block">
+                      <a href="{$Top.Link}presentation/{$URLSegment}">
+                        <div class="video-thumb">
+                          <div class="thumb-play"></div>
+                          <img class="video-thumb-img" src="//img.youtube.com/vi/{$YouTubeID}/0.jpg">
+                        </div>
+                        <p class="video-thumb-title">
+                          $Name
+                        </p>
+                        <p class="video-thumb-speaker">
+                          $Speakers
+                        </p>
+                      </a>
+                    </div>
+                  <% end_if %>
               <% end_control %>
-          </ul>
         </div>
       <% end_control %>
 

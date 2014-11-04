@@ -400,4 +400,8 @@ a.media-btn.left {
   margin-right: -2px;
   border-right: 1px solid #122231; }
 
+.video-thumb-title, .video-thumb-speaker {
+  min-height: 2em;
+}
+
 /*End Video Inner Page*/

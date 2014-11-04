@@ -11,41 +11,47 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
+
 /**
  * Defines the JobsHolder page type
  */
-class PresentationCategoryPage extends Page {
-   static $db = array(
-   		'StillUploading' => 'Boolean'
-   );
-   static $has_one = array(
-   );
-   static $has_many = array(
-   		'Presentations' => 'Presentation'
-   	);
+class PresentationCategoryPage extends Page
+{
+	static $db = array(
+		'StillUploading' => 'Boolean'
+	);
+	static $has_one = array();
+	static $has_many = array(
+		'Presentations' => 'Presentation',
+		'FeaturedVideos' => 'FeaturedVideo'
+	);
 
-   static $allowed_children = array('PresentationCategoryPage');
-   /** static $icon = "icon/path"; */
+	static $allowed_children = array('PresentationCategoryPage');
 
-    function getCMSFields() {
-    	$fields = parent::getCMSFields();
-    	$presentationsTable = new GridField('Presentations', 'Presentations',$this->Presentations());
-    	$fields->addFieldToTab('Root.Presentations',$presentationsTable);
+	/** static $icon = "icon/path"; */
 
-    	// Summit Videos
-      	$VideosUploadingField = new OptionSetField('StillUploading', 'Are videos still being uploaded?', array(
-            '1' => 'Yes - A message will be displayed.',
-            '0' => 'No'
-        ));
+	function getCMSFields()
+	{
+		$fields = parent::getCMSFields();
+		$presentationsTable = new GridField('Presentations', 'Presentations', $this->Presentations());
+		$fields->addFieldToTab('Root.Presentations', $presentationsTable);
 
-		$fields->addFieldToTab("Root.Main", $VideosUploadingField, 'Content');
+		// Summit Videos
+		$VideosUploadingField = new OptionSetField('StillUploading', 'Are videos still being uploaded?', array(
+			'1' => 'Yes - A message will be displayed.',
+			'0' => 'No'
+		));
+		$fields->addFieldToTab("Root.Content.Main", $VideosUploadingField, 'Content');
+		$featuredVideos = new DataObjectManager($this, 'FeaturedVideos', 'FeaturedVideo');
+		$fields->addFieldToTab('Root.Content.FeaturedVideos', $featuredVideos);
 
-    	return $fields;
+		return $fields;
 	}
 
 }
 
-class PresentationCategoryPage_Controller extends Page_Controller {
+class PresentationCategoryPage_Controller extends Page_Controller
+{
 
 
 	static $allowed_actions = array(
@@ -53,61 +59,62 @@ class PresentationCategoryPage_Controller extends Page_Controller {
 		'updateURLS' => 'admin'
 	);
 
-	public function Presentations(){
-		 $sessions = dataobject::get('Presentation','`YouTubeID` IS NOT NULL AND PresentationCategoryPageID = '.$this->ID,'StartTime DESC');
+	public function Presentations()
+	{
+		$sessions = dataobject::get('Presentation', '`YouTubeID` IS NOT NULL AND PresentationCategoryPageID = ' . $this->ID, 'StartTime DESC');
 		return $sessions;
 	}
 
-	function init() {
+	function init()
+	{
 
-	   parent::init();
-	   if(isset($_GET['day'])) {
-	   		Session::set('Day', $_GET['day']);
-	   } else {
-	   		Session::set('Day', 1);
-	   }
+		parent::init();
+		if (isset($_GET['day'])) {
+			Session::set('Day', $_GET['day']);
+		} else {
+			Session::set('Day', 1);
+		}
 
-     if (Director::urlParam("OtherID") != "presentation") Session::set('Autoplay',TRUE);
+		if (Director::urlParam("OtherID") != "presentation") Session::set('Autoplay', TRUE);
 	}
 
 	//Show the Presentation detail page using the PresentationCategoryPage_presentation.ss template
 	function presentation()
 	{
-		if($Presentation = $this->getPresentationByURLSegment())
-		{
+		if ($Presentation = $this->getPresentationByURLSegment()) {
 			$Data = array(
 				'Presentation' => $Presentation
 			);
 
 			$this->Title = $Presentation->Name;
-      $this->Autoplay = Session::get('Autoplay');
+			$this->Autoplay = Session::get('Autoplay');
 
-      // Clear autoplay so it only happens when you come directly from videos index
-      Session::set('Autoplay',FALSE);
+			// Clear autoplay so it only happens when you come directly from videos index
+			Session::set('Autoplay', FALSE);
 
 			//return our $Data to use on the page
 			return $this->Customise($Data);
-		}
-		else
-		{
+		} else {
 			//Presentation not found
 			return $this->httpError(404, 'Sorry that presentation could not be found');
 		}
 	}
 
-  function PresentationDayID($PresentationDay) {
-    return trim($PresentationDay,' ');
-  }
+	function PresentationDayID($PresentationDay)
+	{
+		return trim($PresentationDay, ' ');
+	}
 
-  function LatestPresentation()
-  {
-    if ($this->Presentations()) return $this->Presentations()->first();
-  }
+	function LatestPresentation()
+	{
+		if ($this->Presentations()) return $this->Presentations()->first();
+	}
 
 
 	// Check to see if the page is being accessed in Chinese
 	// We use this in the templates to tell Chinese visitors how to obtain the videos on a non-youtube source
-	function ChineseLanguage() {
+	function ChineseLanguage()
+	{
 		$lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
 		if ($lang == "zh") {
 			return TRUE;
@@ -122,8 +129,7 @@ class PresentationCategoryPage_Controller extends Page_Controller {
 	{
 		$Params = $this->getURLParams();
 		$Segment = convert::raw2sql($Params['ID']);
-		if($Params['ID'] && $Presentation = DataObject::get_one('Presentation', "`URLSegment` = '".$Segment."' AND `PresentationCategoryPageID` = ".$this->ID))
-		{
+		if ($Params['ID'] && $Presentation = DataObject::get_one('Presentation', "`URLSegment` = '" . $Segment . "' AND `PresentationCategoryPageID` = " . $this->ID)) {
 			return $Presentation;
 		}
 	}
@@ -136,10 +142,11 @@ class PresentationCategoryPage_Controller extends Page_Controller {
 		return (int)$day;
 	}
 
-	function updateURLS() {
-		$presentations = Presentation::get()->filter('PresentationCategoryPageID', $this->ID)->sort('StartTime','ASC');
+	function updateURLS()
+	{
+		$presentations = Presentation::get()->filter('PresentationCategoryPageID', $this->ID)->sort('StartTime', 'ASC');
 		foreach ($presentations as $presentation) {
-			if($presentation->URLSegment == NULL) {
+			if ($presentation->URLSegment == NULL) {
 				$presentation->write();
 			}
 		}

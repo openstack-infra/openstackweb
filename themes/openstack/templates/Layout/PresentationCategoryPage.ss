@@ -36,38 +36,16 @@
 </div>
 <div class="container daily-recap-wrapper">
 	<div class="row">
-		<div class="col-lg-3 col-md-3 col-sm-3">
-			<div class="video-thumb">
-				<img class="video-thumb-img" src="/themes/openstack/images/no-video.jpg">
+		<% control FeaturedVideos %>
+			<div class="col-lg-3 col-md-3 col-sm-3">
+				<div class="video-thumb">
+					<img class="video-thumb-img" src="/themes/openstack/images/no-video.jpg">
+				</div>
+				<p class="video-thumb-title">
+					Day {$Pos} - Coming Soon
+				</p>
 			</div>
-			<p class="video-thumb-title">
-				Day 1 - Coming Soon
-			</p>
-		</div>
-		<div class="col-lg-3 col-md-3 col-sm-3">
-			<div class="video-thumb">
-				<img class="video-thumb-img" src="/themes/openstack/images/no-video.jpg">
-			</div>
-			<p class="video-thumb-title">
-				Day 2 - Coming Soon
-			</p>
-		</div>
-		<div class="col-lg-3 col-md-3 col-sm-3">
-			<div class="video-thumb">
-				<img class="video-thumb-img" src="/themes/openstack/images/no-video.jpg">
-			</div>
-			<p class="video-thumb-title">
-				Day 3 - Coming Soon
-			</p>
-		</div>
-		<div class="col-lg-3 col-md-3 col-sm-3">
-			<div class="video-thumb">
-				<img class="video-thumb-img" src="/themes/openstack/images/no-video.jpg">
-			</div>
-			<p class="video-thumb-title">
-				Day 4 - Coming Soon
-			</p>
-		</div>
+		<% end_control %>
 	</div>
 </div>
 
