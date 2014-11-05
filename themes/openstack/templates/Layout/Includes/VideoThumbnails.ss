@@ -1,24 +1,3 @@
-<div class="sort-row">
-  <div class="container">
-    <div class="sort-left">
-      <i class="fa fa-th active"></i>
-      <i class="fa fa-th-list"></i>
-    </div>
-    <div class="sort-right">
-      <div class="dropdown video-dropdown">
-        <a data-toggle="dropdown" href="#">Select A Day <i class="fa fa-caret-down"></i></a>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-
-        <% control Presentations.GroupedBy(PresentationDay) %>
-          <li role="presentation"><a role="menuitem" tabindex="-1" href="{$Top.Link}#day-{$Pos}">$PresentationDay</a></li>
-        <% end_control %>
-
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-
 <div class="container">
   <!-- Start Videos -->
       <% control Presentations.GroupedBy(PresentationDay) %>
