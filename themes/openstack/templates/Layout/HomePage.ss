@@ -5,10 +5,10 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-sm-12">
                     <div class="intro-message">
-                        <h1>Attending The Paris Summit?</h1>
+                        <h1>Take a look at The 2014 Paris Summit</h1>
                     </div>
                     <div class="promo-btn-wrapper">
-                        <a href="/summit/openstack-paris-summit-2014/download-official-mobile-summit-app/" class="promo-btn">Download The Mobile App <i class="fa fa-chevron-right"></i></a>
+                        <a href="/summit/openstack-paris-summit-2014/session-videos/" class="promo-btn">Videos from the 2014 Paris Summit >></a>
                     </div>
                     <p class="promo-dates">Summit Dates: Nov 3 - 7, 2014</p>
                 </div>
