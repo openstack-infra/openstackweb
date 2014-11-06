@@ -5,12 +5,12 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-sm-12">
                     <div class="intro-message">
-                        <h1>Take a look at The 2014 Paris Summit</h1>
+                        <h1>The Paris Summit, now in your browser.</h1>
                     </div>
                     <div class="promo-btn-wrapper">
-                        <a href="/summit/openstack-paris-summit-2014/session-videos/" class="promo-btn">Videos from the 2014 Paris Summit >></a>
+                        <a href="/summit/openstack-paris-summit-2014/session-videos/" class="promo-btn">See The Videos<i class="fa fa-chevron-right"></i></a>
                     </div>
-                    <p class="promo-dates">Summit Dates: Nov 3 - 7, 2014</p>
+                    <p class="promo-dates">Hundreds of sessions are now available online.</p>
                 </div>
             </div>
             <div class="hero-credit" data-toggle="tooltip" data-placement="left" title="Photo by Claire Massey"><i class="fa fa-info-circle"></i></div>
