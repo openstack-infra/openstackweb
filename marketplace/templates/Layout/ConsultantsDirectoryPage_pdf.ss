@@ -69,7 +69,11 @@
                             <hr>
                             <h3  style="color: #{$Company.CompanyColorRGB} !important;">Offices</h3>
                             <div style="width: 300px; height: 200px; position: relative;" tabindex="0">
-                                <img src="$Top.CurrentOfficesLocationsStaticMapForPDF" />
+                                <% if IsDraft  %>
+                                    <img src="$Top.CurrentOfficesLocationsStaticMapDraftForPDF" />
+                                <% else %>
+                                    <img src="$Top.CurrentOfficesLocationsStaticMapForPDF" />
+                                <% end_if %>
                             </div>
                             <p>
                                 Click any map pin to see office address

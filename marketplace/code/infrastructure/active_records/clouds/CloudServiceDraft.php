@@ -8,10 +8,10 @@ class CloudServiceDraft extends OpenStackImplementationDraft {
 	static $create_table_options = array('MySQLDatabase' => 'ENGINE=InnoDB');
 
 	static $has_many = array(
-		'DataCenters'       => 'DataCenterLocation',
+		'DataCenters'       => 'DataCenterLocationDraft',
 		//@override
-		'Capabilities'      => 'CloudServiceOffered',
-		'DataCenterRegions' => 'DataCenterRegion',
+		'Capabilities'      => 'CloudServiceOfferedDraft',
+		'DataCenterRegions' => 'DataCenterRegionDraft',
 	);
 
 	/**

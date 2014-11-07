@@ -3,7 +3,7 @@
 /**
  * Class DistributionDraftFactory
  */
-final class DistributionDraftFactory extends OpenStackImplementationFactory {
+final class DistributionDraftFactory extends OpenStackImplementationDraftFactory {
 
 	/**
 	 * @param string           $name
@@ -41,30 +41,4 @@ final class DistributionDraftFactory extends OpenStackImplementationFactory {
         return $distribution;
     }
 
-    /**
-     * @param IRegion                  $region
-     * @param IRegionalSupportedCompanyService $service
-     * @return IRegionalSupport
-     */
-    public function buildRegionalSupport(IRegion $region, IRegionalSupportedCompanyService $service){
-        $regional_support = new RegionalSupportDraft;
-        $regional_support->setRegion($region);
-        $regional_support->setCompanyService($service);
-        return $regional_support;
-    }
-
-    /**
-     * @param int                      $coverage_percent
-     * @param IReleaseSupportedApiVersion $release_supported_api_version
-     * @param IOpenStackImplementation $implementation
-     * @return IOpenStackImplementationApiCoverage
-     */
-    public function buildCapability($coverage_percent, IReleaseSupportedApiVersion $release_supported_api_version, IOpenStackImplementation $implementation)
-    {
-        $capability = new OpenStackImplementationApiCoverageDraft;
-        $capability->setCoveragePercent($coverage_percent);
-        $capability->setReleaseSupportedApiVersion($release_supported_api_version);
-        $capability->setImplementation($implementation);
-        return $capability;
-    }
 }

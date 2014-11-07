@@ -51,11 +51,14 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
      * @var ICompanyServiceRepository
      */
     private $distribution_draft_repository;
-
 	/**
 	 * @var ICompanyServiceRepository
 	 */
 	private $appliance_repository;
+    /**
+     * @var ICompanyServiceRepository
+     */
+    private $appliance_draft_repository;
 	/**
 	 * @var IOpenStackComponentRepository
 	 */
@@ -68,7 +71,6 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
 	 * @var IEntityRepository
 	 */
 	private $guests_os_repository;
-
 	/**
 	 * @var IEntityRepository
 	 */
@@ -85,31 +87,38 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
 	 * @var IEntityRepository
 	 */
 	private $pricing_schema_repository;
-
 	/**
 	 * @var IEntityRepository
 	 */
 	private $public_clouds_repository;
-
+    /**
+     * @var IEntityRepository
+     */
+    private $public_clouds_draft_repository;
 	/**
 	 * @var IEntityRepository
 	 */
 	private $private_clouds_repository;
-
+    /**
+     * @var IEntityRepository
+     */
+    private $private_clouds_draft_repository;
 	/**
 	 * @var IEntityRepository
 	 */
 	private $config_management_type_repository;
-
 	/**
 	 * @var IEntityRepository
 	 */
 	private $consultant_service_offered_type_repository;
-
 	/**
 	 * @var IEntityRepository
 	 */
 	private $consultant_repository;
+    /**
+     * @var IEntityRepository
+     */
+    private $consultant_draft_repository;
 
 	function init()
 	{
@@ -146,6 +155,7 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
 		$this->distribution_repository = new SapphireDistributionRepository;
         $this->distribution_draft_repository = new SapphireDistributionRepository(true);
 		$this->appliance_repository = new SapphireApplianceRepository;
+        $this->appliance_draft_repository = new SapphireApplianceRepository(true);
 		$this->components_repository = new SapphireOpenStackComponentRepository;
 		$this->hyper_visors_repository = new SapphireHyperVisorTypeRepository;
 		$this->guests_os_repository = new SapphireGuestOSTypeRepository();
@@ -154,10 +164,13 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
 		$this->region_repository = new SapphireRegionRepository;
 		$this->pricing_schema_repository = new SapphirePricingSchemaRepository;
 		$this->public_clouds_repository = new SapphirePublicCloudRepository;
+        $this->public_clouds_draft_repository = new SapphirePublicCloudRepository(true);
 		$this->private_clouds_repository = new SapphirePrivateCloudRepository;
+        $this->private_clouds_draft_repository = new SapphirePrivateCloudRepository(true);
 		$this->config_management_type_repository = new SapphireConfigurationManagementTypeRepository;
 		$this->consultant_service_offered_type_repository = new SapphireConsultantServiceOfferedTypeRepository;
 		$this->consultant_repository = new SapphireConsultantRepository;
+        $this->consultant_draft_repository = new SapphireConsultantRepository(true);
 	}
 
 
@@ -194,6 +207,7 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
 		'preview',
         'draft_preview',
 		'pdf',
+        'draft_pdf',
 	);
 
 
@@ -204,6 +218,7 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
 		'GET $MARKETPLACETYPE/$ID/preview' => 'preview',
         'GET $MARKETPLACETYPE/$ID/draft_preview' => 'draft_preview',
 		'GET $MARKETPLACETYPE/$ID/pdf'     => 'pdf',
+        'GET $MARKETPLACETYPE/$ID/draft_pdf'     => 'draft_pdf',
 	);
 
 	public function getCurrentTab()
@@ -301,10 +316,15 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
 	public function getCurrentAppliance()
 	{
 		$appliance_id = intval($this->request->getVar('id'));
+        $appliance = false;
 		if ($appliance_id > 0) {
-			return $this->appliance_repository->getById($appliance_id);
+			$appliance = $this->appliance_draft_repository->getByLiveServiceId($appliance_id);
+            //if no draft found we pull the live one to create the draft from it when saved
+            if (!$appliance) {
+                $appliance = $this->appliance_repository->getById($appliance_id);
+            }
 		}
-		return false;
+		return $appliance;
 	}
 
 	public function getOpenStackAvailableComponents()
@@ -583,10 +603,15 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
 	public function getCurrentConsultant()
 	{
 		$consultant_id = intval($this->request->getVar('id'));
-		if ($consultant_id > 0) {
-			return $this->consultant_repository->getById($consultant_id);
-		}
-		return false;
+        $consultant = false;
+        if ($consultant_id > 0) {
+            $consultant = $this->consultant_draft_repository->getByLiveServiceId($consultant_id);
+            //if no draft found we pull the live one to create the draft from it when saved
+            if (!$consultant) {
+                $consultant = $this->consultant_repository->getById($consultant_id);
+            }
+        }
+        return $consultant;
 	}
 
 	public function getCurrentConsultantJson()
@@ -779,10 +804,15 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
 	public function getCurrentPublicCloud()
 	{
 		$public_cloud_id = intval($this->request->getVar('id'));
-		if ($public_cloud_id > 0) {
-			return $this->public_clouds_repository->getById($public_cloud_id);
-		}
-		return false;
+        $public_cloud = false;
+        if ($public_cloud_id > 0) {
+            $public_cloud = $this->public_clouds_draft_repository->getByLiveServiceId($public_cloud_id);
+            //if no draft found we pull the live one to create the draft from it when saved
+            if (!$public_cloud) {
+                $public_cloud = $this->public_clouds_repository->getById($public_cloud_id);
+            }
+        }
+        return $public_cloud;
 	}
 
 	public function getCurrentPublicCloudJson()
@@ -871,10 +901,15 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
 	public function getCurrentPrivateCloud()
 	{
 		$private_cloud_id = intval($this->request->getVar('id'));
-		if ($private_cloud_id > 0) {
-			return $this->private_clouds_repository->getById($private_cloud_id);
-		}
-		return false;
+        $private_cloud = false;
+        if ($private_cloud_id > 0) {
+            $private_cloud = $this->private_clouds_draft_repository->getByLiveServiceId($private_cloud_id);
+            //if no draft found we pull the live one to create the draft from it when saved
+            if (!$private_cloud) {
+                $private_cloud = $this->private_clouds_repository->getById($private_cloud_id);
+            }
+        }
+        return $private_cloud;
 	}
 
 	public function getCurrentPrivateCloudJson()
@@ -939,7 +974,6 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
 
 	public function preview()
 	{
-
 		$marketplace_type = $this->request->param('MARKETPLACETYPE');
 		$instance_id = intval($this->request->param('ID'));
 
@@ -1017,32 +1051,35 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
             }
                 break;
             case 'appliance': {
-                $appliance = $this->appliance_repository->getBy($query);
+                $appliance = $this->appliance_draft_repository->getBy($query);
                 $appliance->IsPreview = true;
                 $render = new ApplianceSapphireRender($appliance);
                 return $render->draw();
             }
                 break;
             case 'public_cloud': {
-                $public_cloud = $this->public_clouds_repository->getBy($query);
+                $public_cloud = $this->public_clouds_draft_repository->getBy($query);
                 $public_cloud->IsPreview = true;
+                $public_cloud->IsDraft = true;
                 if (!$public_cloud) throw new NotFoundEntityException('', '');
                 $render = new PublicCloudSapphireRender($public_cloud);
                 return $render->draw();
             }
                 break;
             case 'private_cloud': {
-                $private_cloud = $this->private_clouds_repository->getBy($query);
+                $private_cloud = $this->private_clouds_draft_repository->getBy($query);
                 $private_cloud->IsPreview = true;
+                $private_cloud->IsDraft = true;
                 $render = new PrivateCloudSapphireRender($private_cloud);
                 return $render->draw();
 
             }
                 break;
             case 'consultant': {
-                $consultant = $this->consultant_repository->getBy($query);
+                $consultant = $this->consultant_draft_repository->getBy($query);
                 if (!$consultant) throw new NotFoundEntityException('', '');
                 $consultant->IsPreview = true;
+                $consultant->IsDraft = true;
                 $render = new ConsultantSapphireRender($consultant);
                 return $render->draw();
             }
@@ -1075,6 +1112,28 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
 		return CloudViewModel::getDataCenterLocationsJson($cloud);
 	}
 
+    public function getCurrentDataCenterLocationsDraftJson()
+    {
+        $instance_id = intval($this->request->param('ID'));
+        $marketplace_type = $this->request->param('MARKETPLACETYPE');
+        $query = new QueryObject();
+        $query->addAddCondition(QueryCriteria::equal('ID', $instance_id));
+        switch (strtolower($marketplace_type)) {
+            case 'public_cloud': {
+                $cloud = $this->public_clouds_draft_repository->getBy($query);
+            }
+                break;
+            case 'private_cloud': {
+                $cloud = $this->private_clouds_draft_repository->getBy($query);
+            }
+                break;
+
+        }
+
+        if (!$cloud) throw new NotFoundEntityException('', '');
+        return CloudViewModel::getDataCenterLocationsJson($cloud);
+    }
+
     public function getCurrentDataCenterStaticMapForPDF()
     {
         $static_map_url = "http://maps.googleapis.com/maps/api/staticmap?zoom=1&size=300x200&maptype=roadmap";
@@ -1089,6 +1148,35 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
                 break;
             case 'private_cloud': {
                 $cloud = $this->private_clouds_repository->getBy($query);
+            }
+                break;
+
+        }
+
+        if (!$cloud) throw new NotFoundEntityException('', '');
+        $locations = json_decode(CloudViewModel::getDataCenterLocationsJson($cloud));
+
+        foreach ($locations as $loc) {
+            $static_map_url .= "&markers=".$loc->lat.",".$loc->lng;
+        }
+
+        return $static_map_url;
+    }
+
+    public function getCurrentDataCenterStaticMapDraftForPDF()
+    {
+        $static_map_url = "http://maps.googleapis.com/maps/api/staticmap?zoom=1&size=300x200&maptype=roadmap";
+        $instance_id = intval($this->request->param('ID'));
+        $marketplace_type = $this->request->param('MARKETPLACETYPE');
+        $query = new QueryObject();
+        $query->addAddCondition(QueryCriteria::equal('ID', $instance_id));
+        switch (strtolower($marketplace_type)) {
+            case 'public_cloud': {
+                $cloud = $this->public_clouds_draft_repository->getBy($query);
+            }
+                break;
+            case 'private_cloud': {
+                $cloud = $this->private_clouds_draft_repository->getBy($query);
             }
                 break;
 
@@ -1126,7 +1214,45 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
         return $pricing_schemas;
     }
 
-	public function getEnabledPricingSchemas()
+    public function getPricingSchemasDraftForPDF()
+    {
+        $pricing_schemas = CloudViewModel::getPricingSchemas();
+        $enabled_ps = json_decode($this->getEnabledPricingSchemasDraft());
+
+        foreach($pricing_schemas as $ps) {
+            $ps->Enabled = 0;
+            foreach ($enabled_ps as $eps) {
+                if ($ps->ID == $eps) {
+                    $ps->Enabled = 1;
+                }
+            }
+        }
+
+        return $pricing_schemas;
+    }
+
+    public function getEnabledPricingSchemas()
+    {
+        $instance_id = intval($this->request->param('ID'));
+        $marketplace_type = $this->request->param('MARKETPLACETYPE');
+        $query = new QueryObject();
+        $query->addAddCondition(QueryCriteria::equal('ID', $instance_id));
+        switch (strtolower($marketplace_type)) {
+            case 'public_cloud': {
+                $cloud = $this->public_clouds_repository->getBy($query);
+            }
+                break;
+            case 'private_cloud': {
+                $cloud = $this->private_clouds_repository->getBy($query);
+            }
+                break;
+
+        }
+        if (!$cloud) throw new NotFoundEntityException('', '');
+        return CloudViewModel::getEnabledPricingSchemas($cloud);
+    }
+
+	public function getEnabledPricingSchemasDraft()
 	{
 		$instance_id = intval($this->request->param('ID'));
 		$marketplace_type = $this->request->param('MARKETPLACETYPE');
@@ -1134,11 +1260,11 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
 		$query->addAddCondition(QueryCriteria::equal('ID', $instance_id));
 		switch (strtolower($marketplace_type)) {
 			case 'public_cloud': {
-				$cloud = $this->public_clouds_repository->getBy($query);
+				$cloud = $this->public_clouds_draft_repository->getBy($query);
 			}
 				break;
 			case 'private_cloud': {
-				$cloud = $this->private_clouds_repository->getBy($query);
+				$cloud = $this->private_clouds_draft_repository->getBy($query);
 			}
 				break;
 
@@ -1154,6 +1280,18 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
         $query->addAddCondition(QueryCriteria::equal('ID', $instance_id));
 
         $consultant = $this->consultant_repository->getBy($query);
+
+        if (!$consultant) throw new NotFoundEntityException('', '');
+        return ConsultantViewModel::getOfficesLocationsJson($consultant);
+    }
+
+    public function getCurrentOfficesLocationsDraftJson()
+    {
+        $instance_id = intval($this->request->param('ID'));
+        $query = new QueryObject();
+        $query->addAddCondition(QueryCriteria::equal('ID', $instance_id));
+
+        $consultant = $this->consultant_draft_repository->getBy($query);
 
         if (!$consultant) throw new NotFoundEntityException('', '');
         return ConsultantViewModel::getOfficesLocationsJson($consultant);
@@ -1178,6 +1316,26 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
         return $static_map_url;
     }
 
+
+    public function getCurrentOfficesLocationsStaticMapDraftForPDF()
+    {
+        $static_map_url = "http://maps.googleapis.com/maps/api/staticmap?zoom=1&size=300x200&maptype=roadmap";
+        $instance_id = intval($this->request->param('ID'));
+        $query = new QueryObject();
+        $query->addAddCondition(QueryCriteria::equal('ID', $instance_id));
+
+        $consultant = $this->consultant_draft_repository->getBy($query);
+
+        if (!$consultant) throw new NotFoundEntityException('', '');
+        $locations = json_decode(ConsultantViewModel::getOfficesLocationsJson($consultant));
+
+        foreach ($locations as $loc) {
+            $static_map_url .= "&markers=".$loc->lat.",".$loc->lng;
+        }
+
+        return $static_map_url;
+    }
+
 	public function pdf(){
         $html_inner = '';
         $marketplace_type = $this->request->param('MARKETPLACETYPE');
@@ -1189,7 +1347,7 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
 
         switch (strtolower($marketplace_type)) {
             case 'distribution': {
-                $distribution = $this->distribution_draft_repository->getBy($query);
+                $distribution = $this->distribution_repository->getBy($query);
                 if (!$distribution) throw new NotFoundEntityException('', '');
                 $render = new DistributionSapphireRender($distribution);
                 $distribution ->IsPreview = true;
@@ -1263,5 +1421,91 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
             $this->httpError(404,'There was an error on PDF generation!');
         }
 	}
+
+    public function draft_pdf(){
+        $html_inner = '';
+        $marketplace_type = $this->request->param('MARKETPLACETYPE');
+        $instance_id = intval($this->request->param('ID'));
+        $base = Director::baseFolder();
+
+        $query = new QueryObject();
+        $query->addAddCondition(QueryCriteria::equal('ID', $instance_id));
+
+        switch (strtolower($marketplace_type)) {
+            case 'distribution': {
+                $distribution = $this->distribution_draft_repository->getBy($query);
+                if (!$distribution) throw new NotFoundEntityException('', '');
+                $render = new DistributionSapphireRender($distribution);
+                $distribution ->IsPreview = true;
+                $html_inner = $render->pdf();
+                $css = @file_get_contents($base . "/marketplace/code/ui/admin/css/pdf.css");
+            }
+                break;
+            case 'appliance': {
+                $appliance = $this->appliance_draft_repository->getBy($query);
+                $appliance->IsPreview = true;
+                $render = new ApplianceSapphireRender($appliance);
+                $html_inner = $render->pdf();
+                $css = @file_get_contents($base . "/marketplace/code/ui/admin/css/pdf.css");
+            }
+                break;
+            case 'public_cloud': {
+                $public_cloud = $this->public_clouds_draft_repository->getBy($query);
+                $public_cloud->IsPreview = true;
+                if (!$public_cloud) throw new NotFoundEntityException('', '');
+                $render = new PublicCloudSapphireRender($public_cloud);
+                $html_inner = $render->pdf();
+                $css = @file_get_contents($base . "/marketplace/code/ui/admin/css/pdf.css");
+            }
+                break;
+            case 'private_cloud': {
+                $private_cloud = $this->private_clouds_draft_repository->getBy($query);
+                $private_cloud->IsPreview = true;
+                $render = new PrivateCloudSapphireRender($private_cloud);
+                $html_inner = $render->pdf();
+                $css = @file_get_contents($base . "/marketplace/code/ui/admin/css/pdf.css");
+
+            }
+                break;
+            case 'consultant': {
+                $consultant = $this->consultant_draft_repository->getBy($query);
+                if (!$consultant) throw new NotFoundEntityException('', '');
+                $consultant->IsPreview = true;
+                $render = new ConsultantSapphireRender($consultant);
+                $html_inner = $render->pdf();
+                $css = @file_get_contents($base . "/marketplace/code/ui/admin/css/pdf.css");
+            }
+                break;
+            default:
+                $this->httpError(404);
+                break;
+        }
+
+        //create pdf
+        $file = FileUtils::convertToFileName('preview') . '.pdf';
+
+        $html_outer = sprintf("<html><head><style>%s</style></head><body><div class='container'>%s</div></body></html>",
+            str_replace("@host", $base, $css),$html_inner);
+
+
+        try {
+            $html2pdf = new HTML2PDF('P', 'A4', 'en', true, 'UTF-8', array(15, 5, 15, 5));
+            //$html2pdf->addFont('Open Sans', '', $base.'/themes/openstack/assets/fonts/PT-Sans/PTC75F-webfont.ttf');
+            $html2pdf->WriteHTML($html_outer);
+            //clean output buffer
+            ob_end_clean();
+            $html2pdf->Output($file, "D");
+        } catch (HTML2PDF_exception $e) {
+            $message = array(
+                'errno' => '',
+                'errstr' => $e->__toString(),
+                'errfile' => 'UserStory.php',
+                'errline' => '',
+                'errcontext' => ''
+            );
+            SS_Log::log($message, SS_Log::ERR);
+            $this->httpError(404,'There was an error on PDF generation!');
+        }
+    }
 
 }

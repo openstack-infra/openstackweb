@@ -73,7 +73,11 @@
                     <hr>
                     <h3  style="color: #{$Company.CompanyColor} !important;">Offices</h3>
                     <script type="text/javascript">
-                        var offices_instance = $Top.CurrentOfficesLocationsJson;
+                        <% if IsDraft  %>
+                            var offices_instance = $Top.CurrentOfficesLocationsDraftJson;
+                        <% else %>
+                            var offices_instance = $Top.CurrentOfficesLocationsJson;
+                        <% end_if %>
                     </script>
                     <div style="width: 300px; height: 200px; position: relative;" id="mini-map" tabindex="0">
                     </div>

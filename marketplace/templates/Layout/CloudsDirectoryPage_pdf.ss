@@ -73,7 +73,11 @@
                             <% end_control %>
                         </p>
                         <div style="width: 300px; height: 200px; position: relative;" tabindex="0">
-                            <img src="$Top.CurrentDataCenterStaticMapForPDF" />
+                            <% if IsDraft  %>
+                                <img src="$Top.CurrentDataCenterStaticMapDraftForPDF" />
+                            <% else %>
+                                <img src="$Top.CurrentDataCenterStaticMapForPDF" />
+                            <% end_if %>
                         </div>
                         <p>Click any location to see availability zones and API endpoints</p>
                     <% end_if %>
@@ -161,12 +165,22 @@
                     <h3 style="color: {$Company.CompanyColorRGB} !important;">Pricing Options</h3>
                     <table class="pricing">
                         <tbody>
-                        <% control Top.PricingSchemasForPDF %>
-                            <tr>
-                                <td>$Type</td>
-                                <td id="enabled_{$ID}"><% if Enabled==1 %>Yes<% else %>No<% end_if %></td>
-                            </tr>
-                        <% end_control %>
+                        <% if IsDraft  %>
+                            <% control Top.PricingSchemasDraftForPDF %>
+                                <tr>
+                                    <td>$Type</td>
+                                    <td id="enabled_{$ID}"><% if Enabled==1 %>Yes<% else %>No<% end_if %></td>
+                                </tr>
+                            <% end_control %>
+                        <% else %>
+                            <% control Top.PricingSchemasForPDF %>
+                                <tr>
+                                    <td>$Type</td>
+                                    <td id="enabled_{$ID}"><% if Enabled==1 %>Yes<% else %>No<% end_if %></td>
+                                </tr>
+                            <% end_control %>
+                        <% end_if %>
+
                         </tbody>
                     </table>
                     <hr>

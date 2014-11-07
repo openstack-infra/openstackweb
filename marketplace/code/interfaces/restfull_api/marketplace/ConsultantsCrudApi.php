@@ -16,33 +16,35 @@
  */
 final class ConsultantsCrudApi extends CompanyServiceCrudApi {
 
-
 	/**
 	 * @var array
 	 */
-	private static $url_handlers = array(
+	static $url_handlers = array(
 		'GET languages'               => 'getLanguages',
 		'GET $COMPANY_SERVICE_ID!'    => 'getConsultant',
 		'DELETE $COMPANY_SERVICE_ID!' => 'deleteCompanyService',
 		'POST '                       => 'addCompanyService',
 		'PUT '                        => 'updateCompanyService',
+		'PUT $COMPANY_SERVICE_ID!'    => 'publishCompanyService',
 	);
 
 	/**
 	 * @var array
 	 */
-	private static $allowed_actions = array(
+	static $allowed_actions = array(
 		'getConsultant',
 		'deleteCompanyService',
 		'addCompanyService',
 		'updateCompanyService',
-		'getLanguages'
+		'getLanguages',
+		'publishCompanyService'
 	);
 
 	/**
 	 * @var IEntityRepository
 	 */
 	private $consultant_repository;
+    private $consultant_draft_repository;
 	/**
 	 * @var IEntityRepository
 	 */
@@ -50,9 +52,10 @@ final class ConsultantsCrudApi extends CompanyServiceCrudApi {
 
 	public function __construct(){
 
-		$this->consultant_repository       = new SapphireConsultantRepository;
-		$this->marketplace_type_repository = new SapphireMarketPlaceTypeRepository;
-		$this->languages_repository        = new SapphireSpokenLanguageRepository;
+		$this->consultant_repository            = new SapphireConsultantRepository;
+        $this->consultant_draft_repository      = new SapphireConsultantRepository(true);
+		$this->marketplace_type_repository      = new SapphireMarketPlaceTypeRepository;
+		$this->languages_repository             = new SapphireSpokenLanguageRepository;
 		$google_geo_coding_api_key     = null;
 		$google_geo_coding_client_id   = null;
 		$google_geo_coding_private_key = null;
@@ -95,7 +98,38 @@ final class ConsultantsCrudApi extends CompanyServiceCrudApi {
 			SapphireTransactionManager::getInstance()
 		);
 
-		parent::__construct($manager,new ConsultantFactory);
+        $draft_manager = new ConsultantManager (
+            $this->consultant_draft_repository,
+            new SapphireMarketPlaceVideoTypeRepository,
+            $this->marketplace_type_repository,
+            new SapphireOpenStackApiVersionRepository,
+            new SapphireOpenStackComponentRepository,
+            new SapphireOpenStackReleaseRepository,
+            new SapphireRegionRepository,
+            new SapphireSupportChannelTypeRepository,
+            $this->languages_repository,
+            new SapphireConfigurationManagementTypeRepository,
+            new SapphireConsultantServiceOfferedTypeRepository,
+            new ConsultantAddPolicy($this->consultant_draft_repository, $this->marketplace_type_repository),
+            new CompanyServiceCanAddResourcePolicy,
+            new CompanyServiceCanAddVideoPolicy,
+            new ConsultantDraftFactory,
+            new MarketplaceDraftFactory,
+            new ValidatorFactory,
+            new OpenStackApiFactory,
+            new GoogleGeoCodingService(
+                new SapphireGeoCodingQueryRepository,
+                new UtilFactory,
+                SapphireTransactionManager::getInstance(),
+                $google_geo_coding_api_key,
+                $google_geo_coding_client_id,
+                $google_geo_coding_private_key),
+            null,
+            new SessionCacheService,
+            SapphireTransactionManager::getInstance()
+        );
+
+        parent::__construct($manager,$draft_manager,new ConsultantFactory,new ConsultantDraftFactory);
 
 		// filters ...
 		$this_var     = $this;
@@ -133,6 +167,14 @@ final class ConsultantsCrudApi extends CompanyServiceCrudApi {
 		return $this->ok(ConsultantAssembler::convertConsultantToArray($consultant));
 	}
 
+    public function getConsultantDraft(){
+        $company_service_id  = intval($this->request->param('COMPANY_SERVICE_ID'));
+        $consultant = $this->consultant_draft_repository->getByLiveServiceId($company_service_id);
+        if(!$consultant)
+            return $this->notFound();
+        return $this->ok(OpenStackImplementationAssembler::convertOpenStackImplementationToArray($consultant));
+    }
+
 	public function getLanguages(){
 		$term  = Convert::raw2sql ($this->request->getVar('term'));
 		$query = new QueryObject;
@@ -144,4 +186,46 @@ final class ConsultantsCrudApi extends CompanyServiceCrudApi {
 		}
 		return $this->ok($res);
 	}
+
+    public function addCompanyService(){
+        try {
+            return parent::addCompanyServiceDraft();
+        }
+        catch (Exception $ex) {
+            SS_Log::log($ex,SS_Log::ERR);
+            return $this->serverError();
+        }
+    }
+
+    public function updateCompanyService(){
+        try {
+            return parent::updateCompanyServiceDraft();
+        }
+        catch (Exception $ex) {
+            SS_Log::log($ex,SS_Log::ERR);
+            return $this->serverError();
+        }
+    }
+
+    public function publishCompanyService(){
+        try {
+            return parent::publishCompanyService();
+        }
+        catch (Exception $ex) {
+            SS_Log::log($ex,SS_Log::ERR);
+            return $this->serverError();
+        }
+    }
+
+    public function deleteCompanyService(){
+        try {
+            parent::deleteCompanyService();
+            return parent::deleteCompanyServiceDraft();
+        }
+        catch (Exception $ex) {
+            SS_Log::log($ex,SS_Log::ERR);
+            return $this->serverError();
+        }
+    }
+
 }

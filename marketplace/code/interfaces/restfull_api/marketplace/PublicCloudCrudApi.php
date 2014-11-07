@@ -18,11 +18,13 @@ class PublicCloudCrudApi extends CompanyServiceCrudApi {
 
 	private $marketplace_type_repository;
 	private $public_cloud_repository;
+    private $public_cloud_draft_repository;
 
 	public function __construct(){
 
-		$this->public_cloud_repository     = new SapphirePublicCloudRepository;
-		$this->marketplace_type_repository = new SapphireMarketPlaceTypeRepository;
+		$this->public_cloud_repository       = new SapphirePublicCloudRepository;
+        $this->public_cloud_draft_repository = new SapphirePublicCloudRepository(true);
+		$this->marketplace_type_repository   = new SapphireMarketPlaceTypeRepository;
 
 		//google geo coding settings
 		$google_geo_coding_api_key     = null;
@@ -67,7 +69,38 @@ class PublicCloudCrudApi extends CompanyServiceCrudApi {
 			SapphireTransactionManager::getInstance()
 		);
 
-		parent::__construct($manager,new PublicCloudFactory);
+        $draft_manager = new PublicCloudManager (
+            $this->public_cloud_draft_repository,
+            new SapphireMarketPlaceVideoTypeRepository,
+            $this->marketplace_type_repository,
+            new SapphireGuestOSTypeRepository,
+            new SapphireHyperVisorTypeRepository,
+            new SapphireOpenStackApiVersionRepository,
+            new SapphireOpenStackComponentRepository,
+            new SapphireOpenStackReleaseRepository,
+            new SapphireRegionRepository,
+            new SapphireSupportChannelTypeRepository,
+            new SapphireOpenStackReleaseSupportedApiVersionRepository,
+            new PublicCloudAddPolicy($this->public_cloud_draft_repository, $this->marketplace_type_repository),
+            new CompanyServiceCanAddResourcePolicy,
+            new CompanyServiceCanAddVideoPolicy,
+            new PublicCloudDraftFactory,
+            new MarketplaceDraftFactory,
+            new ValidatorFactory,
+            new OpenStackApiFactory,
+            new GoogleGeoCodingService(
+                new SapphireGeoCodingQueryRepository,
+                new UtilFactory,
+                SapphireTransactionManager::getInstance(),
+                $google_geo_coding_api_key,
+                $google_geo_coding_client_id,
+                $google_geo_coding_private_key),
+            null,
+            new SessionCacheService,
+            SapphireTransactionManager::getInstance()
+        );
+
+        parent::__construct($manager,$draft_manager,new PublicCloudFactory,new PublicCloudDraftFactory);
 
 		// filters ...
 		$this_var     = $this;
@@ -106,6 +139,7 @@ class PublicCloudCrudApi extends CompanyServiceCrudApi {
 		'DELETE $COMPANY_SERVICE_ID!' => 'deleteCompanyService',
 		'POST '                       => 'addCompanyService',
 		'PUT '                        => 'updateCompanyService',
+        'PUT $COMPANY_SERVICE_ID!'    => 'publishCompanyService',
 	);
 
 	/**
@@ -115,7 +149,8 @@ class PublicCloudCrudApi extends CompanyServiceCrudApi {
 		'getPublicCloud',
 		'deleteCompanyService',
 		'addCompanyService',
-		'updateCompanyService'
+		'updateCompanyService',
+        'publishCompanyService'
 	);
 
 	public function getPublicCloud(){
@@ -126,9 +161,17 @@ class PublicCloudCrudApi extends CompanyServiceCrudApi {
 		return $this->ok(CloudAssembler::convertCloudToArray($public_cloud));
 	}
 
+    public function getPublicCloudDraft(){
+        $company_service_id  = intval($this->request->param('COMPANY_SERVICE_ID'));
+        $public_cloud = $this->public_cloud_draft_repository->getByLiveServiceId($company_service_id);
+        if(!$public_cloud)
+            return $this->notFound();
+        return $this->ok(OpenStackImplementationAssembler::convertOpenStackImplementationToArray($public_cloud));
+    }
+
 	public function addCompanyService(){
 		try {
-			return parent::addCompanyService();
+			return parent::addCompanyServiceDraft();
 		}
 		catch (NonSupportedApiVersion $ex1) {
 			SS_Log::log($ex1,SS_Log::ERR);
@@ -146,7 +189,7 @@ class PublicCloudCrudApi extends CompanyServiceCrudApi {
 
 	public function updateCompanyService(){
 		try {
-			return parent::updateCompanyService();
+			return parent::updateCompanyServiceDraft();
 		}
 		catch (NonSupportedApiVersion $ex1) {
 			SS_Log::log($ex1,SS_Log::ERR);
@@ -161,4 +204,25 @@ class PublicCloudCrudApi extends CompanyServiceCrudApi {
 			return $this->serverError();
 		}
 	}
+
+    public function publishCompanyService(){
+        try {
+            return parent::publishCompanyService();
+        }
+        catch (Exception $ex) {
+            SS_Log::log($ex,SS_Log::ERR);
+            return $this->serverError();
+        }
+    }
+
+    public function deleteCompanyService(){
+        try {
+            parent::deleteCompanyService();
+            return parent::deleteCompanyServiceDraft();
+        }
+        catch (Exception $ex) {
+            SS_Log::log($ex,SS_Log::ERR);
+            return $this->serverError();
+        }
+    }
 } 

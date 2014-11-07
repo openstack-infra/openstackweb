@@ -38,7 +38,16 @@ jQuery(document).ready(function($){
             else{
                 $('#active',form).prop('checked',false);
             }
-            $("#id",form).val(appliance.id);
+
+            //this is a draft
+            if (appliance.live_service_id) {
+                $("#id",form).val(appliance.id);
+                $("#live_id",form).val(appliance.live_service_id);
+            } else { //its not a draft is the live version, so we remove the id and set the live_service_id
+                $("#live_id",form).val(appliance.id);
+                $('.publish-appliance').prop('disabled',true);
+            }
+
             //reload widgets
             $("#guest_os_form").guest_os('load',appliance.guest_os);
             $("#hypervisors_form").hypervisors('load',appliance.hypervisors);
@@ -77,6 +86,7 @@ jQuery(document).ready(function($){
                 //create distribution object and POST it
                 var appliance = {};
                 appliance.id                      = parseInt($("#id",form).val());
+                appliance.live_service_id         = parseInt($("#live_id",form).val());
                 appliance.company_id              = parseInt($("#company_id",form).val());
                 appliance.name                    = $("#name",form).val();
                 appliance.overview                = $("#overview",form).val();
@@ -98,11 +108,77 @@ jQuery(document).ready(function($){
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (data,textStatus,jqXHR) {
-                        window.location = listing_url;
+                        //window.location = listing_url;
+                        if(appliance.id < 1) $("#id",form).val(data);
+                        $('.publish-appliance').prop('disabled',false);
+                        $('.save-appliance').prop('disabled',false);
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         ajaxError(jqXHR, textStatus, errorThrown);
                         $('.save-appliance').prop('disabled',false);
+                    }
+                });
+            }
+            return false;
+        });
+
+        $('.publish-appliance').click(function(event){
+            event.preventDefault();
+            event.stopPropagation();
+            var button =  $(this);
+            if(button.prop('disabled')){
+                return false;
+            }
+            var form_validator = form.marketplace_type_header('getFormValidator');
+            form_validator.settings.ignore = ".add-comtrol";
+            var is_valid = form.valid();
+            if(!is_valid) return false;
+            form_validator.resetForm();
+            var additional_resources = $("#additional-resources-form").additional_resources('serialize');
+            var regional_support     = $("#support-channels-form").support_channels('serialize');
+            var capabilities         = $("#components_form").components('serialize');
+            var guest_os             = $("#guest_os_form").guest_os('serialize');
+            var hypervisors          = $("#hypervisors_form").hypervisors('serialize');
+            var videos               = $("#videos-form").videos('serialize');
+
+            if(additional_resources !== false &&
+                regional_support    !== false &&
+                capabilities        !== false &&
+                guest_os            !== false &&
+                hypervisors         !== false &&
+                videos              !== false){
+
+                //create distribution object and POST it
+                var appliance = {};
+                appliance.id                      = parseInt($("#id",form).val());
+                appliance.live_service_id         = parseInt($("#live_id",form).val());
+                appliance.company_id              = parseInt($("#company_id",form).val());
+                appliance.name                    = $("#name",form).val();
+                appliance.overview                = $("#overview",form).val();
+                appliance.call_2_action_uri       = $("#call_2_action_uri",form).val();
+                appliance.active                  = $('#active',form).is(":checked");;
+                appliance.videos                  = videos;
+                appliance.hypervisors             = hypervisors;
+                appliance.guest_os                = guest_os;
+                appliance.capabilities            = capabilities;
+                appliance.regional_support        = regional_support;
+                appliance.additional_resources    = additional_resources;
+
+                var url  = 'api/v1/marketplace/appliances/'+appliance.live_service_id;
+
+                $('.publish-appliance').prop('disabled',true);
+                $.ajax({
+                    type: 'PUT',
+                    url: url,
+                    data: JSON.stringify(appliance),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data,textStatus,jqXHR) {
+                        window.location = listing_url;
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        ajaxError(jqXHR, textStatus, errorThrown);
+                        $('.publish-appliance').prop('disabled',false);
                     }
                 });
             }

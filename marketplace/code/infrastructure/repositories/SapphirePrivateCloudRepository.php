@@ -18,7 +18,7 @@ final class SapphirePrivateCloudRepository
 	extends SapphireOpenStackImplementationRepository {
 
     public function __construct($draft_entity=false){
-        $entity = ($draft_entity) ? new PrivateCloudServiceDraft() : new PublicCloudService();
+        $entity = ($draft_entity) ? new PrivateCloudServiceDraft() : new PrivateCloudService();
         parent::__construct($entity);
     }
 

@@ -67,7 +67,7 @@ final class DistributionCrudApi extends CompanyServiceCrudApi {
             new CompanyServiceCanAddResourcePolicy,
             new CompanyServiceCanAddVideoPolicy,
             new DistributionDraftFactory,
-            new MarketplaceFactory,
+            new MarketplaceDraftFactory,
             new ValidatorFactory,
             new OpenStackApiFactory,
             null,

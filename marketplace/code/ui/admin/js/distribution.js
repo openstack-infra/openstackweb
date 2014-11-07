@@ -111,6 +111,7 @@ jQuery(document).ready(function($){
                     dataType: "json",
                     success: function (data,textStatus,jqXHR) {
                         //window.location = listing_url;
+                        if(distribution.id < 1) $("#id",form).val(data);
                         $('.publish-distribution').prop('disabled',false);
                         $('.save-distribution').prop('disabled',false);
                     },

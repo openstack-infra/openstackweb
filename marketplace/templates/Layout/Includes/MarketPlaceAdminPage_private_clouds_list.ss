@@ -77,6 +77,7 @@
                         <td style="min-width: 200px" width="30%">
                             <a class="product-button roundedButton addDeploymentBtn" href="$Top.Link(private_cloud)?id=$ID">Edit Product Details</a>
                             <a target="_blank" class="product-button roundedButton addDeploymentBtn" href="$Top.Link(private_cloud)/$ID/preview">Preview Product</a>
+                            <a target="_blank" class="product-button roundedButton addDeploymentBtn" href="$Top.Link(private_cloud)/$ID/pdf">PDF</a>
                             <a class="roundedButton delete-private-cloud product-button addDeploymentBtn" href="#" data-id="{$ID}">Delete Product</a>
                         </td>
                     </tr>

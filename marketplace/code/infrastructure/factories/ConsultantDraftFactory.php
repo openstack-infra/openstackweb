@@ -1,21 +1,9 @@
 <?php
 /**
- * Copyright 2014 Openstack Foundation
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * http://www.apache.org/licenses/LICENSE-2.0
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- **/
-/**
- * Class ConsultantFactory
+ * Class ConsultantDraftFactory
  */
-final class ConsultantFactory
-	extends RegionalSupportedCompanyServiceFactory
+final class ConsultantDraftFactory
+	extends RegionalSupportedCompanyServiceDraftFactory
 	implements IConsultantFactory {
 
 	/**
@@ -29,7 +17,7 @@ final class ConsultantFactory
 	 */
 	public function buildCompanyService($name, $overview, ICompany $company, $active, IMarketPlaceType $marketplace_type, $call_2_action_url = null,  $live_id = null)
 	{
-		$consultant = new Consultant;
+		$consultant = new ConsultantDraft;
 		$consultant->setName($name);
 		$consultant->setOverview($overview);
 		$consultant->setCompany($company);
@@ -49,7 +37,7 @@ final class ConsultantFactory
 	 */
 	public function buildCompanyServiceById($id)
 	{
-		$consultant     = new Consultant;
+		$consultant     = new ConsultantDraft;
 		$consultant->ID = $id;
 		return $consultant;
 	}
@@ -82,14 +70,14 @@ final class ConsultantFactory
 	 */
 	public function buildClient($name)
 	{
-		$client = new ConsultantClient;
+		$client = new ConsultantClientDraft;
 		$client->setName($name);
 		return $client;
 	}
 
 	public function buildOffice(AddressInfo $address_info)
 	{
-		$office = new Office;
+		$office = new OfficeDraft;
 		list($address1,$address2)=$address_info->getAddress();
 		$office->setAddress($address1);
 		$office->setAddress1($address2);

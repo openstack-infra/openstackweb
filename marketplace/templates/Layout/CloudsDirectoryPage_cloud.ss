@@ -55,7 +55,11 @@
             </tbody>
             </table>
             <script>
-                var enabled_schemas = $Top.EnabledPricingSchemas;
+                <% if IsDraft  %>
+                    var enabled_schemas = $Top.EnabledPricingSchemasDraft;
+                <% else %>
+                    var enabled_schemas = $Top.EnabledPricingSchemas;
+                <% end_if %>
             </script>
         <% end_if %>
         <% if HyperVisors %>
@@ -97,7 +101,11 @@
         <% end_if %>
         <% if DataCenters %>
         <script type="text/javascript">
-                var dc_locations_per_cloud_instance = $Top.CurrentDataCenterLocationsJson;
+                <% if IsDraft  %>
+                    var dc_locations_per_cloud_instance = $Top.CurrentDataCenterLocationsDraftJson;
+                <% else %>
+                    var dc_locations_per_cloud_instance = $Top.CurrentDataCenterLocationsJson;
+                <% end_if %>
         </script>
         <hr>
         <h3 style="color: #{$Company.CompanyColor} !important;" >Data Center Locations</h3>

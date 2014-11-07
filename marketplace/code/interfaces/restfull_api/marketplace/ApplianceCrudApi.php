@@ -18,11 +18,13 @@ final class ApplianceCrudApi extends CompanyServiceCrudApi {
 
 	private $marketplace_type_repository;
 	private $appliance_repository;
+    private $appliance_draft_repository;
 
 
 	public function __construct() {
 
 		$this->appliance_repository        = new SapphireApplianceRepository;
+        $this->appliance_draft_repository  = new SapphireApplianceRepository(true);
 		$this->marketplace_type_repository = new SapphireMarketPlaceTypeRepository;
 
 		$manager = new ApplianceManager (
@@ -49,12 +51,36 @@ final class ApplianceCrudApi extends CompanyServiceCrudApi {
 			SapphireTransactionManager::getInstance()
 		);
 
-		parent::__construct($manager, new ApplianceFactory);
+        $draft_manager = new ApplianceManager (
+            $this->appliance_draft_repository,
+            new SapphireMarketPlaceVideoTypeRepository,
+            $this->marketplace_type_repository,
+            new SapphireGuestOSTypeRepository,
+            new SapphireHyperVisorTypeRepository,
+            new SapphireOpenStackApiVersionRepository,
+            new SapphireOpenStackComponentRepository,
+            new SapphireOpenStackReleaseRepository,
+            new SapphireRegionRepository,
+            new SapphireSupportChannelTypeRepository,
+            new SapphireOpenStackReleaseSupportedApiVersionRepository,
+            new ApplianceAddPolicy($this->appliance_draft_repository, $this->marketplace_type_repository),
+            new CompanyServiceCanAddResourcePolicy,
+            new CompanyServiceCanAddVideoPolicy,
+            new ApplianceDraftFactory,
+            new MarketplaceDraftFactory,
+            new ValidatorFactory,
+            new OpenStackApiFactory,
+            null,
+            new SessionCacheService,
+            SapphireTransactionManager::getInstance()
+        );
+
+		parent::__construct($manager, $draft_manager, new ApplianceFactory, new ApplianceDraftFactory);
 
 		// filters ...
 		$this_var     = $this;
 		$current_user = $this->current_user;
-		$repository   = $this->appliance_repository;
+		$repository   = $this->appliance_draft_repository;
 
 		$this->addBeforeFilter('addCompanyService','check_add_company',function ($request) use($this_var, $current_user,$repository){
 			$data = $this_var->getJsonRequest();
@@ -90,6 +116,7 @@ final class ApplianceCrudApi extends CompanyServiceCrudApi {
 		'DELETE $COMPANY_SERVICE_ID!' => 'deleteCompanyService',
 		'POST '                       => 'addCompanyService',
 		'PUT '                        => 'updateCompanyService',
+        'PUT $COMPANY_SERVICE_ID!'    => 'publishCompanyService',
 	);
 
 	/**
@@ -99,7 +126,8 @@ final class ApplianceCrudApi extends CompanyServiceCrudApi {
 		'getDistribution',
 		'deleteCompanyService',
 		'addCompanyService',
-		'updateCompanyService'
+		'updateCompanyService',
+        'publishCompanyService'
 	);
 
 	public function getDistribution(){
@@ -110,9 +138,17 @@ final class ApplianceCrudApi extends CompanyServiceCrudApi {
 		return $this->ok(OpenStackImplementationAssembler::convertOpenStackImplementationToArray($appliance));
 	}
 
+    public function getDistributionDraft(){
+        $company_service_id  = intval($this->request->param('COMPANY_SERVICE_ID'));
+        $appliance = $this->appliance_draft_repository->getByLiveServiceId($company_service_id);
+        if(!$appliance)
+            return $this->notFound();
+        return $this->ok(OpenStackImplementationAssembler::convertOpenStackImplementationToArray($appliance));
+    }
+
 	public function addCompanyService(){
 		try {
-			return parent::addCompanyService();
+			return parent::addCompanyServiceDraft();
 		}
 		catch (Exception $ex) {
 			SS_Log::log($ex,SS_Log::ERR);
@@ -122,12 +158,33 @@ final class ApplianceCrudApi extends CompanyServiceCrudApi {
 
 	public function updateCompanyService(){
 		try {
-			return parent::updateCompanyService();
+			return parent::updateCompanyServiceDraft();
 		}
 		catch (Exception $ex) {
 			SS_Log::log($ex,SS_Log::ERR);
 			return $this->serverError();
 		}
 	}
+
+    public function publishCompanyService(){
+        try {
+            return parent::publishCompanyService();
+        }
+        catch (Exception $ex) {
+            SS_Log::log($ex,SS_Log::ERR);
+            return $this->serverError();
+        }
+    }
+
+    public function deleteCompanyService(){
+        try {
+            parent::deleteCompanyService();
+            return parent::deleteCompanyServiceDraft();
+        }
+        catch (Exception $ex) {
+            SS_Log::log($ex,SS_Log::ERR);
+            return $this->serverError();
+        }
+    }
 
 }

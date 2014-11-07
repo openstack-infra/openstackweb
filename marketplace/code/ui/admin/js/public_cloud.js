@@ -43,7 +43,16 @@ jQuery(document).ready(function($){
             else{
                 $('#active',form).prop('checked',false);
             }
-            $("#id",form).val(public_cloud.id);
+
+            //this is a draft
+            if (public_cloud.live_service_id) {
+                $("#id",form).val(public_cloud.id);
+                $("#live_id",form).val(public_cloud.live_service_id);
+            } else { //its not a draft is the live version, so we remove the id and set the live_service_id
+                $("#live_id",form).val(public_cloud.id);
+                $('.publish-public-cloud').prop('disabled',true);
+            }
+
             //reload widgets
             $("#components_form").components('load',public_cloud.capabilities);
             if(public_cloud.capabilities.length>0){
@@ -94,6 +103,7 @@ jQuery(document).ready(function($){
                 //create public_cloud object and POST it
                 var public_cloud = {};
                 public_cloud.id                      = parseInt($("#id",form).val());
+                public_cloud.live_service_id         = parseInt($("#live_id",form).val());
                 public_cloud.company_id              = parseInt($("#company_id",form).val());
                 public_cloud.name                    = $("#name",form).val();
                 public_cloud.overview                = $("#overview",form).val();
@@ -142,7 +152,10 @@ jQuery(document).ready(function($){
                             contentType: "application/json; charset=utf-8",
                             dataType: "json",
                             success: function (data,textStatus,jqXHR) {
-                                window.location = listing_url;
+                                //window.location = listing_url;
+                                if(public_cloud.id < 1) $("#id",form).val(data);
+                                $('.publish-public-cloud').prop('disabled',false);
+                                $('.save-public-cloud').prop('disabled',false);
                                 ajaxIndicatorStop();
                             },
                             error: function (jqXHR, textStatus, errorThrown) {
@@ -166,5 +179,116 @@ jQuery(document).ready(function($){
 
             return false;
         });
+
+        $('.publish-public-cloud').click(function(event){
+            var button =  $(this);
+            if(button.prop('disabled')){
+                return false;
+            }
+            event.preventDefault();
+            event.stopPropagation();
+            var form_validator = form.marketplace_type_header('getFormValidator');
+            form_validator.settings.ignore = ".add-comtrol";
+            var is_valid = form.valid();
+            if(!is_valid) return false;
+            form_validator.resetForm();
+            var additional_resources = $("#additional-resources-form").additional_resources('serialize');
+            var regional_support     = $("#support-channels-form").support_channels('serialize');
+            var capabilities         = $("#components_form").components('serialize');
+            var guest_os             = $("#guest_os_form").guest_os('serialize');
+            var hyper_visors         = $("#hypervisors_form").hypervisors('serialize');
+            var videos               = $("#videos-form").videos('serialize');
+            var data_centers         = $("#data-centers-form").datacenter_locations('serialize');
+            var pricing_schemas       = $("#pricing_schema_form").pricing_schemas('serialize');
+
+            if(additional_resources !== false &&
+                regional_support    !== false &&
+                capabilities        !== false &&
+                guest_os            !== false &&
+                hyper_visors        !== false &&
+                videos              !== false &&
+                data_centers        !== false &&
+                pricing_schemas     !== false
+                ){
+
+                ajaxIndicatorStart('saving data.. please wait..');
+
+                //create public_cloud object and POST it
+                var public_cloud = {};
+                public_cloud.id                      = parseInt($("#id",form).val());
+                public_cloud.live_service_id         = parseInt($("#live_id",form).val());
+                public_cloud.company_id              = parseInt($("#company_id",form).val());
+                public_cloud.name                    = $("#name",form).val();
+                public_cloud.overview                = $("#overview",form).val();
+                public_cloud.call_2_action_uri       = $("#call_2_action_uri",form).val();
+                public_cloud.active                  = $('#active',form).is(":checked");
+                public_cloud.videos                  = videos;
+                public_cloud.hypervisors             = hyper_visors;
+                public_cloud.guest_os                = guest_os;
+                public_cloud.capabilities            = capabilities;
+                for(var i in public_cloud.capabilities){
+                    var c = public_cloud.capabilities[i];
+                    c.pricing_schemas = pricing_schemas;
+                }
+                public_cloud.regional_support        = regional_support;
+                public_cloud.additional_resources    = additional_resources;
+                public_cloud.data_centers            = data_centers;
+
+
+                var url  = 'api/v1/marketplace/public-clouds/'+public_cloud.live_service_id;
+
+                $('.publish-public-cloud').prop('disabled',true);
+
+
+                $(this).geocoding({
+                    requests:public_cloud.data_centers.locations,
+                    buildGeoRequest:function(location){
+                        var restrictions = {
+                            locality: location.city,
+                            country:location.country
+                        };
+                        if(location.state!=''){
+                            restrictions.administrativeArea = location.state;
+                        }
+                        var request = {componentRestrictions:restrictions};
+                        return request;
+                    },
+                    postProcessRequest:function(location, lat, lng){
+                        location.lat = lat;
+                        location.lng = lng;
+                    },
+                    processFinished:function(){
+                        $.ajax({
+                            type: 'PUT',
+                            url: url,
+                            data: JSON.stringify(public_cloud),
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: function (data,textStatus,jqXHR) {
+                                window.location = listing_url;
+                                ajaxIndicatorStop();
+                            },
+                            error: function (jqXHR, textStatus, errorThrown) {
+                                ajaxIndicatorStop();
+                                $('.publish-public-cloud').prop('disabled',false);
+                                ajaxError(jqXHR, textStatus, errorThrown);
+                            }
+                        });
+                    },
+                    cancelProcess:function(){
+                        ajaxIndicatorStop();
+                        $('.publish-public-cloud').prop('disabled',false);
+                    },
+                    errorMessage:function(location){
+                        return 'data center location: address ( city:'+location.city+',state: '+location.state+', country:'+location.country+' )';
+                    }
+                });
+
+
+            }
+
+            return false;
+        });
+
     }
 });
