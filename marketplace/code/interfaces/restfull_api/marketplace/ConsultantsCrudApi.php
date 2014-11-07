@@ -15,10 +15,7 @@
  * Class ConsultantsCrudApi
  */
 final class ConsultantsCrudApi extends CompanyServiceCrudApi {
-
-	/**
-	 * @var array
-	 */
+	
 	static $url_handlers = array(
 		'GET languages'               => 'getLanguages',
 		'GET $COMPANY_SERVICE_ID!'    => 'getConsultant',
