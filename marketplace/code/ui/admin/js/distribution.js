@@ -41,7 +41,7 @@ jQuery(document).ready(function($){
             }
 
             //this is a draft
-            if (distribution.live_service_id) {
+            if (typeof(distribution.live_service_id) != 'undefined') {
                 $("#id",form).val(distribution.id);
                 $("#live_id",form).val(distribution.live_service_id);
             } else { //its not a draft is the live version, so we remove the id and set the live_service_id
@@ -110,10 +110,9 @@ jQuery(document).ready(function($){
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (data,textStatus,jqXHR) {
-                        //window.location = listing_url;
-                        if(distribution.id < 1) $("#id",form).val(data);
                         $('.publish-distribution').prop('disabled',false);
                         $('.save-distribution').prop('disabled',false);
+                        window.location = listing_url;
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         $('.save-distribution').prop('disabled',false);

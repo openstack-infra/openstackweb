@@ -80,9 +80,10 @@ final class ApplianceCrudApi extends CompanyServiceCrudApi {
 		// filters ...
 		$this_var     = $this;
 		$current_user = $this->current_user;
-		$repository   = $this->appliance_draft_repository;
+        $repository         = $this->appliance_repository;
+        $draft_repository   = $this->appliance_draft_repository;
 
-		$this->addBeforeFilter('addCompanyService','check_add_company',function ($request) use($this_var, $current_user,$repository){
+		$this->addBeforeFilter('addCompanyService','check_add_company',function ($request) use($this_var, $current_user){
 			$data = $this_var->getJsonRequest();
 			if (!$data) return $this_var->serverError();
 
@@ -99,9 +100,11 @@ final class ApplianceCrudApi extends CompanyServiceCrudApi {
 				return $this_var->permissionFailure();
 		});
 
-		$this->addBeforeFilter('deleteCompanyService','check_delete_company',function ($request) use($this_var, $current_user,$repository){
+		$this->addBeforeFilter('deleteCompanyService','check_delete_company',function ($request) use($this_var, $current_user,$repository,$draft_repository){
 			$company_service_id = intval($request->param('COMPANY_SERVICE_ID'));
-			$company_service    = $repository->getById($company_service_id);
+            $is_draft           = intval($this->request->param('IS_DRAFT'));
+            $company_service    = ($is_draft) ? $draft_repository->getById($company_service_id) : $repository->getById($company_service_id);
+
 			if(!$current_user->isMarketPlaceAdminOfCompany(IAppliance::MarketPlaceGroupSlug, $company_service->getCompany()->getIdentifier()))
 				return $this_var->permissionFailure();
 		});
@@ -113,7 +116,7 @@ final class ApplianceCrudApi extends CompanyServiceCrudApi {
 	 */
 	static $url_handlers = array(
 		'GET $COMPANY_SERVICE_ID!'    => 'getAppliance',
-		'DELETE $COMPANY_SERVICE_ID!' => 'deleteCompanyService',
+        'DELETE $COMPANY_SERVICE_ID!/$IS_DRAFT!' => 'deleteCompanyService',
 		'POST '                       => 'addCompanyService',
 		'PUT '                        => 'updateCompanyService',
         'PUT $COMPANY_SERVICE_ID!'    => 'publishCompanyService',
@@ -178,8 +181,24 @@ final class ApplianceCrudApi extends CompanyServiceCrudApi {
 
     public function deleteCompanyService(){
         try {
-            parent::deleteCompanyService();
-            return parent::deleteCompanyServiceDraft();
+            $company_service_id = intval($this->request->param('COMPANY_SERVICE_ID'));
+            $is_draft           = intval($this->request->param('IS_DRAFT'));
+
+            if ($is_draft) {
+                $this->draft_manager->unRegister($this->draft_factory->buildCompanyServiceById($company_service_id));
+            } else {
+                $this->manager->unRegister($this->factory->buildCompanyServiceById($company_service_id));
+                $company_service_draft = $this->appliance_draft_repository->getByLiveServiceId($company_service_id);
+                if ($company_service_draft) {
+                    $this->draft_manager->unRegister($company_service_draft);
+                }
+            }
+
+            return $this->deleted();
+        }
+        catch (NotFoundEntityException $ex1) {
+            SS_Log::log($ex1,SS_Log::ERR);
+            return $this->notFound($ex1->getMessage());
         }
         catch (Exception $ex) {
             SS_Log::log($ex,SS_Log::ERR);

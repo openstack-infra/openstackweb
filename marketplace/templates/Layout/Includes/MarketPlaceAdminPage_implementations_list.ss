@@ -52,7 +52,8 @@
                 <tr>
                     <th><a href="$Top.Link?sort=company">Company ^</a></th>
                     <th><a href="$Top.Link?sort=name">Product Name ^</a></th>
-                    <th><a href="$Top.Link?sort=name">Product Type ^</a></th>
+                    <th>Product Type</th>
+                    <th>Published</th>
                     <th><a href="$Top.Link?sort=status">Status ^</a></th>
                     <th><a href="$Top.Link?sort=updated">Last Update ^</a></th>
                     <% if Top.isSuperAdmin %>
@@ -75,6 +76,9 @@
                             $MarketPlace.Name
                         </td>
                         <td>
+                            <% if LiveServiceID == 0 %>Draft<% else %>Published<% end_if %>
+                        </td>
+                        <td>
                             <% if Active %>Active<% else %>Deactivated<% end_if %>
                         </td>
                         <td>$LastEdited</td>
@@ -90,11 +94,12 @@
                         </td>
                         <% end_if %>
                         <td style="min-width: 200px" width="30%">
-                            <a class="product-button roundedButton addDeploymentBtn" href="<% control MarketPlace  %><% if Name == "Appliance"  %>$Top.Link(appliance)<% end_if %><% if Name == "Distribution"  %>$Top.Link(distribution)<% end_if %><% end_control %>?id=$ID">Edit Product Details</a>
-                            <a target="_blank" class="product-button roundedButton addDeploymentBtn" href="<% control MarketPlace  %><% if Name == "Appliance"  %>$Top.Link(appliance)<% end_if %><% if Name == "Distribution"  %>$Top.Link(distribution)<% end_if %><% end_control %>/$ID/preview">Preview Product</a>
-                            <a target="_blank" class="product-button roundedButton addDeploymentBtn" href="<% control MarketPlace  %><% if Name == "Appliance"  %>$Top.Link(appliance)<% end_if %><% if Name == "Distribution"  %>$Top.Link(distribution)<% end_if %><% end_control %>/$ID/pdf">PDF</a>
+                            <a class="product-button roundedButton addDeploymentBtn" href="<% control MarketPlace  %><% if Name == "Appliance"  %>$Top.Link(appliance)<% end_if %><% if Name == "Distribution"  %>$Top.Link(distribution)<% end_if %><% end_control %>?id=$ID&is_draft=$isDraft">Edit Product Details</a>
+                            <a target="_blank" class="product-button roundedButton addDeploymentBtn" href="<% control MarketPlace  %><% if Name == "Appliance"  %>$Top.Link(appliance)<% end_if %><% if Name == "Distribution"  %>$Top.Link(distribution)<% end_if %><% end_control %>/$ID/<% if isDraft  %>draft_<% end_if %>preview">Preview Product</a>
+                            <a target="_blank" class="product-button roundedButton addDeploymentBtn" href="<% control MarketPlace  %><% if Name == "Appliance"  %>$Top.Link(appliance)<% end_if %><% if Name == "Distribution"  %>$Top.Link(distribution)<% end_if %><% end_control %>/$ID/<% if isDraft  %>draft_<% end_if %>pdf">PDF</a>
                             <a class="roundedButton delete-implementation product-button addDeploymentBtn" href="#"
                                data-id="{$ID}"
+                               data-is_draft="{$isDraft}"
                                data-class="<% control MarketPlace  %><% if Name == "Appliance"  %>appliance<% end_if %><% if Name == "Distribution"  %>distribution<% end_if %><% end_control %>">Delete Product</a>
                         </td>
                     </tr>

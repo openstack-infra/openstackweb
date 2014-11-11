@@ -15,11 +15,14 @@
  * Class ConsultantsCrudApi
  */
 final class ConsultantsCrudApi extends CompanyServiceCrudApi {
-	
+
+	/**
+	 * @var array
+	 */
 	static $url_handlers = array(
 		'GET languages'               => 'getLanguages',
 		'GET $COMPANY_SERVICE_ID!'    => 'getConsultant',
-		'DELETE $COMPANY_SERVICE_ID!' => 'deleteCompanyService',
+		'DELETE $COMPANY_SERVICE_ID!/$IS_DRAFT!' => 'deleteCompanyService',
 		'POST '                       => 'addCompanyService',
 		'PUT '                        => 'updateCompanyService',
 		'PUT $COMPANY_SERVICE_ID!'    => 'publishCompanyService',
@@ -131,9 +134,10 @@ final class ConsultantsCrudApi extends CompanyServiceCrudApi {
 		// filters ...
 		$this_var     = $this;
 		$current_user = $this->current_user;
-		$repository   = $this->consultant_repository;
+        $repository         = $this->consultant_repository;
+        $draft_repository   = $this->consultant_draft_repository;
 
-		$this->addBeforeFilter('addCompanyService','check_add_company',function ($request) use($this_var, $current_user, $repository){
+		$this->addBeforeFilter('addCompanyService','check_add_company',function ($request) use($this_var, $current_user){
 			$data = $this_var->getJsonRequest();
 			if (!$data) return $this->serverError();
 			$company_id = intval(@$data['company_id']);
@@ -148,13 +152,16 @@ final class ConsultantsCrudApi extends CompanyServiceCrudApi {
 				return $this_var->permissionFailure();
 		});
 
-		$this->addBeforeFilter('deleteCompanyService','check_delete_company',function ($request) use($this_var, $current_user,$repository){
+		$this->addBeforeFilter('deleteCompanyService','check_delete_company',function ($request) use($this_var, $current_user,$repository,$draft_repository){
 			$company_service_id = intval($request->param('COMPANY_SERVICE_ID'));
-			$company_service    = $repository->getById($company_service_id);
+            $is_draft           = intval($this->request->param('IS_DRAFT'));
+            $company_service    = ($is_draft) ? $draft_repository->getById($company_service_id) : $repository->getById($company_service_id);
+
 			if(!$current_user->isMarketPlaceAdminOfCompany(IConsultant::MarketPlaceGroupSlug, $company_service->getCompany()->getIdentifier()))
 				return $this_var->permissionFailure();
 		});
 	}
+
 
 	public function getConsultant(){
 		$company_service_id  = intval($this->request->param('COMPANY_SERVICE_ID'));
@@ -216,8 +223,24 @@ final class ConsultantsCrudApi extends CompanyServiceCrudApi {
 
     public function deleteCompanyService(){
         try {
-            parent::deleteCompanyService();
-            return parent::deleteCompanyServiceDraft();
+            $company_service_id = intval($this->request->param('COMPANY_SERVICE_ID'));
+            $is_draft           = intval($this->request->param('IS_DRAFT'));
+
+            if ($is_draft) {
+                $this->draft_manager->unRegister($this->draft_factory->buildCompanyServiceById($company_service_id));
+            } else {
+                $this->manager->unRegister($this->factory->buildCompanyServiceById($company_service_id));
+                $company_service_draft = $this->consultant_draft_repository->getByLiveServiceId($company_service_id);
+                if ($company_service_draft) {
+                    $this->draft_manager->unRegister($company_service_draft);
+                }
+            }
+
+            return $this->deleted();
+        }
+        catch (NotFoundEntityException $ex1) {
+            SS_Log::log($ex1,SS_Log::ERR);
+            return $this->notFound($ex1->getMessage());
         }
         catch (Exception $ex) {
             SS_Log::log($ex,SS_Log::ERR);

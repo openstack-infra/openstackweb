@@ -40,7 +40,7 @@ jQuery(document).ready(function($){
             }
 
             //this is a draft
-            if (appliance.live_service_id) {
+            if (typeof(appliance.live_service_id) != 'undefined') {
                 $("#id",form).val(appliance.id);
                 $("#live_id",form).val(appliance.live_service_id);
             } else { //its not a draft is the live version, so we remove the id and set the live_service_id

@@ -41,6 +41,7 @@
                 <tr>
                     <th><a href="$Top.Link(public_clouds)?sort=company">Company ^</a></th>
                     <th><a href="$Top.Link(public_clouds)?sort=name">Product Name ^</a></th>
+                    <th>Published</th>
                     <th><a href="$Top.Link(public_clouds)?sort=status">Status ^</a></th>
                     <th><a href="$Top.Link(public_clouds)?sort=updated">Last Update ^</a></th>
                     <% if Top.isSuperAdmin %>
@@ -60,6 +61,9 @@
                             $Name
                         </td>
                         <td>
+                            <% if LiveServiceID == 0 %>Draft<% else %>Published<% end_if %>
+                        </td>
+                        <td>
                             <% if Active %>Active<% else %>Deactivated<% end_if %>
                         </td>
                         <td>$LastEdited</td>
@@ -75,10 +79,10 @@
                             </td>
                         <% end_if %>
                         <td style="min-width: 200px" width="30%">
-                            <a class="product-button roundedButton addDeploymentBtn" href="$Top.Link(public_cloud)?id=$ID">Edit Product Details</a>
-                            <a target="_blank" class="product-button roundedButton addDeploymentBtn" href="$Top.Link(public_cloud)/$ID/preview">Preview Product</a>
-                            <a target="_blank" class="product-button roundedButton addDeploymentBtn" href="$Top.Link(public_cloud)/$ID/pdf">PDF</a>
-                            <a class="roundedButton delete-public-cloud product-button addDeploymentBtn" href="#" data-id="{$ID}">Delete Product</a>
+                            <a class="product-button roundedButton addDeploymentBtn" href="$Top.Link(public_cloud)?id=$ID&is_draft=$isDraft">Edit Product Details</a>
+                            <a target="_blank" class="product-button roundedButton addDeploymentBtn" href="$Top.Link(public_cloud)/$ID/<% if isDraft  %>draft_<% end_if %>preview">Preview Product</a>
+                            <a target="_blank" class="product-button roundedButton addDeploymentBtn" href="$Top.Link(public_cloud)/$ID/<% if isDraft  %>draft_<% end_if %>pdf">PDF</a>
+                            <a class="roundedButton delete-public-cloud product-button addDeploymentBtn" href="#" data-id="{$ID}" data-is_draft="{$isDraft}">Delete Product</a>
                         </td>
                     </tr>
                     <% end_loop %>

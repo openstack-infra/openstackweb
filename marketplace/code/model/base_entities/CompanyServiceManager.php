@@ -250,6 +250,10 @@ abstract class CompanyServiceManager {
 			$company_service = $repository->getById($id);
 			if(!$company_service) throw new NotFoundEntityException('CompanyService',sprintf("id %s",$id));
 			$company_service->setName($data['name']);
+            if ($company_service->isDraft()) {
+                $live_service_id = (isset($data['live_service_id'])) ? $data['live_service_id'] : 0;
+                $company_service->setLiveServiceId($live_service_id);
+            }
 
 			$query = new QueryObject($company_service);
 			$query->addAddCondition(QueryCriteria::equal('Name',$company_service->getName()));

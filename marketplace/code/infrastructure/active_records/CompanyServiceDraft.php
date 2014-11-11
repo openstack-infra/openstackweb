@@ -53,7 +53,7 @@ class CompanyServiceDraft
 
     public function isDraft()
     {
-        return true;
+        return 1;
     }
 
 	public function setCompany(ICompany $company)

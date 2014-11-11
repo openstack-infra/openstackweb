@@ -37,10 +37,12 @@ jQuery(document).ready(function($){
         event.preventDefault();
         event.stopPropagation();
         if(confirm("Are you sure to delete this?")){
-            var id   = $(this).attr('data-id');
-            var type = $(this).attr('data-class');
-            var url  = type=='distribution'?'api/v1/marketplace/distributions':'api/v1/marketplace/appliances'
-            url      = url+'/'+id;
+            var id       = $(this).attr('data-id');
+            var is_draft = $(this).attr('data-is_draft');
+            var type     = $(this).attr('data-class');
+            var url      = type=='distribution'?'api/v1/marketplace/distributions':'api/v1/marketplace/appliances'
+            url          = url+'/'+id+'/'+is_draft;
+
             $.ajax({
                 type: "DELETE",
                 url: url,

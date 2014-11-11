@@ -5,10 +5,10 @@
         <a style="overflow:hidden;white-space: nowrap;font-weight:normal;float:right;margin-bottom:50px;text-align:center" class="roundedButton save-distribution" href="#" id="save-distribution">Save</a>
         <a style="overflow:hidden;white-space: nowrap;font-weight:normal;float:right;margin-bottom:50px;text-align:center;margin-right:50px;" class="roundedButton publish-distribution" href="#" id="publish-distribution">Publish</a>
         <% if CurrentDistribution %>
-            <a style="overflow:hidden;white-space: nowrap;font-weight:normal;float:right;margin-bottom:50px;text-align:center;margin-right:50px;" class="roundedButton addDeploymentBtn" target="_blank" href="$Top.Link(distribution)/$CurrentDistribution.ID/draft_preview">Preview</a>
+            <a style="overflow:hidden;white-space: nowrap;font-weight:normal;float:right;margin-bottom:50px;text-align:center;margin-right:50px;" class="roundedButton addDeploymentBtn" target="_blank" href="$Top.Link(distribution)/$CurrentDistribution.ID/<% if CurrentDistribution.isDraft %>draft_<% end_if %>preview">Preview</a>
         <% end_if %>
         <% if CurrentDistribution %>
-            <a style="overflow:hidden;white-space: nowrap;font-weight:normal;float:right;margin-bottom:50px;text-align:center;margin-right:50px;" class="roundedButton addDeploymentBtn" target="_blank" href="$Top.Link(distribution)/$CurrentDistribution.ID/draft_pdf">Download PDF</a>
+            <a style="overflow:hidden;white-space: nowrap;font-weight:normal;float:right;margin-bottom:50px;text-align:center;margin-right:50px;" class="roundedButton addDeploymentBtn" target="_blank" href="$Top.Link(distribution)/$CurrentDistribution.ID/<% if CurrentDistribution.isDraft %>draft_<% end_if %>pdf">Download PDF</a>
         <% end_if %>
         <a style="overflow:hidden;white-space: nowrap;font-weight:normal;float:right;margin-bottom:50px;text-align:center;margin-right:50px;" class="roundedButton addDeploymentBtn" href="$Top.Link">&lt;&lt; Back to Products</a>
     </div>

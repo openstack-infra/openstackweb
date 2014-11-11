@@ -302,9 +302,15 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
 	public function getCurrentDistribution()
 	{
 		$distribution_id = intval($this->request->getVar('id'));
+        $is_draft = intval($this->request->getVar('is_draft'));
         $distribution = false;
 		if ($distribution_id > 0) {
-            $distribution = $this->distribution_draft_repository->getByLiveServiceId($distribution_id);
+            if ($is_draft) {
+                $distribution = $this->distribution_draft_repository->getById($distribution_id);
+            } else {
+                $distribution = $this->distribution_draft_repository->getByLiveServiceId($distribution_id);
+            }
+
             //if no draft found we pull the live one to create the draft from it when saved
             if (!$distribution) {
                 $distribution = $this->distribution_repository->getById($distribution_id);
@@ -316,9 +322,16 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
 	public function getCurrentAppliance()
 	{
 		$appliance_id = intval($this->request->getVar('id'));
+        $is_draft = intval($this->request->getVar('is_draft'));
+
         $appliance = false;
 		if ($appliance_id > 0) {
-			$appliance = $this->appliance_draft_repository->getByLiveServiceId($appliance_id);
+            if ($is_draft) {
+                $appliance = $this->appliance_draft_repository->getById($appliance_id);
+            } else {
+                $appliance = $this->appliance_draft_repository->getByLiveServiceId($appliance_id);
+            }
+
             //if no draft found we pull the live one to create the draft from it when saved
             if (!$appliance) {
                 $appliance = $this->appliance_repository->getById($appliance_id);
@@ -531,81 +544,113 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
 		return new ArrayList($list);
 	}
 
+    public function sortCompanyService(&$query, $sort, $dir)
+    {
+        switch ($sort) {
+            case 'company': {
+                $query->addAlias(QueryAlias::create('Company'));
+                if ($dir == 'asc')
+                    $query->addOrder(QueryOrder::asc('Company.Name'));
+                else
+                    $query->addOrder(QueryOrder::desc('Company.Name'));
+            }
+                break;
+            case 'name': {
+                if ($dir == 'asc')
+                    $query->addOrder(QueryOrder::asc('Name'));
+                else
+                    $query->addOrder(QueryOrder::desc('Name'));
+            }
+            case 'type': {
+                $query->addAlias(QueryAlias::create('MarketPlaceType'));
+                if ($dir == 'asc') {
+                    $query->addOrder(QueryOrder::asc('MarketPlaceType.Name'));
+                } else {
+                    $query->addOrder(QueryOrder::desc('MarketPlaceType.Name'));
+                }
+            }
+            case 'status': {
+                if ($dir == 'asc')
+                    $query->addOrder(QueryOrder::asc('Active'));
+                else
+                    $query->addOrder(QueryOrder::desc('Active'));
+            }
+                break;
+            case 'updated': {
+                if ($dir == 'asc')
+                    $query->addOrder(QueryOrder::asc('LastEdited'));
+                else
+                    $query->addOrder(QueryOrder::desc('LastEdited'));
+            }
+                break;
+            case 'updatedby': {
+                $query->addAlias(QueryAlias::create('Member'));
+                if ($dir == 'asc')
+                    $query->addOrder(QueryOrder::asc('Member.Email'));
+                else
+                    $query->addOrder(QueryOrder::desc('Member.Email'));
+            }
+                break;
+            default: {
+            if ($dir == 'asc')
+                $query->addOrder(QueryOrder::asc('ID'));
+            else
+                $query->addOrder(QueryOrder::desc('ID'));
+            }
+            break;
+        }
+    }
+
 	public function getConsultants()
 	{
 		$product_name = trim(Convert::raw2sql($this->request->getVar('name')));
 		$company_id = intval($this->request->getVar('company_id'));
 		$sort = $this->request->getVar('sort');
 		$query = new QueryObject(new CompanyService);
+        $query_draft = new QueryObject(new CompanyServiceDraft);
+        $query_draft->addAddCondition(QueryCriteria::equal('LiveServiceID', 0)); //only drafts without live version
+
 		$query->addAlias(QueryAlias::create('Company'));
+        $query_draft->addAlias(QueryAlias::create('Company'));
+
 		if (!empty($product_name)) {
 			$query->addOrCondition(QueryCriteria::like('CompanyService.Name', $product_name));
 			$query->addOrCondition(QueryCriteria::like('Company.Name', $product_name));
+            $query_draft->addOrCondition(QueryCriteria::like('CompanyService.Name', $product_name));
+            $query_draft->addOrCondition(QueryCriteria::like('Company.Name', $product_name));
 		}
 		if ($company_id > 0) {
 			$query->addAddCondition(QueryCriteria::equal('Company.ID', $company_id));
+            $query_draft->addAddCondition(QueryCriteria::equal('Company.ID', $company_id));
 		}
 
 		//set sorting
 		if (!empty($sort)) {
 			$dir = $this->getSortDir('consultants');
-			switch ($sort) {
-				case 'company': {
-					if ($dir == 'asc')
-						$query->addOrder(QueryOrder::asc('Company.Name'));
-					else
-						$query->addOrder(QueryOrder::desc('Company.Name'));
-				}
-					break;
-				case 'name': {
-					if ($dir == 'asc')
-						$query->addOrder(QueryOrder::asc('Name'));
-					else
-						$query->addOrder(QueryOrder::desc('Name'));
-				}
-				case 'status': {
-					if ($dir == 'asc')
-						$query->addOrder(QueryOrder::asc('Active'));
-					else
-						$query->addOrder(QueryOrder::desc('Active'));
-				}
-					break;
-				case 'updated': {
-					if ($dir == 'asc')
-						$query->addOrder(QueryOrder::asc('LastEdited'));
-					else
-						$query->addOrder(QueryOrder::desc('LastEdited'));
-				}
-					break;
-				case 'updatedby': {
-					$query->addAlias(QueryAlias::create('Member'));
-					if ($dir == 'asc')
-						$query->addOrder(QueryOrder::asc('Member.Email'));
-					else
-						$query->addOrder(QueryOrder::desc('Member.Email'));
-				}
-					break;
-				default: {
-				if ($dir == 'asc')
-					$query->addOrder(QueryOrder::asc('ID'));
-				else
-					$query->addOrder(QueryOrder::desc('ID'));
-				}
-				break;
-			}
+            $this->sortCompanyService($query,$sort,$dir);
+            $this->sortCompanyService($query_draft,$sort,$dir);
 		}
 		//get consultants
-		list($list, $size) = $this->consultant_repository->getAll($query, 0, 1000);
+		list($list1, $size1) = $this->consultant_repository->getAll($query, 0, 1000);
+        list($list2, $size2) = $this->consultant_draft_repository->getAll($query_draft, 0, 1000);
+
 		//return on view model
-		return new ArrayList($list);
+		return new ArrayList(array_merge($list1,$list2));
+
 	}
 
 	public function getCurrentConsultant()
 	{
 		$consultant_id = intval($this->request->getVar('id'));
+        $is_draft = intval($this->request->getVar('is_draft'));
         $consultant = false;
         if ($consultant_id > 0) {
-            $consultant = $this->consultant_draft_repository->getByLiveServiceId($consultant_id);
+            if ($is_draft) {
+                $consultant = $this->consultant_draft_repository->getById($consultant_id);
+            } else {
+                $consultant = $this->consultant_draft_repository->getByLiveServiceId($consultant_id);
+            }
+
             //if no draft found we pull the live one to create the draft from it when saved
             if (!$consultant) {
                 $consultant = $this->consultant_repository->getById($consultant_id);
@@ -647,83 +692,47 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
 		$company_id = intval($this->request->getVar('company_id'));
 
 		$sort = $this->request->getVar('sort');
-		$query = new QueryObject(new CompanyService);
+        $query = new QueryObject(new CompanyService);
+        $query_draft = new QueryObject(new CompanyServiceDraft);
+        $query_draft->addAddCondition(QueryCriteria::equal('LiveServiceID', 0));
+
 		if (!empty($product_name)) {
 			$query->addAddCondition(QueryCriteria::like('Name', $product_name));
+            $query_draft->addAddCondition(QueryCriteria::like('Name', $product_name));
 		}
 		if ($implementation_type_id > 0) {
 			$query->addAddCondition(QueryCriteria::equal('MarketPlaceType.ID', $implementation_type_id));
+            $query_draft->addAddCondition(QueryCriteria::equal('MarketPlaceType.ID', $implementation_type_id));
 		}
 		if ($company_id > 0) {
 			$query->addAddCondition(QueryCriteria::equal('Company.ID', $company_id));
+            $query_draft->addAddCondition(QueryCriteria::equal('Company.ID', $company_id));
 		}
 		//set sorting
 		if (!empty($sort)) {
 			$dir = $this->getSortDir('distributions');
-			switch ($sort) {
-				case 'company': {
-					$query->addAlias(QueryAlias::create('Company'));
-					if ($dir == 'asc')
-						$query->addOrder(QueryOrder::asc('Company.Name'));
-					else
-						$query->addOrder(QueryOrder::desc('Company.Name'));
-				}
-					break;
-				case 'name': {
-					if ($dir == 'asc')
-						$query->addOrder(QueryOrder::asc('Name'));
-					else
-						$query->addOrder(QueryOrder::desc('Name'));
-				}
-					break;
-				case 'type': {
-					$query->addAlias(QueryAlias::create('MarketPlaceType'));
-					if ($dir == 'asc')
-						$query->addOrder(QueryOrder::asc('MarketPlaceType.Name'));
-					else
-						$query->addOrder(QueryOrder::desc('MarketPlaceType.Name'));
-				}
-					break;
-				case 'status': {
-					if ($dir == 'asc')
-						$query->addOrder(QueryOrder::asc('Active'));
-					else
-						$query->addOrder(QueryOrder::desc('Active'));
-				}
-					break;
-				case 'updated': {
-					if ($dir == 'asc')
-						$query->addOrder(QueryOrder::asc('LastEdited'));
-					else
-						$query->addOrder(QueryOrder::desc('LastEdited'));
-				}
-					break;
-				case 'updatedby': {
-					$query->addAlias(QueryAlias::create('Member'));
-					if ($dir == 'asc')
-						$query->addOrder(QueryOrder::asc('Member.Email'));
-					else
-						$query->addOrder(QueryOrder::desc('Member.Email'));
-				}
-					break;
-				default: {
-				if ($dir == 'asc')
-					$query->addOrder(QueryOrder::asc('ID'));
-				else
-					$query->addOrder(QueryOrder::desc('ID'));
-				}
-				break;
-			}
+            $this->sortCompanyService($query,$sort,$dir);
+            $this->sortCompanyService($query_draft,$sort,$dir);
 		}
 		//get distributions
 		$list1 = array();
 		$list2 = array();
-		if ($this->canAdmin('distributions'))
-			list($list1, $size1) = $this->distribution_repository->getAll($query, 0, 1000);
-		if ($this->canAdmin('appliances'))
-			list($list2, $size2) = $this->appliance_repository->getAll($query, 0, 1000);
-		//return on view model
-		return new ArrayList(array_merge($list1,$list2));
+
+        $list3 = array();
+
+		if ($this->canAdmin('distributions')) {
+            list($list1, $size1) = $this->distribution_repository->getAll($query, 0, 1000);
+            list($list2, $size2) = $this->distribution_draft_repository->getAll($query_draft, 0, 1000);
+        }
+
+		if ($this->canAdmin('appliances')) {
+            list($list3, $size3) = $this->appliance_repository->getAll($query, 0, 1000);
+            list($list4, $size4) = $this->appliance_draft_repository->getAll($query_draft, 0, 1000);
+        }
+
+        //return on view model
+		return new ArrayList(array_merge($list1,$list2,$list3,$list4));
+
 	}
 
 	/**
@@ -736,77 +745,47 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
 		$company_id = intval($this->request->getVar('company_id'));
 		$sort = $this->request->getVar('sort');
 		$query = new QueryObject(new CompanyService);
+        $query_draft = new QueryObject(new CompanyServiceDraft);
+        $query_draft->addAddCondition(QueryCriteria::equal('LiveServiceID', 0));
 
 		if (!empty($product_name)) {
 			$query->addAddCondition(QueryCriteria::like('Name', $product_name));
+            $query_draft->addAddCondition(QueryCriteria::like('Name', $product_name));
 		}
 		if ($company_id > 0) {
 			$query->addAddCondition(QueryCriteria::equal('Company.ID', $company_id));
+            $query_draft->addAddCondition(QueryCriteria::equal('Company.ID', $company_id));
 		}
 
 		//set sorting
 		if (!empty($sort)) {
 			$dir = $this->getSortDir('public.clouds');
 
-			switch ($sort) {
-				case 'company': {
-					$query->addAlias(QueryAlias::create('Company'));
-					if ($dir == 'asc')
-						$query->addOrder(QueryOrder::asc('Company.Name'));
-					else
-						$query->addOrder(QueryOrder::desc('Company.Name'));
-				}
-					break;
-				case 'name': {
-					if ($dir == 'asc')
-						$query->addOrder(QueryOrder::asc('Name'));
-					else
-						$query->addOrder(QueryOrder::desc('Name'));
-				}
-					break;
-				case 'status': {
-					if ($dir == 'asc')
-						$query->addOrder(QueryOrder::asc('Active'));
-					else
-						$query->addOrder(QueryOrder::desc('Active'));
-				}
-					break;
-				case 'updated': {
-					if ($dir == 'asc')
-						$query->addOrder(QueryOrder::asc('LastEdited'));
-					else
-						$query->addOrder(QueryOrder::desc('LastEdited'));
-				}
-					break;
-				case 'updatedby': {
-					$query->addAlias(QueryAlias::create('Member'));
-					if ($dir == 'asc')
-						$query->addOrder(QueryOrder::asc('Member.Email'));
-					else
-						$query->addOrder(QueryOrder::desc('Member.Email'));
-				}
-					break;
-				default: {
-				if ($dir == 'asc')
-					$query->addOrder(QueryOrder::asc('ID'));
-				else
-					$query->addOrder(QueryOrder::desc('ID'));
-				}
-				break;
-			}
+            $this->sortCompanyService($query,$sort,$dir);
+            $this->sortCompanyService($query_draft,$sort,$dir);
 		}
 		//get public clouds
-		list($list, $size) = $this->public_clouds_repository->getAll($query, 0, 1000);
+		list($list1, $size1) = $this->public_clouds_repository->getAll($query, 0, 1000);
+        list($list2, $size2) = $this->public_clouds_draft_repository->getAll($query_draft, 0, 1000);
+
 		//return on view model
-		return new ArrayList($list);
+
+		return new ArrayList(array_merge($list1,$list2));
+
 	}
 
 	public function getCurrentPublicCloud()
 	{
 		$public_cloud_id = intval($this->request->getVar('id'));
+        $is_draft = intval($this->request->getVar('is_draft'));
         $public_cloud = false;
         if ($public_cloud_id > 0) {
-            $public_cloud = $this->public_clouds_draft_repository->getByLiveServiceId($public_cloud_id);
+            if ($is_draft) {
+                $public_cloud = $this->public_clouds_draft_repository->getById($public_cloud_id);
+            } else {
+                $public_cloud = $this->public_clouds_draft_repository->getByLiveServiceId($public_cloud_id);
+            }
+
             //if no draft found we pull the live one to create the draft from it when saved
             if (!$public_cloud) {
                 $public_cloud = $this->public_clouds_repository->getById($public_cloud_id);
@@ -833,77 +812,47 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
 		$company_id = intval($this->request->getVar('company_id'));
 		$sort = $this->request->getVar('sort');
 		$query = new QueryObject(new CompanyService);
+        $query_draft = new QueryObject(new CompanyServiceDraft);
+        $query_draft->addAddCondition(QueryCriteria::equal('LiveServiceID', 0));
 
 		if (!empty($product_name)) {
 			$query->addAddCondition(QueryCriteria::like('Name', $product_name));
+            $query_draft->addAddCondition(QueryCriteria::like('Name', $product_name));
 		}
 		if ($company_id > 0) {
 			$query->addAddCondition(QueryCriteria::equal('Company.ID', $company_id));
+            $query_draft->addAddCondition(QueryCriteria::equal('Company.ID', $company_id));
 		}
 
 		//set sorting
 		if (!empty($sort)) {
 			$dir = $this->getSortDir('private.clouds');
 
-			switch ($sort) {
-				case 'company': {
-					$query->addAlias(QueryAlias::create('Company'));
-					if ($dir == 'asc')
-						$query->addOrder(QueryOrder::asc('Company.Name'));
-					else
-						$query->addOrder(QueryOrder::desc('Company.Name'));
-				}
-					break;
-				case 'name': {
-					if ($dir == 'asc')
-						$query->addOrder(QueryOrder::asc('Name'));
-					else
-						$query->addOrder(QueryOrder::desc('Name'));
-				}
-					break;
-				case 'status': {
-					if ($dir == 'asc')
-						$query->addOrder(QueryOrder::asc('Active'));
-					else
-						$query->addOrder(QueryOrder::desc('Active'));
-				}
-					break;
-				case 'updated': {
-					if ($dir == 'asc')
-						$query->addOrder(QueryOrder::asc('LastEdited'));
-					else
-						$query->addOrder(QueryOrder::desc('LastEdited'));
-				}
-					break;
-				case 'updatedby': {
-					$query->addAlias(QueryAlias::create('Member'));
-					if ($dir == 'asc')
-						$query->addOrder(QueryOrder::asc('Member.Email'));
-					else
-						$query->addOrder(QueryOrder::desc('Member.Email'));
-				}
-					break;
-				default: {
-				if ($dir == 'asc')
-					$query->addOrder(QueryOrder::asc('ID'));
-				else
-					$query->addOrder(QueryOrder::desc('ID'));
-				}
-				break;
-			}
+            $this->sortCompanyService($query,$sort,$dir);
+            $this->sortCompanyService($query_draft,$sort,$dir);
 		}
 		//get public clouds
-		list($list, $size) = $this->private_clouds_repository->getAll($query, 0, 1000);
+		list($list1, $size1) = $this->private_clouds_repository->getAll($query, 0, 1000);
+        list($list2, $size2) = $this->private_clouds_draft_repository->getAll($query_draft, 0, 1000);
+
 		//return on view model
-		return new ArrayList($list);
+
+		return new ArrayList(array_merge($list1,$list2));
+
 	}
 
 	public function getCurrentPrivateCloud()
 	{
 		$private_cloud_id = intval($this->request->getVar('id'));
+        $is_draft = intval($this->request->getVar('is_draft'));
         $private_cloud = false;
         if ($private_cloud_id > 0) {
-            $private_cloud = $this->private_clouds_draft_repository->getByLiveServiceId($private_cloud_id);
+            if ($is_draft) {
+                $private_cloud = $this->private_clouds_draft_repository->getById($private_cloud_id);
+            } else {
+                $private_cloud = $this->private_clouds_draft_repository->getByLiveServiceId($private_cloud_id);
+            }
+
             //if no draft found we pull the live one to create the draft from it when saved
             if (!$private_cloud) {
                 $private_cloud = $this->private_clouds_repository->getById($private_cloud_id);
@@ -1315,7 +1264,6 @@ class MarketPlaceAdminPage_Controller extends Page_Controller
 
         return $static_map_url;
     }
-
 
     public function getCurrentOfficesLocationsStaticMapDraftForPDF()
     {

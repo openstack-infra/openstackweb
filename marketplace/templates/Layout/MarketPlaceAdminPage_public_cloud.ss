@@ -5,10 +5,10 @@
         <a style="overflow:hidden;white-space: nowrap;font-weight:normal;float:right;margin-bottom:50px;text-align:center" class="roundedButton save-public-cloud" href="#" id="save-public-cloud1">Save</a>
         <a style="overflow:hidden;white-space: nowrap;font-weight:normal;float:right;margin-bottom:50px;text-align:center;margin-right:50px;" class="roundedButton publish-public-cloud" href="#" id="publish-public-cloud1">Publish</a>
         <% if CurrentPublicCloud %>
-            <a style="overflow:hidden;white-space: nowrap;font-weight:normal;float:right;margin-bottom:50px;text-align:center;margin-right:50px;" class="roundedButton addDeploymentBtn" target="_blank" href="$Top.Link(public_cloud)/$CurrentPublicCloud.ID/draft_preview">Preview</a>
+            <a style="overflow:hidden;white-space: nowrap;font-weight:normal;float:right;margin-bottom:50px;text-align:center;margin-right:50px;" class="roundedButton addDeploymentBtn" target="_blank" href="$Top.Link(public_cloud)/$CurrentPublicCloud.ID/<% if CurrentPublicCloud.isDraft %>draft_<% end_if %>preview">Preview</a>
         <% end_if %>
         <% if CurrentPublicCloud %>
-            <a style="overflow:hidden;white-space: nowrap;font-weight:normal;float:right;margin-bottom:50px;text-align:center;margin-right:50px;" class="roundedButton addDeploymentBtn" target="_blank" href="$Top.Link(public_cloud)/$CurrentPublicCloud.ID/draft_pdf">Download PDF</a>
+            <a style="overflow:hidden;white-space: nowrap;font-weight:normal;float:right;margin-bottom:50px;text-align:center;margin-right:50px;" class="roundedButton addDeploymentBtn" target="_blank" href="$Top.Link(public_cloud)/$CurrentPublicCloud.ID/<% if CurrentPublicCloud.isDraft %>draft_<% end_if %>pdf">Download PDF</a>
         <% end_if %>
         <a style="overflow:hidden;white-space: nowrap;font-weight:normal;float:right;margin-bottom:50px;text-align:center;margin-right:50px;" class="roundedButton addDeploymentBtn" href="$Top.Link(public_clouds)">&lt;&lt; Back to Products</a>
     </div>

@@ -174,35 +174,27 @@ abstract class CompanyServiceCrudApi
     /**
      * @return SS_HTTPResponse
      */
-    public function deleteCompanyServiceDraft(){
-        try {
-            $company_service_id = intval($this->request->param('COMPANY_SERVICE_ID'));
-            $this->draft_manager->unRegister($this->draft_factory->buildCompanyServiceById($company_service_id));
-            return $this->deleted();
-        }
-        catch (NotFoundEntityException $ex1) {
-            SS_Log::log($ex1,SS_Log::ERR);
-            return $this->notFound($ex1->getMessage());
-        }
-        catch (Exception $ex) {
-            SS_Log::log($ex,SS_Log::ERR);
-            return $this->serverError();
-        }
-    }
-
-    /**
-     * @return SS_HTTPResponse
-     */
     public function publishCompanyService(){
         try {
-            $company_service_id = intval($this->request->param('COMPANY_SERVICE_ID'));
+            $company_service_live_id = intval($this->request->param('COMPANY_SERVICE_ID'));
             $data = $this->getJsonRequest();
             if (!$data) return $this->serverError();
-            //save the draft
-            $this->draft_manager->updateCompanyService($data);
             //save the live version
-            $data['id'] = $data['live_service_id'];
-            $this->manager->updateCompanyService($data);
+            if ($company_service_live_id == 0) { // this means is a draft without a live version yet
+                $data['live_service_id'] = $this->manager->addCompanyService($data)->getIdentifier();
+                //save the draft
+                if ($data['id']) { //it could be that the draft was never saved yet, in that case id should be 0
+                    $this->draft_manager->updateCompanyService($data);
+                } else {
+                    $this->draft_manager->addCompanyService($data);
+                }
+
+            } else { //if there is a live version of this draft, update it
+                $this->draft_manager->updateCompanyService($data);
+                $data['id'] = $data['live_service_id'];
+                $this->manager->updateCompanyService($data);
+            }
+
             return $this->published();
         }
         catch (EntityAlreadyExistsException $ex1) {

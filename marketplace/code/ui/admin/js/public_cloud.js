@@ -45,7 +45,7 @@ jQuery(document).ready(function($){
             }
 
             //this is a draft
-            if (public_cloud.live_service_id) {
+            if (typeof(public_cloud.live_service_id) != 'undefined') {
                 $("#id",form).val(public_cloud.id);
                 $("#live_id",form).val(public_cloud.live_service_id);
             } else { //its not a draft is the live version, so we remove the id and set the live_service_id
@@ -152,10 +152,9 @@ jQuery(document).ready(function($){
                             contentType: "application/json; charset=utf-8",
                             dataType: "json",
                             success: function (data,textStatus,jqXHR) {
-                                //window.location = listing_url;
-                                if(public_cloud.id < 1) $("#id",form).val(data);
                                 $('.publish-public-cloud').prop('disabled',false);
                                 $('.save-public-cloud').prop('disabled',false);
+                                window.location = listing_url;
                                 ajaxIndicatorStop();
                             },
                             error: function (jqXHR, textStatus, errorThrown) {

@@ -43,7 +43,7 @@ jQuery(document).ready(function($){
             }
 
             //this is a draft
-            if (consultant.live_service_id) {
+            if (typeof(consultant.live_service_id) != 'undefined') {
                 $("#id",form).val(consultant.id);
                 $("#live_id",form).val(consultant.live_service_id);
             } else { //its not a draft is the live version, so we remove the id and set the live_service_id
@@ -162,10 +162,9 @@ jQuery(document).ready(function($){
                             contentType: "application/json; charset=utf-8",
                             dataType: "json",
                             success: function (data,textStatus,jqXHR) {
-                                //window.location = listing_url;
-                                if(consultant.id < 1) $("#id",form).val(data);
                                 $('.publish-consultant').prop('disabled',false);
                                 $('.save-consultant').prop('disabled',false);
+                                window.location = listing_url;
                                 ajaxIndicatorStop();
                             },
                             error: function (jqXHR, textStatus, errorThrown) {
