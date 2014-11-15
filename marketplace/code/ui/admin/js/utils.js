@@ -46,8 +46,7 @@ function convertToSlug(txt){
     if(txt == null) return '';
     return txt
         .toLowerCase()
-        .replace(/[^\w ]+/g,'')
-        .replace(/ +/g,'-');
+        .replace(/[^A-Za-z0-9-]+/g,'-');
 }
 
 
