@@ -39,9 +39,13 @@ final class SapphireElectionRepository extends SapphireRepository
 	public function getEarliestElectionSince($years)
 	{
 		$sql = 'select * from Election where ElectionsClose >= date_add(now(), interval -'.$years.' year) ORDER BY ElectionsClose ASC LIMIT 0,1;';
-		$res = DB::query($sql);
+		$result = DB::query($sql);
 		// let Silverstripe work the magic
-		$elections = singleton('Election')->buildDataObjectSet($res);
+		$elections = new ArrayList();
+		foreach($result as $rowArray) {
+			// concept: new Product($rowArray)
+			$elections->push(new $rowArray['ClassName']($rowArray));
+		}
 		return $elections->first();
 	}
 }

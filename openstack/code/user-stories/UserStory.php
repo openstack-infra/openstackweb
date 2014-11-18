@@ -11,8 +11,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
-$include_path = Director::baseFolder() . '/html2pdf_v4.03/html2pdf.class.php';
-require_once($include_path);
 
 class UserStory extends Page
 {

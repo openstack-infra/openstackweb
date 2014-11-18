@@ -37,24 +37,24 @@
                                 <th width="50%">Service</th>
                                 <th>OpenStack Version</th>
                             </tr>
-                                <% control Capabilities %>
+                                <% loop Capabilities %>
                                 <tr>
                                     <td>
-                                        <% control ReleaseSupportedApiVersion %>
-                                            <% control OpenStackComponent %>
+                                        <% loop ReleaseSupportedApiVersion %>
+                                            <% loop OpenStackComponent %>
                                                 $Name
-                                            <% end_control %>
-                                        <% end_control %>
+                                            <% end_loop %>
+                                        <% end_loop %>
                                     </td>
                                     <td>
-                                        <% control ReleaseSupportedApiVersion %>
-                                            <% control Release %>
+                                        <% loop ReleaseSupportedApiVersion %>
+                                            <% loop Release %>
                                                 $Name
-                                            <% end_control %>
-                                        <% end_control %>
+                                            <% end_loop %>
+                                        <% end_loop %>
                                     </td>
                                 </tr>
-                                <% end_control %>
+                                <% end_loop %>
                             </tbody>
                         </table>
                     <% end_if %>
@@ -62,19 +62,19 @@
                         <hr>
                         <h3 style="color: {$Company.CompanyColorRGB} !important;">Supported Hypervisors</h3>
                         <p>
-                        <% control HyperVisors %>
+                        <% loop HyperVisors %>
                             <% if First == 0  %>,<% end_if %>
                             $Type
-                        <% end_control %>
+                        <% end_loop %>
                         </p>
                     <% end_if %>
                     <% if Guests %>
                         <h3 style="color: {$Company.CompanyColorRGB} !important;">Supported Guests</h3>
                         <p>
-                        <% control Guests %>
+                        <% loop Guests %>
                             <% if First == 0  %>,<% end_if %>
                             $Type
-                        <% end_control %>
+                        <% end_loop %>
                         </p>
                     <% end_if %>
                     <% if RegionalSupports %>
@@ -82,13 +82,13 @@
                         <h3 style="color: {$Company.CompanyColorRGB} !important;">Regions where support is offered</h3>
                         <table class="regions">
                             <tbody>
-                                <% control RegionalSupports %>
+                                <% loop RegionalSupports %>
                                 <tr>
-                                    <% control Region %>
+                                    <% loop Region %>
                                         <td>$Name</td>
-                                    <% end_control %>
+                                    <% end_loop %>
                                 </tr>
-                                <% end_control %>
+                                <% end_loop %>
                             </tbody>
                         </table>
                     <% end_if %>
@@ -97,11 +97,11 @@
                         <h3 style="color: {$Company.CompanyColorRGB} !important;">OpenStack API Coverage</h3>
                         <table class="api-coverage">
                             <tbody>
-                                <% control Capabilities %>
+                                <% loop Capabilities %>
                                     <% if SupportsVersioning %>
-                                        <% control ReleaseSupportedApiVersion %>
+                                        <% loop ReleaseSupportedApiVersion %>
                                             <% if ApiVersion %>
-                                                <% control OpenStackComponent %>
+                                                <% loop OpenStackComponent %>
                                                     <tr>
                                                         <td>
                                                             $Name API
@@ -109,18 +109,18 @@
                                                         </td>
                                                         <td>
                                                             $CodeName
-                                                <% end_control %>
-                                                            <% control ApiVersion %> $Version<% end_control %>
+                                                <% end_loop %>
+                                                            <% loop ApiVersion %> $Version<% end_loop %>
                                                         </td>
 
                                             <% end_if %>
-                                        <% end_control %>
+                                        <% end_loop %>
                                         <td class="coverage">
                                             <span>$CoveragePercent %</span>
                                         </td>
                                     </tr>
                                     <% end_if %>
-                                <% end_control %>
+                                <% end_loop %>
                             </tbody>
                         </table>
                     <% end_if %>
@@ -137,10 +137,10 @@
                 <% if Videos %>
                     <hr>
                     <div id="videos">
-                    <% control Videos %>
+                    <% loop Videos %>
                         <h3 style="color: {$Top.Company.CompanyColorRGB} !important;" class="video-title">$Name<span class="video-duration">($FormattedLength)</span></h3>
                         <a href="//www.youtube.com/embed/{$YouTubeId}"> Video </a>
-                    <% end_control %>
+                    <% end_loop %>
                    </div>
                 <% end_if %>
 
@@ -149,9 +149,9 @@
                     <div id="more-resources">
                         <h3 style="color: {$Company.CompanyColorRGB} !important;">More Resources</h3>
                         <ul>
-                            <% control Resources %>
+                            <% loop Resources %>
                                 <li style="color: {$Company.CompanyColorRGB}>$Name</li>
-                            <% end_control %>
+                            <% end_loop %>
                         </ul>
                     </div>
                 <% end_if %>

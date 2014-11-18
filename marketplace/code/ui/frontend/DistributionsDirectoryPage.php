@@ -174,7 +174,7 @@ class DistributionsDirectoryPage_Controller extends MarketPlaceDirectoryPage_Con
 			$appliance  = $this->appliance_repository->getBy($query);
 			if(!$appliance) throw new NotFoundEntityException('','');
 			if($appliance->getCompany()->URLSegment != $company_url_segment) throw new NotFoundEntityException('','');
-			$render = new ApplianceSapphirgit eRender($appliance);
+			$render = new ApplianceSapphireRender($appliance);
 			return $render->draw();
 		}
 		catch (Exception $ex) {

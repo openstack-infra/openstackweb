@@ -20,9 +20,9 @@
                         <select name="implementation_type_id" id="implementation_type_id">
                             <option  value="">--select--</option>
                             <% if DistributionMarketPlaceTypes %>
-                                <% control DistributionMarketPlaceTypes %>
+                                <% loop DistributionMarketPlaceTypes %>
                                     <option  value="$ID">$Name</option>
-                                <% end_control %>
+                                <% end_loop %>
                             <% end_if %>
                         </select>
                     </td>
@@ -30,9 +30,9 @@
                         <select name="company_id" id="company_id">
                             <option  value="">--select--</option>
                             <% if Companies %>
-                                <% control Companies %>
+                                <% loop Companies %>
                                     <option  value="$ID">$Name</option>
-                                <% end_control %>
+                                <% end_loop %>
                             <% end_if %>
                         </select>
                     </td>
@@ -64,7 +64,7 @@
             </thead>
             <tbody>
                 <% if Distributions %>
-                    <% control Distributions %>
+                    <% loop Distributions %>
                     <tr>
                         <td>
                             $Company.Name
@@ -85,25 +85,25 @@
                         <% if Top.isSuperAdmin %>
                         <td>
                             <% if EditedBy %>
-                            <% control EditedBy %>
+                            <% with EditedBy %>
                                 $Email ($CurrentCompany)
-                            <% end_control %>
+                            <% end_with %>
                             <% else %>
                                 N/A
                             <% end_if %>
                         </td>
                         <% end_if %>
                         <td style="min-width: 200px" width="30%">
-                            <a class="product-button roundedButton addDeploymentBtn" href="<% control MarketPlace  %><% if Name == "Appliance"  %>$Top.Link(appliance)<% end_if %><% if Name == "Distribution"  %>$Top.Link(distribution)<% end_if %><% end_control %>?id=$ID&is_draft=$isDraft">Edit Product Details</a>
-                            <a target="_blank" class="product-button roundedButton addDeploymentBtn" href="<% control MarketPlace  %><% if Name == "Appliance"  %>$Top.Link(appliance)<% end_if %><% if Name == "Distribution"  %>$Top.Link(distribution)<% end_if %><% end_control %>/$ID/<% if isDraft  %>draft_<% end_if %>preview">Preview Product</a>
-                            <a target="_blank" class="product-button roundedButton addDeploymentBtn" href="<% control MarketPlace  %><% if Name == "Appliance"  %>$Top.Link(appliance)<% end_if %><% if Name == "Distribution"  %>$Top.Link(distribution)<% end_if %><% end_control %>/$ID/<% if isDraft  %>draft_<% end_if %>pdf">PDF</a>
+                            <a class="product-button roundedButton addDeploymentBtn" href="<% with MarketPlace  %><% if Name == "Appliance"  %>$Top.Link(appliance)<% end_if %><% if Name == "Distribution"  %>$Top.Link(distribution)<% end_if %><% end_with %>?id=$ID&is_draft=$isDraft">Edit Product Details</a>
+                            <a target="_blank" class="product-button roundedButton addDeploymentBtn" href="<% with MarketPlace  %><% if Name == "Appliance"  %>$Top.Link(appliance)<% end_if %><% if Name == "Distribution"  %>$Top.Link(distribution)<% end_if %><% end_with %>/$ID/<% if isDraft  %>draft_<% end_if %>preview">Preview Product</a>
+                            <a target="_blank" class="product-button roundedButton addDeploymentBtn" href="<% with MarketPlace  %><% if Name == "Appliance"  %>$Top.Link(appliance)<% end_if %><% if Name == "Distribution"  %>$Top.Link(distribution)<% end_if %><% end_with %>/$ID/<% if isDraft  %>draft_<% end_if %>pdf">PDF</a>
                             <a class="roundedButton delete-implementation product-button addDeploymentBtn" href="#"
                                data-id="{$ID}"
                                data-is_draft="{$isDraft}"
-                               data-class="<% control MarketPlace  %><% if Name == "Appliance"  %>appliance<% end_if %><% if Name == "Distribution"  %>distribution<% end_if %><% end_control %>">Delete Product</a>
+                               data-class="<% with MarketPlace  %><% if Name == "Appliance"  %>appliance<% end_if %><% if Name == "Distribution"  %>distribution<% end_if %><% end_with %>">Delete Product</a>
                         </td>
                     </tr>
-                    <% end_control %>
+                    <% end_loop %>
                 <% end_if %>
             </tbody>
         </table>

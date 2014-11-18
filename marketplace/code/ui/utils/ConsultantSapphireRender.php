@@ -64,8 +64,8 @@ final class ConsultantSapphireRender {
         return Controller::curr()->Customise(
             array(
                 'Consultant' => $this->consultant,
-                'Services' => new DataObjectSet(array_values($unique_services)),
-                'Regions' => new DataObjectSet(array_values($unique_regions)),
+                'Services' => new ArrayList(array_values($unique_services)),
+                'Regions' => new ArrayList(array_values($unique_regions)),
             )
         )->renderWith(array('ConsultantsDirectoryPage_pdf'));
     }

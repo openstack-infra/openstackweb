@@ -6,7 +6,7 @@
         <h1>$Name</h1>
     </div>
 </div>
-<% control Consultant %>
+<% loop Consultant %>
     <div class="container marketplace-content">
         <% include MarketPlaceCompany %>
         <div class="col-lg-6">
@@ -15,12 +15,12 @@
                     <h3  style="color: #{$Company.CompanyColor} !important;">Areas of OpenStack Expertise</h3>
                     <table>
                     <tbody>
-                    <% control ExpertiseAreas %>
+                    <% loop ExpertiseAreas %>
                     <tr>
                         <td>$Name</td>
                         <td>$CodeName</td>
                     </tr>
-                    <% end_control %>
+                    <% end_loop %>
                     </tbody>
                     </table>
                 <% end_if %>
@@ -28,45 +28,45 @@
                     <hr>
                     <h3 style="color: #{$Company.CompanyColor} !important;">Services Offered</h3>
                     <ul>
-                        <% control Top.Services %>
+                        <% loop Top.Services %>
                             <li>$Type</li>
-                        <% end_control %>
+                        <% end_loop %>
                     </ul>
                 <% end_if %>
                 <% if PreviousClients %>
                     <hr>
                     <h3 style="color: #{$Company.CompanyColor} !important;">Select Clients</h3>
                     <ul>
-                        <% control PreviousClients %>
+                        <% loop PreviousClients %>
                             <li>$Name</li>
-                        <% end_control %>
+                        <% end_loop %>
                     </ul>
                 <% end_if %>
                 <% if ConfigurationManagementExpertises %>
                     <hr>
                     <h3 style="color: #{$Company.CompanyColor} !important;">Configuration Management Expertise</h3>
                     <ul>
-                        <% control ConfigurationManagementExpertises %>
+                        <% loop ConfigurationManagementExpertises %>
                         <li>$Type</li>
-                        <% end_control %>
+                        <% end_loop %>
                     </ul>
                 <% end_if %>
                 <% if SpokenLanguages %>
                     <hr>
                     <h3 style="color: #{$Company.CompanyColor} !important;">Languages</h3>
                     <ul>
-                        <% control SpokenLanguages %>
+                        <% loop SpokenLanguages %>
                         <li>$Name</li>
-                        <% end_control %>
+                        <% end_loop %>
                     </ul>
                 <% end_if %>
                 <% if Top.Regions %>
                     <hr>
                     <h3  style="color: #{$Company.CompanyColor} !important;">Regions with local offices</h3>
                     <ul>
-                        <% control Top.Regions %>
+                        <% loop Top.Regions %>
                             <li>$Name</li>
-                        <% end_control %>
+                        <% end_loop %>
                     </ul>
                 <% end_if %>
                 <% if Offices %>
@@ -90,13 +90,13 @@
                     <h3 style="color: #{$Company.CompanyColor} !important;">Regions where support is offered</h3>
                     <table class="regions">
                     <tbody>
-                        <% control RegionalSupports %>
+                        <% loop RegionalSupports %>
                         <tr>
-                            <% control Region %>
+                            <% loop Region %>
                             <td>$Name</td>
-                            <% end_control %>
+                            <% end_loop %>
                         </tr>
-                        <% end_control %>
+                        <% end_loop %>
                     </tbody>
                     </table>
                 <% end_if %>
@@ -110,12 +110,12 @@
             <% end_if %>
             <% if Videos %>
                 <div id="videos">
-                    <% control Videos %>
+                    <% loop Videos %>
                         <h3 style="color: #{$Top.Company.CompanyColor} !important;" class="video-title">$Name<span class="video-duration">($FormattedLength)</span></h3>
                         <iframe frameborder="0" width="250" height="200" allowfullscreen=""
                                 src="//www.youtube.com/embed/{$YouTubeId}?rel=0&amp;showinfo=0&amp;modestbranding=1&amp;controls=2">
                         </iframe>
-                    <% end_control %>
+                    <% end_loop %>
                 </div>
             <% end_if %>
 
@@ -123,9 +123,9 @@
                 <div id="more-resources">
                     <h3 style="color: #{$Company.CompanyColor} !important;">More Resources</h3>
                     <ul>
-                        <% control Resources %>
+                        <% loop Resources %>
                             <li><a href="{$Uri}" style="color: #{$Company.CompanyColor} !important;" class="outbound-link" target="_blank">$Name</a></li>
-                        <% end_control %>
+                        <% end_loop %>
                     </ul>
                 </div>
             <% end_if %>
@@ -133,4 +133,4 @@
         </div>
     </div>
     </div>
-<% end_control %>
+<% end_loop %>

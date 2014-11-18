@@ -231,7 +231,7 @@ final class SangriaPage_Controller extends Page_Controller {
 		$filterWhereClause = self::generateFilterWhereClause();
 
 		$results = DB::query("select o.Name from Deployment d join DeploymentSurvey s on (d.DeploymentSurveyID = s.ID) join Org o on (s.OrgID = o.ID) where 1=1".$filterWhereClause);
-		$list = new DataObjectSet();
+		$list = new ArrayList();
 
 		for( $i=0; $i < $results->numRecords(); $i++) {
 			$record = $results->nextRecord();
