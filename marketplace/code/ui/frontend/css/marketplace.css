@@ -490,7 +490,12 @@ h1.marketplace a,h1.marketplace a.visited{
   background:url("/marketplace/code/ui/frontend/images/api/full.png") no-repeat scroll center center rgba(0,0,0,0);
   display:inline-block;
   height:20px;
-  text-indent:-3000px;
+  color: black;
+  /*text-indent:-3000px; uncomment this to hide text inside icon*/
+  font-size: 7px;
+  text-align: center;
+  line-height: 19px;
+  font-weight: bold;
   width:20px;
 }
 

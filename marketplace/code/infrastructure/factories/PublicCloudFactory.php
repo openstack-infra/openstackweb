@@ -26,7 +26,7 @@ final class PublicCloudFactory
 	 * @param null|string      $call_2_action_url
 	 * @return ICompanyService
 	 */
-	public function buildCompanyService($name, $overview, ICompany $company, $active, IMarketPlaceType $marketplace_type, $call_2_action_url = null, $live_service = null)
+	public function buildCompanyService($name, $overview, ICompany $company, $active, IMarketPlaceType $marketplace_type, $call_2_action_url = null, $live_service = null, $published = null)
 	{
 		$public_cloud = new PublicCloudService;
 		$public_cloud->setName($name);

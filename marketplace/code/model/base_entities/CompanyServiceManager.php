@@ -194,7 +194,8 @@ abstract class CompanyServiceManager {
 				$data['active'],
 				$getMarketPlaceType->invoke($this_var),
 				$data['call_2_action_uri'],
-                $live_service_id);
+                $live_service_id,
+                $data['published']);
 
             $this_var->register($company_service);
 
@@ -252,6 +253,8 @@ abstract class CompanyServiceManager {
 			$company_service->setName($data['name']);
             if ($company_service->isDraft()) {
                 $live_service_id = (isset($data['live_service_id'])) ? $data['live_service_id'] : 0;
+                $published = (isset($data['published'])) ? $data['published'] : 0;
+                $company_service->setPublished($published);
                 $company_service->setLiveServiceId($live_service_id);
             }
 

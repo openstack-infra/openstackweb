@@ -16,6 +16,7 @@ class CompanyServiceDraft
 		'Overview'       => 'HTMLText',
 		'Call2ActionUri' => 'Text',
 		'Active'         => 'Boolean',
+        'Published'      => 'Boolean',
 	);
 
 	static $has_one = array(
@@ -54,6 +55,16 @@ class CompanyServiceDraft
     public function isDraft()
     {
         return 1;
+    }
+
+    public function isNotPublished()
+    {
+        return !$this->getField('Published');
+    }
+
+    public function setPublished($published)
+    {
+        $this->setField('Published',$published);
     }
 
 	public function setCompany(ICompany $company)

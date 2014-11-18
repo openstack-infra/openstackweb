@@ -28,7 +28,7 @@
                         level = 'none';
                     else if(coverage>0 && coverage <= 50)
                         level = 'partial';
-                    td.append('<span class="level-'+level+'">'+level+'</span>');
+                    td.append('<span class="level-'+level+'">'+coverage+'%</span>');
                 });
             }
         }

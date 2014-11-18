@@ -15,7 +15,7 @@ final class ConsultantDraftFactory
 	 * @param null|string      $call_2_action_url
 	 * @return ICompanyService
 	 */
-	public function buildCompanyService($name, $overview, ICompany $company, $active, IMarketPlaceType $marketplace_type, $call_2_action_url = null,  $live_id = null)
+	public function buildCompanyService($name, $overview, ICompany $company, $active, IMarketPlaceType $marketplace_type, $call_2_action_url = null,  $live_id = null, $published = null)
 	{
 		$consultant = new ConsultantDraft;
 		$consultant->setName($name);
@@ -28,6 +28,7 @@ final class ConsultantDraftFactory
 		$consultant->setMarketplace($marketplace_type);
 		$consultant->setCall2ActionUri($call_2_action_url);
         $consultant->setLiveServiceId($live_id);
+        $consultant->setPublished($published);
 		return $consultant;
 	}
 

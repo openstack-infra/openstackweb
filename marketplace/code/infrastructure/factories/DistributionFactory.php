@@ -25,7 +25,7 @@ final class DistributionFactory extends OpenStackImplementationFactory {
 	 * @param null|string      $call_2_action_url
 	 * @return ICompanyService
 	 */
-	public function buildCompanyService($name, $overview, ICompany $company, $active, IMarketPlaceType $marketplace_type, $call_2_action_url = null, $live_id = null)
+	public function buildCompanyService($name, $overview, ICompany $company, $active, IMarketPlaceType $marketplace_type, $call_2_action_url = null, $live_id = null, $published = null)
 	{
 		$distribution = new Distribution;
 		$distribution->setName($name);

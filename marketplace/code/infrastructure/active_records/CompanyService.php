@@ -66,6 +66,11 @@ class CompanyService
         return 0;
     }
 
+    public function isNotPublished()
+    {
+        return 0;
+    }
+
 	public function setCompany(ICompany $company)
 	{
 		AssociationFactory::getInstance()->getMany2OneAssociation($this,'Company')->setTarget($company);

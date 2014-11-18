@@ -13,7 +13,7 @@ final class PrivateCloudDraftFactory extends CloudDraftFactory {
 	 * @param null|string      $call_2_action_url
 	 * @return ICompanyService
 	 */
-	public function buildCompanyService($name, $overview, ICompany $company, $active, IMarketPlaceType $marketplace_type, $call_2_action_url = null,  $live_id = null)
+	public function buildCompanyService($name, $overview, ICompany $company, $active, IMarketPlaceType $marketplace_type, $call_2_action_url = null,  $live_id = null, $published = null)
 	{
 		$private_cloud = new PrivateCloudServiceDraft;
 		$private_cloud->setName($name);
@@ -26,6 +26,7 @@ final class PrivateCloudDraftFactory extends CloudDraftFactory {
 		$private_cloud->setMarketplace($marketplace_type);
 		$private_cloud->setCall2ActionUri($call_2_action_url);
         $private_cloud->setLiveServiceId($live_id);
+        $private_cloud->setPublished($published);
 		return $private_cloud;
 	}
 

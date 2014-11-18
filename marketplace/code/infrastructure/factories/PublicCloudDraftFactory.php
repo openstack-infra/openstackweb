@@ -15,7 +15,7 @@ final class PublicCloudDraftFactory
 	 * @param null|string      $call_2_action_url
 	 * @return ICompanyService
 	 */
-	public function buildCompanyService($name, $overview, ICompany $company, $active, IMarketPlaceType $marketplace_type, $call_2_action_url = null, $live_id = null)
+	public function buildCompanyService($name, $overview, ICompany $company, $active, IMarketPlaceType $marketplace_type, $call_2_action_url = null, $live_id = null, $published = null)
 	{
 		$public_cloud = new PublicCloudServiceDraft();
 		$public_cloud->setName($name);
@@ -28,6 +28,7 @@ final class PublicCloudDraftFactory
 		$public_cloud->setMarketplace($marketplace_type);
 		$public_cloud->setCall2ActionUri($call_2_action_url);
         $public_cloud->setLiveServiceId($live_id);
+        $public_cloud->setPublished($published);
 		return $public_cloud;
 	}
 

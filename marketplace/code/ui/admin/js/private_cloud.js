@@ -120,6 +120,7 @@ jQuery(document).ready(function($){
                 private_cloud.regional_support        = regional_support;
                 private_cloud.additional_resources    = additional_resources;
                 private_cloud.data_centers            = data_centers;
+                private_cloud.published               = 0;
 
                 var type   = private_cloud.id > 0 ?'PUT':'POST';
 
@@ -154,6 +155,125 @@ jQuery(document).ready(function($){
                                 $('.save-private-cloud').prop('disabled',false);
                                 window.location = listing_url;
                                 ajaxIndicatorStop();
+                            },
+                            error: function (jqXHR, textStatus, errorThrown) {
+                                ajaxIndicatorStop();
+                                $('.save-private-cloud').prop('disabled',false);
+                                ajaxError(jqXHR, textStatus, errorThrown);
+                            }
+                        });
+                    },
+                    cancelProcess:function(){
+                        ajaxIndicatorStop();
+                        $('.save-private-cloud').prop('disabled',false);
+                    },
+                    errorMessage:function(location){
+                        return 'data center location: address ( city:'+location.city+',state: '+location.state+', country:'+location.country+' )';
+                    }
+                });
+
+
+            }
+            return false;
+        });
+
+        $('.preview-private_cloud').click(function(event){
+            var button =  $(this);
+            if(button.prop('disabled')){
+                return false;
+            }
+            event.preventDefault();
+            event.stopPropagation();
+            var form_validator = form.marketplace_type_header('getFormValidator');
+            form_validator.settings.ignore = ".add-comtrol";
+            var is_valid = form.valid();
+            if(!is_valid) return false;
+            form_validator.resetForm();
+
+            var additional_resources = $("#additional-resources-form").additional_resources('serialize');
+            var regional_support     = $("#support-channels-form").support_channels('serialize');
+            var capabilities         = $("#components_form").components('serialize');
+            var guest_os             = $("#guest_os_form").guest_os('serialize');
+            var hyper_visors         = $("#hypervisors_form").hypervisors('serialize');
+            var videos               = $("#videos-form").videos('serialize');
+            var data_centers         = $("#data-centers-form").datacenter_locations('serialize');
+            var pricing_schemas      = $("#pricing_schema_form").pricing_schemas('serialize');
+            var is_pdf               = $(this).hasClass('pdf');
+
+            if(additional_resources !== false &&
+                regional_support    !== false &&
+                capabilities        !== false &&
+                guest_os            !== false &&
+                hyper_visors        !== false &&
+                videos              !== false &&
+                data_centers        !== false &&
+                pricing_schemas     !== false
+                ){
+
+                ajaxIndicatorStart('saving data.. please wait..');
+
+                //create private_cloud object and POST it
+                var private_cloud = {};
+                private_cloud.id                      = parseInt($("#id",form).val());
+                private_cloud.live_service_id         = parseInt($("#live_id",form).val());
+                private_cloud.company_id              = parseInt($("#company_id",form).val());
+                private_cloud.name                    = $("#name",form).val();
+                private_cloud.overview                = $("#overview",form).val();
+                private_cloud.call_2_action_uri       = $("#call_2_action_uri",form).val();
+                private_cloud.active                  = $('#active',form).is(":checked");
+                private_cloud.videos                  = videos;
+                private_cloud.hypervisors             = hyper_visors;
+                private_cloud.guest_os                = guest_os;
+                private_cloud.capabilities            = capabilities;
+                for(var i in private_cloud.capabilities){
+                    var c = private_cloud.capabilities[i];
+                    c.pricing_schemas = pricing_schemas;
+                }
+                private_cloud.regional_support        = regional_support;
+                private_cloud.additional_resources    = additional_resources;
+                private_cloud.data_centers            = data_centers;
+                private_cloud.published               = 0;
+
+                var type   = private_cloud.id > 0 ?'PUT':'POST';
+
+                $('.save-private-cloud').prop('disabled',true);
+
+                $(this).geocoding({
+                    requests:private_cloud.data_centers.locations,
+                    buildGeoRequest:function(location){
+                        var restrictions = {
+                            locality: location.city,
+                            country:location.country
+                        };
+                        if(location.state!=''){
+                            restrictions.administrativeArea = location.state;
+                        }
+                        var request = {componentRestrictions:restrictions};
+                        return request;
+                    },
+                    postProcessRequest:function(location, lat, lng){
+                        location.lat = lat;
+                        location.lng = lng;
+                    },
+                    processFinished:function(){
+                        $.ajax({
+                            type: type,
+                            url: 'api/v1/marketplace/private-clouds',
+                            data: JSON.stringify(private_cloud),
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: function (data,textStatus,jqXHR) {
+                                $('.publish-private-cloud').prop('disabled',false);
+                                $('.save-private-cloud').prop('disabled',false);
+                                ajaxIndicatorStop();
+                                var draft_id = (private_cloud.id > 0) ? private_cloud.id : data;
+                                $("#id",form).val(draft_id);
+
+                                if (is_pdf) {
+                                    window.location = product_url+'/'+draft_id+'/draft_pdf';
+                                } else {
+                                    window.open(product_url+'/'+draft_id+'/draft_preview','_blank');
+                                }
                             },
                             error: function (jqXHR, textStatus, errorThrown) {
                                 ajaxIndicatorStop();
@@ -230,6 +350,7 @@ jQuery(document).ready(function($){
                 private_cloud.regional_support        = regional_support;
                 private_cloud.additional_resources    = additional_resources;
                 private_cloud.data_centers            = data_centers;
+                private_cloud.published               = 1;
 
                 var url  = 'api/v1/marketplace/private-clouds/'+private_cloud.live_service_id;
 

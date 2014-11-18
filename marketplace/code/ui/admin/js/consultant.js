@@ -115,7 +115,8 @@ jQuery(document).ready(function($){
                     languages_spoken: languages_spoken,
                     offices: offices,
                     videos: videos,
-                    additional_resources: additional_resources
+                    additional_resources: additional_resources,
+                    published: 0
                 }
                 $('.save-consultant').prop('disabled',true);
                 var type   = consultant.id > 0 ?'PUT':'POST';
@@ -166,6 +167,138 @@ jQuery(document).ready(function($){
                                 $('.save-consultant').prop('disabled',false);
                                 window.location = listing_url;
                                 ajaxIndicatorStop();
+                            },
+                            error: function (jqXHR, textStatus, errorThrown) {
+                                ajaxIndicatorStop();
+                                $('.save-consultant').prop('disabled',false);
+                                ajaxError(jqXHR, textStatus, errorThrown);
+                            }
+                        });
+                    },
+                    cancelProcess:function(){
+                        ajaxIndicatorStop();
+                        $('.save-consultant').prop('disabled',false);
+                    },
+                    errorMessage:function(office){
+                        return 'office: address ( address_1:'+office.address_1+', address_2:'+office.address_2+', city:'+office.city+',state: '+office.state+', country:'+office.country+' )';
+                    }
+                });
+            }
+            return false;
+        });
+
+        $('.preview-consultant').click(function(event){
+            event.preventDefault();
+            event.stopPropagation();
+            var button =  $(this);
+            if(button.prop('disabled')){
+                return false;
+            }
+            var form_validator = form.marketplace_type_header('getFormValidator');
+            form_validator.settings.ignore = ".add-comtrol";
+            var is_valid = form.valid();
+            form_validator.settings.ignore = [];
+            if(!is_valid) return false;
+            form_validator.resetForm();
+
+            var expertise_areas          = $('#expertise_areas_form').expertise_areas('serialize');
+            var configuration_management = $('#configuration_management_form').configuration_management_expertise('serialize');
+            var reference_clients        = $('#reference_clients_form').reference_clients('serialize');
+            var services_offered         = $('#services_offered_form').services_offered('serialize');
+            var regional_support         = $('#support-channels-form').support_channels('serialize');
+            var languages_spoken         = $('#languages_spoken_form').spoken_languages('serialize');
+            var offices                  = $('#offices_form').offices('serialize');
+            var videos                   = $('#videos-form').videos('serialize');
+            var additional_resources     = $('#additional-resources-form').additional_resources('serialize');
+            var is_pdf                   = $(this).hasClass('pdf');
+
+            if(expertise_areas!==false &&
+                configuration_management!== false &&
+                reference_clients!== false &&
+                services_offered !== false &&
+                regional_support !== false &&
+                languages_spoken !== false &&
+                offices !== false &&
+                videos !== false &&
+                additional_resources !== false ){
+
+                ajaxIndicatorStart('saving data.. please wait..');
+
+                var consultant = {
+                    id         : parseInt($("#id",form).val()),
+                    live_service_id : parseInt($("#live_id",form).val()),
+                    company_id : parseInt($("#company_id",form).val()),
+                    name       : $("#name",form).val().trim(),
+                    overview   : $("#overview",form).val().trim(),
+                    call_2_action_uri : $("#call_2_action_uri",form).val().trim(),
+                    active : $('#active',form).is(":checked"),
+                    expertise_areas: expertise_areas,
+                    configuration_management: configuration_management,
+                    reference_clients: reference_clients,
+                    services_offered: services_offered,
+                    regional_support: regional_support,
+                    languages_spoken: languages_spoken,
+                    offices: offices,
+                    videos: videos,
+                    additional_resources: additional_resources,
+                    published: 0
+                }
+                $('.save-consultant').prop('disabled',true);
+                var type   = consultant.id > 0 ?'PUT':'POST';
+
+                $(this).geocoding({
+                    requests:consultant.offices,
+                    buildGeoRequest:function(office){
+                        var address =  office.address_1+' '+office.address_2;
+                        address = address.trim();
+                        if(address!=''){
+                            address+= ', '+office.city;
+                        }
+                        var restrictions = {
+                            locality: office.city,
+                            country:office.country
+                        };
+                        if(office.state!=''){
+                            restrictions.administrativeArea = office.state;
+                            if(address!=''){
+                                address+= ', '+office.state;
+                            }
+                        }
+                        if(office.zip_code!=''){
+                            //restrictions.postalCode = office.zip_code;
+                            if(address!=''){
+                                address+= ', '+office.zip_code;
+                            }
+                        }
+                        var request = {componentRestrictions:restrictions};
+                        if(address!=''){
+                            request.address = address;
+                        }
+                        return request;
+                    },
+                    postProcessRequest:function(office, lat, lng){
+                        office.lat = lat;
+                        office.lng = lng;
+                    },
+                    processFinished:function(){
+                        $.ajax({
+                            type: type,
+                            url: 'api/v1/marketplace/consultants',
+                            data: JSON.stringify(consultant),
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: function (data,textStatus,jqXHR) {
+                                $('.publish-consultant').prop('disabled',false);
+                                $('.save-consultant').prop('disabled',false);
+                                ajaxIndicatorStop();
+                                var draft_id = (consultant.id > 0) ? consultant.id : data;
+                                $("#id",form).val(draft_id);
+
+                                if (is_pdf) {
+                                    window.location = product_url+'/'+draft_id+'/draft_pdf';
+                                } else {
+                                    window.open(product_url+'/'+draft_id+'/draft_preview','_blank');
+                                }
                             },
                             error: function (jqXHR, textStatus, errorThrown) {
                                 ajaxIndicatorStop();
@@ -238,7 +371,8 @@ jQuery(document).ready(function($){
                     languages_spoken: languages_spoken,
                     offices: offices,
                     videos: videos,
-                    additional_resources: additional_resources
+                    additional_resources: additional_resources,
+                    published: 1
                 }
                 $('.publish-consultant').prop('disabled',true);
 

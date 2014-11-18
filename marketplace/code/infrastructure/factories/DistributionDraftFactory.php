@@ -14,7 +14,7 @@ final class DistributionDraftFactory extends OpenStackImplementationDraftFactory
 	 * @param null|string      $call_2_action_url
 	 * @return ICompanyService
 	 */
-	public function buildCompanyService($name, $overview, ICompany $company, $active, IMarketPlaceType $marketplace_type, $call_2_action_url = null, $live_id = null)
+	public function buildCompanyService($name, $overview, ICompany $company, $active, IMarketPlaceType $marketplace_type, $call_2_action_url = null, $live_id = null, $published = null)
 	{
 		$distribution = new DistributionDraft;
 		$distribution->setName($name);
@@ -27,6 +27,7 @@ final class DistributionDraftFactory extends OpenStackImplementationDraftFactory
 		$distribution->setMarketplace($marketplace_type);
 		$distribution->setCall2ActionUri($call_2_action_url);
         $distribution->setLiveServiceId($live_id);
+        $distribution->setPublished($published);
 		return $distribution;
 	}
 
