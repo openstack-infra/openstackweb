@@ -1,0 +1,7 @@
+---
+Name: registrationroutes
+After: 'framework/routes#coreroutes'
+---
+Director:
+  rules:
+    'userprofile': 'AffiliationController'
