@@ -78,7 +78,7 @@ final class NewsRequestForm extends HoneyPotForm {
             $SubmitterPhoneField = new TextField('submitter_phone','Phone');
         }
 
-        $fields = new FieldSet (
+        $fields = new FieldList (
             $IDField,
             $HeadlineField,
             $SummaryField,
@@ -132,13 +132,12 @@ final class NewsRequestForm extends HoneyPotForm {
 
 
 		// Create action
-		$actions = new FieldSet();
+		$actions = new FieldList();
 	    $actions->push(new FormAction('saveNewsArticle', 'Save'));
 
 		// Create validators
 		$validator = new ConditionalAndValidationRule(array(new RequiredFields('headline','summary','tags','date')));
-		$validator->setJavascriptValidationHandler('none');
-        $this->addExtraClass('news-registration-form');
+	    $this->addExtraClass('news-registration-form');
 		parent::__construct($controller, $name, $fields, $actions, $validator);
 	}
 

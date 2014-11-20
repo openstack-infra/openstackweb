@@ -67,7 +67,7 @@ final class TeamInvitationConfirmation_Controller extends AbstractController {
 		try{
 			$current_member = Member::currentUser();
 			if(is_null($current_member))
-				return Director::redirect("Security/login?BackURL=" . urlencode($_SERVER['REQUEST_URI']));
+				return Controller::curr()->redirect("Security/login?BackURL=" . urlencode($_SERVER['REQUEST_URI']));
 			$team = $this->team_manager->confirmInvitation($token, $current_member);
 			return $this->renderWith( array('TeamInvitationConfirmation_successfull','Page') , array('TeamName' => $team->getName() , 'CompanyName' => $team->getCompany()->Name ) );
 		}

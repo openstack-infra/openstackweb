@@ -35,8 +35,8 @@ class MarketplaceModelAdmin extends ModelAdmin {
 	);
 
 	public $showImportForm = false;
-	static $url_segment = 'marketplace';
-	static $menu_title  = 'Marketplace';
+	private static $url_segment = 'marketplace';
+	private static $menu_title  = 'Marketplace';
 
 	public function init()
 	{

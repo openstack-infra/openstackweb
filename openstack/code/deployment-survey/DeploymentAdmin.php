@@ -22,8 +22,8 @@ final class DeploymentAdmin extends ModelAdmin {
     );
 
 	public $showImportForm = false;
-    static $url_segment    = 'deployments';
-    static $menu_title     = 'Deployments';
+    private static $url_segment    = 'deployments';
+    private static $menu_title     = 'Deployments';
 
 	/**
 	 * @param string $collection_controller_class Override for controller class

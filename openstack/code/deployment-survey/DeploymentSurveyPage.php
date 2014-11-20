@@ -31,13 +31,13 @@ class DeploymentSurveyPage extends Page
 	{
 		$fields = parent::getCMSFields();
 		//login page content
-		$fields->addFieldToTab('Root.Content.Login', new HtmlEditorField('LoginPageTitle','Page Main Title',10));
-		$fields->addFieldToTab('Root.Content.Login', new HtmlEditorField('LoginPageContent','Content'));
-		$fields->addFieldToTab('Root.Content.Login', new HtmlEditorField('LoginPageSlide1Content','Slide #1 Content',20));
-		$fields->addFieldToTab('Root.Content.Login', new HtmlEditorField('LoginPageSlide2Content','Slide #2 Content',20));
-		$fields->addFieldToTab('Root.Content.Login', new HtmlEditorField('LoginPageSlide3Content','Slide #3 Content',20));
+		$fields->addFieldToTab('Root.Login', new HtmlEditorField('LoginPageTitle','Page Main Title',10));
+		$fields->addFieldToTab('Root.Login', new HtmlEditorField('LoginPageContent','Content'));
+		$fields->addFieldToTab('Root.Login', new HtmlEditorField('LoginPageSlide1Content','Slide #1 Content',20));
+		$fields->addFieldToTab('Root.Login', new HtmlEditorField('LoginPageSlide2Content','Slide #2 Content',20));
+		$fields->addFieldToTab('Root.Login', new HtmlEditorField('LoginPageSlide3Content','Slide #3 Content',20));
 		//thank u content
-		$fields->addFieldToTab('Root.Content.Thank You', new HtmlEditorField('ThankYouContent','Content'));
+		$fields->addFieldToTab('Root.Thank You', new HtmlEditorField('ThankYouContent','Content'));
 		return $fields;
 	}
 

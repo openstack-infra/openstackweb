@@ -18,7 +18,7 @@ final class FoundationMember
 	extends DataExtension
 	implements IFoundationMember, ICommunityMember {
 
-	static $has_many = array(
+	private static $has_many = array(
 		'RevocationNotifications' => 'FoundationMemberRevocationNotification',
 		'Votes'                   => 'Vote'
 	);

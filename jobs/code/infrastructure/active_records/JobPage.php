@@ -107,7 +107,6 @@ class JobPage
 
 		$fields->addFieldToTab('Root.Main', $JobPostedDate, 'Content');
 		$fields->addFieldToTab('Root.Main', new DateField_Disabled('ExpirationDate','Expiration Date'), 'Content');
-		//$fields->addFieldToTab('Root.Content.Main', new TextField('JobLocation','Job Location'), 'Content');
 		$fields->addFieldToTab('Root.Main', new TextField('JobMoreInfoLink','More Information About This Job (URL)'), 'Content');
 		$fields->addFieldToTab('Root.Main', new TextField('JobCompany','Company'), 'Content');
 		$fields->addFieldToTab('Root.Main', new HtmlEditorField('JobInstructions2Apply','Job Instructions to Apply'), 'Content');

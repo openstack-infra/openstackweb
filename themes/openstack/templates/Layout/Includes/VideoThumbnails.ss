@@ -1,6 +1,6 @@
 <div class="container">
   <!-- Start Videos -->
-      <% control Presentations.GroupedBy(PresentationDay) %>
+      <% loop Presentations.GroupedBy(PresentationDay) %>
               <div class="row">
                 <div class="col-lg-12">
                   <h2 id="day-{$Pos}">$PresentationDay</h2>
@@ -9,7 +9,7 @@
 
               <div class="row">
 
-              <% control Children %>
+              <% loop Children %>
 
                   <!-- Video Block -->
                   <% if YouTubeID %>
@@ -37,8 +37,8 @@
                   </div>
               <% end_if %>
 
-              <% end_control %>
-      <% end_control %>
+              <% end_loop %>
+      <% end_loop %>
 
     </div>
   </div>

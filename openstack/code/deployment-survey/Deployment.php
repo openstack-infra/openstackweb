@@ -90,7 +90,7 @@ class Deployment extends DataObject
 	{
 
 
-		$fields = new FieldSet(
+		$fields = new FieldList(
 			$rootTab = new TabSet("Root",
 				$tabContent = new TabSet('Content',
 					new Tab('Main'),
@@ -98,7 +98,7 @@ class Deployment extends DataObject
 				))
 		);
 
-		$fields->addFieldsToTab('Root.Content.Main',
+		$fields->addFieldsToTab('Root.Main',
 			array(
 				new TextField('Label', 'Deployment Name'),
 				new OptionSetField(
@@ -128,7 +128,7 @@ class Deployment extends DataObject
 					'Other workloads or applications running in your Openstack environment. (optional)'),
 			));
 
-		$fields->addFieldsToTab('Root.Content.Details',
+		$fields->addFieldsToTab('Root.Details',
 
 			array(
 				new LiteralField('Break', '<p>The information below will help us better understand

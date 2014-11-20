@@ -126,7 +126,7 @@ class Presentation extends DataObject
 
 		if (!$this->PresentationCategoryPageID) {
 			$SummitPageID = 0;
-			$SummitRedirector = DataObject::get_by_id('RedirectorPage', 154);
+			$SummitRedirector = RedirectorPage::get()->byID(154);
 			If ($SummitRedirector) {
 				$SummitPageID = $SummitRedirector->LinkToID;
 				$VideoPage = DataObject::get_one('PresentationCategoryPage', '`ParentID` = ' . $SummitPageID);
@@ -173,7 +173,7 @@ class Presentation extends DataObject
 	function PopulateFromSchedEvent($SchedEventID)
 	{
 
-		$SchedEvent = DataObject::get_by_id('SchedEvent', $SchedEventID);
+		$SchedEvent = SchedEvent::get()->byID($SchedEventID);
 
 		$this->Name = $SchedEvent->eventtitle;
 		$this->DisplayOnSite = TRUE;

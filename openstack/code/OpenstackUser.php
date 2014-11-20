@@ -106,7 +106,7 @@ class OpenstackUser extends Page {
 		//
 		// Hide unneeded tabs and rename the main tab
 		//
-		$fields->removeFieldsFromTab('Root.Content', 
+		$fields->removeFieldsFromTab('Root',
 		   array( 
 		      'GoogleSitemap'
 		   ) 

@@ -1,6 +1,6 @@
 <% require themedCSS(videos) %>
 
-<% control Presentation %>
+<% loop Presentation %>
 
 <div class="main-video-wrapper">
 	<iframe width="853" height="480" src="//www.youtube.com/embed/{$YouTubeID}?rel=0<% if Top.Autoplay %>&autoplay=1<% end_if %>" frameborder="0" allowfullscreen></iframe>
@@ -18,7 +18,7 @@
 	</div>
 
 </div>
-<% end_control %>
+<% end_loop %>
 
 
 <% include VideoThumbnails %>

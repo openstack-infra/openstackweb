@@ -269,7 +269,7 @@ class CountryCodes {
 
 	public static function asObject(){
 		$country_array = CountryCodes::$iso_3166_countryCodes;
-		$list = new DataObjectSet();
+		$list = new ArrayList();
 		foreach($country_array as $k => $v){
 			$do = new DataObject();
 			$do->Code = $k;

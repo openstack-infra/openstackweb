@@ -40,15 +40,15 @@ class Page extends SiteTree {
 	     $fields = parent::getCMSFields();
 	     
 
-	     $fields->addFieldToTab('Root.Content.Settings', new TextField ('PageCSS','Custom CSS File For This Page (must be in CSS directory)'));
+	     $fields->addFieldToTab('Root.Settings', new TextField ('PageCSS','Custom CSS File For This Page (must be in CSS directory)'));
 	     
-		 $fields->addFieldToTab('Root.Content.Settings', new CheckboxField ('IncludeJquery','Include JQuery In This Page'));
+		 $fields->addFieldToTab('Root.Settings', new CheckboxField ('IncludeJquery','Include JQuery In This Page'));
 		 
-		 $fields->addFieldToTab('Root.Content.Settings', new CheckboxField ('IncludeShadowBox','Include ShadowBox Javascript and CSS'));
+		 $fields->addFieldToTab('Root.Settings', new CheckboxField ('IncludeShadowBox','Include ShadowBox Javascript and CSS'));
 		
-		 $fields->addFieldToTab('Root.Content.Settings', new TextareaField ('PageJavaScript','Custom JavaScript For This Page'));
+		 $fields->addFieldToTab('Root.Settings', new TextareaField ('PageJavaScript','Custom JavaScript For This Page'));
 
-		 $fields->addFieldToTab('Root.Content.Settings', new CheckboxField ('BootstrapConverted','Converted To Bootstrap'));
+		 $fields->addFieldToTab('Root.Settings', new CheckboxField ('BootstrapConverted','Converted To Bootstrap'));
 
 	     return $fields;
 	 }

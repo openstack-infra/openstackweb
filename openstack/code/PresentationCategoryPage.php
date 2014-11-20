@@ -18,17 +18,18 @@
  */
 class PresentationCategoryPage extends Page
 {
-	static $db = array(
+	private static $db = array(
 		'StillUploading' => 'Boolean'
 	);
-	static $has_one = array();
 
-	static $has_many = array(
+	private static $has_one = array();
+
+	private static $has_many = array(
 		'Presentations'  => 'Presentation',
 		'FeaturedVideos' => 'FeaturedVideo'
 	);
 
-	static $allowed_children = array('PresentationCategoryPage');
+	private static $allowed_children = array('PresentationCategoryPage');
 
 	/** static $icon = "icon/path"; */
 
@@ -37,7 +38,7 @@ class PresentationCategoryPage extends Page
 		$fields = parent::getCMSFields();
 		$presentationsTable = new GridField('Presentations', 'Presentations', $this->Presentations(),GridFieldConfig_RecordEditor::create(10));
 
-		$fields->addFieldToTab('Root.Content.Presentations', $presentationsTable);
+		$fields->addFieldToTab('Root.Presentations', $presentationsTable);
 
 		// Summit Videos
 		$VideosUploadingField = new OptionSetField('StillUploading', 'Are videos still being uploaded?', array(
@@ -45,10 +46,10 @@ class PresentationCategoryPage extends Page
 			'0' => 'No'
 		));
 
-		$fields->addFieldToTab("Root.Content.Main", $VideosUploadingField, 'Content');
+		$fields->addFieldToTab("Root.Main", $VideosUploadingField, 'Content');
 
 		$featuredVideos = new GridField('FeaturedVideos', 'FeaturedVideos', $this->FeaturedVideos(),GridFieldConfig_RecordEditor::create(10));
-		$fields->addFieldToTab('Root.Content.FeaturedVideos', $featuredVideos);
+		$fields->addFieldToTab('Root.FeaturedVideos', $featuredVideos);
 
 
 		return $fields;
@@ -82,7 +83,7 @@ class PresentationCategoryPage_Controller extends Page_Controller
 			Session::set('Day', 1);
 		}
 
-		if (Director::urlParam("OtherID") != "presentation") Session::set('Autoplay', TRUE);
+		if ($this->getRequest()->getVar("OtherID") != "presentation") Session::set('Autoplay', TRUE);
 	}
 
 	//Show the Presentation detail page using the PresentationCategoryPage_presentation.ss template

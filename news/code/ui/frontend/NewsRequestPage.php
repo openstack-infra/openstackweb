@@ -97,12 +97,12 @@ final class NewsRequestPage_Controller extends Page_Controller {
         if ($data["Image"]["size"] > 1000000) {
             $form->addErrorMessage("Image", 'The image you have attached is too big. It must be less than 1MB in size.', "bad");
             Session::set("FormInfo.Form_NewsRequestForm.data", $data);
-            return Director::redirect('/news-add/?error=1');
+            return Controller::curr()->redirect('/news-add/?error=1');
         }
         if ($data["Document"]["size"] > 1000000) {
             $form->addErrorMessage("Image", 'The image you have attached is too big. It must be less than 1MB in size.', "bad");
             Session::set("FormInfo.Form_NewsRequestForm.data", $data);
-            return Director::redirect('/news-add/?error=1');
+            return Controller::curr()->redirect('/news-add/?error=1');
         }
 
         try{
@@ -113,7 +113,7 @@ final class NewsRequestPage_Controller extends Page_Controller {
             }
 
             Session::clear("FormInfo.Form_NewsRequestForm.data");
-            return Director::redirect('/news-add/?saved=1');
+            return Controller::curr()->redirect('/news-add/?saved=1');
         }
         catch(EntityValidationException $ex1){
             $messages = $ex1->getMessages();

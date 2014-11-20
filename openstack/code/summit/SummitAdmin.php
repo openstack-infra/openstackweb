@@ -18,6 +18,6 @@ class SummitAdmin extends ModelAdmin {
         'SummitCategory'
     );
  
-    static $url_segment = 'summits';
-    static $menu_title = 'Summits';
+    private static $url_segment = 'summits';
+    private static $menu_title = 'Summits';
 }

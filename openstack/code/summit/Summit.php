@@ -59,7 +59,7 @@ class Summit extends DataObject {
 	}
 
 	public function CurrentSummit() {
-		return DataObject::get_by_id('Summit',$this->CurrentSummitID());
+		return Summit::get()->byID($this->CurrentSummitID());
 	}
 
 }

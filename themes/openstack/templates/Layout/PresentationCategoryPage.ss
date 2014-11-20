@@ -37,7 +37,7 @@
 </div>
 <div class="container daily-recap-wrapper">
 	<div class="row">
-		<% control FeaturedVideos %>
+		<% loop FeaturedVideos %>
 
 		<!-- If there is a YouTube ID -->
 
@@ -70,7 +70,7 @@
 		<% end_if %>
 
 
-		<% end_control %>
+		<% end_loop %>
 	</div>
 </div>
 
@@ -88,9 +88,9 @@
 				<li role="presentation"><a role="menuitem" tabindex="-1" href="{$Top.Link}#keynotes">Keynote Presentations</a></li>
 
 
-				<% control Presentations.GroupedBy(PresentationDay) %>
+				<% loop  Presentations.GroupedBy(PresentationDay) %>
 					<li role="presentation"><a role="menuitem" tabindex="-1" href="{$Top.Link}#day-{$Pos}">$PresentationDay</a></li>
-				<% end_control %>
+				<% end_loop %>
 
 				</ul>
 			</div>
