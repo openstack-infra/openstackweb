@@ -394,8 +394,16 @@ class EditProfilePage_Controller extends Page_Controller
                 $Candidate->write();
 				$questions = array('Bio' => 'Bio','RelationshipToOpenStack' => 'RelationshipToOpenStack','Experience' => 'Experience' ,'BoardsRole' => 'BoardsRole' ,'TopPriority' => 'TopPriority');
                 // Must answer all questions, but can save work as they go, so we're going to check here rather than set up validators
-                foreach ($data as $key => $value) {
-                    if (array_key_exists($key,$questions) &&  strlen($value) < 4) {
+
+                if(
+                    (strlen($data['Bio'])) < 4 ||
+                    (strlen($data['RelationshipToOpenStack'])) < 4 ||
+                    (strlen($data['Experience'])) < 4 ||
+                    (strlen($data['BoardsRole'])) < 4 ||
+                    (strlen($data['TopPriority'])) < 4
+
+                  ) {
+
                         $Candidate->HasAcceptedNomination = FALSE;
                         $form->saveInto($Candidate);
                         $Candidate->write();
@@ -403,7 +411,6 @@ class EditProfilePage_Controller extends Page_Controller
                         $this->setMessage('Success', 'Your edits have been saved but you will need to provide full answers to all these questions to be eligible as a candidate.');
                         $this->redirectBack();
                         return;
-                    }
                 }
 
                 $Candidate->HasAcceptedNomination = TRUE;

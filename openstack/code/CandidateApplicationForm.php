@@ -22,7 +22,7 @@ class CandidateApplicationForm extends HoneyPotForm {
         new TextAreaField('RelationshipToOpenStack',"What is your relationship to OpenStack, and why is its success important to you? What would you say is your biggest contribution to OpenStack's success to date?"),
         new TextAreaField('Experience',"Describe your experience with other non profits or serving as a board member. How does your experience prepare you for the role of a board member?"),
         new TextAreaField('BoardsRole',"What do you see as the Board's role in OpenStack's success?"),
-        new TextAreaField('TopPriority',"What do you think the top priority of the Board should be in 2014?")
+        new TextAreaField('TopPriority',"What do you think the top priority of the Board should be in 2015?")
       );
 
       $actionButton = new FormAction('save', 'Save Candidate Application');

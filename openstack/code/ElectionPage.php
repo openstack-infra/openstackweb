@@ -48,6 +48,12 @@
     		$NominationsCloseField->setConfig('showdropdown', true);
     		$fields->addFieldToTab('Root.Main', $NominationsCloseField, 'Content');
 
+	        // Nomination App Deadline
+		    $NominationAppDeadlineField = new DateField('NominationAppDeadline','Date candidates must have completed the application in order to be listed (11:59PM this day)');
+	    	$NominationAppDeadlineField->setConfig('showcalendar', true);
+    		$NominationAppDeadlineField->setConfig('showdropdown', true);
+    		$fields->addFieldToTab('Root.Content.Main', $NominationAppDeadlineField, 'Content');
+
 	        // Elections Open
 		    $ElectionsOpenField = new DateField('ElectionsOpen','Date the elections open (12:00AM this day)');
 	    	$ElectionsOpenField->setConfig('showcalendar', true);
