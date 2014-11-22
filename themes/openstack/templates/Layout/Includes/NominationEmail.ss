@@ -16,7 +16,7 @@
 <% else %>
 	<p>You have not yet accepted the nomination. If you would like to accept your nomination and run in the OpenStack Individual Board Member election, you can do that here: http://www.openstack.org/profile/election/ </p>
 	<p>Once you accept the nomination and complete the application, you'll need a total of 10 nominations from members before you appear on the ballot. You currently have $countNominations nomination<% if countNominations = 1 %><% else %>s<% end_if %>.</p>
-	<p>If you wish to run in the {$Election.Title}, you must accept your nomination by {$Election.NominationAppDeadline.Month} {$Election.NominationAppDeadline.Day}, {$Election.NominationAppDeadline.Year} and <a href="http://www.openstack.org/profile/election/">submit your candidate application</a>.</p>
+	<p>If you wish to run in the {$Election.Title}, you must accept your nomination by {$Election.NominationAppDeadline.Month} {$Election.NominationAppDeadline.DayOfMonth}, {$Election.NominationAppDeadline.Year} and <a href="http://www.openstack.org/profile/election/">submit your candidate application</a>.</p>
 <% end_if %>
 
 <% end_loop %>
