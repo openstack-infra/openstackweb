@@ -46,7 +46,7 @@
 				<% include CandidateNominations %>
 	
 	
-				<p><a href="/election/2013-board-election/CandidateList/" class="roundedButton">See The Current Nominations</a> &nbsp; <a href="/community/members/" class="roundedButton">Nominate A Member</a></p>
+				<p><a href="/election/2015-individual-director-election/CandidateList" class="roundedButton">See The Current Nominations</a> &nbsp; <a href="/community/members/" class="roundedButton">Nominate A Member</a></p>
 				</fieldset></form>
 				
 				<% end_with %>
