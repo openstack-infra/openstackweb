@@ -163,13 +163,20 @@
 
 
 
-<div class="span-5 prepend-1 last">
+<div class="span-6 prepend-1 last">
 	<% if CurrentElection.NominationsAreOpen %>
 		<h2>Election</h2>
 		<% loop CurrentElection %>
 			<p>Nominations are open for the <a href="$Link">$Title.</a></p>
 			<% if CurrentMember %>
-				<p><a href="/community/members/confirmNomination/{$Top.Profile.ID}" class="roundedButton">Nominate $Top.Profile.FirstName</a></p>
+					<% if CurrentMember.isFoundationMember %>
+						<p><a href="/community/members/confirmNomination/{$Top.Profile.ID}" class="roundedButton">Nominate $Top.Profile.FirstName</a></p>
+					<% else %>
+						<hr/>
+						<p><strong>Your account credentials do not allow you to nominate candidates.</strong></p>
+						<p>If you have more than one account on this site, please log out and log back in with the credentials associated with your Foundation Membership</p>
+						<p>Have additional questions? Email <a href=“mailto:secretary@openstack.org”>secretary@openstack.org</a></p>
+					<% end_if %>
 			<% else %>
 				<p><a href="/Security/login/?BackURL={$Top.EncodedLink}profile%2F{$Top.Profile.ID}" class="roundedButton">Log In To Nominate</a></p>
 			<% end_if %>
