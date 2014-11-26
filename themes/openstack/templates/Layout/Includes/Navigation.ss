@@ -174,7 +174,7 @@
 
             <li>
 
-                <a href="//docs.openstack.org/">Docs</a>
+                <a href="http://docs.openstack.org/">Docs</a>
 
             </li>
 
