@@ -116,13 +116,12 @@ final class EventRegistrationRequestManager {
 		$event_repository         = $this->event_repository;
 		$event_publishing_service = $this->event_publishing_service;
 
-		return  $this->tx_manager->transaction(function() use ($id, $repository, $event_repository, $factory, $event_publishing_service, $event_link){
+		$event =  $this->tx_manager->transaction(function() use ($id, $repository, $event_repository, $factory, $event_publishing_service, $event_link){
 			$request = $repository->getById($id);
 			if(!$request) throw new NotFoundEntityException('EventRegistrationRequest',sprintf('id %s',$id ));
 			$event = $factory->buildEvent($request);
 			$event_repository->add($event);
 			$request->markAsPosted();
-			$event_publishing_service->publish($event);
 
 			//send Accepted message
 			$point_of_contact = $request->getPointOfContact();
@@ -139,6 +138,9 @@ final class EventRegistrationRequestManager {
 
 			return $event;
 		});
+
+		$event_publishing_service->publish($event);
+		return $event;
 	}
 
 	public function updateEventRegistrationRequest(array $data){

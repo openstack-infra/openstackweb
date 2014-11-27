@@ -50,21 +50,21 @@ class EventHolder_Controller extends Page_Controller {
 	}
 	
 	function PastEvents($num = 4) {
-		return EventPage::get()->filter(array('EventEndDate:LessThanOrEqual'=>'now()', 'IsSummit'=>1))->sort('EventEndDate')->limit($num);
+		return EventPage::get()->filter(array('EventEndDate:LessThanOrEqual'=> date('Y-m-d') , 'IsSummit'=>1))->sort('EventEndDate')->limit($num);
 	}
 	
 
 	function FutureEvents($num) {
-		return EventPage::get()->filter(array('EventEndDate:GreaterThanOrEqual'=>'now()'))->sort('EventStartDate','ASC')->limit($num);
+		return EventPage::get()->filter(array('EventEndDate:GreaterThanOrEqual'=> date('Y-m-d') ))->sort('EventStartDate','ASC')->limit($num);
 	}
 
     function PastSummits($num) {
-	    return EventPage::get()->filter(array('EventEndDate:LessThanOrEqual'=>'now()', 'IsSummit'=>1))->sort('EventEndDate','DESC')->limit($num);
+	    return EventPage::get()->filter(array('EventEndDate:LessThanOrEqual'=> date('Y-m-d') , 'IsSummit'=>1))->sort('EventEndDate','DESC')->limit($num);
     }
 
 
     function FutureSummits($num) {
-	    return EventPage::get()->filter(array('EventEndDate:GreaterThanOrEqual'=>'now()', 'IsSummit'=>1))->sort('EventStartDate','ASC')->limit($num);
+	    return EventPage::get()->filter(array('EventEndDate:GreaterThanOrEqual'=> date('Y-m-d') , 'IsSummit'=>1))->sort('EventStartDate','ASC')->limit($num);
     }
 
     public function getEvents($num = 4, $type) {

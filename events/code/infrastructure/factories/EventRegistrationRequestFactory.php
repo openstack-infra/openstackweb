@@ -90,6 +90,8 @@ final class EventRegistrationRequestFactory
 
 		$event                      = new EventPage;
 		$event->Title               = $request->Title;
+		$event->ClassName           = 'EventPage';
+		$event->ParentID            = 41;
 		$event->EventLink           = $request->Url;
 		$event->EventLinkLabel      = $request->Label;
 		$event->EventStartDate      = $request->StartDate;
