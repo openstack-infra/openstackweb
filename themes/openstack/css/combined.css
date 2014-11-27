@@ -534,6 +534,12 @@ div.termsBox {
   color: inherit;
   text-decoration: underline; }
 
+#zenbox_tab {
+    top: 34% !important;
+    min-width: 109px !important;
+    line-height: 0px !important;
+}
+
 /* @end */
 /* @group quotes */
 ul#quotes {
