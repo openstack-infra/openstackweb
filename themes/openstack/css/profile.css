@@ -13,3 +13,12 @@
 .logo {
 	text-align: center;
 }
+
+.loggedInBox {
+    margin: 10px 0;
+    clear: both;
+}
+
+.siteMessage {
+    width: 100%;
+}
