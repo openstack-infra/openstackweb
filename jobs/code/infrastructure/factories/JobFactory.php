@@ -98,6 +98,7 @@ final class JobFactory implements IJobFactory {
 	public function buildJob(IJobRegistrationRequest $request){
 		$job                        = new JobPage;
 		$job->JobPostedDate         = $request->PostDate;
+		$job->ClassName             = 'JobPage';
 		$job->JobCompany            = $request->CompanyName;
 		$job->JobCompany            = $request->CompanyName;
 		$job->ExpirationDate        = $request->ExpirationDate;
