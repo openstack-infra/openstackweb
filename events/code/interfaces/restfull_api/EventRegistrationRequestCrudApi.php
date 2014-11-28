@@ -101,8 +101,12 @@ final class EventRegistrationRequestCrudApi
 			return $this->ok();
 		}
 		catch(NotFoundEntityException $ex1){
-			SS_Log::log($ex1,SS_Log::ERR);
+			SS_Log::log($ex1,SS_Log::WARN);
 			return $this->notFound($ex1->getMessage());
+		}
+		catch(EntityValidationException $ex2){
+			SS_Log::log($ex2,SS_Log::WARN);
+			return $this->validationError($ex2->getMessages());
 		}
 		catch(Exception $ex){
 			SS_Log::log($ex,SS_Log::ERR);
@@ -118,7 +122,7 @@ final class EventRegistrationRequestCrudApi
 			return $this->ok(EventsAssembler::convertEventRegistrationRequestToArray($request));
 		}
 		catch(NotFoundEntityException $ex1){
-			SS_Log::log($ex1,SS_Log::ERR);
+			SS_Log::log($ex1,SS_Log::WARN);
 			return $this->notFound($ex1->getMessage());
 		}
 		catch(Exception $ex){
@@ -135,11 +139,11 @@ final class EventRegistrationRequestCrudApi
 			return $this->updated();
 		}
 		catch(NotFoundEntityException $ex1){
-			SS_Log::log($ex1,SS_Log::ERR);
+			SS_Log::log($ex1,SS_Log::WARN);
 			return $this->notFound($ex1->getMessage());
 		}
 		catch (EntityValidationException $ex2) {
-			SS_Log::log($ex2,SS_Log::ERR);
+			SS_Log::log($ex2,SS_Log::WARN);
 			return $this->validationError($ex2->getMessages());
 		}
 		catch(Exception $ex){
@@ -157,8 +161,12 @@ final class EventRegistrationRequestCrudApi
 			return $this->updated();
 		}
 		catch(NotFoundEntityException $ex1){
-			SS_Log::log($ex1,SS_Log::ERR);
+			SS_Log::log($ex1,SS_Log::WARN);
 			return $this->notFound($ex1->getMessage());
+		}
+		catch(EntityValidationException $ex2){
+			SS_Log::log($ex2,SS_Log::WARN);
+			return $this->validationError($ex2->getMessages());
 		}
 		catch(Exception $ex){
 			SS_Log::log($ex,SS_Log::ERR);
