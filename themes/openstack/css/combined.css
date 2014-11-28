@@ -1749,7 +1749,7 @@ a.featured-link:hover {
   background: #fff;
   border: 2px solid #DA422F;
   border-radius: 4px;
-  padding: 5px 15px;
+  padding: 5px 0;
   color: #DA422F;
   font-size: 10px;
   width: 100%;
