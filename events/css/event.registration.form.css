@@ -29,3 +29,8 @@ span.message.bad {
     padding-left: 5px;
     padding-top: 10px;
 }
+
+#start_date,#end_date {
+    width: auto;
+    float: left;
+}
