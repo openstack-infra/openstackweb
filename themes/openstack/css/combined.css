@@ -15,6 +15,9 @@ a, a:visited {
 a:hover {
   text-decoration: underline; }
 
+
+@media (max-width: 950px) {.defaultSkin table.mceLayout {width: 100% !important;}}
+
 /* @group Navigation */
 #navigation {
   display: block;
