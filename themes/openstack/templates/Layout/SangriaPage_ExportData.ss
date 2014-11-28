@@ -68,7 +68,12 @@
     <button style="padding: 5px" id="btn4_xls">Export Gerrit Users (XLS)</button>
     <button style="padding: 5px" id="btn4_csv">Export Gerrit Users (CSV)</button>
 </form>
-
+<br/>
+<br/>
+<h2>Duplicate Users Report</h2>
+<form method="get" id="form-export-dup-users-data" name="form-export-dup-users-data" action="$Link(exportDupUsers)">
+     <button style="padding: 5px" id="btn5_csv">GET</button>
+</form>
 
 
 

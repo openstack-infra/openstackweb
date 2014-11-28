@@ -29,6 +29,7 @@ final class SangriaPageExportDataExtension extends Extension
 			'ExportAppDevSurveyResults',
 			'exportFoundationMembers',
 			'exportCorporateSponsors',
+			'exportDupUsers',
 		));
 
 
@@ -40,6 +41,7 @@ final class SangriaPageExportDataExtension extends Extension
 			'ExportAppDevSurveyResults',
 			'exportFoundationMembers',
 			'exportCorporateSponsors',
+			'exportDupUsers',
 		));
 	}
 
@@ -248,7 +250,6 @@ SQL;
 		$filename = "survey_results" . $fileDate . ".csv";
 
 		return CSVExporter::getInstance()->export($filename, $data, ',');
-
 	}
 
 	// Export CSV of all App Dev Surveys
@@ -414,6 +415,39 @@ SQL;
 		$filename = "Companies" . date('Ymd') . ".".$ext;
 
 		return CSVExporter::getInstance()->export($filename, $data);
+	}
+
+
+	public function exportDupUsers(){
+
+		$fileDate = date('Ymdhis');
+
+		SangriaPage_Controller::generateDateFilters('s');
+
+		$sql = <<< SQL
+select FirstName, Surname, count(FirstName) AS Qty , group_concat(Email SEPARATOR '|') AS Emails,group_concat(ID SEPARATOR '|') AS MemberIds
+from Member
+group by FirstName, Surname
+having count(FirstName) > 1
+order by FirstName, Surname;
+SQL;
+
+		$res = DB::query($sql);
+
+		$fields = array('FirstName','Surname','Qty','Emails','MemberIds');
+		$data = array();
+
+		foreach ($res as $row) {
+			$member = array();
+			foreach ($fields as $field) {
+				$member[$field] = $row[$field];
+			}
+			array_push($data, $member);
+		}
+
+		$filename = "dup_users_report" . $fileDate . ".csv";
+
+		return CSVExporter::getInstance()->export($filename, $data, ',');
 	}
 
 }
