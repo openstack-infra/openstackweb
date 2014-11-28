@@ -26,6 +26,6 @@ implements IJobPublishingService
 		if(!$parent) throw new NotFoundEntityException('JobHolder','');
 		$job->setParent($parent); // Should set the ID once the Holder is created...
 		$job->write();
-		$job->doPublish();
+		//$job->doPublish();
 	}
 } 
