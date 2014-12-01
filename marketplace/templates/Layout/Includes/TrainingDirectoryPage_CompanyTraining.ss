@@ -4,7 +4,7 @@
             <div class="col-lg-6">
                 <div class="logo-area">
                     <span style="background-color: #{$Company.CompanyColor}" class="color-bar"></span>
-                    <a href="$Top.Link{$Company.URLSegment}/{$ID}" >
+                    <a href="$TrainingLink{$Company.URLSegment}/$ID" >
                         $Company.SmallLogoPreview(150)
                     </a>
                 </div>
@@ -12,7 +12,7 @@
             <div class="col-lg-6">
                 <div class="company-details-area">
                     <h1>
-                        <a href="$Top.Link{$Company.URLSegment}/$ID" style="color: #{$Company.CompanyColor}">$ProgramName</a>
+                        <a href="$TrainingLink{$Company.URLSegment}/$ID" style="color: #{$Company.CompanyColor}">$ProgramName</a>
                     </h1>
                     <div>$Description</div>
                 </div>
@@ -26,21 +26,21 @@
                         <th class="level">Level</th>
                         <th class="location-date">Next Location / Date</th>
                     </tr>
-                    <% loop Courses %>
-                    <tr>
-                        <td class="course"><a href="$Top.Link{$BookMark}" >$CourseName</a></td>
-                        <td class="level">
-                            <span class="$LwrLevel">$Level</span>
-                        </td>
-                        <% if IsOnline %>
-                        <td class="location-date">Ongoing / Online Only</td>
-                        <% else %>
-                            <td class="location-date">$StartDateMonth $StartDateDay - $EndDateMonth $EndDateDay / $City</td>
-                        <% end_if %>
-                    </tr>
-                    <% end_loop %>
+                        <% loop Courses %>
+                        <tr>
+                            <td class="course"><a href="$TrainingLink{$BookMark}" >$CourseName</a></td>
+                            <td class="level">
+                                <span class="$LwrLevel">$Level</span>
+                            </td>
+                            <% if IsOnline %>
+                                <td class="location-date">Ongoing / Online Only</td>
+                            <% else %>
+                                <td class="location-date">$StartDateMonth $StartDateDay - $EndDateMonth $EndDateDay / $City</td>
+                            <% end_if %>
+                        </tr>
+                        <% end_loop %>
                     </tbody></table>
-                    <a style="background-color: #{$Company.CompanyColor}" href="$Top.Link{$Company.URLSegment}/$ID" class="details-button">Details</a>
+                <a style="background-color: #{$Company.CompanyColor}" href="$TrainingLink{$Company.URLSegment}/$ID" class="details-button">Details</a>
             </div>
         </div>
     </div>

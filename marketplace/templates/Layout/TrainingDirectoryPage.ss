@@ -19,8 +19,11 @@
 </div>
 <div class='container'>
     <div id="training-list" class='col-lg-8 col-md-8 col-sm-8'>
-        <% include TrainingDirectoryPage_CompanyTrainingList %>
-        &nbsp;
+        <% if Trainings %>
+            <% loop Trainings %>
+                <% include TrainingDirectoryPage_CompanyTraining TrainingLink=$Top.Link%>
+            <% end_loop %>
+        <% end_if %>
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4">
         <h3>OpenStack Online Help</h3>
