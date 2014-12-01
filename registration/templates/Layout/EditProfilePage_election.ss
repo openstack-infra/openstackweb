@@ -30,7 +30,7 @@
 				<% else %>
 
 					<% if CurrentMemberHasAcceoted %>
-						<p>You You have completed your Candidate Application, but have not been nominated yet. You will be listed as a candidate on the ballot when you receive 10 nominations.</p>
+						<p>You have completed your Candidate Application, but have not been nominated yet. You will be listed as a candidate on the ballot when you receive 10 nominations.</p>
 						<p><a href="{$Top.Link}CandidateApplication/" class="roundedButton">Edit Candidate Application</a></p>
 					<% else %>
 						<p><strong>You don't have any nominations for this election.</strong> To get started, complete your Candidate Application and encourage people to nominate you. Once you have completed the application and have at least 10 nominations, you will be listed on the election ballot.</p>
