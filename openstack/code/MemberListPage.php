@@ -141,7 +141,7 @@ class MemberListPage_Controller extends Page_Controller
 		// Check to see if the candidate ID is numeric and if the person is logged in
 		if ($this->validateNomation($CandidateID) == 'VALID') {
 
-			$Nominee = Member::get()->filter(array('ID' => $CandidateID));
+			$Nominee = Member::get()->filter(array('ID' => $CandidateID))->first();
 			$results["Success"] = TRUE;
 			$results["Candidate"] = $Nominee;
 			$results["NominateLink"] = $this->Link() . "saveNomination/" . $CandidateID;
@@ -149,7 +149,7 @@ class MemberListPage_Controller extends Page_Controller
 
 		} elseif ($this->validateNomation($CandidateID) == 'ALREADY NOMINATED') {
 
-			$Nominee = Member::get()->filter(array('ID' => $CandidateID));
+			$Nominee = Member::get()->filter(array('ID' => $CandidateID))->first();
 
 			$CurrentElection = $this->CurrentElection();
 
@@ -162,7 +162,7 @@ class MemberListPage_Controller extends Page_Controller
 
 		} elseif ($this->validateNomation($CandidateID) == 'LIMIT EXCEEDED') {
 
-			$Nominee = Member::get()->filter(array('ID' => $CandidateID));
+			$Nominee = Member::get()->filter(array('ID' => $CandidateID))->first();
 
 			$results["Success"] = FALSE;
 			$results["LimitExceeded"] = TRUE;
@@ -223,7 +223,7 @@ class MemberListPage_Controller extends Page_Controller
 
 		// 6. Make sure that the person nominating is a foundation member
 		$CurrentMember = Member::currentUser();
-		If (!$CurrentMember->inGroup(5, TRUE)) {
+		If (!$CurrentMember->isFoundationMember()) {
 			return 'INVALID VOTER';
 		}
 
@@ -235,7 +235,8 @@ class MemberListPage_Controller extends Page_Controller
 
 	function saveNomination()
 	{
-		$CandidateID = $this->request->param("OtherID");
+		// Grab candidate ID from the URL
+		$CandidateID = $this->request->param("ID");
 		$NominationStatus = $this->validateNomation($CandidateID);
 
 		// Check to see if this is a valid nomination
@@ -275,30 +276,20 @@ class MemberListPage_Controller extends Page_Controller
 			fclose($file);
 
 			// Email the member
-
 			// In dev and testing, send the nomination emails to the person who did the nomination
 			$To = $currentMember->Email;
-
 			// In live mode, send the email to the candidate
 			if (Director::isLive()) $To = $Candidate->Member()->Email;
-
 			$Subject = "You have been nominated in the " . $CurrentElection->Title;
 			$email = EmailFactory::getInstance()->buildEmail(CANDIDATE_NOMINATION_FROM_EMAIL, $To, $Subject);
 			$email->setTemplate('NominationEmail');
-
 			// Gather Data to send to template
 			$data["Candidate"] = $Candidate;
 			$data["Election"] = $CurrentElection;
-
-
 			$email->populateTemplate($data);
 			$email->send();
-
-
 			$this->setMessage('Success', "You've just nominated " . $Candidate->Member()->FirstName . ' for the OpenStack Board.');
-			$this->redirect('/community/members/candidateStats/' . $Candidate->Member()->ID);
-
-
+			$this->redirect($this->Link('candidateStats/' . $Candidate->Member()->ID));
 		} elseif ($NominationStatus = 'ALREADY NOMINATED') {
 
 			$this->setMessage('Error', "Oops, you have already nominated this person.");
@@ -350,7 +341,7 @@ class MemberListPage_Controller extends Page_Controller
 	{
 
 		// Grab candidate ID from the URL
-		$CandidateID = $this->request->param("OtherID");
+		$CandidateID = $this->request->param("ID");
 
 		// Check to see if the candidate is valid
 		if (is_numeric($CandidateID) && $this->findMember($CandidateID)) {

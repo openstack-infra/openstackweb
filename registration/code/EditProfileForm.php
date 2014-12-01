@@ -211,11 +211,7 @@ class EditProfileForm extends SafeXSSForm {
         $fields->push(new LiteralField('break', '<hr/>'));
 
 
-        $fields->push($password = new ConfirmedPasswordField('Password',
-            'Password'
-        ));
-
-	    $password->setCanBeEmpty(true);
+        $fields->push(new LiteralField('changepassword','<a href="/Security/changepassword">Click here to change your password</a>'));
 
 
         // Create action

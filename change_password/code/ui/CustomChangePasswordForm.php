@@ -48,7 +48,7 @@ final class CustomChangePasswordForm extends ChangePasswordForm {
 		}
 		catch(InvalidResetPasswordTokenException $ex1){
 			Session::clear('AutoLoginHash');
-			Controller::curr()->redirect('loginpage');
+			Controller::curr()->redirect('login');
 		}
 		catch(EmptyPasswordException $ex2){
 			$this->clearMessage();

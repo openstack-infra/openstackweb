@@ -225,11 +225,6 @@ class EditProfilePage_Controller extends Page_Controller
         }
     }
 
-    function FoundationMember()
-    {
-        // see if the member is in the foundation group
-        if (Member::currentUser() && Member::currentUser()->inGroup('foundation-members')) return TRUE;
-    }
 
     function CompanyAdmin()
     {
@@ -339,7 +334,7 @@ class EditProfilePage_Controller extends Page_Controller
     }
 
     // Save an edited candidate
-    function save($data, $form)
+    function saveCandidateApplicationForm($data, $form)
     {
 
 
@@ -408,18 +403,19 @@ class EditProfilePage_Controller extends Page_Controller
                         $form->saveInto($Candidate);
                         $Candidate->write();
 
-                        $this->setMessage('Success', 'Your edits have been saved but you will need to provide full answers to all these questions to be eligible as a candidate.');
+	                    $form->clearMessage();
+	                    $form->sessionMessage( "Your edits have been saved but you will need to provide full answers to all these questions to be eligible as a candidate.","bad");
                         $this->redirectBack();
                         return;
                 }
 
                 $Candidate->HasAcceptedNomination = TRUE;
                 $Candidate->write();
-
-                $this->setMessage('Success', 'Congratulations. You have accepted your nomination as a candidate. Good luck in the election!');
+			    $form->clearMessage();
                 $this->redirect($this->Link() . 'election/');
             } else {
-                $this->setMessage('Error', 'There was an error saving your edits.');
+	            $form->clearMessage();
+	            $form->sessionMessage('There was an error saving your edits.',"bad");
                 $this->redirectBack();
             }
 

@@ -3,7 +3,7 @@
 </div>
 <h2 class="profile-tabs">
 <a href="{$Link}" <% if CurrentTab=1 %>class="active"<% end_if %> >Your Details</a>
-<% if FoundationMember %>
+<% if CurrentMember.isFoundationMember %>
 <a href="{$Link}election" <% if CurrentTab=2 %>class="active"<% end_if %> >Election</a>
 <% end_if %>
 <a href="{$Link}agreements"  <% if CurrentTab=3 %>class="active"<% end_if %> >Legal Agreements</a>

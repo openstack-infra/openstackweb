@@ -48,8 +48,11 @@ final class PasswordManager {
 	 * @throws PasswordMismatchException
 	 */
 	public function changePassword($token, $password, $password_confirmation){
-		if(empty($token)) throw new InvalidResetPasswordTokenException;
-		$member = Member::member_from_autologinhash($token);
+		$member = Member::currentUser();
+		if(!$member) {
+			if (empty($token)) throw new InvalidResetPasswordTokenException;
+			$member = Member::member_from_autologinhash($token);
+		}
 		if(!$member) throw new InvalidResetPasswordTokenException;
 		if(empty($password)) throw new EmptyPasswordException;
 		if($password !== $password_confirmation) throw new PasswordMismatchException;

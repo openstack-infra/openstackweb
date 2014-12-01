@@ -65,8 +65,6 @@ jQuery(document).ready(function($) {
                 City:{required: true},
                 State:{required: true},
                 Postcode:{required: true},
-                'Password[_Password]': {required: true,minlength: 5},
-                'Password[_ConfirmPassword]': {required: true,minlength: 5,equalTo: '#Password-_Password'},
                 'Affiliations':{checkAffiliations:true},
                 'Gender':{required:true}
             },

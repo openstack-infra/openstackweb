@@ -63,10 +63,24 @@ class CustomPasswordController extends Security {
 					'Form' => $this->ChangePasswordForm(),
 				));
 			}
-			else{
+			else if(isset($_REQUEST['t']) && isset($_REQUEST['m'])){
 				$new_hash  = $this->password_manager->verifyToken((int)@$_REQUEST['m'], @$_REQUEST['t']);
 				Session::set('AutoLoginHash', $new_hash);
 				return $this->redirect($this->Link('changepassword'));
+			}
+			else if(Member::currentUser()) {
+				// Logged in user requested a password change form.
+				$customisedController = $controller->customise(array(
+					'Content' => '<p>'
+						. _t('Security.CHANGEPASSWORDBELOW', 'You can change your password below.') . '</p>',
+					'Form' => $this->ChangePasswordForm()));
+			}
+			else{
+				self::permissionFailure(
+					$this,
+					_t('Security.ERRORPASSWORDPERMISSION', 'You must be logged in in order to change your password!')
+				);
+				return;
 			}
 		}
 		catch(InvalidPasswordResetLinkException $ex1){

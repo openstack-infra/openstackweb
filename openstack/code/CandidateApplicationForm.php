@@ -25,7 +25,7 @@ class CandidateApplicationForm extends HoneyPotForm {
         new TextAreaField('TopPriority',"What do you think the top priority of the Board should be in 2015?")
       );
 
-      $actionButton = new FormAction('save', 'Save Candidate Application');
+      $actionButton = new FormAction('saveCandidateApplicationForm', 'Save Candidate Application');
       //$actionButton->addExtraClass('btn green-btn');
 	 
        $actions = new FieldList(
