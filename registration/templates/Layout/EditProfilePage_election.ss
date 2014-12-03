@@ -4,7 +4,7 @@
 		<h1>$Title</h1>
         <% if CurrentMember.isFoundationMember %>
                 <% include CurrentUserInfoBox LogOutLink=$Top.LogoutUrl, ResignLink=$Top.ResignUrl %>
->
+
 				<% include ProfileNav %>
 
 				<% if CurrentElection %>

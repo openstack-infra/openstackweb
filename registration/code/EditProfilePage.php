@@ -37,6 +37,8 @@ class EditProfilePage_Controller extends Page_Controller
 	    'marketplace',
         'speaker',
 	    'EditSpeakerProfileForm',
+	    'downgrade2communitymember',
+	    'upgrade2foundationmember',
     );
 
 	/**
@@ -77,9 +79,7 @@ class EditProfilePage_Controller extends Page_Controller
         Requirements::javascript("themes/openstack/javascript/jquery.ui.datepicker.validation.package-1.0.1/jquery.ui.datepicker.validation.js");
 	    Requirements::javascript("themes/openstack/javascript/jquery.validate.custom.methods.js");
         Requirements::javascript("registration/javascript/affiliations.js");
-	    Requirements::javascript('themes/openstack/javascript/current.user.infobox.jquery.js');
-        Requirements::javascript('registration/javascript/edit.profile.page.js');
-
+	    Requirements::javascript('registration/javascript/edit.profile.page.js');
 
 		$this->course_repository   = new SapphireCourseRepository;
 	    $this->training_repository = new SapphireTrainingServiceRepository;
@@ -675,5 +675,27 @@ class EditProfilePage_Controller extends Page_Controller
 
 	public function ResignUrl(){
 		return $this->Link('resign');
+	}
+
+	public function downgrade2communitymember(){
+		$CurrentMember = Member::currentUser();
+		if ($CurrentMember && isset($_GET['confirmed'])) {
+			$CurrentMember->convert2SiteUser();
+			$this->setMessage('Success', 'You have downgraded your membership to Community Member.');
+			$this->redirect('profile/');
+		} else if ($CurrentMember) {
+			return $this->renderWith(array('EditProfilePage_downgrade2communitymember', 'Page'));
+		}
+	}
+
+	public function upgrade2foundationmember(){
+		$CurrentMember = Member::currentUser();
+		if ($CurrentMember && isset($_GET['confirmed'])) {
+			$CurrentMember->upgradeToFoundationMember();
+			$this->setMessage('Success', 'You have upgraded your membership to Foundation Member.');
+			$this->redirect('profile/');
+		} else if ($CurrentMember) {
+			return $this->renderWith(array('EditProfilePage_upgrade2foundationmember', 'Page'));
+		}
 	}
 }
