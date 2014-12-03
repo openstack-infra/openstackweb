@@ -202,7 +202,7 @@ class Page_Controller extends ContentController {
 	 */
 	private static $allowed_actions = array (
 		'logout',
-		'FeedbackForm'
+		'FeedbackForm',
 	);
 	
 
@@ -326,7 +326,7 @@ class Page_Controller extends ContentController {
 		));
     	}
  
-    	public function getMessage() {
+    public function getMessage() {
         	if($message = Session::get('Message')){
 		 	Session::clear('Message');
 		    	$array = new ArrayData($message);

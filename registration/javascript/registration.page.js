@@ -113,8 +113,8 @@ jQuery(document).ready(function($) {
         GenderField.on('change',function(){
             var value = $(this).val();
             if(value == 'Specify'){
-                $('#GenderSpecify').fadeIn();
-                GenderSpecify.fadeIn();
+                $('#GenderSpecify').removeClass('hide').fadeIn();
+                GenderSpecify.removeClass('hide').fadeIn();
             } else {
                 $('#GenderSpecify').fadeOut();
                 GenderSpecify.fadeOut();

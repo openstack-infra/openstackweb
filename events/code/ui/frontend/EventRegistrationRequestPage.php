@@ -92,6 +92,7 @@ final class EventRegistrationRequestPage_Controller extends Page_Controller {
 		if(class_exists('SpamProtectorManager')) {
 			SpamProtectorManager::update_form($form);
 		}
+
 		return $form;
 	}
 
@@ -106,6 +107,7 @@ final class EventRegistrationRequestPage_Controller extends Page_Controller {
 		try{
 			$this->event_registration_request_manager->registerEventRegistrationRequest($data);
 			Session::clear("FormInfo.Form_EventRegistrationRequestForm.data");
+            $form->clearMessage();
 			return $this->redirect($this->Link('?saved=1'));
 		}
 		catch(EntityValidationException $ex1){

@@ -5,7 +5,6 @@ label.error, .recaptcha .message.validation
     color: #fff;
     padding: 5px;
     margin: 0;
-    width: 100%;
     -webkit-border-radius: 05px;
     -moz-border-radius: 05px;
     border-radius: 05px;

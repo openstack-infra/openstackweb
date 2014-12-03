@@ -50,14 +50,8 @@
       <% include Navigation %>
       
       <!-- Page Content -->
-      <% if BootstrapConverted %>
-        $Message
-        $Layout
-      <% else %>
-        <div class="container">
-          $Layout
-        </div>
-      <% end_if %>
+      $Message
+      $Layout
 
 
     <% include Footer %>

@@ -122,7 +122,7 @@ class HomePage_Controller extends Page_Controller {
 			$item->pubDate = date("D, M jS Y", strtotime($item->pubDate));
 		}
 
-		return $result->limit(0,$limit);
+		return $result->limit($limit,0);
 	}	
 
 	function PastEvents($num=1) {
