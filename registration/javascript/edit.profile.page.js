@@ -256,4 +256,6 @@ jQuery(document).ready(function($) {
         });
 
     }
+
+    $('body').user_infobox();
 });

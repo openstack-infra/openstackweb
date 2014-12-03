@@ -56,6 +56,7 @@ class FeedbackForm extends Form {
 
             // Redirect back to the page with a success message
             $form->controller->setMessage('Success', 'Thanks for providing feedback to improve the OpenStack website!');
+
             $form->controller->redirectBack();
 
          } else {

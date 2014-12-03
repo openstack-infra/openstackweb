@@ -1,9 +1,10 @@
 <div class="container">
 	$SetCurrentTab(2)
 	<% require themedCSS(profile-section) %>
-	<h1>$Title</h1>
-			<% if CurrentMember.isFoundationMember %>
-
+		<h1>$Title</h1>
+        <% if CurrentMember.isFoundationMember %>
+                <% include CurrentUserInfoBox LogOutLink=$Top.LogoutUrl, ResignLink=$Top.ResignUrl %>
+>
 				<% include ProfileNav %>
 
 				<% if CurrentElection %>

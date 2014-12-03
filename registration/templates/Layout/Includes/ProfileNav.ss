@@ -1,6 +1,3 @@
-<div class="loggedInBox">
-    You are logged in as: <strong>$CurrentMember.Name</strong>&nbsp; &nbsp; <a class="roundedButton" href="{$Link}logout/">Logout</a> &nbsp; <a class="roundedButton" href="{$Link}resign/">Resign Membership</a>
-</div>
 <h2 class="profile-tabs">
 <a href="{$Link}" <% if CurrentTab=1 %>class="active"<% end_if %> >Your Details</a>
 <% if CurrentMember.isFoundationMember %>

@@ -77,7 +77,9 @@ class EditProfilePage_Controller extends Page_Controller
         Requirements::javascript("themes/openstack/javascript/jquery.ui.datepicker.validation.package-1.0.1/jquery.ui.datepicker.validation.js");
 	    Requirements::javascript("themes/openstack/javascript/jquery.validate.custom.methods.js");
         Requirements::javascript("registration/javascript/affiliations.js");
+	    Requirements::javascript('themes/openstack/javascript/current.user.infobox.jquery.js');
         Requirements::javascript('registration/javascript/edit.profile.page.js');
+
 
 		$this->course_repository   = new SapphireCourseRepository;
 	    $this->training_repository = new SapphireTrainingServiceRepository;
@@ -665,5 +667,13 @@ class EditProfilePage_Controller extends Page_Controller
 		$html = '';
 		$this->extend('getNavActionsExtensions',$html);
 		return $html;
+	}
+
+	public function LogoutUrl(){
+		return $this->Link('logout');
+	}
+
+	public function ResignUrl(){
+		return $this->Link('resign');
 	}
 }

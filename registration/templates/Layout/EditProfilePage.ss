@@ -33,6 +33,7 @@ $SetCurrentTab(1)
 			    <p>There was a problem saving your profile. Please look for errors below.</p>
 				</div>
 			<% end_if %>
+            <% include CurrentUserInfoBox LogOutLink=$Top.LogoutUrl, ResignLink=$Top.ResignUrl %>
 			<% include ProfileNav %>
 			<div class="profile-appearance">See how your <a href="/community/members/profile/{$CurrentMember.ID}">public profile</a> appears.</div>
 			$EditProfileForm

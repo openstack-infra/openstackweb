@@ -1,4 +1,5 @@
 <div class="container">
+
     <% require javascript(framework/thirdparty/tinymce/tiny_mce.js) %>
     <% require javascript(themes/openstack/javascript/simple-tinymce.js) %>
     $SetCurrentTab(7)
@@ -11,6 +12,7 @@
                 <p>Your Profile has been saved!</p>
             </div>
         <% end_if %>
+        <% include CurrentUserInfoBox LogOutLink=$Top.LogoutUrl, ResignLink=$Top.ResignUrl %>
         <% include ProfileNav %>
         $EditSpeakerProfileForm
     <% else %>

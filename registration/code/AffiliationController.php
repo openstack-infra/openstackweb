@@ -21,7 +21,9 @@ class AffiliationController extends Page_Controller
         'GetAffiliation',
         'ListAffiliations',
         'ListOrganizations',
-        'AffiliationsCount'
+        'AffiliationsCount',
+	    'Downgrade2CommunityMember',
+	    'Upgrade2FoundationMember',
     );
 
     function init()
@@ -198,4 +200,23 @@ class AffiliationController extends Page_Controller
         }
         echo json_encode('ERROR');
     }
+
+	public function Downgrade2CommunityMember(){
+		if ($CurrentMember = Member::currentUser()) {
+			$CurrentMember->convert2SiteUser();
+			echo json_encode('OK');
+			exit();
+		}
+		echo json_encode('ERROR');
+	}
+
+
+	public function Upgrade2FoundationMember(){
+		if ($CurrentMember = Member::currentUser()) {
+			$CurrentMember->upgradeToFoundationMember();
+			echo json_encode('OK');
+			exit();
+		}
+		echo json_encode('ERROR');
+	}
 }

@@ -3,6 +3,7 @@
     <% require themedCSS(profile-section) %>
     <h1>$Title</h1>
     <% if CurrentMember %>
+        <% include CurrentUserInfoBox LogOutLink=$Top.LogoutUrl, ResignLink=$Top.ResignUrl %>
         <% include ProfileNav %>
         <% if CurrentMember.isMarketPlaceAdmin %>
             <fieldset>

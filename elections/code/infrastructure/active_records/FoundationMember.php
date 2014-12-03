@@ -38,7 +38,6 @@ final class FoundationMember
 	}
 
 	public function isFoundationMember(){
-		$res =  false;
 		$res = $this->owner->inGroup(IFoundationMember::FoundationMemberGroupSlug);
 		$legal_agreements = DataObject::get("LegalAgreement", " LegalDocumentPageID=422 AND MemberID =" . $this->owner->ID);
 		$res = $res && $legal_agreements->count() > 0;
@@ -74,12 +73,12 @@ final class FoundationMember
 	public function resign(){
 		// Remove member from Foundation group
 		foreach($this->owner->Groups() as $g){
-			$this->owner->Groups()->remove($g->ID);
+			$this->owner->Groups()->remove($g);
 		}
 
 		// Remove member mamaged companies
 		foreach($this->owner->ManagedCompanies() as $c){
-			$this->owner->ManagedCompanies()->remove($c->ID);
+			$this->owner->ManagedCompanies()->remove($c);
 		}
 		// Remove Member's Legal Agreements
 		$legal_agreements = $this->owner->LegalAgreements();
@@ -104,5 +103,13 @@ final class FoundationMember
 		$is_speaker = DataObject::get_one('Speaker', 'MemberID = '. $this->owner->ID);
 		$is_foundation_member = $this->isFoundationMember();
 		return $group || $is_speaker || $is_foundation_member;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function isSpeaker()	{
+		$is_speaker = DataObject::get_one('Speaker', 'MemberID = '. $this->owner->ID);
+		return $is_speaker;
 	}
 }
