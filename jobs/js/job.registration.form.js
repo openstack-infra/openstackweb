@@ -169,7 +169,6 @@ jQuery(document).ready(function($) {
         $(form).submit(function( event ) {
             if(job_valid) return;
 
-            $('#JobRegistrationRequestForm_JobRegistrationRequestForm_action_saveJobRegistrationRequest').prop('disabled', true);
             event.preventDefault();
             event.stopPropagation();
 
@@ -229,11 +228,9 @@ jQuery(document).ready(function($) {
                     cancelProcess:function(){
                         job_valid = false;
                         ajaxIndicatorStop();
-                        $('#JobRegistrationRequestForm_JobRegistrationRequestForm_action_saveJobRegistrationRequest').prop('disabled', false);
                     },
                     errorMessage:function(location){
                         return 'job location: address ( city:'+location.city+',state: '+location.state+', country:'+location.country+' )';
-                        $('#JobRegistrationRequestForm_JobRegistrationRequestForm_action_saveJobRegistrationRequest').prop('disabled', false);
                     }
                 });
                 return false;
