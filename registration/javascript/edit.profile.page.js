@@ -52,6 +52,17 @@ jQuery(document).ready(function($) {
         );
 
         edit_profile_form.validate({
+            onfocusout: false,
+            invalidHandler: function(form, validator) {
+                var errors = validator.numberOfInvalids();
+                if (errors) {
+                    var element = validator.errorList[0].element;
+                    var offset = (element.name == 'Affiliations') ? $(element).prev().offset().top : $(element).offset().top;
+                    $('html, body').animate({
+                        scrollTop: offset-100
+                    }, 2000);
+                }
+            },
             ignore: [],
             rules: {
                 FirstName:{required: true,regex:'[\"()=<>]+' },
@@ -194,6 +205,17 @@ jQuery(document).ready(function($) {
         );
 
         edit_speaker_profile_form.validate({
+            onfocusout: false,
+            invalidHandler: function(form, validator) {
+                var errors = validator.numberOfInvalids();
+                if (errors) {
+                    var element = validator.errorList[0].element;
+                    var offset = (element.name == 'Affiliations') ? $(element).prev().offset().top : $(element).offset().top;
+                    $('html, body').animate({
+                        scrollTop: offset-100
+                    }, 2000);
+                }
+            },
             ignore: [],
             rules: {
                 FirstName:{required: true, ValidPlainText:true },

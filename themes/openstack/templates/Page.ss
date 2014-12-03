@@ -50,9 +50,10 @@
       <% include Navigation %>
       
       <!-- Page Content -->
-      $Message
-      $Layout
-
+      <div class="container">
+        $Message
+        $Layout
+      </div>
 
     <% include Footer %>
     <% include Quantcast %>

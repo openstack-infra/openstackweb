@@ -357,6 +357,9 @@
 
     function renderAffiliationList(data){
         if (data.length > 0) {
+            //remove error message
+            $("label.error[for='HoneyPotForm_RegistrationForm_Affiliations']").remove();
+
             var template = $('<ul><li><div class="affiliation-header">' +
                 '<span class="title"></span>' +
                 '<span class="affiliation-actions">&nbsp;' +

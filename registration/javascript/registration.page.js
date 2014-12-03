@@ -66,7 +66,11 @@ jQuery(document).ready(function($) {
             invalidHandler: function(form, validator) {
                 var errors = validator.numberOfInvalids();
                 if (errors) {
-                    validator.errorList[0].element.focus();
+                    var element = validator.errorList[0].element;
+                    var offset = (element.name == 'Affiliations') ? $(element).prev().offset().top : $(element).offset().top;
+                    $('html, body').animate({
+                        scrollTop: offset-100
+                    }, 2000);
                 }
             },
             ignore: [],
