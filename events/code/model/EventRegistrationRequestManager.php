@@ -122,7 +122,7 @@ final class EventRegistrationRequestManager {
 			$event = $factory->buildEvent($request);
 			$event_repository->add($event);
 			$request->markAsPosted();
-
+			$event_publishing_service->publish($event);
 			//send Accepted message
 			$point_of_contact = $request->getPointOfContact();
 			$name_to  = $point_of_contact->getName();
@@ -139,7 +139,7 @@ final class EventRegistrationRequestManager {
 			return $event;
 		});
 
-		$event_publishing_service->publish($event);
+
 		return $event;
 	}
 

@@ -120,6 +120,8 @@ jQuery(document).ready(function($) {
         modal: true,
         buttons: {
             "Post": function() {
+                var btn = $(".ui-dialog-buttonset button:contains('Post')",$(this).parent());
+                btn.attr("disabled", true);
                 var id  = $(this).data('id');
                 var row = $(this).data('row');
                 var url = 'api/v1/event-registration-requests/'+id+'/posted';
@@ -133,6 +135,7 @@ jQuery(document).ready(function($) {
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         ajaxError(jqXHR, textStatus, errorThrown);
+                        btn.attr("disabled", false);
                     }
                 });
                 $(this).dialog( "close" );

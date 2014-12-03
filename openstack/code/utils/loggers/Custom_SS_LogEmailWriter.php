@@ -43,8 +43,7 @@ final class Custom_SS_LogEmailWriter extends SS_LogEmailWriter {
 		$formattedData = $this->_formatter->format($event);
 		$subject       = $formattedData['subject'];
 		$body          = $formattedData['data'];
-		$email         = EmailFactory::getInstance()->buildEmail(self::$send_from, $this->emailAddress,$subject, $body);
-
+		$email         = new Email(self::$send_from, $this->emailAddress,$subject, $body);
 		$email->send();
 	}
 
