@@ -278,10 +278,10 @@ final class SangriaPageDeploymentExtension extends Extension {
 	}
 
 	function Deployments(){
-		$sort = $this->request->getVar('sort');
-		$sort_dir = $this->getSortDir('deployments');
-		$date_from = Convert::raw2sql(trim($this->request->getVar('date-from')));
-		$date_to = Convert::raw2sql(trim($this->request->getVar('date-to')));
+		$sort = $this->owner->request->getVar('sort');
+		$sort_dir = $this->owner->getSortDir('deployments');
+		$date_from = Convert::raw2sql(trim($this->owner->request->getVar('date-from')));
+		$date_to = Convert::raw2sql(trim($this->owner->request->getVar('date-to')));
 		$sort_query = '';
 		if (!empty($sort)) {
 			switch (strtolower(trim($sort))) {
@@ -319,14 +319,14 @@ final class SangriaPageDeploymentExtension extends Extension {
 	function DeploymentsSurvey(){
 
 		$sqlQuery = new SQLQuery();
-		$sqlQuery->select = array('DeploymentSurvey.*');
-		$sqlQuery->from = array("DeploymentSurvey, Deployment, Org");
-		$sqlQuery->where = array("Deployment.DeploymentSurveyID = DeploymentSurvey.ID
+		$sqlQuery->setSelect(array('DeploymentSurvey.*'));
+		$sqlQuery->setFrom(array("DeploymentSurvey, Deployment, Org"));
+        $sqlQuery->setWhere(array("Deployment.DeploymentSurveyID = DeploymentSurvey.ID
                                 AND Deployment.IsPublic = 1
                                 AND Org.ID = DeploymentSurvey.OrgID
                                 AND DeploymentSurvey.Title IS NOT NULL
-                                ");
-		$sqlQuery->orderby = 'Org.Name';
+                                "));
+		$sqlQuery->setOrderBy('Org.Name');
 
 		$result = $sqlQuery->execute();
 
