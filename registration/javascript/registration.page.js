@@ -51,6 +51,17 @@ jQuery(document).ready(function($) {
             return count >0;
         },'You must add at least one Affiliation.');
 
+        jQuery.validator.addMethod('checkGender', function(value, element,params) {
+            var gender = $("input[name='Gender']:checked").val();
+            if (gender) {
+                if (gender == 'Specify') {
+                    return ($.trim($("input[name='GenderSpecify']").val()) != '');
+                }
+            } else {
+                return false;
+            }
+        },'Please specify your gender.');
+
         jQuery.validator.addMethod(
             "regex",
             function(value, element, regexp) {
@@ -86,7 +97,7 @@ jQuery(document).ready(function($) {
                 'Password[_Password]': {required: true,minlength: 5},
                 'Password[_ConfirmPassword]': {required: true,minlength: 5,equalTo: '#Password-_Password'},
                 'Affiliations':{checkAffiliations:true},
-                'Gender':{required:true}
+                'Gender':{checkGender:true}
             },
             messages: {
                 FirstName:{
@@ -106,8 +117,7 @@ jQuery(document).ready(function($) {
                     required:'Primary Email Address is required.',
                     email:'Primary Email Address is not valid.',
                     remote:'That address is already in use by another user'
-                },
-                Gender:'Please specify your gender'
+                }
             }
         });
 
@@ -123,6 +133,10 @@ jQuery(document).ready(function($) {
                 $('#GenderSpecify').fadeOut();
                 GenderSpecify.fadeOut();
             }
+        });
+
+        GenderSpecify.on('change',function(){
+            $("label.error[for='Gender']").remove();
         });
 
         registration_form.submit(function(event){
