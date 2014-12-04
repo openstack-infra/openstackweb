@@ -35,7 +35,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div style="max-width:1000px">
-                        $RAW_val(Content)
+                        $Content
                     </div>
                 </div>
             </div>
