@@ -233,6 +233,7 @@ class EditProfileForm extends SafeXSSForm {
 
             if($Gender != 'Male' && $Gender != 'Female' && $Gender != 'Prefer not to say'){
                 $this->fields->dataFieldByName('GenderSpecify')->setValue($Gender);
+                $this->fields->dataFieldByName('GenderSpecify')->removeExtraClass('hide');
             }
 
         } 

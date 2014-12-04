@@ -40,6 +40,16 @@ jQuery(document).ready(function($) {
             return count >0;
         },'You must add at least one Affiliation.');
 
+        jQuery.validator.addMethod('checkGender', function(value, element,params) {
+            var gender = $("input[name='Gender']:checked").val();
+            if (gender) {
+                if (gender == 'Specify') {
+                    return ($.trim($("input[name='GenderSpecify']").val()) != '');
+                }
+            } else {
+                return false;
+            }
+        },'Please specify your gender.');
 
         jQuery.validator.addMethod(
             "regex",
@@ -77,7 +87,7 @@ jQuery(document).ready(function($) {
                 State:{required: true},
                 Postcode:{required: true},
                 'Affiliations':{checkAffiliations:true},
-                'Gender':{required:true}
+                'Gender':{checkGender:true}
             },
             messages: {
                 FirstName:{
@@ -99,8 +109,7 @@ jQuery(document).ready(function($) {
                     email:'Primary Email Address is not valid.'
                 },
                 SecondEmail:'Second Email Address is not valid.',
-                ThirdEmail:'Third Email Address is not valid.',
-                Gender:'Please specify your gender'
+                ThirdEmail:'Third Email Address is not valid.'
             }
         });
 
@@ -139,6 +148,9 @@ jQuery(document).ready(function($) {
             }
         });
 
+        GenderSpecify.on('change',function(){
+            $("label.error[for='Gender']").remove();
+        });
 
         var state_input = $(form_id + ' input[name="State"]');
 
@@ -188,12 +200,6 @@ jQuery(document).ready(function($) {
     if(edit_speaker_profile_form.length > 0){
 
         //custom validation
-        jQuery.validator.addMethod('checkAffiliations', function(value, element,params) {
-            var count = $("#AffiliationEditForm_AffiliationEditForm").affiliations('count');
-            return count >0;
-        },'You must add at least one Affiliation.');
-
-
         jQuery.validator.addMethod(
             "regex",
             function(value, element, regexp) {
@@ -209,10 +215,8 @@ jQuery(document).ready(function($) {
             invalidHandler: function(form, validator) {
                 var errors = validator.numberOfInvalids();
                 if (errors) {
-                    var element = validator.errorList[0].element;
-                    var offset = (element.name == 'Affiliations') ? $(element).prev().offset().top : $(element).offset().top;
                     $('html, body').animate({
-                        scrollTop: offset-100
+                        scrollTop: validator.errorList[0].element.offset().top-100
                     }, 2000);
                 }
             },
