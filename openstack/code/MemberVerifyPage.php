@@ -19,7 +19,11 @@
 	}
 
 	class MemberVerifyPage_Controller extends Page_Controller {
-			
+
+		static $allowed_actions = array(
+			'member',
+		);
+
 		function init() {
 			parent::init();
 		}
