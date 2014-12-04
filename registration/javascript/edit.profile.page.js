@@ -45,6 +45,8 @@ jQuery(document).ready(function($) {
             if (gender) {
                 if (gender == 'Specify') {
                     return ($.trim($("input[name='GenderSpecify']").val()) != '');
+                } else {
+                    return true;
                 }
             } else {
                 return false;
