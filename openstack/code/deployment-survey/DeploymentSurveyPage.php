@@ -134,6 +134,7 @@ class DeploymentSurveyPage_Controller extends Page_Controller
 		'SavePasswordForm',
 		'SavePassword',
 		'CheckEmail',
+        'CheckName',
 		'MemberStart'
 	);
 
@@ -148,6 +149,19 @@ class DeploymentSurveyPage_Controller extends Page_Controller
 		}
 		echo json_encode($res);
 	}
+
+    public function CheckName()
+    {
+        $first_name = Convert::raw2sql($this->request->getVar('FirstName'));
+        $last_name = Convert::raw2sql($this->request->getVar('LastName'));
+
+        //Check for existing member name
+        $res = true;
+        if ($member = Member::get()->filter(array('FirstName'=>$first_name,'Surname'=>$last_name))->first()) {
+            $res = false;
+        }
+        echo json_encode($res);
+    }
 
 	function init()
 	{

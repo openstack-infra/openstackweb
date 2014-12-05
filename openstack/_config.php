@@ -91,6 +91,7 @@ if (Director::isDev()) {
 
 //sangria configuration
 Object::add_extension('SangriaPage_Controller', 'SangriaPageDeploymentExtension');
+Object::add_extension('SangriaPage_Controller', 'SangriaPageSurveyDetailsExtension');
 Object::add_extension('SangriaPage_Controller', 'SangriaPageStandardizeOrgNamesExtension');
 Object::add_extension('SangriaPage_Controller', 'SangriaPageViewCurrentStoriesExtension');
 Object::add_extension('SangriaPage_Controller', 'SangriaPageExportDataExtension');

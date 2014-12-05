@@ -41,6 +41,10 @@ final class SangriaPage_Controller extends Page_Controller {
 	    'FilterResults',
     );
 
+    static $url_handlers = array(
+        'GET SurveyDetails/$ID' => 'SurveyDetails',
+    );
+
     function init() {
         if(!Permission::check("SANGRIA_ACCESS")) Security::permissionFailure();
         parent::init();
