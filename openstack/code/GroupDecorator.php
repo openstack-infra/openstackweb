@@ -32,10 +32,10 @@ class GroupDecorator extends DataExtension {
         $detailFormFields = new FieldList(
             new TabSet("Root",
                 new Tab('Main', 'Main',
-                    new HeaderField('MemberDetailsHeader',_t('Member.PERSONALDETAILS', "Personal Details", PR_MEDIUM, 'Headline for formfields')),
+                    new HeaderField('MemberDetailsHeader', "Personal Details"),
                     new TextField("FirstName","First Name"),
                     new TextField("Surname","Last Name"),
-                    new HeaderField('MemberUserDetailsHeader',_t('Member.USERDETAILS', "User Details", PR_MEDIUM, 'Headline for formfields')),
+                    new HeaderField('MemberUserDetailsHeader',"User Details"),
                     new ConfirmedPasswordField(
                         'Password',
                         null,

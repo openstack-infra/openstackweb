@@ -534,6 +534,10 @@ class Company extends DataObject implements PermissionProvider {
         return  $this->CompanyAdminID == $MemberID  || Permission::check("DELETE_COMPANY") || $this->PermissionCheck(array("DELETE_COMPANY"));
     }
 
+	public function canView($member = null) {
+		$MemberID = Member::currentUserID();
+		return  $this->CompanyAdminID == $MemberID  || Permission::check("EDIT_COMPANY") || $this->PermissionCheck(array("EDIT_COMPANY"));
+	}
 
     /*
      * Helper method to check if current user has the permissions
