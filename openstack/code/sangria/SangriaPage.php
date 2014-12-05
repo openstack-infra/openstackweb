@@ -33,16 +33,9 @@ final class SangriaPage_Controller extends Page_Controller {
     public static $date_filter_query;
 
     static $allowed_actions = array(
-        'GenerateAutoLoginHashes',
-        // Manage User Stories and Deployments
-	    'SurveyDetails',
-        'SetCaseStudy',
-	    'DeploymentSurveyDeploymentsFilters',
-	    'FilterResults',
     );
 
     static $url_handlers = array(
-        'GET SurveyDetails/$ID' => 'SurveyDetails',
     );
 
     function init() {
