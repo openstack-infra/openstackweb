@@ -7,7 +7,7 @@ WHAT IS IT?
 This project includes the code that powers the openstack.org website, which is itself powered by a PHP web application called Silverstripe, and we've made several customizations to meet the specific needs of OpenStack. More about the Silverstripe CMS is available here: http://silverstripe.org/
 
 This repository is designed to help other project members develop, test, and contribute to the openstack.org website project, or to build other websites. Note that this project is based on ther code that powers the public openstack.org _website_ , not the openstack cloud software itself. To participate in building the actual OpenStack cloud platform software, go to:
-http://wiki.openstack.org/HowToContribute
+http://docs.openstack.org/infra/manual/developers.html
 
 WHY RELEASE THE SOURCE?
 
@@ -61,7 +61,7 @@ We need detailed installation instructions to run the site locally on LAMP or MA
 
 SUBMITTING PATCHES:
 
-We ask that all contributors sign the OpenStack CLA, consistent with how we manage other OpenStack projects: https://wiki.openstack.org/wiki/How_To_Contribute#Contributor_License_Agreement .  Please note that this process is based on the Apache Software Foundation model, and the CLA does NOT require copyright assignment.
+We ask that all contributors sign the OpenStack CLA, consistent with how we manage other OpenStack projects: http://docs.openstack.org/infra/manual/developers.html#account-setup .  Please note that this process is based on the Apache Software Foundation model, and the CLA does NOT require copyright assignment.
 
 In the future we will integrate with the OpenStack gerrit system for managing reviwes. Once that is rolled out, the CLA signature check will be automated to prevent unauthorized pull requests. In the interim, we will verify contributors manually based on the email address associated with their Gerrit account. If your email address in gerrit is different than the one you use for github, please note that in the pull request.
 

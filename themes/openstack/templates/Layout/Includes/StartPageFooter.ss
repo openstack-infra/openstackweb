@@ -14,6 +14,6 @@
 	<div class="span-8 last">
 	<h4>Get involved with OpenStack</h4>
 	<p>The wiki has a useful guide to contributing.</p>
-	<p><a class="roundedButton" href="http://wiki.openstack.org/HowToContribute">How To Contribute</a></p>
+	<p><a class="roundedButton" href="http://docs.openstack.org/infra/manual/developers.html">How To Contribute</a></p>
 	</div>
 </div>

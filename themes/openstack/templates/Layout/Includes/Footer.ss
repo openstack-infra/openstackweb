@@ -17,7 +17,7 @@
                         <li><a href="http://openstack.org/community/events/">Events</a></li>
                         <li><a href="http://openstack.org/community/jobs/">Jobs</a></li>
                         <li><a href="http://openstack.org/foundation/companies/">Companies</a></li>
-                        <li><a href="https://wiki.openstack.org/wiki/How_To_Contribute">Contribute</a></li>
+                        <li><a href="http://docs.openstack.org/infra/manual/developers.html">Contribute</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-2 col-sm-2">
@@ -35,7 +35,7 @@
                         <li><a href="http://openstack.org/brand/">Logos & Guidelines</a></li>
                         <li><a href="http://openstack.org/brand/openstack-trademark-policy/">Trademark Policy</a></li>
                         <li><a href="http://openstack.org/privacy/">Privacy Policy</a></li>
-                        <li><a href="https://wiki.openstack.org/wiki/How_To_Contribute#Contributors_License_Agreement">OpenStack CLA</a></li>
+                        <li><a href="http://docs.openstack.org/infra/manual/developers.html#account-setup">OpenStack CLA</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-4 col-sm-4">
