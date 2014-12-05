@@ -432,16 +432,8 @@ class EditProfilePage_Controller extends Page_Controller
         $CurrentMember = Member::currentUser();
         if ($CurrentMember && isset($_GET['confirmed'])) {
 
-            // Remove Member's Legal Agreements
-            if ($LegalAgreements = LegalAgreement::get()->filter('MemberID', $CurrentMember->ID)) {
-                foreach ($LegalAgreements->items as $item) {
-                    $item->delete();
-                }
-            }
 
-            // Remove member from Foundation group
-            $CurrentMember->Groups()->remove(5);
-
+	        $CurrentMember->resign();
             // Logout and delete the user
             $this->setMessage('Success', 'You have resigned your membership to the OpenStack Foundation.');
             $this->redirect('profile/');
