@@ -183,17 +183,27 @@ class MemberDecorator extends DataExtension {
 
 	public function hasCurrentAffiliation($org){
 		$org = Convert::raw2sql($org);
+		$affiliations = $this->owner->Affiliations();
+
+		$affiliations = $affiliations->filterAny(array(
+			'Current' => '1',
+			'EndDate' => 'NULL',
+		));
+
 		if(is_numeric($org)){
-			$org = intval($org);
-			$org_filter = " OrganizationID = {$org}";
+
+			$affiliations = $affiliations->filter(array(
+				'OrganizationID' => intval($org)
+			));
 		}
 		else{
-			$org_filter = " Org.Name = '{$org}' ";
+
+			$affiliations->innerJoin('Org','Org.ID = Affiliation.OrganizationID','O');
+			$affiliations = $affiliations->filter(array(
+				'O.Name' => $org
+			));
 		}
-		$res = $this->owner->Affiliations("(Current=1 OR EndDate IS NULL ) AND {$org_filter}");
-		if(!is_numeric($org))
-			$res->leftJoin('Org','Org.ID = Affiliation.OrganizationID');
-		return $res->count() > 0;
+		return $affiliations->count() > 0;
 	}
 
 	public function getCurrentOrganization(){

@@ -116,7 +116,7 @@ HTML;
 class DeploymentSurveyPage_Controller extends Page_Controller
 {
 
-	static $allowed_actions = array(
+	private static $allowed_actions = array(
 		'Login',
 		'OrgInfo',
 		'AppDevSurvey',
@@ -290,7 +290,7 @@ class DeploymentSurveyPage_Controller extends Page_Controller
 		if (isset($data['Organization'])) {
 			$org_data = Convert::raw2sql(trim($data['Organization']));
 			if (!empty($org_data)) {
-				$org = DataObject::get_one('Org', " Name = '{$org_data}' ");
+				$org = Org::get()->filter(array('Name' => $org_data))->first();
 				if (!$org) {
 					$org = new Org;
 					$org->Name = $org_data;
