@@ -255,5 +255,15 @@ class MemberDecorator extends DataExtension {
         }
         return $res;
     }
+
+	public function canView($member = null) {
+		$res = Permission::check("EDIT_COMPANY");
+		return $res;
+	}
+
+	public function canEdit($member = null) {
+		$res = Permission::check("EDIT_COMPANY");
+		return $res;
+	}
 }
 

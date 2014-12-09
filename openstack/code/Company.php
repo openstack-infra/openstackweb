@@ -514,6 +514,10 @@ class Company extends DataObject implements PermissionProvider {
 					}
 				}
 			}
+			else{
+				DB::query("DELETE FROM Company_Administrators WHERE CompanyID={$this->ID} AND MemberID={$member->ID};");
+				DB::query("INSERT INTO Company_Administrators (GroupID,CompanyID,MemberID) VALUES (0,{$this->ID},{$member->ID});");
+			}
 		}
 	}
 
