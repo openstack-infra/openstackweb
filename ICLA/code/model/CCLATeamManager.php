@@ -98,7 +98,7 @@ final class CCLATeamManager {
 			else {
 				$member = $member_repository->findByEmail(trim($data['email']));
 				if($member && !$member->hasSignedCLA())
-					throw new MemberNotSignedCCLAException('This user has not yet signed the ICLA. Please ensure they have followed the appropriate steps outlined here: https://wiki.openstack.org/wiki/How_To_Contribute#Contributor_License_Agreement');
+					throw new MemberNotSignedCCLAException('This user has not yet signed the ICLA. Please ensure they have followed the appropriate steps outlined here: http://docs.openstack.org/infra/manual/developers.html#account-setup');
 			}
 
 			if($member && ($team->isMember($member) || $team->isInvite($member)))
