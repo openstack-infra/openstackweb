@@ -18,7 +18,7 @@ class HtmlPurifierRequiredValidator  extends Validator {
     protected $required;
 
     /**
-     * Pass each field to be validated as a seperate argument
+     * Pass each field to be validated as a separate argument
      * to the constructor of this object. (an array of elements are ok)
      */
     function __construct() {
