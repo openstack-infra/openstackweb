@@ -44,7 +44,7 @@
 
 <p>Continue to check <a href="http://www.openstack.org/summit/">http://www.openstack.org/summit/</a> for updates.</p>
 
-<p>Good luck with your speaking submissions! If you have any questions along the way, please don't hesitate to ask. You can reach us at events@opesntack.org.</p>
+<p>Good luck with your speaking submissions! If you have any questions along the way, please don't hesitate to ask. You can reach us at events@openstack.org.</p>
 
 <p>The OpenStack Summit Team</p>
 
