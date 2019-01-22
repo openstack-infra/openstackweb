@@ -58,7 +58,7 @@ class OsLogoProgramForm extends HoneyPotForm {
             new CheckboxSetField(
                 'Program',
                 'Which logo program best fits your product offering?',
-                OsLogoProgramResponse::$avialable_programs
+                OsLogoProgramResponse::$available_programs
             ),
             new LiteralField('HR','<hr/>'),
             new CheckboxField('CurrentSponsor','My company is a Corporate Sponsor or Gold/Platinum Member of the OpenStack Foundation.'),
@@ -76,12 +76,12 @@ class OsLogoProgramForm extends HoneyPotForm {
             new CheckboxSetField(
                 'Category',
                 'Which of the following categories does your product fit into?  This will help us recommend the approprite licensing and associated marketing programs and assets:', 
-                OsLogoProgramResponse::$avialable_categories
+                OsLogoProgramResponse::$available_categories
             ),
             new CheckboxSetField(
                 'Regions',
                 'In which regions does your company operate?', 
-                OsLogoProgramResponse::$avialable_regions
+                OsLogoProgramResponse::$available_regions
             ),
             $projectsField,
             new CheckboxField('APIExposed','My product exposes the OpenStack API')

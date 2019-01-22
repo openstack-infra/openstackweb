@@ -36,7 +36,7 @@ class OSLogoProgramResponse extends DataObject {
 	static $singular_name = 'OSLogoProgramResponse';
 	static $plural_name = 'OSLogoProgramResponses';
 
-	public static $avialable_categories = array (
+	public static $available_categories = array (
 		'Public Clouds' => 'Public Clouds',
 		'Distributions' => 'Distributions',
 		'Converged Appliances' => 'Converged Appliances',
@@ -49,14 +49,14 @@ class OSLogoProgramResponse extends DataObject {
 		'Compatible HW & SW' => 'Compatible Hardware & Software'
 	);
 
-	public static $avialable_regions = array (
+	public static $available_regions = array (
 		'North America' => 'North America',
 		'South America' => 'South America',
 		'Europe' => 'Europe',
 		'Asia Pacific' => 'Asia Pacific'
 	);
 
-    public static $avialable_programs = array (
+    public static $available_programs = array (
         'Powered' => 'Powered',
         'Compatible' => 'Compatible',
         'Training' => 'Training'
