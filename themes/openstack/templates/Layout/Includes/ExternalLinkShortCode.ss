@@ -1,1 +1,0 @@
-<a href="$url" <% if cssclass %>class="$cssclass"<% end_if %> onClick="recordOutboundLink(this, '$category', '$name');return false;" <% if newwindow %>target="_blank"<% end_if %> >$caption</a>

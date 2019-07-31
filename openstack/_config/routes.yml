@@ -1,7 +1,0 @@
----
-Name: mainsiteroutes
-After: 'framework/routes#coreroutes'
----
-Director:
-  rules:
-    'depsurvey': 'DeploymentSurveyController'

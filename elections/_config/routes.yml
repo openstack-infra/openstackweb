@@ -1,7 +1,0 @@
----
-Name: electionroutes
-After: 'framework/routes#coreroutes'
----
-Director:
-  rules:
-    'revocation-notifications' : 'RevocationNotificationAction_Controller'
